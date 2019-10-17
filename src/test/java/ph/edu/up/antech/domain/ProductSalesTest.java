@@ -1,0 +1,244 @@
+package ph.edu.up.antech.domain;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.time.Month;
+import java.time.Year;
+
+public class ProductSalesTest {
+
+	private ProductSales productSalesForS1400May2019;
+	private ProductSales productSalesForS1400June2019;
+	private ProductSales productSalesFor21400July2019;
+
+	@Before
+	public void initializeProductSalesFors1400OnMay2019() {
+		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
+				.plan(880)
+				.inMarketSales(701)
+				.averageInMarketSales(2011)
+				.offTake(1388)
+				.build();
+
+		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
+				.production(5472)
+				.totalGoodsAvailable(3812)
+				.loading(0)
+				.hippEndingInvetory(3812)
+				.hippDaysOnHand(57)
+				.build();
+
+		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
+				.beginningInventory(155)
+				.shipmentsReceived(2528)
+				.totalAvailableForSaleInPhilippines(2683)
+				.actualSales(701)
+				.endingInventory(1982)
+				.daysOnHand(30)
+				.build();
+
+		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
+				.beginningInventory(4291)
+				.totalEndingInventory(3604)
+				.daysOnHand(78)
+				.build();
+
+		productSalesForS1400May2019 = ProductSales.Builder.buildProduct()
+				.month(Month.MAY)
+				.year(Year.of(2019))
+				.generalInformation(generalInformation)
+				.inventoryAtSource(inventoryAtSource)
+				.inventoryAtAntechZPC(inventoryAtAntechZPC)
+				.inventoryAtTrade(inventoryAtTrade)
+				.build();
+	}
+
+	@Before
+	public void initializeProductSalesFors1400OnJune2019() {
+		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
+				.plan(906)
+				.inMarketSales(1424)
+				.averageInMarketSales(1574)
+				.offTake(1382)
+				.build();
+
+		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
+				.production(0)
+				.totalGoodsAvailable(3812)
+				.loading(2528)
+				.hippEndingInvetory(1284)
+				.hippDaysOnHand(35)
+				.build();
+
+		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
+				.beginningInventory(1133)
+				.shipmentsReceived(0)
+				.totalAvailableForSaleInPhilippines(1333)
+				.actualSales(1424)
+				.endingInventory(-291)
+				.daysOnHand(-6)
+				.build();
+
+		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
+				.beginningInventory(3604)
+				.totalEndingInventory(3646)
+				.daysOnHand(79)
+				.build();
+
+		productSalesForS1400June2019 = ProductSales.Builder.buildProduct()
+				.month(Month.JUNE)
+				.year(Year.of(2019))
+				.generalInformation(generalInformation)
+				.inventoryAtSource(inventoryAtSource)
+				.inventoryAtAntechZPC(inventoryAtAntechZPC)
+				.inventoryAtTrade(inventoryAtTrade)
+				.build();
+	}
+
+	@Before
+	public void initializeProductSalesFors1400OnJuly2019() {
+		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
+				.plan(871)
+				.inMarketSales(75)
+				.averageInMarketSales(1200)
+				.offTake(1383)
+				.build();
+
+		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
+				.production(0)
+				.totalGoodsAvailable(1284)
+				.loading(1284)
+				.hippEndingInvetory(0)
+				.hippDaysOnHand(0)
+				.build();
+
+		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
+				.beginningInventory(72)
+				.shipmentsReceived(0)
+				.totalAvailableForSaleInPhilippines(72)
+				.actualSales(75)
+				.endingInventory(-3)
+				.daysOnHand(0)
+				.build();
+
+		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
+				.beginningInventory(3646)
+				.totalEndingInventory(2338)
+				.daysOnHand(51)
+				.build();
+
+		productSalesFor21400July2019 = ProductSales.Builder.buildProduct()
+				.month(Month.JULY)
+				.year(Year.of(2019))
+				.generalInformation(generalInformation)
+				.inventoryAtSource(inventoryAtSource)
+				.inventoryAtAntechZPC(inventoryAtAntechZPC)
+				.inventoryAtTrade(inventoryAtTrade)
+				.build();
+	}
+
+	@Test
+	public void initializeProductDetails_basedOnGivenDetails_shouldBeSuccessful() {
+		Integer plan = 895;
+		Integer inMarketSales = 200;
+		Integer averageInMarketSales = (productSalesForS1400May2019.getGeneralInformation()
+				.getInMarketSales() + productSalesForS1400June2019.getGeneralInformation()
+				.getInMarketSales() + productSalesFor21400July2019.getGeneralInformation()
+				.getInMarketSales()) / 3;
+		Integer offTake = (productSalesForS1400May2019.getGeneralInformation()
+				.getOffTake() + productSalesForS1400June2019.getGeneralInformation()
+				.getOffTake() + productSalesFor21400July2019.getGeneralInformation()
+				.getOffTake()) / 3;
+
+		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
+				.plan(plan)
+				.inMarketSales(inMarketSales)
+				.averageInMarketSales(averageInMarketSales)
+				.offTake(offTake)
+				.build();
+
+		Integer production = 5660;
+		Integer totalGoodsAvailable = productSalesFor21400July2019.getInventoryAtSource()
+				.getHippEndingInvetory() + production;
+		Integer loading = 0;
+		Integer hippEndingInventory = totalGoodsAvailable + loading;
+		Double hippDaysOnHandInDouble =
+				(hippEndingInventory.doubleValue() / ((productSalesForS1400June2019.getGeneralInformation()
+						.getInMarketSales() + productSalesFor21400July2019.getGeneralInformation()
+						.getInMarketSales()) / 2)) * 30;
+		Long hippDaysOnHandInLong = Math.round(hippDaysOnHandInDouble);
+		Integer hippDaysOnHand = hippDaysOnHandInLong.intValue();
+
+		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
+				.production(production)
+				.totalGoodsAvailable(totalGoodsAvailable)
+				.loading(loading)
+				.hippEndingInvetory(hippEndingInventory)
+				.hippDaysOnHand(hippDaysOnHand)
+				.build();
+
+		Integer antechBeginningInventory = productSalesFor21400July2019.getInventoryAtAntechZPC()
+				.getEndingInventory();
+		Integer shipmentsReceived = 3812;
+		Integer totalAvailable = antechBeginningInventory + shipmentsReceived;
+		Integer actualSales = 2000;
+		Integer antechEndingInventory = totalAvailable - actualSales;
+
+		Double antechDaysOnHand =
+				(antechEndingInventory.doubleValue() / ((productSalesForS1400June2019.getGeneralInformation()
+						.getInMarketSales() + productSalesFor21400July2019.getGeneralInformation()
+						.getInMarketSales() + productSalesForS1400May2019.getGeneralInformation()
+						.getInMarketSales()) / 3)) * 30;
+		Long antechDaysOnHandInLong = Math.round(antechDaysOnHand);
+		Integer antechDaysOnHandInInteger = antechDaysOnHandInLong.intValue();
+
+		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
+				.beginningInventory(antechBeginningInventory)
+				.shipmentsReceived(shipmentsReceived)
+				.totalAvailableForSaleInPhilippines(totalAvailable)
+				.actualSales(actualSales)
+				.endingInventory(antechEndingInventory)
+				.daysOnHand(antechDaysOnHandInInteger)
+				.build();
+
+		Integer beginningInventory = productSalesFor21400July2019.getInventoryAtTrade()
+				.getTotalEndingInventory();
+		Integer totalEndingInventory =
+				beginningInventory + inventoryAtAntechZPC.getActualSales() - generalInformation.getOffTake();
+
+		Double daysOnHandInDouble = totalEndingInventory.doubleValue() / generalInformation.getOffTake() * 30;
+		Long daysOnHandInLong = Math.round(daysOnHandInDouble);
+		Integer daysOnHand = daysOnHandInLong.intValue();
+
+		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
+				.beginningInventory(beginningInventory)
+				.totalEndingInventory(totalEndingInventory)
+				.daysOnHand(daysOnHand)
+				.build();
+
+		ProductSales productSalesForS1400August2019 = ProductSales.Builder.buildProduct()
+				.month(Month.AUGUST)
+				.year(Year.of(2019))
+				.generalInformation(generalInformation)
+				.inventoryAtSource(inventoryAtSource)
+				.inventoryAtAntechZPC(inventoryAtAntechZPC)
+				.inventoryAtTrade(inventoryAtTrade)
+				.build();
+	}
+
+	@Test
+	public void createProductSalesForS1400August2019_usingDetailsAbove_shouldBeSuccessful() {
+		ProductSalesDetails productSalesDetails = ProductSalesDetails.Builder.buildProductSalesDetails()
+				.plan(895)
+				.inMarketSales(200)
+				.production(5660)
+				.loading(0)
+				.shipmentReceived(3812)
+				.actualSales(2000)
+				.build();
+		ProductSales productSalesForS1400August2019 = new ProductSales(productSalesForS1400May2019,
+				productSalesForS1400June2019, productSalesFor21400July2019, productSalesDetails);
+	}
+
+}
