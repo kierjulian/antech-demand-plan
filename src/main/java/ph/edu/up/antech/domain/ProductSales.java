@@ -52,7 +52,7 @@ public class ProductSales {
 			ProductSales productSalesTwoMonthsBefore, ProductSalesDetails productSalesDetails) {
 		Integer production = productSalesDetails.getProduction();
 		Integer totalGoodsAvailable = productSalesOneMonthBefore.getInventoryAtSource()
-				.getHippEndingInvetory();
+				.getHippEndingInvetory() +  production;
 		Integer loading = productSalesDetails.getLoading();
 		Integer hippEndingInventory = totalGoodsAvailable + loading;
 
@@ -61,7 +61,7 @@ public class ProductSales {
 						.getInMarketSales() + productSalesOneMonthBefore.getGeneralInformation()
 						.getInMarketSales()) / 2)) * 30;
 		Long hippDaysOnHandInLongFormat = Math.round(hippDaysOnHandInDoubleFormat);
-		Integer hippDaysOnHand = hippDaysOnHandInDoubleFormat.intValue();
+		Integer hippDaysOnHand = hippDaysOnHandInLongFormat.intValue();
 
 		this.inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
 				.production(production)
@@ -76,7 +76,7 @@ public class ProductSales {
 			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
 			ProductSalesDetails productSalesDetails) {
 		Integer beginningInventory = productSalesOneMonthBefore.getInventoryAtAntechZPC()
-				.getBeginningInventory();
+				.getEndingInventory();
 		Integer shipmentReceived = productSalesDetails.getShipmentReceived();
 		Integer totalAvailable = beginningInventory + shipmentReceived;
 		Integer actualSales = productSalesDetails.getActualSales();
@@ -88,7 +88,7 @@ public class ProductSales {
 						.getInMarketSales() + productSalesOneMonthBefore.getGeneralInformation()
 						.getInMarketSales()) / 3)) * 30;
 		Long daysOnHandInLongFormat = Math.round(daysOnHandInDoubleFormat);
-		Integer daysOnHand = daysOnHandInDoubleFormat.intValue();
+		Integer daysOnHand = daysOnHandInLongFormat.intValue();
 
 		this.inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
 				.beginningInventory(beginningInventory)

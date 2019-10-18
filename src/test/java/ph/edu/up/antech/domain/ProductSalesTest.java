@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -141,7 +142,7 @@ public class ProductSalesTest {
 	@Test
 	public void initializeProductDetails_basedOnGivenDetails_shouldBeSuccessful() {
 		Integer plan = 895;
-		Integer inMarketSales = 200;
+		Integer inMarketSales = 2000;
 		Integer averageInMarketSales = (productSalesForS1400May2019.getGeneralInformation()
 				.getInMarketSales() + productSalesForS1400June2019.getGeneralInformation()
 				.getInMarketSales() + productSalesFor21400July2019.getGeneralInformation()
@@ -225,20 +226,86 @@ public class ProductSalesTest {
 				.inventoryAtAntechZPC(inventoryAtAntechZPC)
 				.inventoryAtTrade(inventoryAtTrade)
 				.build();
+		checkIfProductSalesAreAccurate(productSalesForS1400August2019);
 	}
 
 	@Test
 	public void createProductSalesForS1400August2019_usingDetailsAbove_shouldBeSuccessful() {
 		ProductSalesDetails productSalesDetails = ProductSalesDetails.Builder.buildProductSalesDetails()
 				.plan(895)
-				.inMarketSales(200)
+				.inMarketSales(2000)
 				.production(5660)
 				.loading(0)
 				.shipmentReceived(3812)
 				.actualSales(2000)
 				.build();
-		ProductSales productSalesForS1400August2019 = new ProductSales(productSalesForS1400May2019,
-				productSalesForS1400June2019, productSalesFor21400July2019, productSalesDetails);
+		ProductSales productSalesForS1400August2019 = new ProductSales(productSalesFor21400July2019,
+				productSalesForS1400June2019, productSalesForS1400May2019, productSalesDetails);
+		checkIfProductSalesAreAccurate(productSalesForS1400August2019);
+	}
+
+	private void checkIfProductSalesAreAccurate(ProductSales productSales) {
+		// For GeneralInformation
+		Assert.assertEquals(895, productSales.getGeneralInformation()
+				.getPlan()
+				.longValue());
+		Assert.assertEquals(2000, productSales.getGeneralInformation()
+				.getInMarketSales()
+				.longValue());
+		Assert.assertEquals(733, productSales.getGeneralInformation()
+				.getAverageInMarketSales()
+				.longValue());
+		Assert.assertEquals(1384, productSales.getGeneralInformation()
+				.getOffTake()
+				.longValue());
+
+		// For InventoryAtSource
+		Assert.assertEquals(5660, productSales.getInventoryAtSource()
+				.getProduction()
+				.longValue());
+		Assert.assertEquals(5660, productSales.getInventoryAtSource()
+				.getTotalGoodsAvailable()
+				.longValue());
+		Assert.assertEquals(0, productSales.getInventoryAtSource()
+				.getLoading()
+				.longValue());
+		Assert.assertEquals(5660, productSales.getInventoryAtSource()
+				.getHippEndingInvetory()
+				.longValue());
+		Assert.assertEquals(227, productSales.getInventoryAtSource()
+				.getHippDaysOnHand()
+				.longValue());
+
+		// For InventoryAtAntechZPC
+		Assert.assertEquals(-3, productSales.getInventoryAtAntechZPC()
+				.getBeginningInventory()
+				.longValue());
+		Assert.assertEquals(3812, productSales.getInventoryAtAntechZPC()
+				.getShipmentsReceived()
+				.longValue());
+		Assert.assertEquals(3809, productSales.getInventoryAtAntechZPC()
+				.getTotalAvailableForSaleInPhilippines()
+				.longValue());
+		Assert.assertEquals(2000, productSales.getInventoryAtAntechZPC()
+				.getActualSales()
+				.longValue());
+		Assert.assertEquals(1809, productSales.getInventoryAtAntechZPC()
+				.getEndingInventory()
+				.longValue());
+		Assert.assertEquals(74, productSales.getInventoryAtAntechZPC()
+				.getDaysOnHand()
+				.longValue());
+
+		// For InvetoryAtTrade
+		Assert.assertEquals(2338, productSales.getInventoryAtTrade()
+				.getBeginningInventory()
+				.longValue());
+		Assert.assertEquals(2954, productSales.getInventoryAtTrade()
+				.getTotalEndingInventory()
+				.longValue());
+		Assert.assertEquals(64, productSales.getInventoryAtTrade()
+				.getDaysOnHand()
+				.longValue());
 	}
 
 }
