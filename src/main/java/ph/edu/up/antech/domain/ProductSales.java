@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain;
 
+import ph.edu.ph.antech.exception.DifferentProductException;
+
 import java.time.Month;
 import java.time.Year;
 
@@ -14,6 +16,20 @@ public class ProductSales {
 	private InventoryAtTrade inventoryAtTrade;
 
 	public ProductSales() {
+	}
+
+	public ProductSales(Product product, ProductSales productSalesOneMonthBefore,
+			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
+			ProductSalesDetails productSalesDetails) {
+		this(productSalesOneMonthBefore, productSalesTwoMonthsBefore, productSalesThreeMonthsBefore,
+				productSalesDetails);
+		this.product = product;
+
+		if (!this.product.equals(productSalesOneMonthBefore.product)
+				|| !this.product.equals(productSalesTwoMonthsBefore.product)
+				|| !this.product.equals(productSalesThreeMonthsBefore.product)) {
+			throw new DifferentProductException("Products of product sales should not be different");
+		}
 	}
 
 	public ProductSales(ProductSales productSalesOneMonthBefore,
@@ -52,7 +68,7 @@ public class ProductSales {
 			ProductSales productSalesTwoMonthsBefore, ProductSalesDetails productSalesDetails) {
 		Integer production = productSalesDetails.getProduction();
 		Integer totalGoodsAvailable = productSalesOneMonthBefore.getInventoryAtSource()
-				.getHippEndingInvetory() +  production;
+				.getHippEndingInvetory() + production;
 		Integer loading = productSalesDetails.getLoading();
 		Integer hippEndingInventory = totalGoodsAvailable + loading;
 
@@ -173,6 +189,7 @@ public class ProductSales {
 
 
 	public static final class Builder {
+		private Product product;
 		private Year year;
 		private Month month;
 		private GeneralInformation generalInformation;
@@ -185,6 +202,11 @@ public class ProductSales {
 
 		public static Builder buildProduct() {
 			return new Builder();
+		}
+
+		public Builder product(Product product) {
+			this.product = product;
+			return this;
 		}
 
 		public Builder year(Year year) {
@@ -219,6 +241,7 @@ public class ProductSales {
 
 		public ProductSales build() {
 			ProductSales productSales = new ProductSales();
+			productSales.setProduct(product);
 			productSales.setYear(year);
 			productSales.setMonth(month);
 			productSales.setGeneralInformation(generalInformation);
