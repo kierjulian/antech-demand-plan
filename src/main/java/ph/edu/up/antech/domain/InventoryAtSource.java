@@ -8,6 +8,9 @@ public class InventoryAtSource {
 	private Integer hippEndingInvetory;
 	private Integer hippDaysOnHand;
 
+	public InventoryAtSource() {
+	}
+
 	public Integer getProduction() {
 		return production;
 	}

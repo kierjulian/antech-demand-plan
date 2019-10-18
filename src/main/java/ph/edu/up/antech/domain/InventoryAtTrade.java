@@ -6,6 +6,9 @@ public class InventoryAtTrade {
 	private Integer totalEndingInventory;
 	private Integer daysOnHand;
 
+	public InventoryAtTrade() {
+	}
+
 	public Integer getBeginningInventory() {
 		return beginningInventory;
 	}

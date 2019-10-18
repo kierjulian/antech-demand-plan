@@ -9,6 +9,9 @@ public class InventoryAtAntechZPC {
 	private Integer endingInventory;
 	private Integer daysOnHand;
 
+	public InventoryAtAntechZPC() {
+	}
+
 	public Integer getBeginningInventory() {
 		return beginningInventory;
 	}

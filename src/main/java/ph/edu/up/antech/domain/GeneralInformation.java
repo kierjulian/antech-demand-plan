@@ -7,6 +7,9 @@ public class GeneralInformation {
 	private Integer averageInMarketSales;
 	private Integer offTake;
 
+	public GeneralInformation() {
+	}
+
 	public Integer getPlan() {
 		return plan;
 	}

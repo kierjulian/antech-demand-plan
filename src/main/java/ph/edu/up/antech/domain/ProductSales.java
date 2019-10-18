@@ -21,20 +21,13 @@ public class ProductSales {
 	public ProductSales(Product product, ProductSales productSalesOneMonthBefore,
 			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
 			ProductSalesDetails productSalesDetails) {
-		this(productSalesOneMonthBefore, productSalesTwoMonthsBefore, productSalesThreeMonthsBefore,
-				productSalesDetails);
 		this.product = product;
-
 		if (!this.product.equals(productSalesOneMonthBefore.product)
 				|| !this.product.equals(productSalesTwoMonthsBefore.product)
 				|| !this.product.equals(productSalesThreeMonthsBefore.product)) {
 			throw new DifferentProductException("Products of product sales should not be different");
 		}
-	}
 
-	public ProductSales(ProductSales productSalesOneMonthBefore,
-			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
-			ProductSalesDetails productSalesDetails) {
 		initializeGeneralInformation(productSalesOneMonthBefore, productSalesTwoMonthsBefore,
 				productSalesThreeMonthsBefore, productSalesDetails);
 		initializeInventoryAtSource(productSalesOneMonthBefore, productSalesTwoMonthsBefore,
