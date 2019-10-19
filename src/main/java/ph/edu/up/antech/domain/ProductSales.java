@@ -193,7 +193,7 @@ public class ProductSales {
 		private Builder() {
 		}
 
-		public static Builder buildProduct() {
+		public static Builder buildProductSales() {
 			return new Builder();
 		}
 

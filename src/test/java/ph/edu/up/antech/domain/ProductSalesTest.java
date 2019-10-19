@@ -53,7 +53,7 @@ public class ProductSalesTest {
 				.daysOnHand(78)
 				.build();
 
-		productSalesForS1400May2019 = ProductSales.Builder.buildProduct()
+		productSalesForS1400May2019 = ProductSales.Builder.buildProductSales()
 				.product(product)
 				.month(Month.MAY)
 				.year(Year.of(2019))
@@ -102,7 +102,7 @@ public class ProductSalesTest {
 				.daysOnHand(79)
 				.build();
 
-		productSalesForS1400June2019 = ProductSales.Builder.buildProduct()
+		productSalesForS1400June2019 = ProductSales.Builder.buildProductSales()
 				.product(product)
 				.month(Month.JUNE)
 				.year(Year.of(2019))
@@ -151,7 +151,7 @@ public class ProductSalesTest {
 				.daysOnHand(51)
 				.build();
 
-		productSalesForS1400July2019 = ProductSales.Builder.buildProduct()
+		productSalesForS1400July2019 = ProductSales.Builder.buildProductSales()
 				.product(product)
 				.month(Month.JULY)
 				.year(Year.of(2019))
@@ -247,7 +247,7 @@ public class ProductSalesTest {
 				.daysOnHand(daysOnHand)
 				.build();
 
-		ProductSales productSalesForS1400August2019 = ProductSales.Builder.buildProduct()
+		ProductSales productSalesForS1400August2019 = ProductSales.Builder.buildProductSales()
 				.product(product)
 				.month(Month.AUGUST)
 				.year(Year.of(2019))
