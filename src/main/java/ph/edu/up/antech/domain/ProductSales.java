@@ -1,6 +1,6 @@
 package ph.edu.up.antech.domain;
 
-import ph.edu.ph.antech.exception.DifferentProductException;
+import ph.edu.up.antech.exception.DifferentProductException;
 
 import java.time.Month;
 import java.time.Year;

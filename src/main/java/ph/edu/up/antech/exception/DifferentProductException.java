@@ -1,4 +1,4 @@
-package ph.edu.ph.antech.exception;
+package ph.edu.up.antech.exception;
 
 public class DifferentProductException extends RuntimeException {
 

@@ -3,7 +3,7 @@ package ph.edu.up.antech.domain;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ph.edu.ph.antech.exception.DifferentProductException;
+import ph.edu.up.antech.exception.DifferentProductException;
 
 import java.math.BigDecimal;
 import java.time.Month;
