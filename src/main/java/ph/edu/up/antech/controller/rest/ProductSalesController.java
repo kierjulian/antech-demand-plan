@@ -14,7 +14,7 @@ import java.time.Year;
 import java.util.List;
 
 @RestController
-@RequestMapping("/productSales")
+@RequestMapping(path = "/api/v1/productSales")
 public class ProductSalesController {
 
 	@Autowired
