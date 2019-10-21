@@ -1,9 +1,31 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Home Page</title>
+        <style>
+            body, html{
+                height: 100%;
+            }
+        </style>
     </head>
     <body>
-        <h1>Welcome!</h1>
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-6 mx-auto">
+                    <div class="jumbotron text-center">
+                        <h1 class="display-4">Antech</h1>
+                        <p class="lead">This is a sample of the Antech demand plan.</p>
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" href="/demand-plan/" role="button">Proceed</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

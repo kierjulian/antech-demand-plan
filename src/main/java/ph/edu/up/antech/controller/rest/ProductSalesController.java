@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller;
+package ph.edu.up.antech.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
