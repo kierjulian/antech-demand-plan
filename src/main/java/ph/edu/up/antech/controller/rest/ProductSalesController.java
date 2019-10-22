@@ -45,9 +45,9 @@ public class ProductSalesController {
 				.product(product)
 				.year(Year.now())
 				.month(Month.AUGUST)
-				.productSalesOneMonthBefore(ProductSalesHelper.initializeProductSalesFors1400OnJuly2019())
-				.productSalesTwoMonthBefore(ProductSalesHelper.initializeProductSalesFors1400OnJune2019())
-				.productSalesThreeMonthBefore(ProductSalesHelper.initializeProductSalesFors1400OnMay2019())
+				.productSalesOneMonthBefore(ProductSalesHelper.initializeProductSalesForS1400July2019())
+				.productSalesTwoMonthBefore(ProductSalesHelper.initializeProductSalesForS1400June2019())
+				.productSalesThreeMonthBefore(ProductSalesHelper.initializeProductSalesForS1400May2019())
 				.productSalesDetails(productSalesDetails)
 				.build();
 		return productSalesService.createProductSale(productSalesGeneration);

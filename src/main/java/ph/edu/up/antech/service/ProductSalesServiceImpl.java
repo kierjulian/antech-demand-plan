@@ -14,9 +14,13 @@ public class ProductSalesServiceImpl implements ProductSalesService {
 	@Override
 	public List<ProductSales> findAll() {
 		List<ProductSales> productSalesList = new ArrayList<>();
-		productSalesList.add(ProductSalesHelper.initializeProductSalesFors1400OnMay2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesFors1400OnJune2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesFors1400OnJuly2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400Jan2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400Feb2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400March2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesFors1400April2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400May2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400June2019());
+		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400July2019());
 		return productSalesList;
 	}
 
