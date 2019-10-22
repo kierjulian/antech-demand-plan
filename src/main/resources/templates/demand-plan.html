@@ -69,23 +69,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                    <tr th:each="productSales : ${productSalesList}" >
+                        <td th:text="${productSales.month}" />
+                        <td th:text="${productSales.generalInformation.plan}" />
+                        <td th:text="${productSales.generalInformation.inMarketSales}" />
+                        <td th:text="${productSales.generalInformation.averageInMarketSales}" />
+                        <td th:text="${productSales.generalInformation.offTake}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.beginningInventory}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.shipmentsReceived}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.totalAvailableForSaleInPhilippines}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.actualSales}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.endingInventory}" />
+                        <td th:text="${productSales.inventoryAtAntechZPC.daysOnHand}" />
+                        <td th:text="${productSales.inventoryAtSource.production}" />
+                        <td th:text="${productSales.inventoryAtSource.totalGoodsAvailable}" />
+                        <td th:text="${productSales.inventoryAtSource.loading}" />
+                        <td th:text="${productSales.inventoryAtSource.hippEndingInvetory}" />
+                        <td th:text="${productSales.inventoryAtSource.hippDaysOnHand}" />
+                        <td th:text="${productSales.inventoryAtTrade.beginningInventory}" />
+                        <td th:text="${productSales.inventoryAtTrade.totalEndingInventory}" />
+                        <td th:text="${productSales.inventoryAtTrade.daysOnHand}" />
                     </tr>
                 </tbody>
             </table>
