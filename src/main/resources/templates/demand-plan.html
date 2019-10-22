@@ -1,25 +1,71 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <link rel="stylesheet"
-              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Demand Plan</title>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
     </head>
     <body>
-        <div class="container"><br/>
+        <div class="container-fluid"><br/>
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Demand Plan</h1>
             </div>
-            <table class="table table-striped">
+            <div class="row">
+                <div class="col-1 col-sm-1 dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="productMenuDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Product
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="productMenuDropdown">
+                        <a class="dropdown-item" href="#">S1 400</a>
+                        <a class="dropdown-item" href="#">S1 800</a>
+                        <a class="dropdown-item" href="#">CS 400</a>
+                        <a class="dropdown-item" href="#">CS 800</a>
+                    </div>
+                </div>
+                <div class="col-1 col-sm-1 dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="yearMenuDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Year
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="yearMenuDropdown">
+                        <a class="dropdown-item" href="#">2018</a>
+                        <a class="dropdown-item" href="#">2019</a>
+                        <a class="dropdown-item" href="#">2020</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="colgroup" colspan=""></th>
+                        <th scope="colgroup" colspan="4">General Information</th>
+                        <th scope="colgroup" colspan="5">Inventory At Source</th>
+                        <th scope="colgroup" colspan="6">Inventory At Antech ZPC</th>
+                        <th scope="colgroup" colspan="3">Inventory At Trade</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Month</th>
+                        <th scope="col">Plan</th>
+                        <th scope="col">In Market Sales</th>
+                        <th scope="col">Average In Market Sales</th>
+                        <th scope="col">Off Take</th>
+                        <th scope="col">Production</th>
+                        <th scope="col">Total Goods Available</th>
+                        <th scope="col">Loading</th>
+                        <th scope="col">HiPP Ending Inventory</th>
+                        <th scope="col">HiPP Days On Hand</th>
+                        <th scope="col">Beginning Inventory</th>
+                        <th scope="col">Shipments Received</th>
+                        <th scope="col">Available Sales In The Philippines</th>
+                        <th scope="col">Actual Sales</th>
+                        <th scope="col">Ending Inventory</th>
+                        <th scope="col">Days On Hand</th>
+                        <th scope="col">Beginning Inventory</th>
+                        <th scope="col">Total Ending Inventory</th>
+                        <th scope="col">Days on Hand</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,5 +90,9 @@
                 </tbody>
             </table>
         </div>
+
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </body>
 </html>

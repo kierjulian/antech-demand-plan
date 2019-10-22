@@ -25,7 +25,7 @@ public class DemandPlanController {
 		return "demand-plan";
 	}
 
-	private String buildApiPath() {
+	private String getProductSalesApiPath() {
 		UriComponents uri = UriComponentsBuilder
 				.fromHttpUrl("http://{domain}:{port}/api/v1/productSales")
 				.buildAndExpand(domain, port);
