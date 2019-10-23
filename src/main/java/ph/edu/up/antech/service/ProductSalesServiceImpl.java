@@ -26,11 +26,14 @@ public class ProductSalesServiceImpl implements ProductSalesService {
 
 	@Override
 	public ProductSales createProductSale(ProductSalesGeneration productSalesGeneration) {
-		return new ProductSales(productSalesGeneration.getProduct(),
+		ProductSales productSales = new ProductSales(productSalesGeneration.getProduct(),
 				productSalesGeneration.getProductSalesOneMonthBefore(),
 				productSalesGeneration.getProductSalesTwoMonthBefore(),
 				productSalesGeneration.getProductSalesThreeMonthBefore(),
 				productSalesGeneration.getProductSalesDetails());
+		productSales.setMonth(productSalesGeneration.getMonth());
+		productSales.setYear(productSalesGeneration.getYear());
+		return productSales;
 	}
 
 }

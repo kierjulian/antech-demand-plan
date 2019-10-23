@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import ph.edu.up.antech.domain.ProductSales;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +28,8 @@ public class DemandPlanController {
 	@Value("${rest.port}")
 	private String port;
 
+	private List<ProductSales> productSalesList = new ArrayList<>();
+
 	@GetMapping("")
 	public String loadDemandPlanPage(Model model) {
 		String apiPath = getProductSalesApiPath();
@@ -35,7 +38,7 @@ public class DemandPlanController {
 						new ParameterizedTypeReference<List<ProductSales>>() {
 						});
 
-		List<ProductSales> productSalesList = responseEntity.getBody();
+		productSalesList = responseEntity.getBody();
 		model.addAttribute("productSalesList", productSalesList);
 		return "demand-plan";
 	}
@@ -45,6 +48,16 @@ public class DemandPlanController {
 				.fromHttpUrl("http://{domain}:{port}/api/v1/productSales")
 				.buildAndExpand(domain, port);
 		return uri.toUriString();
+	}
+
+	@GetMapping("/add")
+	public String addEntryToPage(Model model) {
+		ProductSales productSales = restTemplate.postForObject(getProductSalesApiPath(),
+				null, ProductSales.class);
+		productSalesList.add(productSales);
+		model.addAttribute("productSalesList", productSalesList);
+
+		return "demand-plan";
 	}
 
 }

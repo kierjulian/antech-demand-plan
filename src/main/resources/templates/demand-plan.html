@@ -11,32 +11,33 @@
             <div class="jumbotron">
                 <h1 class="display-4 text-center">Demand Plan</h1>
             </div>
-            <div class="row">
-                <div class="col-1 col-sm-1 dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="productMenuDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Product
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="productMenuDropdown">
-                        <a class="dropdown-item" href="#">S1 400</a>
-                        <a class="dropdown-item" href="#">S1 800</a>
-                        <a class="dropdown-item" href="#">CS 400</a>
-                        <a class="dropdown-item" href="#">CS 800</a>
-                    </div>
-                </div>
-                <div class="col-1 col-sm-1 dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="yearMenuDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Year
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="yearMenuDropdown">
-                        <a class="dropdown-item" href="#">2018</a>
-                        <a class="dropdown-item" href="#">2019</a>
-                        <a class="dropdown-item" href="#">2020</a>
-                    </div>
+            <div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="productMenuDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Product
+                </button>
+                <div class="dropdown-menu" aria-labelledby="productMenuDropdown">
+                    <a class="dropdown-item" href="#">S1 400</a>
+                    <a class="dropdown-item" href="#">S1 800</a>
+                    <a class="dropdown-item" href="#">CS 400</a>
+                    <a class="dropdown-item" href="#">CS 800</a>
                 </div>
             </div>
-            <br>
+            <div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="yearMenuDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Year
+                </button>
+                <div class="dropdown-menu" aria-labelledby="yearMenuDropdown">
+                    <a class="dropdown-item" href="#">2018</a>
+                    <a class="dropdown-item" href="#">2019</a>
+                    <a class="dropdown-item" href="#">2020</a>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">Search</button>
+            </div>
+            <br><br>
             <table class="table table-striped table-bordered table-hover table-sm">
                 <thead>
                     <tr>
@@ -92,6 +93,11 @@
                     </tr>
                 </tbody>
             </table>
+            <form onClick="location.href='/demand-plan/add'" method="get">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success">Add Item</button>
+                </div>
+            </form>
         </div>
 
         <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
