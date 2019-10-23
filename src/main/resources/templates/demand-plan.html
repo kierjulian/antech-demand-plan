@@ -93,11 +93,58 @@
                     </tr>
                 </tbody>
             </table>
-            <form onClick="location.href='/demand-plan/add'" method="get">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-success">Add Item</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductSalesModal">
+                Add Product Sales
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addProductSalesModal" tabindex="-1" role="dialog"
+                 aria-labelledby="addProductSalesModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addProductSalesModalLabel">Add Product Sales</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/demand-plan/add" method="get">
+                                <div class="form-group">
+                                    <label for="plan">Plan</label>
+                                    <input type="text" class="form-control" id="plan">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inMarketSales">In Market Sales</label>
+                                    <input type="text" class="form-control" id="inMarketSales">
+                                </div>
+                                <div class="form-group">
+                                    <label for="production">Production</label>
+                                    <input type="text" class="form-control" id="production">
+                                </div>
+                                <div class="form-group">
+                                    <label for="loading">Loading</label>
+                                    <input type="text" class="form-control" id="loading">
+                                </div>
+                                <div class="form-group">
+                                    <label for="shipmentsReceived">Shipments Received</label>
+                                    <input type="text" class="form-control" id="shipmentsReceived">
+                                </div>
+                                <div class="form-group">
+                                    <label for="actualSales">Actual Sales</label>
+                                    <input type="text" class="form-control" id="actualSales">
+                                </div>
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-success">Confirm</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
 
         <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>

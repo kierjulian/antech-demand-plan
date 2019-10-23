@@ -16,33 +16,33 @@ public class ProductSalesHelper {
 				.build();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
-				.plan(2015)
-				.inMarketSales(701)
-				.averageInMarketSales(2011)
-				.offTake(1388)
+				.plan(821)
+				.inMarketSales(3578)
+				.averageInMarketSales(18)
+				.offTake(1351)
 				.build();
 
 		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
-				.production(3312)
-				.totalGoodsAvailable(3812)
+				.production(0)
+				.totalGoodsAvailable(0)
 				.loading(0)
-				.hippEndingInvetory(3812)
-				.hippDaysOnHand(57)
+				.hippEndingInvetory(0)
+				.hippDaysOnHand(0)
 				.build();
 
 		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
-				.beginningInventory(155)
-				.shipmentsReceived(2528)
-				.totalAvailableForSaleInPhilippines(2683)
-				.actualSales(701)
-				.endingInventory(1982)
-				.daysOnHand(30)
+				.beginningInventory(0)
+				.shipmentsReceived(4032)
+				.totalAvailableForSaleInPhilippines(4032)
+				.actualSales(3578)
+				.endingInventory(454)
+				.daysOnHand(771)
 				.build();
 
 		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
-				.beginningInventory(4291)
-				.totalEndingInventory(3604)
-				.daysOnHand(78)
+				.beginningInventory(1173)
+				.totalEndingInventory(3400)
+				.daysOnHand(76)
 				.build();
 
 		return ProductSales.Builder.buildProductSales()
@@ -64,33 +64,33 @@ public class ProductSalesHelper {
 				.build();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
-				.plan(880)
-				.inMarketSales(701)
-				.averageInMarketSales(2011)
-				.offTake(1388)
+				.plan(742)
+				.inMarketSales(0)
+				.averageInMarketSales(1115)
+				.offTake(1407)
 				.build();
 
 		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
-				.production(5472)
-				.totalGoodsAvailable(3812)
+				.production(0)
+				.totalGoodsAvailable(0)
 				.loading(0)
-				.hippEndingInvetory(3812)
-				.hippDaysOnHand(57)
+				.hippEndingInvetory(0)
+				.hippDaysOnHand(0)
 				.build();
 
 		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
-				.beginningInventory(155)
-				.shipmentsReceived(2528)
-				.totalAvailableForSaleInPhilippines(2683)
-				.actualSales(701)
-				.endingInventory(1982)
-				.daysOnHand(30)
+				.beginningInventory(454)
+				.shipmentsReceived(0)
+				.totalAvailableForSaleInPhilippines(454)
+				.actualSales(0)
+				.endingInventory(454)
+				.daysOnHand(12)
 				.build();
 
 		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
-				.beginningInventory(4291)
-				.totalEndingInventory(3604)
-				.daysOnHand(78)
+				.beginningInventory(3400)
+				.totalEndingInventory(3026)
+				.daysOnHand(65)
 				.build();
 
 		return ProductSales.Builder.buildProductSales()
@@ -112,33 +112,33 @@ public class ProductSalesHelper {
 				.build();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
-				.plan(880)
-				.inMarketSales(701)
-				.averageInMarketSales(2011)
-				.offTake(1388)
+				.plan(806)
+				.inMarketSales(2547)
+				.averageInMarketSales(1167)
+				.offTake(1379)
 				.build();
 
 		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
-				.production(5472)
-				.totalGoodsAvailable(3812)
+				.production(0)
+				.totalGoodsAvailable(0)
 				.loading(0)
-				.hippEndingInvetory(3812)
-				.hippDaysOnHand(57)
+				.hippEndingInvetory(0)
+				.hippDaysOnHand(0)
 				.build();
 
 		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
-				.beginningInventory(155)
-				.shipmentsReceived(2528)
-				.totalAvailableForSaleInPhilippines(2683)
-				.actualSales(701)
-				.endingInventory(1982)
-				.daysOnHand(30)
+				.beginningInventory(187)
+				.shipmentsReceived(4272)
+				.totalAvailableForSaleInPhilippines(4459)
+				.actualSales(2547)
+				.endingInventory(1912)
+				.daysOnHand(49)
 				.build();
 
 		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
-				.beginningInventory(4291)
-				.totalEndingInventory(3604)
-				.daysOnHand(78)
+				.beginningInventory(3026)
+				.totalEndingInventory(4194)
+				.daysOnHand(91)
 				.build();
 
 		return ProductSales.Builder.buildProductSales()
@@ -160,33 +160,33 @@ public class ProductSalesHelper {
 				.build();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
-				.plan(880)
-				.inMarketSales(701)
-				.averageInMarketSales(2011)
-				.offTake(1388)
+				.plan(854)
+				.inMarketSales(1475)
+				.averageInMarketSales(1167)
+				.offTake(1379)
 				.build();
 
 		InventoryAtSource inventoryAtSource = InventoryAtSource.Builder.buildInventoryAtSource()
-				.production(5472)
-				.totalGoodsAvailable(3812)
+				.production(0)
+				.totalGoodsAvailable(0)
 				.loading(0)
-				.hippEndingInvetory(3812)
-				.hippDaysOnHand(57)
+				.hippEndingInvetory(0)
+				.hippDaysOnHand(0)
 				.build();
 
 		InventoryAtAntechZPC inventoryAtAntechZPC = InventoryAtAntechZPC.Builder.buildInventoryAtAntechZPC()
-				.beginningInventory(155)
-				.shipmentsReceived(2528)
-				.totalAvailableForSaleInPhilippines(2683)
-				.actualSales(701)
-				.endingInventory(1982)
-				.daysOnHand(30)
+				.beginningInventory(1723)
+				.shipmentsReceived(0)
+				.totalAvailableForSaleInPhilippines(1723)
+				.actualSales(1475)
+				.endingInventory(248)
+				.daysOnHand(2)
 				.build();
 
 		InventoryAtTrade inventoryAtTrade = InventoryAtTrade.Builder.buildInventoryAtTrade()
-				.beginningInventory(4291)
-				.totalEndingInventory(3604)
-				.daysOnHand(78)
+				.beginningInventory(4194)
+				.totalEndingInventory(4291)
+				.daysOnHand(93)
 				.build();
 
 		return ProductSales.Builder.buildProductSales()
