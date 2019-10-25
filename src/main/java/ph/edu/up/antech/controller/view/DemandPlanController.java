@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import ph.edu.up.antech.domain.ProductSales;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,15 +33,20 @@ public class DemandPlanController {
 	private List<ProductSales> productSalesList = new ArrayList<>();
 
 	@GetMapping("")
-	public String loadDemandPlanPage(Model model) {
-		String apiPath = getProductSalesApiPath();
-		ResponseEntity<List<ProductSales>> responseEntity =
-				restTemplate.exchange(apiPath, HttpMethod.GET, null,
-						new ParameterizedTypeReference<List<ProductSales>>() {
-						});
+	public String loadDemandPlanPage(Model model,@RequestParam(required = false) String productName,
+			@RequestParam(required = false) Integer year) {
+		if ((productName != null && year != null)
+				&& productName.equals("S1400") && year == 2019) {
+			String apiPath = getProductSalesApiPath();
+			ResponseEntity<List<ProductSales>> responseEntity =
+					restTemplate.exchange(apiPath, HttpMethod.GET, null,
+							new ParameterizedTypeReference<List<ProductSales>>() {
+							});
 
-		productSalesList = responseEntity.getBody();
-		model.addAttribute("productSalesList", productSalesList);
+			productSalesList = responseEntity.getBody();
+			model.addAttribute("productSalesList", productSalesList);
+		}
+
 		return "demand-plan";
 	}
 
