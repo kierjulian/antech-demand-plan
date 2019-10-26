@@ -190,7 +190,7 @@ public class ProductSalesTest {
 
 		Integer production = 5660;
 		Integer totalGoodsAvailable = productSalesForS1400July2019.getInventoryAtSource()
-				.getHippEndingInvetory() + production;
+				.getHippEndingInventory() + production;
 		Integer loading = 0;
 		Integer hippEndingInventory = totalGoodsAvailable + loading;
 		Double hippDaysOnHandInDouble =
@@ -306,7 +306,7 @@ public class ProductSalesTest {
 				.getLoading()
 				.longValue());
 		Assert.assertEquals(5660, productSales.getInventoryAtSource()
-				.getHippEndingInvetory()
+				.getHippEndingInventory()
 				.longValue());
 		Assert.assertEquals(227, productSales.getInventoryAtSource()
 				.getHippDaysOnHand()

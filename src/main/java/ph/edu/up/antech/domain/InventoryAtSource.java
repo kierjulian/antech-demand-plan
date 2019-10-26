@@ -5,7 +5,7 @@ public class InventoryAtSource {
 	private Integer production;
 	private Integer totalGoodsAvailable;
 	private Integer loading;
-	private Integer hippEndingInvetory;
+	private Integer hippEndingInventory;
 	private Integer hippDaysOnHand;
 
 	public InventoryAtSource() {
@@ -35,12 +35,12 @@ public class InventoryAtSource {
 		this.loading = loading;
 	}
 
-	public Integer getHippEndingInvetory() {
-		return hippEndingInvetory;
+	public Integer getHippEndingInventory() {
+		return hippEndingInventory;
 	}
 
-	public void setHippEndingInvetory(Integer hippEndingInvetory) {
-		this.hippEndingInvetory = hippEndingInvetory;
+	public void setHippEndingInventory(Integer hippEndingInventory) {
+		this.hippEndingInventory = hippEndingInventory;
 	}
 
 	public Integer getHippDaysOnHand() {
@@ -96,7 +96,7 @@ public class InventoryAtSource {
 			inventoryAtSource.setProduction(production);
 			inventoryAtSource.setTotalGoodsAvailable(totalGoodsAvailable);
 			inventoryAtSource.setLoading(loading);
-			inventoryAtSource.setHippEndingInvetory(hippEndingInvetory);
+			inventoryAtSource.setHippEndingInventory(hippEndingInvetory);
 			inventoryAtSource.setHippDaysOnHand(hippDaysOnHand);
 			return inventoryAtSource;
 		}

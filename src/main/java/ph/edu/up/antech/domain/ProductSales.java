@@ -61,7 +61,7 @@ public class ProductSales {
 			ProductSales productSalesTwoMonthsBefore, ProductSalesDetails productSalesDetails) {
 		Integer production = productSalesDetails.getProduction();
 		Integer totalGoodsAvailable = productSalesOneMonthBefore.getInventoryAtSource()
-				.getHippEndingInvetory() + production;
+				.getHippEndingInventory() + production;
 		Integer loading = productSalesDetails.getLoading();
 		Integer hippEndingInventory = totalGoodsAvailable + loading;
 
