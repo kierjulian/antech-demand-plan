@@ -9,11 +9,7 @@ import java.time.Year;
 public class ProductSalesHelper {
 
 	public static ProductSales initializeProductSalesForS1400Jan2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(821)
@@ -57,11 +53,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesForS1400Feb2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(742)
@@ -105,11 +97,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesForS1400March2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(806)
@@ -153,11 +141,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesFors1400April2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(854)
@@ -201,11 +185,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesForS1400May2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(880)
@@ -249,11 +229,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesForS1400June2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(906)
@@ -297,11 +273,7 @@ public class ProductSalesHelper {
 	}
 
 	public static ProductSales initializeProductSalesForS1400July2019() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 
 		GeneralInformation generalInformation = GeneralInformation.Builder.buildGeneralInformation()
 				.plan(871)

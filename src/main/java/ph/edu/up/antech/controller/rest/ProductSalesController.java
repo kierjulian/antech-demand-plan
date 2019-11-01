@@ -27,11 +27,7 @@ public class ProductSalesController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ProductSales createProductSales() {
-		Product product = Product.Builder.buildProduct()
-				.productType(ProductType.S1400)
-				.price(BigDecimal.TEN)
-				.description("S1400 description")
-				.build();
+		Product product = new Product();
 		ProductSalesDetails productSalesDetails = ProductSalesDetails.Builder.buildProductSalesDetails()
 				.plan(895)
 				.inMarketSales(2000)

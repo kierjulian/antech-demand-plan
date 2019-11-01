@@ -2,6 +2,7 @@ package ph.edu.up.antech.controller.rest;
 
 import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +11,10 @@ import ph.edu.up.antech.domain.ProductSales;
 
 import java.util.List;
 
+@Ignore
 public class ProductSalesControllerTest {
 
-	@Ignore
+	@Test
 	public void accessApiForSalesProductController_ifApplicationIsDeployed_shouldBeSuccessful() {
 		String uri = "http://localhost:8080/api/v1/productSales/";
 		RestTemplate restTemplate = new RestTemplate();
@@ -25,7 +27,7 @@ public class ProductSalesControllerTest {
 		Assert.assertNotNull(productSalesList);
 	}
 
-	@Ignore
+	@Test
 	public void createSalesProductObject_usingDummyData_shouldBeSuccessful() {
 		String uri = "http://localhost:8080/api/v1/productSales/";
 		RestTemplate restTemplate = new RestTemplate();
