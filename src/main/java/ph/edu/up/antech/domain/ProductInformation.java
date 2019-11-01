@@ -5,14 +5,19 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product_information")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class ProductInformation implements Serializable {
 
 	@Id
+	private Integer id;
+
+	@MapsId
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "id")
-	@OneToOne
 	private Product product;
 
 	@Column(name = "life_saving")
@@ -47,6 +52,14 @@ public class ProductInformation implements Serializable {
 
 	@Column(name = "antibiotic")
 	private Boolean antibiotic;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Product getProduct() {
 		return product;
@@ -142,6 +155,19 @@ public class ProductInformation implements Serializable {
 
 	public void setAntibiotic(Boolean antibiotic) {
 		this.antibiotic = antibiotic;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ProductInformation that = (ProductInformation) o;
+		return Objects.equals(product, that.product);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(product);
 	}
 
 }

@@ -1,9 +1,7 @@
 package ph.edu.up.antech.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.service.ProductService;
 
@@ -18,7 +16,27 @@ public class ProductController {
 
 	@GetMapping("")
 	public List<Product> findAll() {
-		return productService.findAll();
+		return productService.findAllProducts();
+	}
+
+	@GetMapping("/{id}")
+	public Product findProductById(@PathVariable("id") Integer id) {
+		return productService.findProductById(id);
+	}
+
+	@PostMapping("")
+	public void createProduct(@RequestBody Product product) {
+		productService.createProduct(product);
+	}
+
+	@PutMapping("")
+	public Product updateProduct(@RequestBody Product product) {
+		return productService.updateProduct(product);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteProduct(@PathVariable("id") Integer id) {
+		productService.deleteProduct(id);
 	}
 
 }

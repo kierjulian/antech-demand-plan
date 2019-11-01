@@ -5,14 +5,19 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "findAllProducts", query = "SELECT o FROM Product o"),
+		@NamedQuery(name = "findProductById", query = "SELECT o FROM Product o WHERE o.id = :id")
+})
 @Table(name = "product")
-@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Product implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -226,6 +231,19 @@ public class Product implements Serializable {
 
 	public void setCompletion(Completion completion) {
 		this.completion = completion;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Product product = (Product) o;
+		return Objects.equals(id, product.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 }

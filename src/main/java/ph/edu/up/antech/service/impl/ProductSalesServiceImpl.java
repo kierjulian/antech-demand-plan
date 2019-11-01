@@ -1,9 +1,10 @@
-package ph.edu.up.antech.service;
+package ph.edu.up.antech.service.impl;
 
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.domain.ProductSales;
 import ph.edu.up.antech.domain.ProductSalesGeneration;
 import ph.edu.up.antech.helper.ProductSalesHelper;
+import ph.edu.up.antech.service.ProductSalesService;
 
 import java.util.ArrayList;
 import java.util.List;
