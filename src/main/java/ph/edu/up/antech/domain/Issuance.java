@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "product_alternative_uom")
-public class AlternativeUOM implements Serializable {
+@Table(name = "product_issuance")
+public class Issuance implements Serializable {
 
 	@Id
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	@OneToOne
 	private Product product;
 
-	@Column(name = "pieces_per_carton")
-	private Integer piecesPerCarton;
+	@Column(name = "box")
+	private Integer box;
 
 	public Product getProduct() {
 		return product;
@@ -23,12 +23,12 @@ public class AlternativeUOM implements Serializable {
 		this.product = product;
 	}
 
-	public Integer getPiecesPerCarton() {
-		return piecesPerCarton;
+	public Integer getBox() {
+		return box;
 	}
 
-	public void setPiecesPerCarton(Integer piecesPerCarton) {
-		this.piecesPerCarton = piecesPerCarton;
+	public void setBox(Integer box) {
+		this.box = box;
 	}
 
 }
