@@ -167,6 +167,7 @@ public class Product implements Serializable {
 
 	public void setProductInformation(ProductInformation productInformation) {
 		this.productInformation = productInformation;
+		this.productInformation.setProduct(this);
 	}
 
 	public LicenseInformation getLicenseInformation() {
@@ -175,6 +176,7 @@ public class Product implements Serializable {
 
 	public void setLicenseInformation(LicenseInformation licenseInformation) {
 		this.licenseInformation = licenseInformation;
+		this.licenseInformation.setProduct(this);
 	}
 
 	public Confirmation getConfirmation() {
@@ -183,6 +185,7 @@ public class Product implements Serializable {
 
 	public void setConfirmation(Confirmation confirmation) {
 		this.confirmation = confirmation;
+		this.confirmation.setProduct(this);
 	}
 
 	public StorageCondition getStorageCondition() {
@@ -199,6 +202,7 @@ public class Product implements Serializable {
 
 	public void setAlternativeUOM(AlternativeUOM alternativeUOM) {
 		this.alternativeUOM = alternativeUOM;
+		this.alternativeUOM.setProduct(this);
 	}
 
 	public Dimension getDimension() {
@@ -207,6 +211,7 @@ public class Product implements Serializable {
 
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
+		this.dimension.setProduct(this);
 	}
 
 	public ProductWeight getProductWeight() {
@@ -215,6 +220,7 @@ public class Product implements Serializable {
 
 	public void setProductWeight(ProductWeight productWeight) {
 		this.productWeight = productWeight;
+		this.productWeight.setProduct(this);
 	}
 
 	public Issuance getIssuance() {
@@ -223,6 +229,7 @@ public class Product implements Serializable {
 
 	public void setIssuance(Issuance issuance) {
 		this.issuance = issuance;
+		this.issuance.setProduct(this);
 	}
 
 	public Completion getCompletion() {
@@ -231,6 +238,7 @@ public class Product implements Serializable {
 
 	public void setCompletion(Completion completion) {
 		this.completion = completion;
+		this.completion.setProduct(this);
 	}
 
 	@Override

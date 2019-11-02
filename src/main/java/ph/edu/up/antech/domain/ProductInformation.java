@@ -1,23 +1,16 @@
 package ph.edu.up.antech.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "product_information")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class ProductInformation implements Serializable {
 
 	@Id
-	private Integer id;
-
-	@MapsId
-	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
 	private Product product;
 
 	@Column(name = "life_saving")
@@ -52,14 +45,6 @@ public class ProductInformation implements Serializable {
 
 	@Column(name = "antibiotic")
 	private Boolean antibiotic;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Product getProduct() {
 		return product;
