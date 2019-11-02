@@ -33,7 +33,7 @@ public class DemandPlanController {
 	private List<ProductSales> productSalesList = new ArrayList<>();
 
 	@GetMapping("")
-	public String loadDemandPlanPage(Model model,@RequestParam(required = false) String productName,
+	public String loadDemandPlanPage(Model model, @RequestParam(required = false) String productName,
 			@RequestParam(required = false) Integer year) {
 		if ((productName != null && year != null)
 				&& productName.equals("S1400") && year == 2019) {
