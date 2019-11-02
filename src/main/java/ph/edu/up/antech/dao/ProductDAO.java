@@ -16,4 +16,6 @@ public interface ProductDAO {
 
 	public void deleteProduct(Integer id);
 
+	public List<Product> findProductsByCode(String code);
+
 }

@@ -10,7 +10,8 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "findAllProducts", query = "SELECT o FROM Product o"),
-		@NamedQuery(name = "findProductById", query = "SELECT o FROM Product o WHERE o.id = :id")
+		@NamedQuery(name = "findProductById", query = "SELECT o FROM Product o WHERE o.id = :id"),
+		@NamedQuery(name = "findProductByCode", query = "SELECT o FROM Product o WHERE o.code = :code")
 })
 @Table(name = "product")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")

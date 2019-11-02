@@ -21,12 +21,12 @@ public class ProductViewController {
 	private ProductRestClient productRestClient;
 
 	@GetMapping("")
-	public String loadProductPage(Model model, @RequestParam(required = false) String productCode) {
+	public String loadProductPage(Model model, @RequestParam(required = false) String code) {
 		List<Product> productList = new ArrayList<>();
-		if (productCode == null) {
+		if (code == null || code.isEmpty()) {
 			productList = productRestClient.findAllProducts();
 		} else {
-
+			productList = productRestClient.findProductsByCode(code);
 		}
 
 		model.addAttribute("productList", productList);

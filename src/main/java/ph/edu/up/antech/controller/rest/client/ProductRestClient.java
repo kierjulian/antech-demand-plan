@@ -1,6 +1,5 @@
 package ph.edu.up.antech.controller.rest.client;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -27,6 +26,16 @@ public class ProductRestClient {
 	public List<Product> findAllProducts() {
 		ResponseEntity<List<Product>> responseEntity =
 				restTemplate.exchange(getProductApiPath(), HttpMethod.GET, null,
+						new ParameterizedTypeReference<List<Product>>() {
+						});
+		return responseEntity.getBody();
+	}
+
+	public List<Product> findProductsByCode(String code) {
+		String apiPath = getProductApiPath() + "/?code=" + code;
+
+		ResponseEntity<List<Product>> responseEntity =
+				restTemplate.exchange(apiPath, HttpMethod.GET, null,
 						new ParameterizedTypeReference<List<Product>>() {
 						});
 		return responseEntity.getBody();

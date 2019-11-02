@@ -15,7 +15,10 @@ public class ProductController {
 	private ProductService productService;
 
 	@GetMapping("")
-	public List<Product> findAll() {
+	public List<Product> findAll(@RequestParam(required = false) String code) {
+		if (code != null) {
+			return productService.findProductsByCode(code);
+		}
 		return productService.findAllProducts();
 	}
 

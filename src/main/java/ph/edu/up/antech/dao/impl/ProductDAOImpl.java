@@ -48,4 +48,12 @@ public class ProductDAOImpl implements ProductDAO {
 		entityManager.remove(product);
 	}
 
+	@Override
+	public List<Product> findProductsByCode(String code) {
+		TypedQuery<Product> query = entityManager.createNamedQuery("findProductByCode",
+				Product.class);
+		query.setParameter("code", code);
+		return query.getResultList();
+	}
+
 }
