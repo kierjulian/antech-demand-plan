@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Demand Plan</title>
-        <link rel="icon" type="image/x-icon" href="../images/antech-favicon.ico"/>
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
         <link rel="stylesheet"
               href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
     </head>
@@ -11,7 +11,7 @@
         <div class="container-fluid"><br>
             <div class="card">
                 <div class="card-header">
-                    <img class="img-fluid" src="../images/antech-top.png" />
+                    <img class="img-fluid" th:src="@{/images/antech-top.png}" />
                 </div>
                 <div class="card-body bg-light">
                     <form class="form-inline" method="get" action="/demand-plan">

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+        <title>Add Product</title>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+    </head>
+    <body>
+    <div class="container-fluid"><br>
+        <div class="card">
+            <div class="card-header">
+                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+            </div>
+            <div class="card-body bg-light">
+                <form action="/products/save">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success">Add Product</button>
+                    </div>&nbsp;
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
+</html>

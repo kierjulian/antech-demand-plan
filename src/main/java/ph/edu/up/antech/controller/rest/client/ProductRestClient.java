@@ -41,6 +41,15 @@ public class ProductRestClient {
 		return responseEntity.getBody();
 	}
 
+	public Product findProductById(Integer id) {
+		String apiPath = getProductApiPath() + "/" + id;
+		return restTemplate.getForObject(apiPath, Product.class);
+	}
+
+	public void createProduct(Product product) {
+		restTemplate.postForObject(getProductApiPath(), product, Product.class);
+	}
+
 	private String getProductApiPath() {
 		UriComponents uri = UriComponentsBuilder
 				.fromHttpUrl("http://{domain}:{port}/api/v1/products")
