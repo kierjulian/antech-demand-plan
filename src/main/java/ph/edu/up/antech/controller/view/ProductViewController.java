@@ -1,7 +1,6 @@
 package ph.edu.up.antech.controller.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.style.ToStringCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,20 +52,20 @@ public class ProductViewController {
 
 	@GetMapping("/add")
 	public String createProduct(Model model) {
+		Product product = new Product();
+		model.addAttribute("product", product);
 		return "product-add";
 	}
 
-	@GetMapping("/save")
-	public String saveProduct() {
-		Product product = new Product();
-		//productRestClient.createProduct(product);
-		return "redirect:/products/view/" + 1; // TODO: Redirect to
+	@PostMapping("/save")
+	public String saveProduct(@ModelAttribute(value = "product") Product product) {
+		product = productRestClient.createProduct(product);
+		return "redirect:/products/view/" + product.getId();
 	}
 
 	@GetMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable Integer id) {
-		System.out.println("DELETE WAS INVOKED");
-		//productRestClient.deleteProduct(id);
+		productRestClient.deleteProduct(id);
 		return "redirect:/products";
 	}
 

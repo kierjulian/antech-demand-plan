@@ -10,7 +10,7 @@ public interface ProductService {
 
 	public Product findProductById(Integer id);
 
-	public void createProduct(Product product);
+	public Product createProduct(Product product);
 
 	public Product updateProduct(Product product);
 

@@ -50,8 +50,8 @@ public class ProductRestClient {
 		restTemplate.put(getProductApiPath(), product, Product.class);
 	}
 
-	public void createProduct(Product product) {
-		restTemplate.postForObject(getProductApiPath(), product, Product.class);
+	public Product createProduct(Product product) {
+		return restTemplate.postForObject(getProductApiPath(), product, Product.class);
 	}
 
 	public void deleteProduct(Integer id) {
