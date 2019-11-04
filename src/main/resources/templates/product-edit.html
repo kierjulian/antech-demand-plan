@@ -15,53 +15,56 @@
                 </div>
                 <div class="card-body bg-light">
                     <a class="btn btn-primary" th:href="@{/products}" role="button">Product List</a>
-                    <a class="btn btn-success" th:href="@{/products/update/{id}(id=${product.id})}">
-                        Update Product
-                    </a>
                     <br><br>
-                    <p th:text="${product.code}"></p>
-                    <p th:text="${product.name}"></p>
-                    <p th:text="${product.manufacturer}"></p>
-                    <p th:text="${product.base}"></p>
-                    <p th:text="${product.materialGroup}"></p>
-                    <p th:text="${product.shelfLifeInDays}"></p>
-                    <p th:text="${product.minimumSaleableShelfLifeInDays}"></p>
-                    <p th:text="${product.itemBarcode}"></p>
-                    <p th:text="${product.caseBarcode}"></p>
-                    <hr>
-                    <p th:text="${product.productInformation.lifeSaving}"></p>
-                    <p th:text="${product.productInformation.bomRelevant}"></p>
-                    <p th:text="${product.productInformation.batchManaged}"></p>
-                    <p th:text="${product.productInformation.withExpiryDate}"></p>
-                    <p th:text="${product.productInformation.serialManaged}"></p>
-                    <p th:text="${product.productInformation.centrallyStocked}"></p>
-                    <p th:text="${product.productInformation.forImsExtraction}"></p>
-                    <p th:text="${product.productInformation.downloadAsiarx}"></p>
-                    <p th:text="${product.productInformation.biological}"></p>
-                    <p th:text="${product.productInformation.withSpecialArrangement}"></p>
-                    <p th:text="${product.productInformation.antibiotic}"></p>
-                    <hr>
-                    <p th:text="${product.licenseInformation.code}"></p>
-                    <p th:text="${product.licenseInformation.certifateOfProductRegistrationNo}"></p>
-                    <p th:text="${product.licenseInformation.validityPeriod}"></p>
-                    <hr>
-                    <p th:text="${product.confirmation.confirmationDate}"></p>
-                    <hr>
-                    <p th:text="${product.storageCondition}"></p>
-                    <hr/>
-                    <p th:text="${product.alternativeUOM.piecesPerCarton}"></p>
-                    <hr/>
-                    <p th:text="${product.dimension.length}"></p>
-                    <p th:text="${product.dimension.width}"></p>
-                    <p th:text="${product.dimension.height}"></p>
-                    <p th:text="${product.productWeight.grossWeightPerSKU}"></p>
-                    <p th:text="${product.productWeight.netWeightPerSKU}"></p>
-                    <p th:text="${product.productWeight.grossWeightPerStandard}"></p>
-                    <p th:text="${product.productWeight.netWeightPerStandard}"></p>
-                    <hr>
-                    <p th:text="${product.issuance.box}"></p>
-                    <hr>
-                    <p th:text="${product.completion.completionDate}"></p>
+                    <form th:action="@{/products/update}" th:object="${product}" method="post">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div><br>
+                        <input type="hidden"  th:field="*{id}">
+                        Code<input type="text" th:field="*{code}"><br>
+                        Name<input type="text" th:field="*{name}"><br>
+                        Manufacturer<input type="text" th:field="*{manufacturer}"><br>
+                        Base<input type="text" th:field="*{base}"><br>
+                        Material Group<input type="text" th:field="*{materialGroup}"><br>
+                        Shelf Life<input type="text" th:field="*{shelfLifeInDays}"><br>
+                        Minimum Salelable Shelf Life: <input type="text" th:field="*{minimumSaleableShelfLifeInDays}"><br>
+                        Item Barcode<input type="text" th:field="*{itemBarcode}"><br>
+                        Case Barcode<input type="text" th:field="*{caseBarcode}"><br>
+                        <hr>
+                        Life Saving<input type="text" th:field="*{productInformation.lifeSaving}"><br>
+                        Bom Relevant<input type="text" th:field="*{productInformation.bomRelevant}"><br>
+                        Batch Managed<input type="text" th:field="*{productInformation.batchManaged}"><br>
+                        With Expiry Date<input type="text" th:field="*{productInformation.withExpiryDate}"><br>
+                        Serial Managed<input type="text" th:field="*{productInformation.serialManaged}"><br>
+                        Centrally Stocked<input type="text" th:field="*{productInformation.centrallyStocked}"><br>
+                        For IMS Extraction<input type="text" th:field="*{productInformation.forImsExtraction}"><br>
+                        Download Asiarx<input type="text" th:field="*{productInformation.downloadAsiarx}"><br>
+                        Biological<input type="text" th:field="*{productInformation.biological}"><br>
+                        With Special Arrangement<input type="text" th:field="*{productInformation.withSpecialArrangement}"><br>
+                        Antibiotic<input type="text" th:field="*{productInformation.antibiotic}"><br>
+                        <hr>
+                        Code<input type="text" th:field="*{licenseInformation.code}"><br>
+                        Certificate<input type="text" th:field="*{licenseInformation.certificateOfProductRegistrationNo}"><br>
+                        Validity Period<input type="text" th:field="*{licenseInformation.validityPeriod}"><br>
+                        <hr>
+                        Confirmation Date<input type="text" th:field="*{confirmation.confirmationDate}"><br>
+                        <hr>
+                        Storage Condition<input type="text" th:field="*{storageCondition}"><br>
+                        <hr>
+                        Pieces Per Carton<input type="text" th:field="*{alternativeUOM.piecesPerCarton}"><br>
+                        <hr>
+                        Length<input type="text" th:field="*{dimension.length}"><br>
+                        Width<input type="text" th:field="*{dimension.width}"><br>
+                        Height<input type="text" th:field="*{dimension.height}"><br>
+                        Gross Weight Per SKU<input type="text" th:field="*{productWeight.grossWeightPerSKU}"><br>
+                        Net Weight Per SKU<input type="text" th:field="*{productWeight.netWeightPerSKU}"><br>
+                        Gross Weight Per Standard<input type="text" th:field="*{productWeight.grossWeightPerStandard}"><br>
+                        Net Weight Per Standard<input type="text" th:field="*{productWeight.netWeightPerStandard}"><br>
+                        <hr>
+                        Issuance<input type="text" th:field="*{issuance.box}"><br>
+                        <hr>
+                        Completion Date<input type="text" th:field="*{completion.completionDate}"><br>
+                    </form>
                 </div>
             </div>
         </div>

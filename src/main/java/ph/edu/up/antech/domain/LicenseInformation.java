@@ -18,7 +18,7 @@ public class LicenseInformation implements Serializable {
 	private IMSTherapeuticClassCode code;
 
 	@Column(name = "registration_no")
-	private String certifateOfProductRegistrationNo;
+	private String certificateOfProductRegistrationNo;
 
 	@Column(name = "validity_period")
 	private LocalDate validityPeriod;
@@ -39,12 +39,12 @@ public class LicenseInformation implements Serializable {
 		this.code = code;
 	}
 
-	public String getCertifateOfProductRegistrationNo() {
-		return certifateOfProductRegistrationNo;
+	public String getCertificateOfProductRegistrationNo() {
+		return certificateOfProductRegistrationNo;
 	}
 
-	public void setCertifateOfProductRegistrationNo(String certifateOfProductRegistrationNo) {
-		this.certifateOfProductRegistrationNo = certifateOfProductRegistrationNo;
+	public void setCertificateOfProductRegistrationNo(String certificateOfProductRegistrationNo) {
+		this.certificateOfProductRegistrationNo = certificateOfProductRegistrationNo;
 	}
 
 	public LocalDate getValidityPeriod() {

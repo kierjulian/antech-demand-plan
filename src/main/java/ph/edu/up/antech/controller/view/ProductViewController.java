@@ -1,12 +1,10 @@
 package ph.edu.up.antech.controller.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ph.edu.up.antech.controller.rest.client.ProductRestClient;
 import ph.edu.up.antech.domain.Product;
 
@@ -47,11 +45,10 @@ public class ProductViewController {
 		return "product-edit";
 	}
 
-	@GetMapping("/update/{id}")
-	public String updateProduct(@PathVariable Integer id, Model model) {
-		//Product product = productRestClient.findProductById(id);
-		//productRestClient.updateProduct(product);
-		return "redirect:/products";
+	@PostMapping("/update")
+	public String updateProduct(@ModelAttribute(value = "product") Product product) {
+		productRestClient.updateProduct(product);
+		return "redirect:/products/view/" + product.getId();
 	}
 
 	@GetMapping("/add")
