@@ -46,8 +46,17 @@ public class ProductRestClient {
 		return restTemplate.getForObject(apiPath, Product.class);
 	}
 
+	public void updateProduct(Product product) {
+		restTemplate.put(getProductApiPath(), product, Product.class);
+	}
+
 	public void createProduct(Product product) {
 		restTemplate.postForObject(getProductApiPath(), product, Product.class);
+	}
+
+	public void deleteProduct(Integer id) {
+		String apiPath = getProductApiPath() + "/" + id;
+		restTemplate.delete(apiPath);
 	}
 
 	private String getProductApiPath() {

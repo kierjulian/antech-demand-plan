@@ -48,7 +48,8 @@
                                 <td class="align-middle" th:text="${product.completion.completionDate}" />
                                 <td class="align-middle" th:text="${product.licenseInformation.certifateOfProductRegistrationNo}" />
                                 <td>
-                                    <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                                    <a class="btn btn-outline-danger" th:href="@{/products/delete/{id}(id=${product.id})}"
+                                       role="button">Delete</a>
                                 </td>
                             </tr>
                         </tbody>

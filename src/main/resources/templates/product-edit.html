@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
-        <title>View Product</title>
+        <title>Edit Product</title>
         <link rel="stylesheet"
               href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
         <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-body bg-light">
                     <a class="btn btn-primary" th:href="@{/products}" role="button">Product List</a>
-                    <a class="btn btn-success" th:href="@{/products/edit/{id}(id=${product.id})}">Edit Product</a>
+                    <a class="btn btn-success" th:href="@{/products/update/{id}(id=${product.id})}">
+                        Update Product
+                    </a>
                     <br><br>
                     <p th:text="${product.code}"></p>
                     <p th:text="${product.name}"></p>

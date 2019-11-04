@@ -40,6 +40,20 @@ public class ProductViewController {
 		return "product-view";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String editProduct(@PathVariable Integer id, Model model) {
+		Product product = productRestClient.findProductById(id);
+		model.addAttribute("product", product);
+		return "product-edit";
+	}
+
+	@GetMapping("/update/{id}")
+	public String updateProduct(@PathVariable Integer id, Model model) {
+		//Product product = productRestClient.findProductById(id);
+		//productRestClient.updateProduct(product);
+		return "redirect:/products";
+	}
+
 	@GetMapping("/add")
 	public String createProduct(Model model) {
 		return "product-add";
@@ -49,7 +63,14 @@ public class ProductViewController {
 	public String saveProduct() {
 		Product product = new Product();
 		//productRestClient.createProduct(product);
-		return "redirect:/products/view/" + 1;
+		return "redirect:/products/view/" + 1; // TODO: Redirect to
+	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable Integer id) {
+		System.out.println("DELETE WAS INVOKED");
+		//productRestClient.deleteProduct(id);
+		return "redirect:/products";
 	}
 
 }
