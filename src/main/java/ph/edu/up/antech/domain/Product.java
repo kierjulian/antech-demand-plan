@@ -32,8 +32,7 @@ public class Product implements Serializable {
 	private String manufacturer;
 
 	@Column(name = "base")
-	@Enumerated(EnumType.STRING)
-	private Base base;
+	private String base;
 
 	@Column(name = "material_group")
 	@Enumerated(EnumType.STRING)
@@ -114,11 +113,11 @@ public class Product implements Serializable {
 		this.manufacturer = manufacturer;
 	}
 
-	public Base getBase() {
+	public String getBase() {
 		return base;
 	}
 
-	public void setBase(Base base) {
+	public void setBase(String base) {
 		this.base = base;
 	}
 

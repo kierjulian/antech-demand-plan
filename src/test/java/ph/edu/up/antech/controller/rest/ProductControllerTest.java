@@ -17,7 +17,7 @@ public class ProductControllerTest {
 		RestTemplate restTemplate = new RestTemplate();
 
 		Product product = new Product();
-		product.setBase(Base.CAN);
+		product.setBase("CAN");
 
 		ProductInformation productInformation = new ProductInformation();
 		productInformation.setBiological(false);
@@ -26,7 +26,7 @@ public class ProductControllerTest {
 		productWeight.setNetWeightPerSKU(new BigDecimal("1.5"));
 
 		LicenseInformation licenseInformation = new LicenseInformation();
-		licenseInformation.setCode(IMSTherapeuticClassCode.FOOD);
+		licenseInformation.setCode("FOOD");
 
 		Confirmation confirmation = new Confirmation();
 		confirmation.setConfirmationDate(LocalDate.now());

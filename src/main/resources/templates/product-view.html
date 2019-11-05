@@ -44,6 +44,8 @@
                     <p th:text="${product.licenseInformation.validityPeriod}"></p>
                     <hr>
                     <p th:text="${product.confirmation.confirmationDate}"></p>
+                    <p th:text="${product.confirmation.confirmedBy}"></p>
+                    <p th:text="${product.confirmation.remarks}"></p>
                     <hr>
                     <p th:text="${product.storageCondition}"></p>
                     <hr/>
@@ -60,6 +62,7 @@
                     <p th:text="${product.issuance.box}"></p>
                     <hr>
                     <p th:text="${product.completion.completionDate}"></p>
+                    <p th:text="${product.completion.completedBy}"></p>
                 </div>
             </div>
         </div>

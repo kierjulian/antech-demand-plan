@@ -13,11 +13,14 @@ public class Confirmation implements Serializable {
 	@OneToOne
 	private Product product;
 
-	@Transient
-	private Employee employee;
+	@Column(name = "confirmed_by")
+	private String confirmedBy;
 
 	@Column(name = "confirmation_date")
 	private LocalDate confirmationDate;
+
+	@Column(name = "remarks")
+	private String remarks;
 
 	public Product getProduct() {
 		return product;
@@ -27,12 +30,12 @@ public class Confirmation implements Serializable {
 		this.product = product;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public String getConfirmedBy() {
+		return confirmedBy;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setConfirmedBy(String confirmedBy) {
+		this.confirmedBy = confirmedBy;
 	}
 
 	public LocalDate getConfirmationDate() {
@@ -41,6 +44,14 @@ public class Confirmation implements Serializable {
 
 	public void setConfirmationDate(LocalDate confirmationDate) {
 		this.confirmationDate = confirmationDate;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 }

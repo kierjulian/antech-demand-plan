@@ -13,8 +13,8 @@ public class Completion implements Serializable {
 	@OneToOne
 	private Product product;
 
-	@Transient
-	private Employee employee;
+	@Column(name = "completed_by")
+	private String completedBy;
 
 	@Column(name = "completion_date")
 	private LocalDate completionDate;
@@ -27,12 +27,12 @@ public class Completion implements Serializable {
 		this.product = product;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public String getCompletedBy() {
+		return completedBy;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setCompletedBy(String completedBy) {
+		this.completedBy = completedBy;
 	}
 
 	public LocalDate getCompletionDate() {

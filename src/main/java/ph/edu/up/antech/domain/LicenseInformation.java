@@ -14,8 +14,7 @@ public class LicenseInformation implements Serializable {
 	private Product product;
 
 	@Column(name = "code")
-	@Enumerated(EnumType.STRING)
-	private IMSTherapeuticClassCode code;
+	private String code;
 
 	@Column(name = "registration_no")
 	private String certificateOfProductRegistrationNo;
@@ -31,11 +30,11 @@ public class LicenseInformation implements Serializable {
 		this.product = product;
 	}
 
-	public IMSTherapeuticClassCode getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(IMSTherapeuticClassCode code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

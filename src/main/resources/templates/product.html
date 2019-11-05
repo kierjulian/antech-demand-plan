@@ -31,9 +31,11 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Item Barcode</th>
                                 <th scope="col">Case Barcode</th>
-                                <th scope="col">Confirmation Date</th>
-                                <th scope="col">Completion Date</th>
                                 <th scope="col">Registration No.</th>
+                                <th scope="col">Confirmation Date</th>
+                                <th scope="col">Confirmed By</th>
+                                <th scope="col">Completion Date</th>
+                                <th scope="col">Completed By</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,9 +46,11 @@
                                 <td class="align-middle" th:text="${product.name}" />
                                 <td class="align-middle" th:text="${product.itemBarcode}" />
                                 <td class="align-middle" th:text="${product.caseBarcode}" />
-                                <td class="align-middle" th:text="${product.confirmation.confirmationDate}" />
-                                <td class="align-middle" th:text="${product.completion.completionDate}" />
                                 <td class="align-middle" th:text="${product.licenseInformation.certificateOfProductRegistrationNo}" />
+                                <td class="align-middle" th:text="${product.confirmation.confirmationDate}" />
+                                <td class="align-middle" th:text="${product.confirmation.confirmedBy}" />
+                                <td class="align-middle" th:text="${product.completion.completionDate}" />
+                                <td class="align-middle" th:text="${product.completion.completedBy}" />
                                 <td>
                                     <a class="btn btn-outline-danger" th:href="@{/products/delete/{id}(id=${product.id})}"
                                        role="button">Delete</a>
