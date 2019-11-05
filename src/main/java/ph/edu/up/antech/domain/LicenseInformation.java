@@ -13,6 +13,10 @@ public class LicenseInformation implements Serializable {
 	@OneToOne
 	private Product product;
 
+	@Column(name = "license_code")
+	@Enumerated(EnumType.STRING)
+	private ProductLicenseCode licenseCode;
+
 	@Column(name = "code")
 	private String code;
 
@@ -28,6 +32,14 @@ public class LicenseInformation implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public ProductLicenseCode getLicenseCode() {
+		return licenseCode;
+	}
+
+	public void setLicenseCode(ProductLicenseCode licenseCode) {
+		this.licenseCode = licenseCode;
 	}
 
 	public String getCode() {

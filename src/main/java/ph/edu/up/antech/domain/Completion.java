@@ -16,6 +16,9 @@ public class Completion implements Serializable {
 	@Column(name = "completed_by")
 	private String completedBy;
 
+	@Column(name = "position")
+	private String position;
+
 	@Column(name = "completion_date")
 	private LocalDate completionDate;
 
@@ -33,6 +36,14 @@ public class Completion implements Serializable {
 
 	public void setCompletedBy(String completedBy) {
 		this.completedBy = completedBy;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public LocalDate getCompletionDate() {
