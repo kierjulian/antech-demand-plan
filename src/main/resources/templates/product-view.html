@@ -1,76 +1,129 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
-        <title>View Product</title>
-        <link rel="stylesheet"
-              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
-    </head>
-    <body>
-        <div class="container-fluid"><br>
-            <div class="card">
-                <div class="card-header">
-                    <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                </div>
-                <div class="card-body bg-light">
-                    <a class="btn btn-primary" th:href="@{/products}" role="button">Product List</a>
-                    <a class="btn btn-success" th:href="@{/products/edit/{id}(id=${product.id})}">Edit Product</a>
-                    <br><br>
-                    <p th:text="${product.code}"></p>
-                    <p th:text="${product.name}"></p>
-                    <p th:text="${product.manufacturer}"></p>
-                    <p th:text="${product.base}"></p>
-                    <p th:text="${product.materialGroup}"></p>
-                    <p th:text="${product.shelfLifeInDays}"></p>
-                    <p th:text="${product.minimumSaleableShelfLifeInDays}"></p>
-                    <p th:text="${product.itemBarcode}"></p>
-                    <p th:text="${product.caseBarcode}"></p>
-                    <hr>
-                    <p th:text="${product.productInformation.lifeSaving}"></p>
-                    <p th:text="${product.productInformation.bomRelevant}"></p>
-                    <p th:text="${product.productInformation.batchManaged}"></p>
-                    <p th:text="${product.productInformation.withExpiryDate}"></p>
-                    <p th:text="${product.productInformation.serialManaged}"></p>
-                    <p th:text="${product.productInformation.centrallyStocked}"></p>
-                    <p th:text="${product.productInformation.forImsExtraction}"></p>
-                    <p th:text="${product.productInformation.downloadAsiarx}"></p>
-                    <p th:text="${product.productInformation.biological}"></p>
-                    <p th:text="${product.productInformation.withSpecialArrangement}"></p>
-                    <p th:text="${product.productInformation.antibiotic}"></p>
-                    <hr>
-                    <p th:text="${product.licenseInformation.licenseCode}"></p>
-                    <p th:text="${product.licenseInformation.code}"></p>
-                    <p th:text="${product.licenseInformation.certificateOfProductRegistrationNo}"></p>
-                    <p th:text="${product.licenseInformation.validityPeriod}"></p>
-                    <hr>
-                    <p th:text="${product.confirmation.confirmationDate}"></p>
-                    <p th:text="${product.confirmation.confirmedBy}"></p>
-                    <p th:text="${product.confirmation.remarks}"></p>
-                    <hr>
-                    <p th:text="${product.storageCondition}"></p>
-                    <hr/>
-                    <p th:text="${product.alternativeUOM.piecesPerCarton}"></p>
-                    <hr/>
-                    <p th:text="${product.dimension.length}"></p>
-                    <p th:text="${product.dimension.width}"></p>
-                    <p th:text="${product.dimension.height}"></p>
-                    <p th:text="${product.productWeight.grossWeightPerSKU}"></p>
-                    <p th:text="${product.productWeight.netWeightPerSKU}"></p>
-                    <p th:text="${product.productWeight.grossWeightPerStandard}"></p>
-                    <p th:text="${product.productWeight.netWeightPerStandard}"></p>
-                    <hr>
-                    <p th:text="${product.issuance.box}"></p>
-                    <hr>
-                    <p th:text="${product.completion.completionDate}"></p>
-                    <p th:text="${product.completion.position}"></p>
-                    <p th:text="${product.completion.completedBy}"></p>
-                </div>
-            </div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+    <title>View Product</title>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+</head>
+<body>
+<div class="container-fluid"><br>
+    <div class="card">
+        <div class="card-header">
+            <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
         </div>
+        <div class="card-body bg-light">
+            <form>
+                <div class="btn-group">
+                    <a class="btn btn-primary" th:href="@{/products}" role="button">Product List</a>
+                </div>&nbsp;
+                <div class="btn-group">
+                    <a class="btn btn-success" th:href="@{/products/edit/{id}(id=${product.id})}">Edit Product</a>
+                </div>&nbsp;
+                <hr>
+                <div class="text-center form-group row">
+                    <div class="text-center col-sm">
+                        <h4>Product Information</h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Manufacturer</label>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control" th:value="${product.manufacturer}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Product Name</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:value="${product.name}" disabled>
+                    </div>
+                    <label class="col-sm-1 col-form-label">Product Code</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.code}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Unit of Measure</label>
+                    <label class="col-sm-1 col-form-label">Base</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.base}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Material Group</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" th:value="${product.materialGroup}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Shelf Life</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" th:value="${product.shelfLifeInDays}" disabled>
+                    </div>
+                    <small class="col-sm-2 form-text text-muted">(in days)</small>
+                    <label class="col-sm-1 col-form-label">Item Barcode</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.itemBarcode}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" th:value="${product.minimumSaleableShelfLifeInDays}" disabled>
+                    </div>
+                    <small class="col-sm-2 form-text text-muted">(in days)</small>
+                    <label class="col-sm-1 col-form-label">Case Barcode</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.caseBarcode}" disabled>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <p th:text="${product.productInformation.lifeSaving}"></p>
+            <p th:text="${product.productInformation.bomRelevant}"></p>
+            <p th:text="${product.productInformation.batchManaged}"></p>
+            <p th:text="${product.productInformation.withExpiryDate}"></p>
+            <p th:text="${product.productInformation.serialManaged}"></p>
+            <p th:text="${product.productInformation.centrallyStocked}"></p>
+            <p th:text="${product.productInformation.forImsExtraction}"></p>
+            <p th:text="${product.productInformation.downloadAsiarx}"></p>
+            <p th:text="${product.productInformation.biological}"></p>
+            <p th:text="${product.productInformation.withSpecialArrangement}"></p>
+            <p th:text="${product.productInformation.antibiotic}"></p>
+            <hr>
+            <p th:text="${product.licenseInformation.licenseCode}"></p>
+            <p th:text="${product.licenseInformation.code}"></p>
+            <p th:text="${product.licenseInformation.certificateOfProductRegistrationNo}"></p>
+            <p th:text="${product.licenseInformation.validityPeriod}"></p>
+            <hr>
+            <p th:text="${product.confirmation.confirmationDate}"></p>
+            <p th:text="${product.confirmation.confirmedBy}"></p>
+            <p th:text="${product.confirmation.remarks}"></p>
+            <hr>
+            <p th:text="${product.storageCondition}"></p>
+            <hr/>
+            <p th:text="${product.alternativeUOM.piecesPerCarton}"></p>
+            <hr/>
+            <p th:text="${product.dimension.length}"></p>
+            <p th:text="${product.dimension.width}"></p>
+            <p th:text="${product.dimension.height}"></p>
+            <p th:text="${product.productWeight.grossWeightPerSKU}"></p>
+            <p th:text="${product.productWeight.netWeightPerSKU}"></p>
+            <p th:text="${product.productWeight.grossWeightPerStandard}"></p>
+            <p th:text="${product.productWeight.netWeightPerStandard}"></p>
+            <hr>
+            <p th:text="${product.issuance.box}"></p>
+            <hr>
+            <p th:text="${product.completion.completionDate}"></p>
+            <p th:text="${product.completion.position}"></p>
+            <p th:text="${product.completion.completedBy}"></p>
+        </div>
+    </div>
+</div>
 
-        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-        <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    </body>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
 </html>
