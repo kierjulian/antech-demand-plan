@@ -17,7 +17,11 @@
                 <form th:action="@{/products/save}" th:object="${product}" method="post">
                     <div class="btn-group">
                         <button type="submit" class="btn btn-success">Save</button>
-                    </div><br>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-warning" th:href="@{/products}">Cancel</a>
+                    </div>&nbsp;
+                    <hr>
                     <input type="hidden"  th:field="*{id}">
                     Code<input type="text" th:field="*{code}"><br>
                     Name<input type="text" th:field="*{name}"><br>

@@ -78,6 +78,61 @@
                         <input type="text" class="form-control" th:value="${product.caseBarcode}" disabled>
                     </div>
                 </div>
+                <hr>
+                <div class="text-center form-group row">
+                    <div class="text-center col-sm">
+                        <h4>License Information / IMS Classification</h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">IMS Therapeutic Code</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.licenseInformation.code}"
+                               disabled>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <label class="col-sm-1 col-form-label">Certificate of Product Registration No.</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control"
+                               th:value="${product.licenseInformation.certificateOfProductRegistrationNo}" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">IMS Therapeutic Code</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.licenseInformation.code}"
+                               disabled>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <label class="col-sm-1 col-form-label">Validity Period</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control"
+                               th:value="${product.licenseInformation.validityPeriod}" disabled>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center form-group row">
+                    <div class="text-center col-sm">
+                        <h4>Confirmation</h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-1 col-form-label">Pharmacist / Regulatory Officer</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" th:value="${product.confirmation.confirmedBy}"
+                               disabled>
+                    </div>
+                    <label class="col-sm-1 col-form-label">Confirmation Date</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" th:value="${product.confirmation.confirmationDate}"
+                               disabled>
+                    </div>
+                    <label class="col-sm-1 col-form-label">Remarks</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control"
+                               th:value="${product.confirmation.remarks}" disabled>
+                    </div>
+                </div>
             </form>
             <hr>
             <p th:text="${product.productInformation.lifeSaving}"></p>
@@ -91,11 +146,6 @@
             <p th:text="${product.productInformation.biological}"></p>
             <p th:text="${product.productInformation.withSpecialArrangement}"></p>
             <p th:text="${product.productInformation.antibiotic}"></p>
-            <hr>
-            <p th:text="${product.licenseInformation.licenseCode}"></p>
-            <p th:text="${product.licenseInformation.code}"></p>
-            <p th:text="${product.licenseInformation.certificateOfProductRegistrationNo}"></p>
-            <p th:text="${product.licenseInformation.validityPeriod}"></p>
             <hr>
             <p th:text="${product.confirmation.confirmationDate}"></p>
             <p th:text="${product.confirmation.confirmedBy}"></p>
