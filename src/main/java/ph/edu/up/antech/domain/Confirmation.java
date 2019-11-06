@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ public class Confirmation implements Serializable {
 	private String confirmedBy;
 
 	@Column(name = "confirmation_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate confirmationDate;
 
 	@Column(name = "remarks")

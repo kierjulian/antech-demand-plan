@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,6 +26,7 @@ public class LicenseInformation implements Serializable {
 	private String certificateOfProductRegistrationNo;
 
 	@Column(name = "validity_period")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate validityPeriod;
 
 	public Product getProduct() {

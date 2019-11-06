@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,6 +22,7 @@ public class Completion implements Serializable {
 	private String position;
 
 	@Column(name = "completion_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate completionDate;
 
 	public Product getProduct() {
