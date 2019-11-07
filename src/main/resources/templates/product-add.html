@@ -57,7 +57,7 @@
                             <select th:field="*{materialGroup}">
                                 <option th:each="materialGroup : ${T(ph.edu.up.antech.domain.MaterialGroup).values()}"
                                         th:value="${materialGroup}"
-                                        th:text="${materialGroup}">
+                                        th:text="${materialGroup} + ': ' + ${materialGroup.description} ">
                                 </option>
                             </select>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Shelf Life</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" th:field="*{shelfLifeInDays}">
+                            <input type="number" class="form-control" th:field="*{shelfLifeInDays}">
                         </div>
                         <small class="col-sm-2 form-text text-muted">(in days)</small>
                         <label class="col-sm-1 col-form-label">Item Barcode</label>
@@ -76,7 +76,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
+                            <input type="number" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
                         </div>
                         <small class="col-sm-2 form-text text-muted">(in days)</small>
                         <label class="col-sm-1 col-form-label">Case Barcode</label>
@@ -225,7 +225,7 @@
                             <select th:field="*{licenseInformation.licenseCode}">
                                 <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
                                         th:value="${licenseCode}"
-                                        th:text="${licenseCode}">
+                                        th:text="${licenseCode.description  }">
                                 </option>
                             </select>
                         </div>
@@ -281,7 +281,7 @@
                             <select th:field="*{storageCondition}">
                                 <option th:each="storageCondition : ${T(ph.edu.up.antech.domain.StorageCondition).values()}"
                                         th:value="${storageCondition}"
-                                        th:text="${storageCondition}">
+                                        th:text="${storageCondition}  + ' (' + ${storageCondition.description} + ')'">
                                 </option>
                             </select>
                         </div>
@@ -294,7 +294,7 @@
                         <label class="col-sm-1 col-form-label">1 Carton</label>
                         <label class="col-sm-1 col-form-label">=</label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{alternativeUOM.piecesPerCarton}">
+                            <input type="number" class="form-control" th:field="*{alternativeUOM.piecesPerCarton}">
                         </div>
                         <label class="col-sm-1 col-form-label">Each</label>
                     </div>
@@ -303,7 +303,7 @@
                         <label class="col-sm-1 col-form-label">Dimension</label>
                         <label class="col-sm-1 col-form-label">Length</label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{dimension.length}">
+                            <input type="number" step=".01" class="form-control" th:field="*{dimension.length}">
                         </div>
                         <label class="col-sm-4 col-form-label"></label>
                         <label class="col-sm-1 col-form-label">Gross</label>
@@ -313,16 +313,16 @@
                         <label class="col-sm-1 col-form-label"></label>
                         <label class="col-sm-1 col-form-label">Width</label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{dimension.width}">
+                            <input type="number" step=".01" class="form-control" th:field="*{dimension.width}">
                         </div>
                         <label class="col-sm-2 col-form-label"></label>
                         <label class="col-sm-1 col-form-label">Weight</label>
                         <small class="col-sm-1 form-text text-muted">(in KG)</small>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{productWeight.grossWeightPerSKU}">
+                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerSKU}">
                         </div>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{productWeight.netWeightPerSKU}">
+                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerSKU}">
                         </div>
                         <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
                     </div>
@@ -330,14 +330,14 @@
                         <label class="col-sm-1 col-form-label"></label>
                         <label class="col-sm-1 col-form-label">Height</label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{dimension.height}">
+                            <input type="number" step=".01" class="form-control" th:field="*{dimension.height}">
                         </div>
                         <label class="col-sm-4 col-form-label"></label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{productWeight.grossWeightPerStandard}">
+                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerStandard}">
                         </div>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{productWeight.netWeightPerStandard}">
+                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerStandard}">
                         </div>
                         <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
                     </div>
@@ -345,7 +345,7 @@
                         <label class="col-sm-1 col-form-label">Issuance:</label>
                         <label class="col-sm-1 col-form-label">Box Of</label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" th:field="*{issuance.box}">
+                            <input type="number" class="form-control" th:field="*{issuance.box}">
                         </div>
                     </div>
                     <hr>
