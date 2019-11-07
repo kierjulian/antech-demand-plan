@@ -256,7 +256,7 @@
                         <input type="text" class="form-control" th:value="${product.storageCondition}"
                                disabled>
                     </div>
-                    <small class="col-sm-2 form-text text-muted" th:text="${product.storageCondition.description}"></small>
+                    <small class="col-sm-2 form-text text-muted" th:text="${product?.storageCondition?.description}"></small>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Alternative UOM</label>

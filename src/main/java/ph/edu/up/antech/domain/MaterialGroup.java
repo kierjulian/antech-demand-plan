@@ -6,7 +6,7 @@ public enum MaterialGroup {
 	ZCH("Consumer Healthcare"), ZDN("Diagnostics"), ZGM("Gimmicks"),
 	ZHS("Health Supplements / Vitamins"), ZHH("Household Hazardous"),
 	ZHR("Household (Home) Remedies"), ZLS("Life Saving"),
-	ZMD("Medical Devices"), ZNT("NUTRITIONAL"),
+	ZMD("Medical Devices"), ZNT("Nutritional"),
 	ZOG("Oncology"), ZPM("Packaging Material"), ZPE("Pharma Ethical"),
 	ZPG("Pharma Generics"), ZPO("Pharma OTC"), ZRM("Raw Material"),
 	ZRD("Regulated Drugs"), ZSG("Surgical"), ZSP("Spare Part"),

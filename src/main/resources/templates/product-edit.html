@@ -54,7 +54,7 @@
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Material Group</label>
                             <div class="col-sm-2">
-                                <select th:field="*{materialGroup}">
+                                <select class="form-control" th:field="*{materialGroup}">
                                     <option th:each="materialGroup : ${T(ph.edu.up.antech.domain.MaterialGroup).values()}"
                                             th:value="${materialGroup}"
                                             th:text="${materialGroup} + ': ' + ${materialGroup.description}">
@@ -221,7 +221,7 @@
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Product License Code</label>
                             <div class="col-sm-3">
-                                <select th:field="*{licenseInformation.licenseCode}">
+                                <select class="form-control" th:field="*{licenseInformation.licenseCode}">
                                     <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
                                             th:value="${licenseCode}"
                                             th:text="${licenseCode.description}">
@@ -277,8 +277,8 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Storage Condition</label>
-                            <div class="col-sm-1">
-                                <select th:field="*{storageCondition}">
+                            <div class="col-sm-3">
+                                <select class="form-control" th:field="*{storageCondition}">
                                     <option th:each="storageCondition : ${T(ph.edu.up.antech.domain.StorageCondition).values()}"
                                             th:value="${storageCondition}"
                                             th:text="${storageCondition}  + ' (' + ${storageCondition.description} + ')'">
