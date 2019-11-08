@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 
 @Entity
@@ -28,6 +29,10 @@ public class LicenseInformation implements Serializable {
 	@Column(name = "validity_period")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate validityPeriod;
+
+	@Lob
+	@Column(name = "certificate_file")
+	private byte[] certificateFile;
 
 	public Product getProduct() {
 		return product;
@@ -67,6 +72,14 @@ public class LicenseInformation implements Serializable {
 
 	public void setValidityPeriod(LocalDate validityPeriod) {
 		this.validityPeriod = validityPeriod;
+	}
+
+	public byte[] getCertificateFile() {
+		return certificateFile;
+	}
+
+	public void setCertificateFile(byte[] certificateFile) {
+		this.certificateFile = certificateFile;
 	}
 
 }
