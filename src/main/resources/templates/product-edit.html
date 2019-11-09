@@ -5,21 +5,27 @@
         <title>Edit Product</title>
         <link rel="stylesheet"
               href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
         <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
     </head>
     <body>
         <div class="container-fluid"><br>
             <div class="card">
                 <div class="card-header">
-                    <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                    <a href="/">
+                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                    </a>
                 </div>
                 <div class="card-body bg-light">
                     <form th:action="@{/products/update}" th:object="${product}" method="post" enctype="multipart/form-data">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save">&nbsp; Save</i></button>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-warning" th:href="@{/products/view/{id}(id=${product.id})}">Cancel</a>
+                            <a class="btn btn-warning" th:href="@{/products/view/{id}(id=${product.id})}">
+                                <i class="fas fa-ban">&nbsp; Cancel</i>
+                            </a>
                         </div>
                         <hr>
                         <input type="hidden"  th:field="*{id}">
@@ -53,7 +59,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Material Group</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <select class="form-control" th:field="*{materialGroup}">
                                     <option th:each="materialGroup : ${T(ph.edu.up.antech.domain.MaterialGroup).values()}"
                                             th:value="${materialGroup}"

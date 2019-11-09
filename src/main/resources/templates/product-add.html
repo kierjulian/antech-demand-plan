@@ -5,21 +5,28 @@
         <title>Add Product</title>
         <link rel="stylesheet"
               href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
         <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
     </head>
     <body>
     <div class="container-fluid"><br>
         <div class="card">
             <div class="card-header">
-                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                <a href="/">
+                    <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                </a>
             </div>
             <div class="card-body bg-light">
                 <form th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save">&nbsp; Save</i>
+                        </button>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-warning" th:href="@{/products}">Cancel</a>
+                        <a class="btn btn-warning" th:href="@{/products}">
+                            <i class="fas fa-ban">&nbsp; Cancel</i>
+                        </a>
                     </div>&nbsp;
                     <hr>
                     <input type="hidden"  th:field="*{id}">
