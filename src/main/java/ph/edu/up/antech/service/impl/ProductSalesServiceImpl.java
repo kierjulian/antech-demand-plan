@@ -1,28 +1,23 @@
 package ph.edu.up.antech.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ph.edu.up.antech.dao.ProductSalesDAO;
 import ph.edu.up.antech.domain.ProductSales;
 import ph.edu.up.antech.domain.ProductSalesGeneration;
-import ph.edu.up.antech.helper.ProductSalesHelper;
 import ph.edu.up.antech.service.ProductSalesService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProductSalesServiceImpl implements ProductSalesService {
 
+	@Autowired
+	private ProductSalesDAO productSalesDAO;
+
 	@Override
-	public List<ProductSales> findAll() {
-		List<ProductSales> productSalesList = new ArrayList<>();
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400Jan2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400Feb2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400March2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesFors1400April2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400May2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400June2019());
-		productSalesList.add(ProductSalesHelper.initializeProductSalesForS1400July2019());
-		return productSalesList;
+	public List<ProductSales> findAllProductSales() {
+		return productSalesDAO.findAllProductSales();
 	}
 
 	@Override

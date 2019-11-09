@@ -8,7 +8,6 @@ import ph.edu.up.antech.domain.*;
 import ph.edu.up.antech.helper.ProductSalesHelper;
 import ph.edu.up.antech.service.ProductSalesService;
 
-import java.math.BigDecimal;
 import java.time.Month;
 import java.time.Year;
 import java.util.List;
@@ -22,7 +21,7 @@ public class ProductSalesController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<ProductSales> findAllProductSales() {
-		return productSalesService.findAll();
+		return productSalesService.findAllProductSales();
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)

@@ -1,12 +1,35 @@
 package ph.edu.up.antech.domain;
 
-public class InventoryAtTrade {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name = "product_sales_trade")
+public class InventoryAtTrade implements Serializable {
+
+	@Id
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+	private ProductSales productSales;
+
+	@Column(name = "beginning_inventory")
 	private Integer beginningInventory;
+
+	@Column(name = "total_ending_inventory")
 	private Integer totalEndingInventory;
+
+	@Column(name = "days_on_hand")
 	private Integer daysOnHand;
 
 	public InventoryAtTrade() {
+	}
+
+	public ProductSales getProductSales() {
+		return productSales;
+	}
+
+	public void setProductSales(ProductSales productSales) {
+		this.productSales = productSales;
 	}
 
 	public Integer getBeginningInventory() {

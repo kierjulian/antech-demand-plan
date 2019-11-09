@@ -1,13 +1,38 @@
 package ph.edu.up.antech.domain;
 
-public class GeneralInformation {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name = "product_sales_information")
+public class GeneralInformation implements Serializable {
+
+	@Id
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+	private ProductSales productSales;
+
+	@Column(name = "plan")
 	private Integer plan;
+
+	@Column(name = "in_market_sales")
 	private Integer inMarketSales;
+
+	@Column(name = "ave_in_market_sales")
 	private Integer averageInMarketSales;
+
+	@Column(name = "offtake")
 	private Integer offTake;
 
 	public GeneralInformation() {
+	}
+
+	public ProductSales getProductSales() {
+		return productSales;
+	}
+
+	public void setProductSales(ProductSales productSales) {
+		this.productSales = productSales;
 	}
 
 	public Integer getPlan() {

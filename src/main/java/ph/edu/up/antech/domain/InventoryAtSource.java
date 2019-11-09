@@ -1,14 +1,41 @@
 package ph.edu.up.antech.domain;
 
-public class InventoryAtSource {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name = "product_sales_source")
+public class InventoryAtSource implements Serializable {
+
+	@Id
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+	private ProductSales productSales;
+
+	@Column(name = "production")
 	private Integer production;
+
+	@Column(name = "total_goods_available")
 	private Integer totalGoodsAvailable;
+
+	@Column(name = "loading")
 	private Integer loading;
+
+	@Column(name = "hipp_ending_inventory")
 	private Integer hippEndingInventory;
+
+	@Column(name = "hipp_days_on_hand")
 	private Integer hippDaysOnHand;
 
 	public InventoryAtSource() {
+	}
+
+	public ProductSales getProductSales() {
+		return productSales;
+	}
+
+	public void setProductSales(ProductSales productSales) {
+		this.productSales = productSales;
 	}
 
 	public Integer getProduction() {

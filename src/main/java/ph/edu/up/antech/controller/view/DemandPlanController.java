@@ -1,5 +1,6 @@
 package ph.edu.up.antech.controller.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import ph.edu.up.antech.domain.ProductSales;
+import ph.edu.up.antech.service.ProductSalesService;
 
 import java.time.Year;
 import java.util.ArrayList;
@@ -32,18 +34,13 @@ public class DemandPlanController {
 
 	private List<ProductSales> productSalesList = new ArrayList<>();
 
+	@Autowired
+	private ProductSalesService productSalesService;
+
 	@GetMapping("")
 	public String loadDemandPlanPage(Model model, @RequestParam(required = false) String productName,
 			@RequestParam(required = false) Integer year) {
-		String apiPath = getProductSalesApiPath();
-		ResponseEntity<List<ProductSales>> responseEntity =
-				restTemplate.exchange(apiPath, HttpMethod.GET, null,
-						new ParameterizedTypeReference<List<ProductSales>>() {
-						});
-
-		productSalesList = responseEntity.getBody();
-		model.addAttribute("productSalesList", productSalesList);
-
+		model.addAttribute("productSalesList", productSalesService.findAllProductSales());
 		return "demand-plan";
 	}
 

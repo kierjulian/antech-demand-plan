@@ -1,26 +1,52 @@
 package ph.edu.up.antech.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ph.edu.up.antech.exception.DifferentProductException;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Month;
 import java.time.Year;
 
-public class ProductSales {
+@Entity
+@Table(name = "product_sales")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+public class ProductSales implements Serializable {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+
+	@OneToOne
+	@JoinColumn(name = "product_id")
 	private Product product;
+
+	@Transient
 	private Year year;
+
+	@Column(name = "month")
 	private Month month;
+
+	@OneToOne(mappedBy = "productSales", cascade = CascadeType.ALL)
 	private GeneralInformation generalInformation;
+
+	@OneToOne(mappedBy = "productSales", cascade = CascadeType.ALL)
 	private InventoryAtAntechZPC inventoryAtAntechZPC;
+
+	@OneToOne(mappedBy = "productSales", cascade = CascadeType.ALL)
 	private InventoryAtSource inventoryAtSource;
+
+	@OneToOne(mappedBy = "productSales", cascade = CascadeType.ALL)
 	private InventoryAtTrade inventoryAtTrade;
 
 	public ProductSales() {
 	}
 
 	public ProductSales(Product product, ProductSales productSalesOneMonthBefore,
-			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
-			ProductSalesDetails productSalesDetails) {
+						ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
+						ProductSalesDetails productSalesDetails) {
 		this.product = product;
 		if (!this.product.equals(productSalesOneMonthBefore.product)
 				|| !this.product.equals(productSalesTwoMonthsBefore.product)
@@ -38,8 +64,8 @@ public class ProductSales {
 	}
 
 	private void initializeGeneralInformation(ProductSales productSalesOneMonthBefore,
-			ProductSales productSalesTwoMonthBefore, ProductSales productSalesThreeMonthsBefore,
-			ProductSalesDetails productSalesDetails) {
+											  ProductSales productSalesTwoMonthBefore, ProductSales productSalesThreeMonthsBefore,
+											  ProductSalesDetails productSalesDetails) {
 		Integer averageInMarketSales = (productSalesThreeMonthsBefore.getGeneralInformation()
 				.getInMarketSales() + productSalesTwoMonthBefore.getGeneralInformation()
 				.getInMarketSales() + productSalesOneMonthBefore.getGeneralInformation()
@@ -58,7 +84,7 @@ public class ProductSales {
 	}
 
 	private void initializeInventoryAtSource(ProductSales productSalesOneMonthBefore,
-			ProductSales productSalesTwoMonthsBefore, ProductSalesDetails productSalesDetails) {
+											 ProductSales productSalesTwoMonthsBefore, ProductSalesDetails productSalesDetails) {
 		Integer production = productSalesDetails.getProduction();
 		Integer totalGoodsAvailable = productSalesOneMonthBefore.getInventoryAtSource()
 				.getHippEndingInventory() + production;
@@ -82,8 +108,8 @@ public class ProductSales {
 	}
 
 	private void initializeInventoryAtAntechZPC(ProductSales productSalesOneMonthBefore,
-			ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
-			ProductSalesDetails productSalesDetails) {
+												ProductSales productSalesTwoMonthsBefore, ProductSales productSalesThreeMonthsBefore,
+												ProductSalesDetails productSalesDetails) {
 		Integer beginningInventory = productSalesOneMonthBefore.getInventoryAtAntechZPC()
 				.getEndingInventory();
 		Integer shipmentReceived = productSalesDetails.getShipmentReceived();
@@ -122,6 +148,14 @@ public class ProductSales {
 				.totalEndingInventory(totalEndingInventory)
 				.daysOnHand(daysOnHand)
 				.build();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Product getProduct() {

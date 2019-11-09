@@ -1,15 +1,44 @@
 package ph.edu.up.antech.domain;
 
-public class InventoryAtAntechZPC {
+import javax.persistence.*;
+import java.io.Serializable;
 
+@Entity
+@Table(name = "product_sales_antech")
+public class InventoryAtAntechZPC implements Serializable {
+
+	@Id
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	@OneToOne
+	private ProductSales productSales;
+
+	@Column(name = "beginning_inventory")
 	private Integer beginningInventory;
+
+	@Column(name = "shipments_received")
 	private Integer shipmentsReceived;
+
+	@Column(name = "available_sale_ph")
 	private Integer totalAvailableForSaleInPhilippines;
+
+	@Column(name = "actual_sales")
 	private Integer actualSales;
+
+	@Column(name = "ending_inventory")
 	private Integer endingInventory;
+
+	@Column(name = "days_on_hand")
 	private Integer daysOnHand;
 
 	public InventoryAtAntechZPC() {
+	}
+
+	public ProductSales getProductSales() {
+		return productSales;
+	}
+
+	public void setProductSales(ProductSales productSales) {
+		this.productSales = productSales;
 	}
 
 	public Integer getBeginningInventory() {

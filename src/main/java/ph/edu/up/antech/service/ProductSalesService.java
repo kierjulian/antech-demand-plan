@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductSalesService {
 
-	public List<ProductSales> findAll();
+	public List<ProductSales> findAllProductSales();
 	public ProductSales createProductSale(ProductSalesGeneration productSalesGeneration);
 
 }
