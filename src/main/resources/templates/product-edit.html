@@ -225,8 +225,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">Product License Code</label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-2 col-form-label">Product License Code</label>
+                            <div class="col-sm-2">
                                 <select class="form-control" th:field="*{licenseInformation.licenseCode}">
                                     <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
                                             th:value="${licenseCode}"
@@ -234,24 +234,25 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-sm-2"></div>
-                            <label class="col-sm-1 col-form-label">Certificate of Product Registration No.</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
+                            <div class="col-sm-2">
                                 <input type="text" class="form-control"
                                        th:field="*{licenseInformation.certificateOfProductRegistrationNo}">
                             </div>
                             <div class="col-sm-2">
-                                <input type="file" class="form-control" id="certificateFile" name="certificateFile">
+                                <input type="file" class="form-control" id="certificateFile" name="certificateFile"
+                                       accept="image/*">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">IMS Therapeutic Code</label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
+                            <div class="col-sm-2">
                                 <input type="text" class="form-control" th:field="*{licenseInformation.code}">
                             </div>
-                            <div class="col-sm-2"></div>
-                            <label class="col-sm-1 col-form-label">Validity Period</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Validity Period</label>
+                            <div class="col-sm-2">
                                 <input type="date" class="form-control"
                                        th:field="*{licenseInformation.validityPeriod}">
                             </div>

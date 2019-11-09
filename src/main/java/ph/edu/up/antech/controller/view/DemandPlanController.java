@@ -35,17 +35,14 @@ public class DemandPlanController {
 	@GetMapping("")
 	public String loadDemandPlanPage(Model model, @RequestParam(required = false) String productName,
 			@RequestParam(required = false) Integer year) {
-		if ((productName != null && year != null)
-				&& productName.equals("S1400") && year == 2019) {
-			String apiPath = getProductSalesApiPath();
-			ResponseEntity<List<ProductSales>> responseEntity =
-					restTemplate.exchange(apiPath, HttpMethod.GET, null,
-							new ParameterizedTypeReference<List<ProductSales>>() {
-							});
+		String apiPath = getProductSalesApiPath();
+		ResponseEntity<List<ProductSales>> responseEntity =
+				restTemplate.exchange(apiPath, HttpMethod.GET, null,
+						new ParameterizedTypeReference<List<ProductSales>>() {
+						});
 
-			productSalesList = responseEntity.getBody();
-			model.addAttribute("productSalesList", productSalesList);
-		}
+		productSalesList = responseEntity.getBody();
+		model.addAttribute("productSalesList", productSalesList);
 
 		return "demand-plan";
 	}
