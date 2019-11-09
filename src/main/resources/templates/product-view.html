@@ -227,7 +227,7 @@
                     <div class="col-sm-1"></div>
                     <label class="col-sm-3 col-form-label">Validity Period</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control"
+                        <input type="date" class="form-control"
                                th:value="${product.licenseInformation.validityPeriod}" disabled>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
                     </div>
                     <label class="col-sm-1 col-form-label">Confirmation Date</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.confirmation.confirmationDate}"
+                        <input type="date" class="form-control" th:value="${product.confirmation.confirmationDate}"
                                disabled>
                     </div>
                     <label class="col-sm-1 col-form-label">Remarks</label>
@@ -353,7 +353,7 @@
                     </div>
                     <label class="col-sm-1 col-form-label">Date</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" th:value="${product.completion.completionDate}"
+                        <input type="date" class="form-control" th:value="${product.completion.completionDate}"
                                disabled>
                     </div>
                 </div>
