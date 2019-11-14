@@ -57,6 +57,11 @@
 			<artifactId>font-awesome</artifactId>
 			<version>5.11.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>4.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>
