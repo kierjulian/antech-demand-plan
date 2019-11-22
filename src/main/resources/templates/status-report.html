@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+        <title>Status Report</title>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="card">
+                <div class="card-header">
+                    <a href="/">
+                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <form>
+                                    <div class="card-header text-center">
+                                        New Daily Report
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                Date:
+                                                <input type="date" class="form-control" required>&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                Customer Item Sales Per Period:
+                                                <input type="file" class="form-control" required/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                Customer Sales By Item:
+                                                <input type="file" class="form-control" required/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                Daily Sales Data Detail:
+                                                <input type="file" class="form-control" required/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                Dispensing Distributor:
+                                                <input type="file" class="form-control" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-plus">&nbsp; Add</i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    View Status Reports
+                                </div>
+                                <div class="card-body">
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
