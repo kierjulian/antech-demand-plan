@@ -1,8 +1,10 @@
-package ph.edu.up.antech.domain.monthly.sales;
+package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DailySalesDataDetail {
 
@@ -60,6 +62,8 @@ public class DailySalesDataDetail {
     @CsvBindByName(column = "REFDT")
     private String refdt;
 
+    private LocalDate referenceDate;
+
     @CsvBindByName(column = "REFNO")
     private String refno;
 
@@ -72,8 +76,8 @@ public class DailySalesDataDetail {
     @CsvBindByName(column = "PRODCD")
     private String prodcd;
 
-    @CsvBindByName(column = "QTYQR")
-    private Integer quantityQr;
+    @CsvBindByName(column = "QTYOR")
+    private Integer quantityOr;
 
     @CsvBindByName(column = "QTYSH")
     private Integer quantitySh;
@@ -81,7 +85,7 @@ public class DailySalesDataDetail {
     @CsvBindByName(column = "UM")
     private String um;
 
-    @CsvBindByName(column = "VLAM")
+    @CsvBindByName(column = "VLAMT")
     private String vlamtInString;
 
     private BigDecimal vlamt;
@@ -97,12 +101,14 @@ public class DailySalesDataDetail {
     private BigDecimal pds;
 
     @CsvBindByName(column = "EXPDTE")
-    private String expiryDate;
+    private String expiryDateInString;
+
+    private LocalDate expiryDate;
 
     @CsvBindByName(column = "LOTNO")
     private String lotNo;
 
-    @CsvBindByName(column = "BARCODE")
+    @CsvBindByName(column = "BARCDE")
     private String barcode;
 
     @CsvBindByName(column = "PDCODE")
@@ -298,6 +304,14 @@ public class DailySalesDataDetail {
         this.refdt = refdt;
     }
 
+    public LocalDate getReferenceDate() {
+        return referenceDate;
+    }
+
+    public void setReferenceDate(LocalDate referenceDate) {
+        this.referenceDate = referenceDate;
+    }
+
     public String getRefno() {
         return refno;
     }
@@ -330,12 +344,12 @@ public class DailySalesDataDetail {
         this.prodcd = prodcd;
     }
 
-    public Integer getQuantityQr() {
-        return quantityQr;
+    public Integer getQuantityOr() {
+        return quantityOr;
     }
 
-    public void setQuantityQr(Integer quantityQr) {
-        this.quantityQr = quantityQr;
+    public void setQuantityOr(Integer quantityOr) {
+        this.quantityOr = quantityOr;
     }
 
     public Integer getQuantitySh() {
@@ -402,11 +416,19 @@ public class DailySalesDataDetail {
         this.pds = pds;
     }
 
-    public String getExpiryDate() {
+    public String getExpiryDateInString() {
+        return expiryDateInString;
+    }
+
+    public void setExpiryDateInString(String expiryDateInString) {
+        this.expiryDateInString = expiryDateInString;
+    }
+
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(String expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 
@@ -561,5 +583,50 @@ public class DailySalesDataDetail {
     public void setDebtorCode(String debtorCode) {
         this.debtorCode = debtorCode;
     }
+
+    public void convertVlamtFromStringToBigDecimal() {
+        if (vlamtInString != null && !vlamtInString.trim().isEmpty()) {
+            vlamt = new BigDecimal(vlamtInString.trim());
+        }
+    }
+
+    public void convertSellprFromStringToBigDecimal() {
+        if (sellprInString != null && !sellprInString.trim().isEmpty()) {
+            sellpr = new BigDecimal(sellprInString.trim());
+        }
+    }
+
+    public void convertPdsFromStringToBigDecimal() {
+        if (pdsInString != null && !pdsInString.trim().isEmpty()) {
+            pds = new BigDecimal(pdsInString.trim());
+        }
+    }
+
+    public void convertFindscFromStringToBigDecimal() {
+        if (findscInString != null && !findscInString.trim().isEmpty()) {
+            findsc = new BigDecimal(findscInString.trim());
+        }
+    }
+
+    public void convertNetSalesFromStringToBigDecimal() {
+        if (netSalesInString != null && !netSalesInString.trim().isEmpty()) {
+            netSales = new BigDecimal(netSalesInString.trim());
+        }
+    }
+
+    public void convertExpiryDateFromStringToLocalDate() {
+        if (expiryDateInString != null && !expiryDateInString.trim().isEmpty()) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            expiryDate = LocalDate.parse(expiryDateInString, dateTimeFormatter);
+        }
+    }
+
+    public void convertRefdtToReferenceDate() {
+        if (refdt != null && !refdt.trim().isEmpty()) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            referenceDate = LocalDate.parse(refdt, dateTimeFormatter);
+        }
+    }
+
 
 }

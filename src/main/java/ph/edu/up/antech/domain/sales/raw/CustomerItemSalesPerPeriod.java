@@ -1,4 +1,4 @@
-package ph.edu.up.antech.domain.monthly.sales;
+package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByPosition;
 
@@ -104,9 +104,8 @@ public class CustomerItemSalesPerPeriod {
         this.salesAmount = salesAmount;
     }
 
-    public void convertSalesAmount() {
-        String salesAmountInString = this.salesAmountInString.replaceAll(",", "");
-        this.salesAmount = new BigDecimal(salesAmountInString);
+    public void convertSalesAmountFromStringToBigDecimal() {
+        this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""));
     }
 
 }
