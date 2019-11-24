@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 public class CustomerSalesByItem {
 
+    private LocalDate itemDate;
+
     @CsvBindByName(column = "Item")
     private String item;
 
@@ -96,6 +98,14 @@ public class CustomerSalesByItem {
 
     @CsvBindByName(column = "Customer/Job: Mobile Phone")
     private String mobileNo;
+
+    public LocalDate getItemDate() {
+        return itemDate;
+    }
+
+    public void setItemDate(LocalDate itemDate) {
+        this.itemDate = itemDate;
+    }
 
     public String getItem() {
         return item;

@@ -3,8 +3,11 @@ package ph.edu.up.antech.domain.sales.raw;
 import com.opencsv.bean.CsvBindByPosition;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class CustomerItemSalesPerPeriod {
+
+    private LocalDate date;
 
     @CsvBindByPosition(position = 0)
     private Integer row;
@@ -31,6 +34,14 @@ public class CustomerItemSalesPerPeriod {
     private String salesAmountInString;
 
     private BigDecimal salesAmount;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public Integer getRow() {
         return row;

@@ -191,7 +191,7 @@ public class CSVParserTest {
                 dispensingDistributor.convertFinalAmountFromStringToBigDecimal();
                 System.out.println("TOTAL AMOUNT: " + dispensingDistributor.getTotalAmount());
                 System.out.println("Final Amount: " + dispensingDistributor.getFinalAmount());
-                
+
                 System.out.println();
             }
         } catch (IOException e) {
