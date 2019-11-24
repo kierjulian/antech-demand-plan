@@ -6,6 +6,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
+import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class CSVParserTest {
 
     @Test
-    public void printContentsFromSampleCSVFile_shouldBeSuccessful() {
+    public void printContents_FromSampleCSVFile_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/SampleCSV.csv"));
              CSVReader csvReader = new CSVReader(reader)) {
             Object[] record;
@@ -28,6 +29,8 @@ public class CSVParserTest {
                 System.out.println(record[1]);
                 System.out.println(record[2]);
                 System.out.println(record[3]);
+
+                System.out.println();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,6 +48,7 @@ public class CSVParserTest {
                 System.out.println(record[1]);
                 System.out.println(record[2]);
                 System.out.println(record[3]);
+
                 System.out.println();
             }
         } catch (IOException e) {
@@ -67,8 +71,10 @@ public class CSVParserTest {
                 System.out.println("Material Description: " + customerItemSalesPerPeriod.getMaterialDescription());
                 System.out.println("Quantity: " + customerItemSalesPerPeriod.getQuantity());
                 System.out.println("Quantity Bonus: " + customerItemSalesPerPeriod.getQuantityBonus());
+
                 customerItemSalesPerPeriod.convertSalesAmountFromStringToBigDecimal();
                 System.out.println("Sales Amount: " + customerItemSalesPerPeriod.getSalesAmount());
+
                 System.out.println();
             }
         } catch (IOException e) {
@@ -144,8 +150,10 @@ public class CSVParserTest {
 
                 dailySalesDataDetail.convertNetSalesFromStringToBigDecimal();
                 System.out.println("Net Sales: " + dailySalesDataDetail.getNetSales());
+
                 System.out.println("Filler5: " + dailySalesDataDetail.getFiller5());
                 System.out.println("DEBTORCODE: " + dailySalesDataDetail.getDebtorCode());
+
                 System.out.println();
             }
         } catch (IOException e) {
@@ -173,15 +181,77 @@ public class CSVParserTest {
                 System.out.println("REFCD: " + dispensingDistributor.getItemDescription());
                 System.out.println("CATEGORY: " + dispensingDistributor.getCategory());
                 System.out.println("REFERENCE NO: " + dispensingDistributor.getReferenceNo());
+
                 dispensingDistributor.convertPriceFromStringToBigDecimal();
                 System.out.println("PRICE: " + dispensingDistributor.getPrice());
+
                 System.out.println("UNITS: " + dispensingDistributor.getUnits());
+
                 dispensingDistributor.convertTotalAmountFromStringToBigDecimal();
                 dispensingDistributor.convertFinalAmountFromStringToBigDecimal();
                 System.out.println("TOTAL AMOUNT: " + dispensingDistributor.getTotalAmount());
                 System.out.println("Final Amount: " + dispensingDistributor.getFinalAmount());
+                
                 System.out.println();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void convertCustomerSalesByItemToObject_andPrintContents_shouldBeSuccessful() {
+        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerSalesByItem.csv"))) {
+            CsvToBean<CustomerSalesByItem> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(CustomerSalesByItem.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withSkipLines(6)
+                    .build();
+
+            List<CustomerSalesByItem> customerSalesByItemList = csvToBean.parse();
+            for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
+                System.out.println("Item: " + customerSalesByItem.getItem());
+                System.out.println("Type: " + customerSalesByItem.getType());
+                System.out.println("Customer Name: " + customerSalesByItem.getCustomerName());
+
+                System.out.println("Category: " + customerSalesByItem.getCategory());
+                customerSalesByItem.convertDateInStringToLocalDate();
+
+                System.out.println("Date: " + customerSalesByItem.getDate());
+                System.out.println("Num: " + customerSalesByItem.getNum());
+                System.out.println("Sales Invoice: " + customerSalesByItem.getSalesInvoice());
+                System.out.println("Description: " + customerSalesByItem.getDescription());
+
+                customerSalesByItem.convertQuantitySoldInStringToInteger();
+                System.out.println("Qty Sold: " + customerSalesByItem.getQuantitySold());
+
+                customerSalesByItem.convertSalesPriceInStringToBigDecimal();
+                System.out.println("Sales Price: " + customerSalesByItem.getSalesPrice());
+
+                customerSalesByItem.convertNetAmountInStringToBigDecimal();
+                System.out.println("Net Amount: " + customerSalesByItem.getNetAmount());
+
+                System.out.println("Price Level: " + customerSalesByItem.getPriceLevel());
+                System.out.println("Territorial Manager: " + customerSalesByItem.getCreditedToTerritorialManager());
+                System.out.println("Sales Rep Name: " + customerSalesByItem.getSalesRepName());
+                System.out.println("Acquisition CSR: " + customerSalesByItem.getCustomerJobAcquisitionCsrCreditedTo());
+                System.out.println("Retention CSR: " + customerSalesByItem.getCustomerJobRetentionCsrCreditedTo());
+                System.out.println("Order Taken By: " + customerSalesByItem.getOrderTakenBy());
+                System.out.println("ZIP Code: " + customerSalesByItem.getAddressZipCode());
+                System.out.println("Sales Role Name: " + customerSalesByItem.getSalesRoleName());
+                System.out.println("Shipping Address: " + customerSalesByItem.getAddressShippingAddressCity());
+                System.out.println("Billing Address 1: " + customerSalesByItem.getAddressBillingAddress1());
+                System.out.println("Billing Address 2: " + customerSalesByItem.getAddressBillingAddress2());
+                System.out.println("Hospital 1: " + customerSalesByItem.getCustomerJobHospital1());
+                System.out.println("Doctor 1: " + customerSalesByItem.getCustomerJobDoctor1());
+                System.out.println("Referred By: " + customerSalesByItem.getCustomerJobReferredBy());
+                System.out.println("PO Number: " + customerSalesByItem.getPoNumber());
+                System.out.println("Mobile Number: " + customerSalesByItem.getMobileNo());
+
+                System.out.println();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
