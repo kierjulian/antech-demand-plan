@@ -179,7 +179,13 @@ public class DispensingDistributor {
         this.finalAmount = finalAmount;
     }
 
-    public void convertPriceFromStringToBigDecimal() {
+    public void convertAllStringTypeToProperType() {
+        convertFinalAmountFromStringToBigDecimal();
+        convertTotalAmountFromStringToBigDecimal();
+        convertPriceFromStringToBigDecimal();
+    }
+
+    private void convertPriceFromStringToBigDecimal() {
         if (this.priceInString != null
                 && !this.priceInString.trim().isEmpty()
                 && !this.priceInString.startsWith("#")) {
@@ -190,7 +196,7 @@ public class DispensingDistributor {
         }
     }
 
-    public void convertTotalAmountFromStringToBigDecimal() {
+    private void convertTotalAmountFromStringToBigDecimal() {
         if (this.totalAmountInString != null
                 && !this.priceInString.trim().isEmpty()
                 && !this.priceInString.startsWith("#")) {
@@ -201,7 +207,7 @@ public class DispensingDistributor {
         }
     }
 
-    public void convertFinalAmountFromStringToBigDecimal() {
+    private void convertFinalAmountFromStringToBigDecimal() {
         if (this.finalAmountInString != null
                 && !this.priceInString.trim().isEmpty()
                 && !this.priceInString.startsWith("#")) {

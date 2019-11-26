@@ -64,6 +64,8 @@ public class CSVParserTest {
                     .withType(CustomerItemSalesPerPeriod.class).withSkipLines(3).build();
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = csvToBean.parse();
             for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
+                customerItemSalesPerPeriod.convertAllStringValuesToProperType();
+
                 System.out.println("Row: " + customerItemSalesPerPeriod.getRow());
                 System.out.println("Customer Code: " + customerItemSalesPerPeriod.getCustomerCode());
                 System.out.println("Customer Name: " + customerItemSalesPerPeriod.getCustomerName());
@@ -71,8 +73,6 @@ public class CSVParserTest {
                 System.out.println("Material Description: " + customerItemSalesPerPeriod.getMaterialDescription());
                 System.out.println("Quantity: " + customerItemSalesPerPeriod.getQuantity());
                 System.out.println("Quantity Bonus: " + customerItemSalesPerPeriod.getQuantityBonus());
-
-                customerItemSalesPerPeriod.convertSalesAmountFromStringToBigDecimal();
                 System.out.println("Sales Amount: " + customerItemSalesPerPeriod.getSalesAmount());
 
                 System.out.println();
@@ -90,6 +90,8 @@ public class CSVParserTest {
                     .withType(DailySalesDataDetail.class).build();
             List<DailySalesDataDetail> dailySalesDataDetailList = csvToBean.parse();
             for (DailySalesDataDetail dailySalesDataDetail : dailySalesDataDetailList) {
+                dailySalesDataDetail.convertAllStringFieldsToProperType();
+
                 System.out.println("CONO: " + dailySalesDataDetail.getCono());
                 System.out.println("REC: " + dailySalesDataDetail.getRec());
                 System.out.println("BRAN: " + dailySalesDataDetail.getBran());
@@ -106,10 +108,7 @@ public class CSVParserTest {
                 System.out.println("PRIN: " + dailySalesDataDetail.getPrin());
                 System.out.println("SUBPR: " + dailySalesDataDetail.getSubpr());
                 System.out.println("REFCD: " + dailySalesDataDetail.getRefcd());
-
-                dailySalesDataDetail.convertRefdtToReferenceDate();
                 System.out.println("Reference Date: " + dailySalesDataDetail.getReferenceDate());
-
                 System.out.println("REFNO: " + dailySalesDataDetail.getRefno());
                 System.out.println("XREFNO: " + dailySalesDataDetail.getXrefno());
                 System.out.println("REASN: " + dailySalesDataDetail.getReasn());
@@ -117,28 +116,16 @@ public class CSVParserTest {
                 System.out.println("QTYSH: " + dailySalesDataDetail.getQuantitySh());
                 System.out.println("QTYQR: " + dailySalesDataDetail.getQuantityOr());
                 System.out.println("UM: " + dailySalesDataDetail.getUm());
-
-                dailySalesDataDetail.convertVlamtFromStringToBigDecimal();
                 System.out.println("VLAMT: " + dailySalesDataDetail.getVlamt());
-
-                dailySalesDataDetail.convertSellprFromStringToBigDecimal();
                 System.out.println("SELLPR: " + dailySalesDataDetail.getSellpr());
-
-                dailySalesDataDetail.convertPdsFromStringToBigDecimal();
                 System.out.println("PDS: " + dailySalesDataDetail.getPds());
-
-                dailySalesDataDetail.convertExpiryDateFromStringToLocalDate();
                 System.out.println("Expiry Date: " + dailySalesDataDetail.getExpiryDate());
-
                 System.out.println("LOTNO: " + dailySalesDataDetail.getLotNo());
                 System.out.println("BARCODE: " + dailySalesDataDetail.getBarcode());
                 System.out.println("PDCODE: " + dailySalesDataDetail.getPdcode());
                 System.out.println("DMAN: " + dailySalesDataDetail.getDman());
                 System.out.println("FILLER3: " + dailySalesDataDetail.getFiller3());
-
-                dailySalesDataDetail.convertFindscFromStringToBigDecimal();
                 System.out.println("FINDSC: " + dailySalesDataDetail.getFindsc());
-
                 System.out.println("FRTAMT: " + dailySalesDataDetail.getFrtamt());
                 System.out.println("SLSYR: " + dailySalesDataDetail.getSlsyr());
                 System.out.println("SLSMO: " + dailySalesDataDetail.getSlsmo());
@@ -147,10 +134,7 @@ public class CSVParserTest {
                 System.out.println("PONUM: " + dailySalesDataDetail.getPonum());
                 System.out.println("GUARTRAN: " + dailySalesDataDetail.getGuartran());
                 System.out.println("FILLER4: " + dailySalesDataDetail.getFiller4());
-
-                dailySalesDataDetail.convertNetSalesFromStringToBigDecimal();
                 System.out.println("Net Sales: " + dailySalesDataDetail.getNetSales());
-
                 System.out.println("Filler5: " + dailySalesDataDetail.getFiller5());
                 System.out.println("DEBTORCODE: " + dailySalesDataDetail.getDebtorCode());
 
@@ -172,6 +156,8 @@ public class CSVParserTest {
                     .withType(DispensingDistributor.class).build();
             List<DispensingDistributor> dispensingDistributorList = csvToBean.parse();
             for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
+                dispensingDistributor.convertAllStringTypeToProperType();
+
                 System.out.println("MONTH: " + dispensingDistributor.getMonth());
                 System.out.println("ACCOUNTS: " + dispensingDistributor.getAccounts());
                 System.out.println("DSMNAME: " + dispensingDistributor.getDsmName());
@@ -181,14 +167,8 @@ public class CSVParserTest {
                 System.out.println("REFCD: " + dispensingDistributor.getItemDescription());
                 System.out.println("CATEGORY: " + dispensingDistributor.getCategory());
                 System.out.println("REFERENCE NO: " + dispensingDistributor.getReferenceNo());
-
-                dispensingDistributor.convertPriceFromStringToBigDecimal();
                 System.out.println("PRICE: " + dispensingDistributor.getPrice());
-
                 System.out.println("UNITS: " + dispensingDistributor.getUnits());
-
-                dispensingDistributor.convertTotalAmountFromStringToBigDecimal();
-                dispensingDistributor.convertFinalAmountFromStringToBigDecimal();
                 System.out.println("TOTAL AMOUNT: " + dispensingDistributor.getTotalAmount());
                 System.out.println("Final Amount: " + dispensingDistributor.getFinalAmount());
 
@@ -211,27 +191,19 @@ public class CSVParserTest {
 
             List<CustomerSalesByItem> customerSalesByItemList = csvToBean.parse();
             for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
+                customerSalesByItem.convertAllStringFieldsToProperType();
+
                 System.out.println("Item: " + customerSalesByItem.getItem());
                 System.out.println("Type: " + customerSalesByItem.getType());
                 System.out.println("Customer Name: " + customerSalesByItem.getCustomerName());
-
                 System.out.println("Category: " + customerSalesByItem.getCategory());
-                customerSalesByItem.convertDateInStringToLocalDate();
-
                 System.out.println("Date: " + customerSalesByItem.getDate());
                 System.out.println("Num: " + customerSalesByItem.getNum());
                 System.out.println("Sales Invoice: " + customerSalesByItem.getSalesInvoice());
                 System.out.println("Description: " + customerSalesByItem.getDescription());
-
-                customerSalesByItem.convertQuantitySoldInStringToInteger();
                 System.out.println("Qty Sold: " + customerSalesByItem.getQuantitySold());
-
-                customerSalesByItem.convertSalesPriceInStringToBigDecimal();
                 System.out.println("Sales Price: " + customerSalesByItem.getSalesPrice());
-
-                customerSalesByItem.convertNetAmountInStringToBigDecimal();
                 System.out.println("Net Amount: " + customerSalesByItem.getNetAmount());
-
                 System.out.println("Price Level: " + customerSalesByItem.getPriceLevel());
                 System.out.println("Territorial Manager: " + customerSalesByItem.getCreditedToTerritorialManager());
                 System.out.println("Sales Rep Name: " + customerSalesByItem.getSalesRepName());

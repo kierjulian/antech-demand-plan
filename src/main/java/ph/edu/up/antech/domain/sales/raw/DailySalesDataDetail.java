@@ -584,49 +584,58 @@ public class DailySalesDataDetail {
         this.debtorCode = debtorCode;
     }
 
-    public void convertVlamtFromStringToBigDecimal() {
+    public void convertAllStringFieldsToProperType() {
+        convertVlamtFromStringToBigDecimal();
+        convertSellprFromStringToBigDecimal();
+        convertPdsFromStringToBigDecimal();
+        convertFindscFromStringToBigDecimal();
+        convertNetSalesFromStringToBigDecimal();
+        convertExpiryDateFromStringToLocalDate();
+        convertRefdtToReferenceDate();
+    }
+
+    private void convertVlamtFromStringToBigDecimal() {
         if (vlamtInString != null && !vlamtInString.trim().isEmpty()) {
             vlamt = new BigDecimal(vlamtInString.trim());
         }
     }
 
-    public void convertSellprFromStringToBigDecimal() {
+    private void convertSellprFromStringToBigDecimal() {
         if (sellprInString != null && !sellprInString.trim().isEmpty()) {
             sellpr = new BigDecimal(sellprInString.trim());
         }
     }
 
-    public void convertPdsFromStringToBigDecimal() {
+    private void convertPdsFromStringToBigDecimal() {
         if (pdsInString != null && !pdsInString.trim().isEmpty()) {
             pds = new BigDecimal(pdsInString.trim());
         }
     }
 
-    public void convertFindscFromStringToBigDecimal() {
+    private void convertFindscFromStringToBigDecimal() {
         if (findscInString != null && !findscInString.trim().isEmpty()) {
             findsc = new BigDecimal(findscInString.trim());
         }
     }
 
-    public void convertNetSalesFromStringToBigDecimal() {
+    private void convertNetSalesFromStringToBigDecimal() {
         if (netSalesInString != null && !netSalesInString.trim().isEmpty()) {
             netSales = new BigDecimal(netSalesInString.trim());
         }
     }
 
-    public void convertExpiryDateFromStringToLocalDate() {
+    private void convertExpiryDateFromStringToLocalDate() {
         if (expiryDateInString != null && !expiryDateInString.trim().isEmpty()) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             expiryDate = LocalDate.parse(expiryDateInString, dateTimeFormatter);
         }
     }
 
-    public void convertRefdtToReferenceDate() {
+    private void convertRefdtToReferenceDate() {
         if (refdt != null && !refdt.trim().isEmpty()) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             referenceDate = LocalDate.parse(refdt, dateTimeFormatter);
         }
     }
-
 
 }

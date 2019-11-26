@@ -115,7 +115,11 @@ public class CustomerItemSalesPerPeriod {
         this.salesAmount = salesAmount;
     }
 
-    public void convertSalesAmountFromStringToBigDecimal() {
+    public void convertAllStringValuesToProperType() {
+        convertSalesAmountFromStringToBigDecimal();
+    }
+
+    private void convertSalesAmountFromStringToBigDecimal() {
         this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""));
     }
 

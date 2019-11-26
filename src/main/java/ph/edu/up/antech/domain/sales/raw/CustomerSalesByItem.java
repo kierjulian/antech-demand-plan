@@ -355,28 +355,35 @@ public class CustomerSalesByItem {
         this.mobileNo = mobileNo;
     }
 
-    public void convertDateInStringToLocalDate() {
+    public void convertAllStringFieldsToProperType() {
+        convertSalesPriceInStringToBigDecimal();
+        convertDateInStringToLocalDate();
+        convertQuantitySoldInStringToInteger();
+        convertNetAmountInStringToBigDecimal();
+    }
+
+    private void convertDateInStringToLocalDate() {
         if (dateInString != null && !dateInString.trim().isEmpty()) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/d/yy");
             date = LocalDate.parse(dateInString, dateTimeFormatter);
         }
     }
 
-    public void convertQuantitySoldInStringToInteger() {
+    private void convertQuantitySoldInStringToInteger() {
         if (quantitySoldInString != null && !quantitySoldInString.trim().isEmpty()) {
             Double quantitySoldInDouble = Double.parseDouble(quantitySoldInString);
             quantitySold = quantitySoldInDouble.intValue();
         }
     }
 
-    public void convertSalesPriceInStringToBigDecimal() {
+    private void convertSalesPriceInStringToBigDecimal() {
         if (salesPriceInString != null && !salesPriceInString.trim().isEmpty()) {
             salesPrice = new BigDecimal(
                     salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""));
         }
     }
 
-    public void convertNetAmountInStringToBigDecimal() {
+    private void convertNetAmountInStringToBigDecimal() {
         if (netAmountInString != null && !netAmountInString.trim().isEmpty()) {
             netAmount = new BigDecimal(
                     netAmountInString.replaceAll("PHP", "").replaceAll(",", ""));

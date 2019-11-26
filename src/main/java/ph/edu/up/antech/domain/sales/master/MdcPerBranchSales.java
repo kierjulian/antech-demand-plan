@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
@@ -18,6 +20,7 @@ public class MdcPerBranchSales {
     private String cadd1;
     private String cadd2;
     private String clazz;
+    private String zipcd;
     private String sman;
     private String prin;
     private String subpr;
@@ -33,7 +36,7 @@ public class MdcPerBranchSales {
     private Year year;
     private LocalDate referenceDate;
     private String referenceNo;
-    private String xReferenceNo;
+    private String xreferenceNo;
     private String reasn;
     private String prodcd;
     private Integer quantityQr;
@@ -66,6 +69,50 @@ public class MdcPerBranchSales {
     private String coordinator;
     private String region;
 
+    public MdcPerBranchSales(DailySalesDataDetail dailySalesDataDetail) {
+        this.cono = dailySalesDataDetail.getCono();
+        this.rec = dailySalesDataDetail.getRec();
+        this.bran = dailySalesDataDetail.getBran();
+        this.satbrn = dailySalesDataDetail.getSatbrn();
+        this.customerNo = dailySalesDataDetail.getCustomerNo();
+        this.shpcn = dailySalesDataDetail.getShpcn();
+        this.cadd1 = dailySalesDataDetail.getCadd1();
+        this.cadd2 = dailySalesDataDetail.getCadd2();
+        this.clazz = dailySalesDataDetail.getClazz();
+        this.zipcd = dailySalesDataDetail.getZipcd();
+        this.sman = dailySalesDataDetail.getSman();
+        this.prin = dailySalesDataDetail.getPrin();
+        this.subpr = dailySalesDataDetail.getSubpr();
+        this.refcd = dailySalesDataDetail.getRefcd();
+        this.referenceDate = dailySalesDataDetail.getReferenceDate();
+        this.referenceNo = dailySalesDataDetail.getRefno();
+        this.xreferenceNo = dailySalesDataDetail.getXrefno();
+        this.reasn = dailySalesDataDetail.getReasn();
+        this.prodcd = dailySalesDataDetail.getProdcd();
+        this.quantityQr = dailySalesDataDetail.getQuantityOr();
+        this.quantitySh = dailySalesDataDetail.getQuantitySh();
+        this.um = dailySalesDataDetail.getUm();
+        this.vlamt = dailySalesDataDetail.getVlamt();
+        this.sellpr = dailySalesDataDetail.getSellpr();
+        this.pds = dailySalesDataDetail.getPds();
+        this.expirationDate = dailySalesDataDetail.getExpiryDate();
+        this.lotNo = dailySalesDataDetail.getLotNo();
+        this.barcode = dailySalesDataDetail.getBarcode();
+        this.pdcode = dailySalesDataDetail.getPdcode();
+        this.dman = dailySalesDataDetail.getDman();
+        this.findsc = dailySalesDataDetail.getFindsc();
+        this.slsyr = dailySalesDataDetail.getSlsyr();
+        this.slsmo = dailySalesDataDetail.getSlsmo();
+        this.slswk = dailySalesDataDetail.getSlswk();
+        this.appNum = dailySalesDataDetail.getAppnum();
+        this.poNum = dailySalesDataDetail.getPonum();
+        this.guartran = dailySalesDataDetail.getGuartran();
+        this.netSales = dailySalesDataDetail.getNetSales();
+        this.debtorCode = dailySalesDataDetail.getDebtorCode();
+    }
+
+    public MdcPerBranchSales() {
+    }
 
     public LocalDate getDate() {
         return date;
@@ -153,6 +200,14 @@ public class MdcPerBranchSales {
 
     public void setClazz(String clazz) {
         this.clazz = clazz;
+    }
+
+    public String getZipcd() {
+        return zipcd;
+    }
+
+    public void setZipcd(String zipcd) {
+        this.zipcd = zipcd;
     }
 
     public String getSman() {
@@ -275,12 +330,12 @@ public class MdcPerBranchSales {
         this.referenceNo = referenceNo;
     }
 
-    public String getxReferenceNo() {
-        return xReferenceNo;
+    public String getXreferenceNo() {
+        return xreferenceNo;
     }
 
-    public void setxReferenceNo(String xReferenceNo) {
-        this.xReferenceNo = xReferenceNo;
+    public void setXreferenceNo(String xreferenceNo) {
+        this.xreferenceNo = xreferenceNo;
     }
 
     public String getReasn() {
