@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 
 import java.math.BigDecimal;
@@ -244,6 +245,13 @@ public class ZolPerDoors {
 
     public void setA(Integer a) {
         this.a = a;
+    }
+
+    public void generateValuesBasedOnZolPerDoorsConverter_GeneralInformation
+            (ZolPerDoorsGeneralInformation generalInformation) {
+        this.antechProductDescription = generalInformation.getBrand();
+        this.itemCode = generalInformation.getZpcItemCode();
+        this.antechPrice = generalInformation.getNewPrice();
     }
 
 }

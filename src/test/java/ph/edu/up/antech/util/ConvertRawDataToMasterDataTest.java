@@ -4,12 +4,19 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
+import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
+import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,7 +25,12 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = ZolPerDoorsGeneralInformationServiceImpl.class)
 public class ConvertRawDataToMasterDataTest {
+
+    @Autowired
+    private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
 
     @Test
     public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
@@ -31,6 +43,16 @@ public class ConvertRawDataToMasterDataTest {
                 customerItemSalesPerPeriod.setDate(LocalDate.now());
 
                 ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
+                // Find ZolPerDoorsGeneralInformation where itemCode = itemCode
+                // Populate ZolPerDoors
+                ZolPerDoorsGeneralInformation generalInformation =
+                        zolPerDoorsGeneralInformationService.findByItemCode(zolPerDoors.getItemCode());
+                zolPerDoors.generateValuesBasedOnZolPerDoorsConverter_GeneralInformation(generalInformation);
+
+                if (zolPerDoors.getAntechProductDescription() == null) {
+                    continue;
+                }
+
                 System.out.println("Date: " + zolPerDoors.getDate());
                 System.out.println("Customer Code: " + zolPerDoors.getCustomerCode());
                 System.out.println("Customer Name: " + zolPerDoors.getCustomerName());
@@ -38,6 +60,8 @@ public class ConvertRawDataToMasterDataTest {
                 System.out.println("Item Name: " + zolPerDoors.getItemName());
                 System.out.println("Sales Unit: " + zolPerDoors.getSalesUnit());
                 System.out.println("Sales Value: " + zolPerDoors.getSalesValue());
+                System.out.println("Antech Product Description: " + zolPerDoors.getAntechProductDescription());
+                System.out.println("Antech Price: " + zolPerDoors.getAntechPrice());
 
                 System.out.println();
             }
