@@ -6,8 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import ph.edu.up.antech.dao.impl.ZolPerDoorsPerAcctDAOImpl;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
@@ -16,6 +18,7 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
+import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
@@ -29,8 +32,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
-        ZolPerDoorsPerAcctServiceImpl.class})
+        ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsPerAcctDAOImpl.class})
 public class ConvertRawDataToMasterDataTest {
 
     @Autowired
