@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.master;
 
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 
 import java.math.BigDecimal;
@@ -17,12 +18,12 @@ public class ZolPerDoors {
     private BigDecimal salesValue;
     private String antechProductDescription;
     private BigDecimal antechPrice;
-    private BigDecimal amount;
+    private Integer amount;
     private String account;
-    private Integer kam;
+    private String kam;
     private String kamReferenceName;
     private String stage;
-    private BigDecimal amountConverted;
+    private Integer amountConverted;
     private String type;
     private String location;
     private String cm;
@@ -42,6 +43,17 @@ public class ZolPerDoors {
         this.itemName = customerItemSalesPerPeriod.getMaterialDescription();
         this.salesUnit = customerItemSalesPerPeriod.getQuantity();
         this.salesValue = customerItemSalesPerPeriod.getSalesAmount();
+        generateLessThan00375();
+        generateV1();
+        generateLessThan0853();
+        generateV2();
+        generateFinalAmount();
+        generalAmountTimes1000();
+        generateA();
+        this.amount = a;
+        generateAmountConverted();
+        generateType();
+        generateCm();
     }
 
     public ZolPerDoors() {
@@ -119,11 +131,11 @@ public class ZolPerDoors {
         this.antechPrice = antechPrice;
     }
 
-    public BigDecimal getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -135,11 +147,11 @@ public class ZolPerDoors {
         this.account = account;
     }
 
-    public Integer getKam() {
+    public String getKam() {
         return kam;
     }
 
-    public void setKam(Integer kam) {
+    public void setKam(String kam) {
         this.kam = kam;
     }
 
@@ -159,11 +171,11 @@ public class ZolPerDoors {
         this.stage = stage;
     }
 
-    public BigDecimal getAmountConverted() {
+    public Integer getAmountConverted() {
         return amountConverted;
     }
 
-    public void setAmountConverted(BigDecimal amountConverted) {
+    public void setAmountConverted(Integer amountConverted) {
         this.amountConverted = amountConverted;
     }
 
@@ -247,11 +259,93 @@ public class ZolPerDoors {
         this.a = a;
     }
 
-    public void generateValuesBasedOnZolPerDoorsConverter_GeneralInformation
+    public void generateValuesBasedOnZolPerDoorsGeneralInformation
             (ZolPerDoorsGeneralInformation generalInformation) {
-        this.antechProductDescription = generalInformation.getBrand();
-        this.itemCode = generalInformation.getZpcItemCode();
-        this.antechPrice = generalInformation.getNewPrice();
+        if (generalInformation != null) {
+            this.antechProductDescription = generalInformation.getBrand();
+            this.itemCode = generalInformation.getZpcItemCode();
+            this.antechPrice = generalInformation.getNewPrice();
+            this.stage = generalInformation.getStage();
+        }
+    }
+
+    public void generateValuesBasedOnZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
+        if (zolPerDoorsPerAcct != null) {
+            this.account = zolPerDoorsPerAcct.getAccount();
+            this.kam = zolPerDoorsPerAcct.getKam();
+            this.kamReferenceName = zolPerDoorsPerAcct.getKamReferenceName();
+            this.location = zolPerDoorsPerAcct.getLocation2();
+        }
+    }
+
+    private void generateLessThan00375() {
+        if (salesValue != null) {
+            less00375Percent = salesValue.multiply(new BigDecimal("0.00375"));
+        }
+    }
+
+    private void generateV1() {
+        if (salesValue != null && less00375Percent != null) {
+            v1 = salesValue.subtract(less00375Percent);
+        }
+    }
+
+    private void generateLessThan0853() {
+        if (true && v1 != null) {
+            less0853Percent = v1.multiply(new BigDecimal("0.0853"));
+        } else {
+            less0853Percent = v1.multiply(new BigDecimal("0.05"));
+        }
+    }
+
+    private void generateV2() {
+        if (v1 != null && less0853Percent != null) {
+            v2 = v1.subtract(less0853Percent);
+        }
+    }
+
+    private void generateFinalAmount() {
+        if (salesValue != null && less00375Percent != null && less0853Percent != null) {
+            finalAmount = salesValue
+                    .subtract(less00375Percent)
+                    .subtract(less0853Percent)
+                    .multiply(new BigDecimal("0.001"));
+        }
+    }
+
+    private void generalAmountTimes1000() {
+        if (finalAmount != null) {
+            amountTimesOneThousand = finalAmount.multiply(new BigDecimal("1000"));
+        }
+    }
+
+    private void generateA() {
+        if (finalAmount != null) {
+            a = finalAmount.intValue();
+        }
+    }
+
+    private void generateAmountConverted() {
+        if (amount != null) {
+            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(BigDecimal.valueOf(amount));
+            this.amountConverted = amountConvertedInBigDecimal.intValue();
+        }
+    }
+
+    private void generateType() {
+        if (amount != null && amount < 0) {
+            type = "CM";
+        } else {
+            type = "FALSE";
+        }
+    }
+
+    private void generateCm() {
+        if (salesValue.compareTo(BigDecimal.ZERO) < 0) {
+            cm = "CM";
+        } else {
+            cm = "";
+        }
     }
 
 }

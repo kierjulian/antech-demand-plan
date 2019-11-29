@@ -12,11 +12,14 @@ import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
+import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
+import ph.edu.up.antech.service.impl.ZolPerDoorsPerAcctServiceImpl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -26,11 +29,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ZolPerDoorsGeneralInformationServiceImpl.class)
+@ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
+        ZolPerDoorsPerAcctServiceImpl.class})
 public class ConvertRawDataToMasterDataTest {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
+
+    @Autowired
+    private ZolPerDoorsPerAcctService zolPerDoorsPerAcctService;
 
     @Test
     public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
@@ -47,7 +54,12 @@ public class ConvertRawDataToMasterDataTest {
                 // Populate ZolPerDoors
                 ZolPerDoorsGeneralInformation generalInformation =
                         zolPerDoorsGeneralInformationService.findByItemCode(zolPerDoors.getItemCode());
-                zolPerDoors.generateValuesBasedOnZolPerDoorsConverter_GeneralInformation(generalInformation);
+                zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(generalInformation);
+
+                // Find ZolPerDoorsPerAcct where zol == customerCode
+                // Populate ZolPerDoors
+                ZolPerDoorsPerAcct perAcct = zolPerDoorsPerAcctService.findByZol(zolPerDoors.getCustomerCode());
+                zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(perAcct);
 
                 if (zolPerDoors.getAntechProductDescription() == null) {
                     continue;
@@ -62,6 +74,22 @@ public class ConvertRawDataToMasterDataTest {
                 System.out.println("Sales Value: " + zolPerDoors.getSalesValue());
                 System.out.println("Antech Product Description: " + zolPerDoors.getAntechProductDescription());
                 System.out.println("Antech Price: " + zolPerDoors.getAntechPrice());
+                System.out.println("Amount: " + zolPerDoors.getAmount());
+                System.out.println("Account: " + zolPerDoors.getAccount());
+                System.out.println("KAM: " + zolPerDoors.getKam());
+                System.out.println("KAM REFERENCE NAME: " + zolPerDoors.getKamReferenceName());
+                System.out.println("Stage: " + zolPerDoors.getStage());
+                System.out.println("Amount Converted: " + zolPerDoors.getAmountConverted());
+                System.out.println("Type: " + zolPerDoors.getType());
+                System.out.println("Location: " + zolPerDoors.getLocation());
+                System.out.println("CM: " + zolPerDoors.getCm());
+                System.out.println("Less than 0.00375 Percent: " + zolPerDoors.getLess00375Percent());
+                System.out.println("V1: " + zolPerDoors.getV1());
+                System.out.println("Less than 0.0835 Percent: " + zolPerDoors.getLess0853Percent());
+                System.out.println("V2: " + zolPerDoors.getV2());
+                System.out.println("Final Amount: " + zolPerDoors.getFinalAmount());
+                System.out.println("Amount Times 1000: " + zolPerDoors.getAmountTimesOneThousand());
+                System.out.println("A: " + zolPerDoors.getA());
 
                 System.out.println();
             }

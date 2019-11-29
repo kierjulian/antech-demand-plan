@@ -18,6 +18,7 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
             generalInformation.setAntechProductDescription("HIPP ORGANIC MILK SUPP 6-12MOS 800G BIB");
             generalInformation.setBrand("S2 800 BIB");
             generalInformation.setNewPrice(new BigDecimal("449.09"));
+            generalInformation.setStage("Stage 2");
             return generalInformation;
         }
 
