@@ -39,7 +39,7 @@ public class ZolPerDoors {
         this.date = customerItemSalesPerPeriod.getDate();
         this.customerCode = customerItemSalesPerPeriod.getCustomerCode();
         this.customerName = customerItemSalesPerPeriod.getCustomerName();
-        this.itemCode = customerItemSalesPerPeriod.getMaterialCode();
+        this.itemCode = "0000000000" + customerItemSalesPerPeriod.getMaterialCode();
         this.itemName = customerItemSalesPerPeriod.getMaterialDescription();
         this.salesUnit = customerItemSalesPerPeriod.getQuantity();
         this.salesValue = customerItemSalesPerPeriod.getSalesAmount();
@@ -263,7 +263,6 @@ public class ZolPerDoors {
             (ZolPerDoorsGeneralInformation generalInformation) {
         if (generalInformation != null) {
             this.antechProductDescription = generalInformation.getBrand();
-            this.itemCode = generalInformation.getZpcItemCode();
             this.antechPrice = generalInformation.getNewPrice();
             this.stage = generalInformation.getStage();
         }

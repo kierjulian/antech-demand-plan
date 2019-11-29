@@ -22,7 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-@Ignore("Unignore this class if you want to repopulate table")
+@Ignore("Unignore this class if you want to repopulate ZolPerDoorsAcctSetup")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsPerAcctDAOImpl.class})

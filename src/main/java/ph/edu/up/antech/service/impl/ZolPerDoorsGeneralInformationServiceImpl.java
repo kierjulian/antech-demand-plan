@@ -1,6 +1,8 @@
 package ph.edu.up.antech.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 
@@ -8,6 +10,9 @@ import java.math.BigDecimal;
 
 @Service
 public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGeneralInformationService {
+
+    @Autowired
+    private ZolPerDoorsGeneralInformationDAO zolPerDoorsGeneralInformationDAO;
 
     @Override
     public ZolPerDoorsGeneralInformation findByItemCode(String itemCode) {
@@ -23,6 +28,11 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
         }
 
         return new ZolPerDoorsGeneralInformation();
+    }
+
+    @Override
+    public ZolPerDoorsGeneralInformation create(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+        return zolPerDoorsGeneralInformationDAO.create(zolPerDoorsGeneralInformation);
     }
 
 }
