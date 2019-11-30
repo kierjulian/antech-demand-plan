@@ -6,4 +6,6 @@ public interface ZolPerDoorsGeneralInformationDAO {
 
     public ZolPerDoorsGeneralInformation create(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
 
+    public ZolPerDoorsGeneralInformation findByItemCode(String itemCode);
+
 }

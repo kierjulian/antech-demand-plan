@@ -7,6 +7,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "zol_door_acct")
+@NamedQueries({
+        @NamedQuery(name = "findByZol", query = "select o from ZolPerDoorsPerAcct o where o.zol = :zol")
+})
 public class ZolPerDoorsPerAcct implements Serializable {
 
     @Id

@@ -8,6 +8,10 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "zol_door_gen_info")
+@NamedQueries({
+        @NamedQuery(name = "findByItemCode",
+                query = "select o from ZolPerDoorsGeneralInformation o where o.itemCode = :itemCode")
+})
 public class ZolPerDoorsGeneralInformation implements Serializable {
 
     @Id

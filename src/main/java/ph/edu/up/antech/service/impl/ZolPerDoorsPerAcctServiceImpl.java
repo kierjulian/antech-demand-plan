@@ -19,12 +19,7 @@ public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService 
 
     @Override
     public ZolPerDoorsPerAcct findByZol(String customerCode) {
-        ZolPerDoorsPerAcct perAcct = new ZolPerDoorsPerAcct();
-        perAcct.setAccount("LTS Supermarkets");
-        perAcct.setKam("405");
-        perAcct.setKamReferenceName("E. Rick Tilawan - Min");
-        perAcct.setLocation2("Davao");
-        return perAcct;
+        return zolPerDoorsPerAcctDAO.findByZol(customerCode);
     }
 
 }

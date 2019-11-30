@@ -6,7 +6,9 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -20,6 +22,20 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
         entityManager.persist(zolPerDoorsGeneralInformation);
         entityManager.flush();
         return zolPerDoorsGeneralInformation;
+    }
+
+    @Override
+    public ZolPerDoorsGeneralInformation findByItemCode(String itemCode) {
+        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager.createNamedQuery(
+                "findByItemCode", ZolPerDoorsGeneralInformation.class);
+        query.setParameter("itemCode", itemCode);
+        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = query.getResultList();
+
+        if (zolPerDoorsGeneralInformationList != null && !zolPerDoorsGeneralInformationList.isEmpty()) {
+            return zolPerDoorsGeneralInformationList.get(0);
+        }
+
+        return null;
     }
 
 }

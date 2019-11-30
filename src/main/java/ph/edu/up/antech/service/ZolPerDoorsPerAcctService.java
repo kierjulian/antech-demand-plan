@@ -6,6 +6,6 @@ public interface ZolPerDoorsPerAcctService {
 
     public ZolPerDoorsPerAcct create(ZolPerDoorsPerAcct zolPerDoorsPerAcct);
 
-    public ZolPerDoorsPerAcct findByZol(String customerCode);
+    public ZolPerDoorsPerAcct findByZol(String zol);
 
 }

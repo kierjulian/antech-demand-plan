@@ -65,7 +65,7 @@ public class ConvertRawDataToMasterDataTest {
                 ZolPerDoorsPerAcct perAcct = zolPerDoorsPerAcctService.findByZol(zolPerDoors.getCustomerCode());
                 zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(perAcct);
 
-                if (zolPerDoors.getAntechProductDescription() == null) {
+                if (zolPerDoors == null || perAcct == null) {
                     continue;
                 }
 
