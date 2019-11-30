@@ -6,8 +6,10 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -24,8 +26,10 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
     }
 
     @Override
-    public ZolPerDoors findByDate(LocalDate date) {
-        return null;
+    public List<ZolPerDoors> findByDate(LocalDate date) {
+        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findByDate", ZolPerDoors.class);
+        query.setParameter("date", date);
+        return query.getResultList();
     }
 
     @Override

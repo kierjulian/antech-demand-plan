@@ -11,6 +11,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "zol_door")
+@NamedQueries({
+        @NamedQuery(name = "findByDate", query = "select o from ZolPerDoors o where o.date = :date")
+})
 public class ZolPerDoors implements Serializable {
 
     @Id

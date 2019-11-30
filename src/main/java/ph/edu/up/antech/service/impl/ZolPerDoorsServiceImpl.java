@@ -7,6 +7,7 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
@@ -20,8 +21,8 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
     }
 
     @Override
-    public ZolPerDoors findByDate(LocalDate date) {
-        return null;
+    public List<ZolPerDoors> findByDate(LocalDate date) {
+        return zolPerDoorsDAO.findByDate(date);
     }
 
     @Override
