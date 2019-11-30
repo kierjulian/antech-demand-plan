@@ -12,9 +12,17 @@
         <div class="container-fluid"><br>
             <div class="card">
                 <div class="card-header">
-                    <a href="/">
-                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                    </a>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="/">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                            d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Product List</h1>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body bg-light">
                     <form class="form-inline" method="get" action="/products">
