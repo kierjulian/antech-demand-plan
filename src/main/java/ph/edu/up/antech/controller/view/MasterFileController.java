@@ -25,7 +25,7 @@ public class MasterFileController {
         List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();
         if (date != null && !date.trim().isEmpty()) {
             LocalDate dateToFind = LocalDate.parse(date);
-            zolPerDoorsList = zolPerDoorsService.findByDate(LocalDate.now());
+            zolPerDoorsList = zolPerDoorsService.findByDate(dateToFind);
         } else {
             zolPerDoorsList = zolPerDoorsService.findByDate(LocalDate.now());
         }
