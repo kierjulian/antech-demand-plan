@@ -4,35 +4,93 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ZolPerDoors {
+@Entity
+@Table(name = "zol_door")
+public class ZolPerDoors implements Serializable {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "customer_code")
     private String customerCode;
+
+    @Column(name = "customer_name")
     private String customerName;
+
+    @Column(name = "item_code")
     private String itemCode;
+
+    @Column(name = "item_name")
     private String itemName;
+
+    @Column(name = "sales_unit")
     private Integer salesUnit;
+
+    @Column(name = "sales_value")
     private BigDecimal salesValue;
+
+    @Column(name = "antech_prod_desc")
     private String antechProductDescription;
+
+    @Column(name = "antech_price")
     private BigDecimal antechPrice;
+
+    @Column(name = "amount")
     private Integer amount;
+
+    @Column(name = "account")
     private String account;
+
+    @Column(name = "kam")
     private String kam;
+
+    @Column(name = "kam_ref_name")
     private String kamReferenceName;
+
+    @Column(name = "stage")
     private String stage;
+
+    @Column(name = "amount_converted")
     private Integer amountConverted;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "location")
     private String location;
+
+    @Column(name = "cm")
     private String cm;
+
+    @Column(name = "less_00375")
     private BigDecimal less00375Percent;
+
+    @Column(name = "v1")
     private BigDecimal v1;
+
+    @Column(name = "less_0853")
     private BigDecimal less0853Percent;
+
+    @Column(name = "v2")
     private BigDecimal v2;
+
+    @Column(name = "final_amount")
     private BigDecimal finalAmount;
+
+    @Column(name = "amount_times_1000")
     private BigDecimal amountTimesOneThousand;
+
+    @Column(name = "a")
     private Integer a;
 
     public ZolPerDoors(CustomerItemSalesPerPeriod customerItemSalesPerPeriod) {
@@ -57,6 +115,14 @@ public class ZolPerDoors {
     }
 
     public ZolPerDoors() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.dao.impl.ZolPerDoorsPerAcctDAOImpl;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
@@ -21,8 +20,10 @@ import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
+import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsPerAcctServiceImpl;
+import ph.edu.up.antech.service.impl.ZolPerDoorsServiceImpl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -34,7 +35,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
-        ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsPerAcctDAOImpl.class})
+        ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsServiceImpl.class})
 public class ConvertRawDataToMasterDataTest {
 
     @Autowired
@@ -42,6 +43,9 @@ public class ConvertRawDataToMasterDataTest {
 
     @Autowired
     private ZolPerDoorsPerAcctService zolPerDoorsPerAcctService;
+
+    @Autowired
+    private ZolPerDoorsService zolPerDoorsService;
 
     @Test
     public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
@@ -96,6 +100,9 @@ public class ConvertRawDataToMasterDataTest {
                 System.out.println("A: " + zolPerDoors.getA());
 
                 System.out.println();
+
+                // Save to database
+                //zolPerDoorsService.create(zolPerDoors);
             }
         } catch (IOException e) {
             e.printStackTrace();
