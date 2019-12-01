@@ -1,124 +1,141 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
-        <title>Status Report</title>
-        <link rel="stylesheet"
-              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
-        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
-    </head>
-    <body>
-        <div class="container-fluid"><br>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a href="/">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
-                        </div>
-                        <div class="col-sm-8 text-center font-weight-bold
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+    <title>Status Report</title>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+</head>
+<body>
+<div class="container-fluid"><br>
+    <div class="alert alert-success alert-dismissible fade show"
+         th:if="${successMessage != null}">
+        The uploaded files were successfully converted to master files.
+        You can view them in the master files area.
+        <a class="close" data-dismiss="alert">&times;</a>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show"
+         th:if="${errorMessage != null}">
+        An error occurred while uploading and converting the CSV files.
+        Please contact a system administrator.
+        <a class="close" data-dismiss="alert">&times;</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="/">
+                        <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
+                    </a>
+                </div>
+                <div class="col-sm-8 text-center font-weight-bold
                             d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Status Report</h1>
-                        </div>
+                    <h1 class="display-4 text-monospace">Status Report</h1>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <form method="post" enctype="multipart/form-data" action="/reports/upload">
+                            <div class="card-header text-center font-weight-bold">
+                                New Daily Report
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Date:
+                                        <input type="date" name="date" class="form-control" required>&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Customer Item Sales Per Period:
+                                        <input type="file" name="customerItemSalesPerPeriodFile" class="form-control"
+                                               required/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        Customer Sales By Item:
+                                        <input type="file" class="form-control"/>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Daily Sales Data Detail:
+                                        <input type="file" class="form-control"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        Dispensing Distributor:
+                                        <input type="file" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-plus">&nbsp; Add</i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <form>
-                                    <div class="card-header text-center font-weight-bold">
-                                        New Daily Report
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Date:
-                                                <input type="date" class="form-control" required>&nbsp;&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Customer Item Sales Per Period:
-                                                <input type="file" class="form-control" required/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                Customer Sales By Item:
-                                                <input type="file" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Daily Sales Data Detail:
-                                                <input type="file" class="form-control"/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                Dispensing Distributor:
-                                                <input type="file" class="form-control"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-plus">&nbsp; Add</i></button>
-                                    </div>
-                                </form>
-                            </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header text-center font-weight-bold">
+                            Master Files
                         </div>
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-header text-center font-weight-bold">
-                                    Master Files
-                                </div>
-                                <div class="card-body text-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/zol-per-doors"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-door-open">&nbsp; ZOL Per Doors</i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" role="button">
-                                            <i class="fas fa-cart-arrow-down">&nbsp; MDC Per Branch Sales</i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" role="button">
-                                            <i class="fas fa-network-wired">&nbsp; Netsuite</i></a>
-                                    </div>
-                                    <br><br>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" role="button">
-                                            <i class="fas fa-code-branch">&nbsp; ZOL MDC Per Branch</i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" role="button">
-                                            <i class="fas fa-tags">&nbsp; ZOL MT Per Branch</i></a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="#" role="button">
-                                            <i class="fas fa-briefcase">&nbsp; Dispensing Distributor</i></a>
-                                    </div>
-                                </div>
+                        <div class="card-body text-center">
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="/master/zol-per-doors"
+                                   target="_blank" role="button">
+                                    <i class="fas fa-door-open">&nbsp; ZOL Per Doors</i></a>
                             </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header text-center font-weight-bold">
-                                    View Status Reports
-                                </div>
-                                <div class="card-body text-center">
-                                    Sample Body
-                                </div>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="#" role="button">
+                                    <i class="fas fa-cart-arrow-down">&nbsp; MDC Per Branch Sales</i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="#" role="button">
+                                    <i class="fas fa-network-wired">&nbsp; Netsuite</i></a>
+                            </div>
+                            <br><br>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="#" role="button">
+                                    <i class="fas fa-code-branch">&nbsp; ZOL MDC Per Branch</i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="#" role="button">
+                                    <i class="fas fa-tags">&nbsp; ZOL MT Per Branch</i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-dark" href="#" role="button">
+                                    <i class="fas fa-briefcase">&nbsp; Dispensing Distributor</i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header text-center font-weight-bold">
+                            View Status Reports
+                        </div>
+                        <div class="card-body text-center">
+                            Sample Body
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </body>
+    </div>
+</div>
+
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
 </html>
