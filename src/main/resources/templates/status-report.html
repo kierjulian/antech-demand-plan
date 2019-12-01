@@ -12,9 +12,17 @@
         <div class="container-fluid"><br>
             <div class="card">
                 <div class="card-header">
-                    <a href="/">
-                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                    </a>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="/">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                            d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Status Report</h1>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -38,18 +46,18 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 Customer Sales By Item:
-                                                <input type="file" class="form-control" required/>
+                                                <input type="file" class="form-control"/>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 Daily Sales Data Detail:
-                                                <input type="file" class="form-control" required/>
+                                                <input type="file" class="form-control"/>
                                             </div>
                                             <div class="col-sm-6">
                                                 Dispensing Distributor:
-                                                <input type="file" class="form-control" required/>
+                                                <input type="file" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +75,8 @@
                                 </div>
                                 <div class="card-body text-center">
                                     <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/zol-per-doors" role="button">
+                                        <a class="btn btn-outline-dark" href="/master/zol-per-doors"
+                                           target="_blank" role="button">
                                             <i class="fas fa-door-open">&nbsp; ZOL Per Doors</i></a>
                                     </div>
                                     <div class="btn-group">

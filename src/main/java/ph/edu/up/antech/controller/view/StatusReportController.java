@@ -13,4 +13,14 @@ public class StatusReportController {
         return "status-report";
     }
 
+    @GetMapping("/add")
+    public String addCsvFiles() {
+        return "";
+    }
+
+    // Call this in addCsvFiles method
+    private void processCsvFiles() {
+
+    }
+
 }
