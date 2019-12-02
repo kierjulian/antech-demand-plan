@@ -10,6 +10,21 @@
     </head>
     <body>
         <div class="container-fluid"><br>
+            <div class="alert alert-warning alert-dismissible fade show"
+                 th:if="${warningMessage != null}">
+                <div th:text="${warningMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show"
+                 th:if="${successMessage != null}">
+                <div th:text="${successMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+                 th:if="${errorMessage != null}">
+                <div th:text="${errorMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <div class="row">

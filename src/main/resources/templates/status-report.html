@@ -12,19 +12,17 @@
 <div class="container-fluid"><br>
     <div class="alert alert-warning alert-dismissible fade show"
          th:if="${warningMessage != null}">
-        The previous master files with provided input date were replaced by the uploaded ones.
+        <div th:text="${warningMessage}"></div>
         <a class="close" data-dismiss="alert">&times;</a>
     </div>
     <div class="alert alert-success alert-dismissible fade show"
          th:if="${successMessage != null}">
-        The uploaded files were successfully converted to master files.
-        You can view them in the master files area.
+        <div th:text="${successMessage}"></div>
         <a class="close" data-dismiss="alert">&times;</a>
     </div>
     <div class="alert alert-danger alert-dismissible fade show"
          th:if="${errorMessage != null}">
-        An error occurred while uploading and converting the CSV files.
-        Please contact a system administrator.
+        <div th:text="${errorMessage}"></div>
         <a class="close" data-dismiss="alert">&times;</a>
     </div>
     <div class="card">

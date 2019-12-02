@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.controller.rest.client.ProductRestClient;
 import ph.edu.up.antech.domain.Product;
 
@@ -53,7 +54,8 @@ public class ProductViewController {
 	}
 
 	@PostMapping("/update")
-	public String updateProduct(@ModelAttribute(value = "product") Product product,
+	public String updateProduct(RedirectAttributes redirectAttributes,
+								@ModelAttribute(value = "product") Product product,
 								@RequestParam("certificateFile") MultipartFile image) {
 		if (image != null && !image.isEmpty()) {
 			try {
@@ -72,7 +74,13 @@ public class ProductViewController {
 			}
 		}
 
-		productRestClient.updateProduct(product);
+		try {
+			productRestClient.updateProduct(product);
+			redirectAttributes.addFlashAttribute("successMessage", "Product was successfully updated.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+		}
+
 		return "redirect:/products/view/" + product.getId();
 	}
 
@@ -84,24 +92,32 @@ public class ProductViewController {
 	}
 
 	@PostMapping("/save")
-	public String saveProduct(@ModelAttribute(value = "product") Product product,
+	public String saveProduct(RedirectAttributes redirectAttributes,
+							  @ModelAttribute(value = "product") Product product,
 							  @RequestParam("certificateFile") MultipartFile image) {
 		try {
 			byte[] imageBytes = image.getBytes();
 			if (imageBytes != null) {
 				product.getLicenseInformation().setCertificateFile(imageBytes);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			product = productRestClient.createProduct(product);
+			redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 		}
 
-		product = productRestClient.createProduct(product);
 		return "redirect:/products/view/" + product.getId();
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteProduct(@PathVariable Integer id) {
-		productRestClient.deleteProduct(id);
+	public String deleteProduct(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
+		try {
+			productRestClient.deleteProduct(id);
+			redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred during deletion of product.");
+		}
+
 		return "redirect:/products";
 	}
 

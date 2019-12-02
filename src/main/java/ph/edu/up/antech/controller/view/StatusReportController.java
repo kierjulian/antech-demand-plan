@@ -58,7 +58,7 @@ public class StatusReportController {
         List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findByDate(localDate);
         if (zolPerDoorsList != null && !zolPerDoorsList.isEmpty()) {
             redirectAttributes.addFlashAttribute("warningMessage",
-                    "The previous master files were replaced by the uploaded ones.");
+                    "The previous master files with provided input date were replaced by the uploaded ones.");
         }
 
         for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
