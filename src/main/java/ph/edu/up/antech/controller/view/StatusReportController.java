@@ -45,10 +45,8 @@ public class StatusReportController {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = CsvToObjectConverter
                     .convertCsvToListOfCustomerItemSalesPerPeriod(customerItemSalesPerPeriodFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
-            createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(customerItemSalesPerPeriodList, localDate);
-
-            redirectAttributes.addFlashAttribute("successMessage",
-                    "The uploaded files were successfully converted to master files. You can view them in the master files area.");
+            removeZolPerDoorsByDate(redirectAttributes, localDate);
+            createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(redirectAttributes, customerItemSalesPerPeriodList, localDate);
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
@@ -56,8 +54,25 @@ public class StatusReportController {
         return "redirect:/reports";
     }
 
-    private void createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(
+    private void removeZolPerDoorsByDate(RedirectAttributes redirectAttributes, LocalDate localDate) {
+        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findByDate(localDate);
+        if (zolPerDoorsList != null && !zolPerDoorsList.isEmpty()) {
+            redirectAttributes.addFlashAttribute("warningMessage",
+                    "The previous master files were replaced by the uploaded ones.");
+        }
+
+        for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+            zolPerDoorsService.remove(zolPerDoors.getId());
+        }
+    }
+
+    private void createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(RedirectAttributes redirectAttributes,
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate date) {
+        if (customerItemSalesPerPeriodList != null && !customerItemSalesPerPeriodList.isEmpty()) {
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "The uploaded files were successfully converted to master files. You can view them in the master files area.");
+        }
+
         for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
             ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);

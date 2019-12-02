@@ -27,7 +27,7 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
 
     @Override
     public void remove(Integer id) {
-
+        zolPerDoorsDAO.remove(id);
     }
 
 }

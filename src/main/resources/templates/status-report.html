@@ -10,6 +10,11 @@
 </head>
 <body>
 <div class="container-fluid"><br>
+    <div class="alert alert-warning alert-dismissible fade show"
+         th:if="${warningMessage != null}">
+        The previous master files with provided input date were replaced by the uploaded ones.
+        <a class="close" data-dismiss="alert">&times;</a>
+    </div>
     <div class="alert alert-success alert-dismissible fade show"
          th:if="${successMessage != null}">
         The uploaded files were successfully converted to master files.
@@ -75,8 +80,27 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#warningModal">
                                     <i class="fas fa-plus">&nbsp; Add</i></button>
+                            </div>
+                            <div id="warningModal" class="modal fade" role="dialog"
+                                 aria-labelledby="warningModel" aria-hidden="true" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Confirm Adding of New Master Files</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>If some master files exist with the same date as the inputted date,
+                                            the previous master files will be overridden. Are you sure you want to proceed?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-warning" role="button">Proceed</button>
+                                            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -125,7 +149,15 @@
                             View Status Reports
                         </div>
                         <div class="card-body text-center">
-                            Sample Body
+                            <p class="lead">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
                         </div>
                     </div>
                 </div>

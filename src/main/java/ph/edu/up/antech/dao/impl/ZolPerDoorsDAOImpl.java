@@ -34,7 +34,8 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @Override
     public void remove(Integer id) {
-
+        ZolPerDoors zolPerDoors = entityManager.find(ZolPerDoors.class, id);
+        entityManager.remove(zolPerDoors);
     }
 
 }
