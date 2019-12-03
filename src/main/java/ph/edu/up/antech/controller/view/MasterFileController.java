@@ -34,4 +34,29 @@ public class MasterFileController {
         return "zol-per-doors";
     }
 
+    @GetMapping("/zol-mdc")
+    public String loadZolMdc() {
+        return "zol-mdc";
+    }
+
+    @GetMapping("/zol-mt")
+    public String loadZolMt() {
+        return "zol-mt";
+    }
+
+    @GetMapping("/dispensing-distributor")
+    public String loadDispensingDistributorMasterFile() {
+        return "dispensing-distributor";
+    }
+
+    @GetMapping("/netsuite")
+    public String loadNetsuiteMasterFile() {
+        return "netsuite";
+    }
+
+    @GetMapping("/mdc-branch")
+    public String loadMdcPerBranch() {
+        return "mdc-branch";
+    }
+
 }
