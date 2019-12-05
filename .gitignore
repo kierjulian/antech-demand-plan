@@ -28,3 +28,6 @@ target/
 # IntelliJ
 *.iml
 *.idea/
+
+# Mac Files
+.DS_Store
