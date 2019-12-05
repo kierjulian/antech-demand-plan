@@ -2,54 +2,103 @@ package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class DispensingDistributor {
+@Entity
+@Table(name = "dispensing_distributor")
+@NamedQueries({
+        @NamedQuery(name = "findDispensingDistributorByDate",
+                query = "SELECT o FROM DispensingDistributor o where o.date = :date")
+})
+public class DispensingDistributor implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "month")
     @CsvBindByName(column = "Month")
     private String month;
 
+    @Column(name = "accounts")
     @CsvBindByName(column = "Accounts")
     private String accounts;
 
+    @Column(name = "dsm_name")
     @CsvBindByName(column = "DSM_Name")
     private String dsmName;
 
+    @Column(name = "doctor_name")
     @CsvBindByName(column = "Doctors Name")
     private String doctorName;
 
+    @Column(name = "na_name")
     @CsvBindByName(column = "NA_NAME")
     private String naName;
 
+    @Column(name = "item_key")
     @CsvBindByName(column = "Item Key")
     private String itemKey;
 
+    @Column(name = "item_desc")
     @CsvBindByName(column = "Item Description")
     private String itemDescription;
 
+    @Column(name = "category")
     @CsvBindByName(column = "Category")
     private String category;
 
+    @Column(name = "reference_no")
     @CsvBindByName(column = "Ref #")
     private String referenceNo;
 
+    @Transient
     @CsvBindByName(column = "Price")
     private String priceInString;
 
+    @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "units")
     @CsvBindByName(column = "Units")
     private Integer units;
 
+    @Transient
     @CsvBindByName(column = "Total Amount")
     private String totalAmountInString;
 
+    @Column(name = "total_amount")
     private BigDecimal totalAmount;
 
+    @Transient
     @CsvBindByName(column = "Final Amt ('000')")
     private String finalAmountInString;
 
+    @Column(name = "final_amount")
     private BigDecimal finalAmount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public String getMonth() {
         return month;

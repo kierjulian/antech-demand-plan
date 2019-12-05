@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="card-body bg-light">
-            <form class="form-inline" method="get" action="#">
+            <form class="form-inline" method="get" action="/master/dispensing-distributor">
                 <input type="date" class="form-control" name="date">&nbsp;&nbsp;
                 <div class="btn-group">
                     <button type="submit" class="btn btn-success">
@@ -52,6 +52,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr th:each="dispensingDistributor : ${dispensingDistributorList}">
+                        <td class="align-middle" th:text="${dispensingDistributor.month}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.accounts}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.dsmName}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.doctorName}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.naName}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.itemKey}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.itemDescription}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.category}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.referenceNo}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.price}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.units}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.totalAmount}"></td>
+                        <td class="align-middle" th:text="${dispensingDistributor.finalAmount}"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

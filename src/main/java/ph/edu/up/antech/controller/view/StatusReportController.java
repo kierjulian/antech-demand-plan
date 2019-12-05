@@ -12,6 +12,8 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
+import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.service.DispensingDistributorService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
@@ -33,46 +35,54 @@ public class StatusReportController {
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
 
+    @Autowired
+    private DispensingDistributorService dispensingDistributorService;
+
     @GetMapping("")
     public String loadStatusReportHomePage() {
         return "status-report";
     }
 
     @PostMapping("/upload")
-    public String addCsvFiles(RedirectAttributes redirectAttributes, @RequestParam("customerItemSalesPerPeriodFile")
-            MultipartFile customerItemSalesPerPeriodFile, @RequestParam("date") String date) {
+    public String addCsvFiles(RedirectAttributes redirectAttributes,
+                              @RequestParam("customerItemSalesPerPeriodFile") MultipartFile customerItemSalesPerPeriodFile,
+                              @RequestParam("dispensingDistributorFile") MultipartFile dispensingDistributorFile,
+                              @RequestParam("date") String date) {
         try {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = CsvToObjectConverter
                     .convertCsvToListOfCustomerItemSalesPerPeriod(customerItemSalesPerPeriodFile.getInputStream());
+            List<DispensingDistributor> dispensingDistributorList = CsvToObjectConverter
+                    .convertCsvToListOfDispensingDistributor(dispensingDistributorFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
-            removeZolPerDoorsByDate(redirectAttributes, localDate);
-            createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(redirectAttributes, customerItemSalesPerPeriodList, localDate);
+
+            handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
+            handleDispensingDistributor(dispensingDistributorList, localDate);
+
+            initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
 
         return "redirect:/reports";
     }
 
-    private void removeZolPerDoorsByDate(RedirectAttributes redirectAttributes, LocalDate localDate) {
-        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findByDate(localDate);
-        if (zolPerDoorsList != null && !zolPerDoorsList.isEmpty()) {
-            redirectAttributes.addFlashAttribute("warningMessage",
-                    "The previous master files with provided input date were replaced by the uploaded ones.");
-        }
+    private void handleZolPerDoors(List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate localDate) {
+        removeZolPerDoorsByDate(localDate);
+        createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(customerItemSalesPerPeriodList, localDate);
+    }
 
-        for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
-            zolPerDoorsService.remove(zolPerDoors.getId());
+    private void removeZolPerDoorsByDate(LocalDate localDate) {
+        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findByDate(localDate);
+        if (zolPerDoorsList != null) {
+            for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+                zolPerDoorsService.remove(zolPerDoors.getId());
+            }
         }
     }
 
-    private void createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(RedirectAttributes redirectAttributes,
+    private void createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate date) {
-        if (customerItemSalesPerPeriodList != null && !customerItemSalesPerPeriodList.isEmpty()) {
-            redirectAttributes.addFlashAttribute("successMessage",
-                    "The uploaded files were successfully converted to master files. You can view them in the master files area.");
-        }
-
         for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
             ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
@@ -87,6 +97,35 @@ public class StatusReportController {
 
             zolPerDoorsService.create(zolPerDoors);
         }
+    }
+
+    private void handleDispensingDistributor(List<DispensingDistributor> dispensingDistributorList,
+                                             LocalDate localDate) {
+        removeDispensingDistributorByDate(localDate);
+        createDispensingDistributorBasedOnCsvFile(dispensingDistributorList, localDate);
+    }
+
+    private void removeDispensingDistributorByDate(LocalDate date) {
+        List<DispensingDistributor> dispensingDistributorList = dispensingDistributorService.findByDate(date);
+        if (dispensingDistributorList != null) {
+            for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
+                dispensingDistributorService.remove(dispensingDistributor.getId());
+            }
+        }
+    }
+
+    private void createDispensingDistributorBasedOnCsvFile(List<DispensingDistributor> dispensingDistributorList,
+                                                           LocalDate localDate) {
+        for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
+            dispensingDistributor.convertAllStringTypeToProperType();
+            dispensingDistributor.setDate(localDate);
+            dispensingDistributorService.create(dispensingDistributor);
+        }
+    }
+
+    private void initializeSuccessMessage(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("successMessage",
+                "The uploaded files were successfully converted to master files. You can view them in the master files area.");
     }
 
 }

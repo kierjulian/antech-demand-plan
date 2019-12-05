@@ -11,8 +11,8 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
-@Transactional
 @Repository
+@Transactional
 public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @PersistenceContext
