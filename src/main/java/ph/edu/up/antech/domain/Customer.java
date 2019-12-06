@@ -10,7 +10,11 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "findCustomerByCustomerCodeAndMaterialCode",
                 query = "select o from Customer o where o.customerCode = :customerCode " +
-                        "and o.materialCode = :materialCode")
+                        "and o.materialCode = :materialCode"),
+        @NamedQuery(name = "findCustomerByCustomerCode",
+                query = "select o from Customer o where o.customerCode = :customerCode"),
+        @NamedQuery(name = "findZolMaterialCodeByMaterialCode",
+                query = "select o.zolMaterialCode from Customer o where o.materialCode = :materialCode")
 })
 public class Customer implements Serializable {
 

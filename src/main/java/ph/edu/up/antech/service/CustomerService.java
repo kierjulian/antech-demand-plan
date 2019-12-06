@@ -1,8 +1,8 @@
-package ph.edu.up.antech.dao;
+package ph.edu.up.antech.service;
 
 import ph.edu.up.antech.domain.Customer;
 
-public interface CustomerDAO {
+public interface CustomerService {
 
     public Customer create(Customer customer);
 

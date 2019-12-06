@@ -1,8 +1,10 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByPosition;
+import ph.edu.up.antech.domain.Customer;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class CustomerItemSalesPerPeriod {
@@ -120,7 +122,15 @@ public class CustomerItemSalesPerPeriod {
     }
 
     private void convertSalesAmountFromStringToBigDecimal() {
-        this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""));
+        this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""))
+                .divide(new BigDecimal("1.12"), 2, RoundingMode.HALF_EVEN);
+    }
+
+    public void updateValuesBasedOnCustomer(Customer customer) {
+        if (customer != null) {
+            customerCode = customer.getZolCustomerCode();
+            customerName = customer.getZolCustomerName();
+        }
     }
 
 }

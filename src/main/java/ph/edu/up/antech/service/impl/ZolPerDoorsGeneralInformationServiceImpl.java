@@ -22,4 +22,9 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
         return zolPerDoorsGeneralInformationDAO.findByItemCode(itemCode);
     }
 
+    @Override
+    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode) {
+        return zolPerDoorsGeneralInformationDAO.findByZpcItemCode(zpcItemCode);
+    }
+
 }

@@ -8,15 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
-import ph.edu.up.antech.service.DispensingDistributorService;
-import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
-import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
-import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.util.CsvToObjectConverter;
 
 import java.time.LocalDate;
@@ -37,6 +35,9 @@ public class StatusReportController {
 
     @Autowired
     private DispensingDistributorService dispensingDistributorService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("")
     public String loadStatusReportHomePage() {
@@ -85,11 +86,18 @@ public class StatusReportController {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate date) {
         for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
+
+            Customer customer = customerService.findCustomerByCustomerCode(customerItemSalesPerPeriod.getCustomerCode());
+            customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
+
+            String materialCode = customerService.findZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
+            customerItemSalesPerPeriod.setMaterialCode(materialCode);
+
             ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
             zolPerDoors.setDate(date);
 
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                    .findByItemCode(zolPerDoors.getItemCode());
+                    .findByZpcItemCode(zolPerDoors.getItemCode());
             zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
             ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService.findByZol(zolPerDoors.getCustomerCode());

@@ -38,4 +38,18 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
         return null;
     }
 
+    @Override
+    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode) {
+        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager.createNamedQuery(
+                "findZolPerDoorsGeneralInformationByZpcItemCode", ZolPerDoorsGeneralInformation.class);
+        query.setParameter("zpcItemCode", zpcItemCode);
+        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = query.getResultList();
+
+        if (zolPerDoorsGeneralInformationList != null && !zolPerDoorsGeneralInformationList.isEmpty()) {
+            return zolPerDoorsGeneralInformationList.get(0);
+        }
+
+        return null;
+    }
+
 }

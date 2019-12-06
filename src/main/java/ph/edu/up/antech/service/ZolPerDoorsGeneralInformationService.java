@@ -8,4 +8,6 @@ public interface ZolPerDoorsGeneralInformationService {
 
     public ZolPerDoorsGeneralInformation findByItemCode(String itemCode);
 
+    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode);
+
 }

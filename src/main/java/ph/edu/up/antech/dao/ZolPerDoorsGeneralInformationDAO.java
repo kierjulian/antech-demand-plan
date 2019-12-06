@@ -8,4 +8,6 @@ public interface ZolPerDoorsGeneralInformationDAO {
 
     public ZolPerDoorsGeneralInformation findByItemCode(String itemCode);
 
+    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode);
+
 }

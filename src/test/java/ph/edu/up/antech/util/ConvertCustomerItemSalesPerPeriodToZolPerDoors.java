@@ -9,18 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
-import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
-import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.runner.Application;
+import ph.edu.up.antech.service.CustomerService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.service.impl.CustomerServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsPerAcctServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsServiceImpl;
@@ -35,14 +34,17 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
-        ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsServiceImpl.class})
-public class ConvertRawDataToMasterDataTest {
+        ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsServiceImpl.class, CustomerServiceImpl.class})
+public class ConvertCustomerItemSalesPerPeriodToZolPerDoors {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
 
     @Autowired
     private ZolPerDoorsPerAcctService zolPerDoorsPerAcctService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
@@ -57,11 +59,19 @@ public class ConvertRawDataToMasterDataTest {
                 customerItemSalesPerPeriod.convertAllStringValuesToProperType();
                 customerItemSalesPerPeriod.setDate(LocalDate.now());
 
+                // Update customer code and name
+                Customer customer = customerService.findCustomerByCustomerCode(customerItemSalesPerPeriod.getCustomerCode());
+                customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
+
+                // Update material code
+                String materialCode = customerService.findZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
+                customerItemSalesPerPeriod.setMaterialCode(materialCode);
+
                 ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
                 // Find ZolPerDoorsGeneralInformation where itemCode = itemCode
                 // Populate ZolPerDoors
                 ZolPerDoorsGeneralInformation generalInformation =
-                        zolPerDoorsGeneralInformationService.findByItemCode(zolPerDoors.getItemCode());
+                        zolPerDoorsGeneralInformationService.findByZpcItemCode(zolPerDoors.getItemCode());
                 zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(generalInformation);
 
                 // Find ZolPerDoorsPerAcct where zol == customerCode
@@ -103,44 +113,6 @@ public class ConvertRawDataToMasterDataTest {
 
                 // Save to database
                 //zolPerDoorsService.create(zolPerDoors);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
-
-    @Test
-    public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
-        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerSalesByItem.csv"))) {
-            CsvToBean<CustomerSalesByItem> csvToBean = new CsvToBeanBuilder(reader)
-                    .withType(CustomerSalesByItem.class)
-                    .withSkipLines(6)
-                    .build();
-            List<CustomerSalesByItem> customerSalesByItemList = csvToBean.parse();
-            for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
-                customerSalesByItem.convertAllStringFieldsToProperType();
-                customerSalesByItem.setItemDate(LocalDate.now());
-
-                Netsuite netsuite = new Netsuite(customerSalesByItem);
-                System.out.println("Item Date: " + netsuite.getItemDate());
-                System.out.println("Type: " + netsuite.getType());
-                System.out.println("Customer: " + netsuite.getCustomer());
-                System.out.println("Category: " + netsuite.getCategory());
-                System.out.println("Date: " + netsuite.getDate());
-                System.out.println("Created From: " + netsuite.getCreatedFrom());
-                System.out.println("Description: " + netsuite.getDescription());
-                System.out.println("Quantity: " + netsuite.getQuantity());
-                System.out.println("Sales Price: " + netsuite.getSalesPrice());
-                System.out.println("Revenue: " + netsuite.getRevenue());
-                System.out.println("Price Level: " + netsuite.getPriceLevel());
-                System.out.println("Credited To Territorial Manager: " + netsuite.getCreditedToTerritorialManager());
-                System.out.println("Sales Rep: " + netsuite.getSalesRep());
-                System.out.println("Customer Since: " + netsuite.getCustomerSince());
-                System.out.println("Zone: " + netsuite.getZone());
-                System.out.println("Customer Job Zone: " + netsuite.getCustomerJobZone());
-                System.out.println("Pick Up: " + netsuite.getPickup());
-                System.out.println();
             }
         } catch (IOException e) {
             e.printStackTrace();
