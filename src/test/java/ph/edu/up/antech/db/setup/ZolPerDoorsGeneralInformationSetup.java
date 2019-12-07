@@ -42,6 +42,7 @@ public class ZolPerDoorsGeneralInformationSetup {
                     .build();
             List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = csvToBean.parse();
             for (ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation : zolPerDoorsGeneralInformationList) {
+                zolPerDoorsGeneralInformation.removeBlankSpacesInStrings();
                 zolPerDoorsGeneralInformation.convertStringsToCorrectType();
 
                 System.out.println(zolPerDoorsGeneralInformation.getZpcItemCode());

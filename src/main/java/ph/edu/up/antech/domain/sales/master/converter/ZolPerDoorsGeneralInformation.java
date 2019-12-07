@@ -211,6 +211,86 @@ public class ZolPerDoorsGeneralInformation implements Serializable {
         this.oldPrice = oldPrice;
     }
 
+    public void removeBlankSpacesInStrings() {
+        removeSpacesInZpcItemCode();
+        removeSpacesInItemCode();
+        removeSpacesInItemName();
+        removeSpacesInAntechProductDescription();
+        removeSpacesInPcsCsInString();
+        removeSpacesInPcAmountInString();
+        removeSpacesInPerCaseInString();
+        removeSpacesInBrand();
+        removeSpacesInStage();
+        removeSpacesInOldPriceInString();
+        removeSpacesInNewPriceInString();
+    }
+
+    private void removeSpacesInZpcItemCode() {
+        if (zpcItemCode != null) {
+            zpcItemCode = zpcItemCode.trim();
+        }
+    }
+
+    private void removeSpacesInItemCode() {
+        if (itemCode != null) {
+            itemCode = itemCode.trim();
+        }
+    }
+
+    private void removeSpacesInItemName() {
+        if (itemName != null) {
+            itemName = itemName.trim();
+        }
+    }
+
+    private void removeSpacesInAntechProductDescription() {
+        if (antechProductDescription != null) {
+            antechProductDescription = antechProductDescription.trim();
+        }
+    }
+
+    private void removeSpacesInPcsCsInString() {
+        if (pcsCsInString != null) {
+            pcsCsInString = pcsCsInString.trim();
+        }
+    }
+
+    private void removeSpacesInPcAmountInString() {
+        if (pcAmountInString != null) {
+            pcAmountInString = pcAmountInString.trim();
+        }
+    }
+
+    private void removeSpacesInPerCaseInString() {
+        if (perCaseInString != null) {
+            perCaseInString = perCaseInString.trim();
+        }
+    }
+
+    private void removeSpacesInBrand() {
+        if (brand != null) {
+            brand = brand.trim();
+        }
+    }
+
+    private void removeSpacesInStage() {
+        if (stage != null) {
+            stage = stage.trim();
+        }
+    }
+
+    private void removeSpacesInOldPriceInString() {
+        if (oldPriceInString != null) {
+            oldPriceInString = oldPriceInString.trim();
+        }
+    }
+
+    private void removeSpacesInNewPriceInString() {
+        if (newPriceInString != null) {
+            newPriceInString = newPriceInString.trim();
+        }
+    }
+
     public void convertStringsToCorrectType() {
         convertPcsCsFromStringToInt();
         convertPcAmountFromStringToInt();

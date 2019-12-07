@@ -38,4 +38,31 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
         entityManager.remove(zolPerDoors);
     }
 
+    @Override
+    public List<String> findDistinctZolPerDoorKamReferenceNameByLocalDate(LocalDate localDate) {
+        TypedQuery<String> query = entityManager.createNamedQuery(
+                "findDistinctZolPerDoorsKamReferenceNameByLocalDate", String.class);
+        query.setParameter("localDate", localDate);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<String> findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate localDate) {
+        TypedQuery<String> query = entityManager.createNamedQuery(
+                "findDistinctZolPerDoorsAntechProductDescriptionByLocalDate", String.class);
+        query.setParameter("localDate", localDate);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
+            LocalDate localDate, String kamReferenceName, String antechProductDescription) {
+        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findZolPerDoorsByKamReferenceNameAndProductDescriptionAndLocalDate",
+                ZolPerDoors.class);
+        query.setParameter("localDate", localDate);
+        query.setParameter("kamReferenceName", kamReferenceName);
+        query.setParameter("antechProductDescription", antechProductDescription);
+        return query.getResultList();
+    }
+
 }

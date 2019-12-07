@@ -13,4 +13,11 @@ public interface ZolPerDoorsService {
 
     public void remove(Integer id);
 
+    public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate);
+
+    public List<String> findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate localDate);
+
+    public List<ZolPerDoors> findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
+            LocalDate localDate, String kamReferenceName, String antechProductDescription);
+
 }

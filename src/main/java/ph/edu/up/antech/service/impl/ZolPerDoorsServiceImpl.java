@@ -30,4 +30,21 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
         zolPerDoorsDAO.remove(id);
     }
 
+    @Override
+    public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate) {
+        return zolPerDoorsDAO.findDistinctZolPerDoorKamReferenceNameByLocalDate(localDate);
+    }
+
+    @Override
+    public List<String> findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate localDate) {
+        return zolPerDoorsDAO.findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(localDate);
+    }
+
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
+            LocalDate localDate, String kamReferenceName, String antechProductDescription) {
+        return zolPerDoorsDAO.findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
+                localDate, kamReferenceName, antechProductDescription);
+    }
+
 }
