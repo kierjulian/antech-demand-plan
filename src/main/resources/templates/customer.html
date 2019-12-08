@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+        <title>Customer Master</title>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="alert alert-success alert-dismissible fade show"
+                 th:if="${successMessage != null}">
+                <div th:text="${successMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+                 th:if="${errorMessage != null}">
+                <div th:text="${errorMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="/">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                    d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Customer List</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body bg-light">
+                    <form class="form-inline" method="get" action="/customers">
+                        <input type="text" class="form-control" name="code" placeholder="Customer Code">&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search">&nbsp; Search</i></button>
+                        </div>&nbsp;
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="/customers/add" role="button">
+                                <i class="fas fa-plus">&nbsp; Add Customer</i></a>
+                        </div>
+                    </form>
+                    <br>
+                    <table class="table table-striped table-bordered table-hover table-sm table-responsive">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Zol Customer Code</th>
+                            <th scope="col">Zol Customer Name</th>
+                            <th scope="col">Material Code</th>
+                            <th scope="col">Zol Material Code</th>
+                            <th scope="col">Material Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer : ${customerList}">
+                            <td class="align-middle">
+                                <a th:text="${customer.customerCode}"
+                                   th:href="@{/customers/view/{id}(id=${customer.id})}"></a>
+                            </td>
+                            <td class="align-middle" th:text="${customer.customerName}"></td>
+                            <td class="align-middle" th:text="${customer.zolCustomerCode}"></td>
+                            <td class="align-middle" th:text="${customer.zolCustomerName}"></td>
+                            <td class="align-middle" th:text="${customer.materialCode}"></td>
+                            <td class="align-middle" th:text="${customer.zolMaterialCode}"></td>
+                            <td class="align-middle" th:text="${customer.materialDescription}"></td>
+                            <td class="align-middle">
+                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                   th:attr="data-target='#deleteProductModal' + ${customer.id}"
+                                   role="button"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                            <div th:id="'deleteProductModal' + ${customer.id}" class="modal fade" role="dialog"
+                                 aria-labelledby="deleteProductModalLabel" aria-hidden="true" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Delete Customer</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this customer?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-danger" th:href="@{/customers/delete/{id}(id=${customer.id})}"
+                                               role="button">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+    <title>Customer Master</title>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+</head>
+<body>
+<div class="container-fluid"><br>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="/">
+                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                    </a>
+                </div>
+                <div class="col-sm-8 text-center font-weight-bold
+                                            d-flex align-items-center justify-content-center">
+                    <h1 class="display-4 text-monospace">Add Customer</h1>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light">
+            <form th:action="@{/customers/create}" th:object="${customer}" method="post">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save">&nbsp; Save</i></button>
+                </div>&nbsp;
+                <div class="btn-group">
+                    <a class="btn btn-warning" th:href="@{/customers}">
+                        <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                </div>&nbsp;
+                <hr>
+                <input type="hidden"  th:field="*{id}">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Customer Code</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{customerCode}" required>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Customer Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{customerName}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Zol Customer Code</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{zolCustomerCode}">
+                    </div>
+                    <label class="col-sm-2 col-form-label">Zol Customer Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{zolCustomerName}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Material Code</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{materialCode}">
+                    </div>
+                    <label class="col-sm-2 col-form-label">Zol Material Code</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{zolMaterialCode}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Material Description</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" th:field="*{materialDescription}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

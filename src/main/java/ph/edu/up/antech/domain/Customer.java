@@ -14,7 +14,13 @@ import java.io.Serializable;
         @NamedQuery(name = "findCustomerByCustomerCode",
                 query = "select o from Customer o where o.customerCode = :customerCode"),
         @NamedQuery(name = "findZolMaterialCodeByMaterialCode",
-                query = "select o.zolMaterialCode from Customer o where o.materialCode = :materialCode")
+                query = "select o.zolMaterialCode from Customer o where o.materialCode = :materialCode"),
+        @NamedQuery(name = "findAllCustomers",
+                query = "select o from Customer o"),
+        @NamedQuery(name = "findAllCustomersByCustomerCode",
+                query = "select o from Customer o where o.customerCode = :customerCode"),
+        @NamedQuery(name = "findCustomerById",
+                query = "select o from Customer o where o.id = :id")
 })
 public class Customer implements Serializable {
 
@@ -53,6 +59,10 @@ public class Customer implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCustomerCode() {

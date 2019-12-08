@@ -6,6 +6,8 @@ import ph.edu.up.antech.dao.CustomerDAO;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.service.CustomerService;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -30,6 +32,31 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public String findZolMaterialCodeByMaterialCode(String materialCode) {
         return customerDAO.findZolMaterialCodeByMaterialCode(materialCode);
+    }
+
+    @Override
+    public List<Customer> findAllCustomers() {
+        return customerDAO.findAllCustomers();
+    }
+
+    @Override
+    public List<Customer> findAllCustomersByCustomerCode(String customerCode) {
+        return customerDAO.findAllCustomerByCustomerCode(customerCode);
+    }
+
+    @Override
+    public Customer findCustomerById(Integer id) {
+        return customerDAO.findCustomerById(id);
+    }
+
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        return customerDAO.updateCustomer(customer);
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+        customerDAO.deleteCustomer(id);
     }
 
 }

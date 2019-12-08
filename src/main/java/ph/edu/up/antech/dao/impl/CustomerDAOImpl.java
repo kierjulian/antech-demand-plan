@@ -67,4 +67,35 @@ public class CustomerDAOImpl implements CustomerDAO {
         return null;
     }
 
+    @Override
+    public List<Customer> findAllCustomers() {
+        TypedQuery<Customer> query = entityManager.createNamedQuery("findAllCustomers", Customer.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Customer> findAllCustomerByCustomerCode(String customerCode) {
+        TypedQuery<Customer> query = entityManager.createNamedQuery("findAllCustomersByCustomerCode", Customer.class);
+        query.setParameter("customerCode", customerCode);
+        return query.getResultList();
+    }
+
+    @Override
+    public Customer findCustomerById(Integer id) {
+        TypedQuery<Customer> query = entityManager.createNamedQuery("findCustomerById", Customer.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        return entityManager.merge(customer);
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+        Customer customer = entityManager.find(Customer.class, id);
+        entityManager.remove(customer);
+    }
+
 }
