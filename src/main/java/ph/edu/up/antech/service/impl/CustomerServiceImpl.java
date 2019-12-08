@@ -15,13 +15,13 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDAO customerDAO;
 
     @Override
-    public Customer create(Customer customer) {
-        return customerDAO.create(customer);
+    public Customer createCustomer(Customer customer) {
+        return customerDAO.createCustomer(customer);
     }
 
     @Override
-    public Customer findByCustomerCodeAndMaterialCode(String customerCode, String materialCode) {
-        return customerDAO.findByCustomerCodeAndMaterialCode(customerCode, materialCode);
+    public Customer findCustomerByCustomerCodeAndMaterialCode(String customerCode, String materialCode) {
+        return customerDAO.findCustomerByCustomerCodeAndMaterialCode(customerCode, materialCode);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String findZolMaterialCodeByMaterialCode(String materialCode) {
-        return customerDAO.findZolMaterialCodeByMaterialCode(materialCode);
+    public String findCustomerZolMaterialCodeByMaterialCode(String materialCode) {
+        return customerDAO.findCustomerZolMaterialCodeByMaterialCode(materialCode);
     }
 
     @Override

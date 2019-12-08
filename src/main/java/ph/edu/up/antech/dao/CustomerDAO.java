@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CustomerDAO {
 
-    public Customer create(Customer customer);
+    public Customer createCustomer(Customer customer);
 
-    public Customer findByCustomerCodeAndMaterialCode(String customerCode, String materialCode);
+    public Customer findCustomerByCustomerCodeAndMaterialCode(String customerCode, String materialCode);
 
     public Customer findCustomerByCustomerCode(String customerCode);
 
-    public String findZolMaterialCodeByMaterialCode(String materialCode);
+    public String findCustomerZolMaterialCodeByMaterialCode(String materialCode);
 
     public List<Customer> findAllCustomers();
 

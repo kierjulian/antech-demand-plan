@@ -13,13 +13,13 @@ public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService 
     private ZolPerDoorsPerAcctDAO zolPerDoorsPerAcctDAO;
 
     @Override
-    public ZolPerDoorsPerAcct create(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
-        return zolPerDoorsPerAcctDAO.create(zolPerDoorsPerAcct);
+    public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
+        return zolPerDoorsPerAcctDAO.createZolPerDoorsPerAcct(zolPerDoorsPerAcct);
     }
 
     @Override
-    public ZolPerDoorsPerAcct findByZol(String customerCode) {
-        return zolPerDoorsPerAcctDAO.findByZol(customerCode);
+    public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String customerCode) {
+        return zolPerDoorsPerAcctDAO.findZolPerDoorsPerAcctByZol(customerCode);
     }
 
 }

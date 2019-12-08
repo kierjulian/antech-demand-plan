@@ -4,10 +4,11 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 
 public interface ZolPerDoorsGeneralInformationService {
 
-    public ZolPerDoorsGeneralInformation create(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
+    public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
 
-    public ZolPerDoorsGeneralInformation findByItemCode(String itemCode);
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByItemCode(String itemCode);
 
-    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode);
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByZpcItemCode(String zpcItemCode);
 
 }

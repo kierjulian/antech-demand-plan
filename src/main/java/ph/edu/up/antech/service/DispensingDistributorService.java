@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface DispensingDistributorService {
 
-    public DispensingDistributor create(DispensingDistributor dispensingDistributor);
+    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor);
 
-    public List<DispensingDistributor> findByDate(LocalDate localDate);
+    public List<DispensingDistributor> findDispensingDistributorByDate(LocalDate localDate);
 
-    public void remove(Integer id);
+    public void removeDispensingDistributor(Integer id);
 
 }

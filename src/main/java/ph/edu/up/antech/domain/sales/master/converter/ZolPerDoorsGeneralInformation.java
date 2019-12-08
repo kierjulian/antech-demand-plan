@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "zol_door_gen_info")
 @NamedQueries({
-        @NamedQuery(name = "findByItemCode",
+        @NamedQuery(name = "findZolPerDoorsGeneralInformationByItemCode",
                 query = "select o from ZolPerDoorsGeneralInformation o where o.itemCode = :itemCode"),
         @NamedQuery(name = "findZolPerDoorsGeneralInformationByZpcItemCode",
                 query = "select o from ZolPerDoorsGeneralInformation o where o.zpcItemCode = :zpcItemCode")

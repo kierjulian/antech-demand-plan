@@ -16,23 +16,23 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
     private ZolPerDoorsDAO zolPerDoorsDAO;
 
     @Override
-    public ZolPerDoors create(ZolPerDoors zolPerDoors) {
-        return zolPerDoorsDAO.create(zolPerDoors);
+    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors) {
+        return zolPerDoorsDAO.createZolPerDoors(zolPerDoors);
     }
 
     @Override
-    public List<ZolPerDoors> findByDate(LocalDate date) {
-        return zolPerDoorsDAO.findByDate(date);
+    public List<ZolPerDoors> findZolPerDoorsByDate(LocalDate date) {
+        return zolPerDoorsDAO.findZolPerDoorsByDate(date);
     }
 
     @Override
-    public void remove(Integer id) {
-        zolPerDoorsDAO.remove(id);
+    public void removeZolPerDoors(Integer id) {
+        zolPerDoorsDAO.removeZolPerDoors(id);
     }
 
     @Override
     public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate) {
-        return zolPerDoorsDAO.findDistinctZolPerDoorKamReferenceNameByLocalDate(localDate);
+        return zolPerDoorsDAO.findDistinctZolPerDoorsKamReferenceNameByLocalDate(localDate);
     }
 
     @Override

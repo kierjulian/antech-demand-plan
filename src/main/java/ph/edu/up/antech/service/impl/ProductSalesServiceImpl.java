@@ -21,7 +21,7 @@ public class ProductSalesServiceImpl implements ProductSalesService {
 	}
 
 	@Override
-	public ProductSales createProductSale(ProductSalesGeneration productSalesGeneration) {
+	public ProductSales createProductSales(ProductSalesGeneration productSalesGeneration) {
 		ProductSales productSales = new ProductSales(productSalesGeneration.getProduct(),
 				productSalesGeneration.getProductSalesOneMonthBefore(),
 				productSalesGeneration.getProductSalesTwoMonthBefore(),

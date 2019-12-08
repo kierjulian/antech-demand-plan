@@ -50,7 +50,7 @@ public class CustomerSetup {
                 System.out.println(customer.getZolMaterialCode());
                 System.out.println();
 
-                customerDAO.create(customer);
+                customerDAO.createCustomer(customer);
             });
         } catch (IOException e) {
             e.printStackTrace();

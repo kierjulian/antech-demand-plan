@@ -18,14 +18,14 @@ public class CustomerDAOImpl implements CustomerDAO {
     private EntityManager entityManager;
 
     @Override
-    public Customer create(Customer customer) {
+    public Customer createCustomer(Customer customer) {
         entityManager.persist(customer);
         entityManager.flush();
         return customer;
     }
 
     @Override
-    public Customer findByCustomerCodeAndMaterialCode(String customerCode, String materialCode) {
+    public Customer findCustomerByCustomerCodeAndMaterialCode(String customerCode, String materialCode) {
         TypedQuery<Customer> query = entityManager.createNamedQuery("findCustomerByCustomerCodeAndMaterialCode",
                 Customer.class);
         query.setParameter("customerCode", customerCode);
@@ -54,7 +54,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public String findZolMaterialCodeByMaterialCode(String materialCode) {
+    public String findCustomerZolMaterialCodeByMaterialCode(String materialCode) {
         TypedQuery<String> query = entityManager.createNamedQuery("findZolMaterialCodeByMaterialCode",
                 String.class);
         query.setParameter("materialCode", materialCode);

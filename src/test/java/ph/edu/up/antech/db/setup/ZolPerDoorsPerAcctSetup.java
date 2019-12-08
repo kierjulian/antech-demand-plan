@@ -53,7 +53,7 @@ public class ZolPerDoorsPerAcctSetup {
                 System.out.println(zolPerDoorsPerAcct.getLocation2());
                 System.out.println(zolPerDoorsPerAcct.getNaName());
                 System.out.println();
-                zolPerDoorsPerAcctService.create(zolPerDoorsPerAcct);
+                zolPerDoorsPerAcctService.createZolPerDoorsPerAcct(zolPerDoorsPerAcct);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -13,18 +13,18 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
     private ZolPerDoorsGeneralInformationDAO zolPerDoorsGeneralInformationDAO;
 
     @Override
-    public ZolPerDoorsGeneralInformation create(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
-        return zolPerDoorsGeneralInformationDAO.create(zolPerDoorsGeneralInformation);
+    public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+        return zolPerDoorsGeneralInformationDAO.createZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
     }
 
     @Override
-    public ZolPerDoorsGeneralInformation findByItemCode(String itemCode) {
-        return zolPerDoorsGeneralInformationDAO.findByItemCode(itemCode);
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByItemCode(String itemCode) {
+        return zolPerDoorsGeneralInformationDAO.findZolPerDoorsGeneralInformationByItemCode(itemCode);
     }
 
     @Override
-    public ZolPerDoorsGeneralInformation findByZpcItemCode(String zpcItemCode) {
-        return zolPerDoorsGeneralInformationDAO.findByZpcItemCode(zpcItemCode);
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByZpcItemCode(String zpcItemCode) {
+        return zolPerDoorsGeneralInformationDAO.findZolPerDoorsGeneralInformationByZpcItemCode(zpcItemCode);
     }
 
 }

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.service.CustomerService;
+import ph.edu.up.antech.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,13 +20,9 @@ public class CustomerController {
 
     @GetMapping("")
     public String loadCustomerPage(Model model, @RequestParam(required = false) String code) {
-        List<Customer> customerList = new ArrayList<>();
-        if (code != null && !code.trim().isEmpty()) {
-            customerList = customerService.findAllCustomersByCustomerCode(code);
-        } else {
-            customerList = customerService.findAllCustomers();
-        }
-
+        List<Customer> customerList = !StringUtils.isNullOrEmpty(code) ?
+                customerService.findAllCustomersByCustomerCode(code) :
+                customerService.findAllCustomers();
         model.addAttribute("customerList", customerList);
         return "customer";
     }
@@ -69,7 +65,7 @@ public class CustomerController {
     public String createCustomer(RedirectAttributes redirectAttributes,
                                  @ModelAttribute(value = "customer") Customer customer) {
         try {
-            customer = customerService.create(customer);
+            customer = customerService.createCustomer(customer);
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());

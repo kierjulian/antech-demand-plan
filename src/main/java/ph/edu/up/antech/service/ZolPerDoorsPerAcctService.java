@@ -4,8 +4,8 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 
 public interface ZolPerDoorsPerAcctService {
 
-    public ZolPerDoorsPerAcct create(ZolPerDoorsPerAcct zolPerDoorsPerAcct);
+    public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct);
 
-    public ZolPerDoorsPerAcct findByZol(String zol);
+    public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String zol);
 
 }

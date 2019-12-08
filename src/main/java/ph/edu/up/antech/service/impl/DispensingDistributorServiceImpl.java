@@ -16,18 +16,18 @@ public class DispensingDistributorServiceImpl implements DispensingDistributorSe
     private DispensingDistributorDAO dispensingDistributorDAO;
 
     @Override
-    public DispensingDistributor create(DispensingDistributor dispensingDistributor) {
-        return dispensingDistributorDAO.create(dispensingDistributor);
+    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor) {
+        return dispensingDistributorDAO.createDispensingDistributor(dispensingDistributor);
     }
 
     @Override
-    public List<DispensingDistributor> findByDate(LocalDate localDate) {
-        return dispensingDistributorDAO.findByDate(localDate);
+    public List<DispensingDistributor> findDispensingDistributorByDate(LocalDate localDate) {
+        return dispensingDistributorDAO.findDispensingDistributorByDate(localDate);
     }
 
     @Override
-    public void remove(Integer id) {
-        dispensingDistributorDAO.remove(id);
+    public void removeDispensingDistributor(Integer id) {
+        dispensingDistributorDAO.removeDispensingDistributor(id);
     }
 
 }

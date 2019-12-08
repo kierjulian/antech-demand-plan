@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface ZolPerDoorsService {
 
-    public ZolPerDoors create(ZolPerDoors zolPerDoors);
+    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors);
 
-    public List<ZolPerDoors> findByDate(LocalDate date);
+    public List<ZolPerDoors> findZolPerDoorsByDate(LocalDate date);
 
-    public void remove(Integer id);
+    public void removeZolPerDoors(Integer id);
 
     public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate);
 

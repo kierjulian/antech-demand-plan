@@ -74,10 +74,10 @@ public class StatusReportController {
     }
 
     private void removeZolPerDoorsByDate(LocalDate localDate) {
-        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findByDate(localDate);
+        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsByDate(localDate);
         if (zolPerDoorsList != null) {
             for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
-                zolPerDoorsService.remove(zolPerDoors.getId());
+                zolPerDoorsService.removeZolPerDoors(zolPerDoors.getId());
             }
         }
     }
@@ -90,20 +90,20 @@ public class StatusReportController {
             Customer customer = customerService.findCustomerByCustomerCode(customerItemSalesPerPeriod.getCustomerCode());
             customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
 
-            String materialCode = customerService.findZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
+            String materialCode = customerService.findCustomerZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
             customerItemSalesPerPeriod.setMaterialCode(materialCode);
 
             ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
             zolPerDoors.setDate(date);
 
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                    .findByZpcItemCode(zolPerDoors.getItemCode());
+                    .findZolPerDoorsGeneralInformationByZpcItemCode(zolPerDoors.getItemCode());
             zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-            ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService.findByZol(zolPerDoors.getCustomerCode());
+            ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService.findZolPerDoorsPerAcctByZol(zolPerDoors.getCustomerCode());
             zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
 
-            zolPerDoorsService.create(zolPerDoors);
+            zolPerDoorsService.createZolPerDoors(zolPerDoors);
         }
     }
 
@@ -114,10 +114,10 @@ public class StatusReportController {
     }
 
     private void removeDispensingDistributorByDate(LocalDate date) {
-        List<DispensingDistributor> dispensingDistributorList = dispensingDistributorService.findByDate(date);
+        List<DispensingDistributor> dispensingDistributorList = dispensingDistributorService.findDispensingDistributorByDate(date);
         if (dispensingDistributorList != null) {
             for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
-                dispensingDistributorService.remove(dispensingDistributor.getId());
+                dispensingDistributorService.removeDispensingDistributor(dispensingDistributor.getId());
             }
         }
     }
@@ -127,7 +127,7 @@ public class StatusReportController {
         for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
             dispensingDistributor.convertAllStringTypeToProperType();
             dispensingDistributor.setDate(localDate);
-            dispensingDistributorService.create(dispensingDistributor);
+            dispensingDistributorService.createDispensingDistributor(dispensingDistributor);
         }
     }
 

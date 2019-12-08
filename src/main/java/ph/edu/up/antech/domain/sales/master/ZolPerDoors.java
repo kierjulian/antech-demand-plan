@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "zol_door")
 @NamedQueries({
-        @NamedQuery(name = "findByDate", query = "select o from ZolPerDoors o where o.date = :date"),
+        @NamedQuery(name = "findZolPerDoorsByDate", query = "select o from ZolPerDoors o where o.date = :date"),
         @NamedQuery(name = "findDistinctZolPerDoorsKamReferenceNameByLocalDate",
                 query = "select distinct(o.kamReferenceName) from ZolPerDoors o where o.date = :localDate"),
         @NamedQuery(name = "findDistinctZolPerDoorsAntechProductDescriptionByLocalDate",

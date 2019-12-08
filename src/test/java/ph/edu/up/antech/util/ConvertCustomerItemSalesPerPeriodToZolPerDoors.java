@@ -64,19 +64,19 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoors {
                 customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
 
                 // Update material code
-                String materialCode = customerService.findZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
+                String materialCode = customerService.findCustomerZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
                 customerItemSalesPerPeriod.setMaterialCode(materialCode);
 
                 ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
                 // Find ZolPerDoorsGeneralInformation where itemCode = itemCode
                 // Populate ZolPerDoors
                 ZolPerDoorsGeneralInformation generalInformation =
-                        zolPerDoorsGeneralInformationService.findByZpcItemCode(zolPerDoors.getItemCode());
+                        zolPerDoorsGeneralInformationService.findZolPerDoorsGeneralInformationByZpcItemCode(zolPerDoors.getItemCode());
                 zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(generalInformation);
 
                 // Find ZolPerDoorsPerAcct where zol == customerCode
                 // Populate ZolPerDoors
-                ZolPerDoorsPerAcct perAcct = zolPerDoorsPerAcctService.findByZol(zolPerDoors.getCustomerCode());
+                ZolPerDoorsPerAcct perAcct = zolPerDoorsPerAcctService.findZolPerDoorsPerAcctByZol(zolPerDoors.getCustomerCode());
                 zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(perAcct);
 
                 if (zolPerDoors == null || perAcct == null) {

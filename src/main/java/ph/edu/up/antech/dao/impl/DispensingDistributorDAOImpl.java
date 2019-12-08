@@ -19,14 +19,14 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
     private EntityManager entityManager;
 
     @Override
-    public DispensingDistributor create(DispensingDistributor dispensingDistributor) {
+    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor) {
         entityManager.persist(dispensingDistributor);
         entityManager.flush();
         return dispensingDistributor;
     }
 
     @Override
-    public List<DispensingDistributor> findByDate(LocalDate localDate) {
+    public List<DispensingDistributor> findDispensingDistributorByDate(LocalDate localDate) {
         TypedQuery<DispensingDistributor> query = entityManager.createNamedQuery("findDispensingDistributorByDate",
                 DispensingDistributor.class);
         query.setParameter("date", localDate);
@@ -34,7 +34,7 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
     }
 
     @Override
-    public void remove(Integer id) {
+    public void removeDispensingDistributor(Integer id) {
         DispensingDistributor dispensingDistributor = entityManager.find(DispensingDistributor.class, id);
         entityManager.remove(dispensingDistributor);
     }

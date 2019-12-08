@@ -18,15 +18,16 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
     private EntityManager entityManager;
 
     @Override
-    public ZolPerDoorsPerAcct create(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
+    public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
         entityManager.persist(zolPerDoorsPerAcct);
         entityManager.flush();
         return zolPerDoorsPerAcct;
     }
 
     @Override
-    public ZolPerDoorsPerAcct findByZol(String zol) {
-        TypedQuery<ZolPerDoorsPerAcct> query = entityManager.createNamedQuery("findByZol", ZolPerDoorsPerAcct.class);
+    public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String zol) {
+        TypedQuery<ZolPerDoorsPerAcct> query = entityManager
+                .createNamedQuery("findZolPerDoorsPerAcctByZol", ZolPerDoorsPerAcct.class);
         query.setParameter("zol", zol);
 
         List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = query.getResultList();

@@ -10,9 +10,9 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 import ph.edu.up.antech.service.DispensingDistributorService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,14 +27,8 @@ public class MasterFileController {
 
     @GetMapping("/zol-per-doors")
     public String loadZolPerDoorsMasterFile(Model model, @RequestParam(required = false) String date) {
-        List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();
-        if (date != null && !date.trim().isEmpty()) {
-            LocalDate dateToFind = LocalDate.parse(date);
-            zolPerDoorsList = zolPerDoorsService.findByDate(dateToFind);
-        } else {
-            zolPerDoorsList = zolPerDoorsService.findByDate(LocalDate.now());
-        }
-
+        LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
+        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsByDate(localDate);
         model.addAttribute("zolPerDoorsList", zolPerDoorsList);
         return "zol-per-doors";
     }
@@ -51,14 +45,9 @@ public class MasterFileController {
 
     @GetMapping("/dispensing-distributor")
     public String loadDispensingDistributorMasterFile(Model model, @RequestParam(required = false) String date) {
-        List<DispensingDistributor> dispensingDistributorList;
-        if (date != null && !date.trim().isEmpty()) {
-            LocalDate dateToFind = LocalDate.parse(date);
-            dispensingDistributorList = dispensingDistributorService.findByDate(dateToFind);
-        } else {
-            dispensingDistributorList = dispensingDistributorService.findByDate(LocalDate.now());
-        }
-
+        LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
+        List<DispensingDistributor> dispensingDistributorList =
+                dispensingDistributorService.findDispensingDistributorByDate(localDate);
         model.addAttribute("dispensingDistributorList", dispensingDistributorList);
         return "dispensing-distributor";
     }

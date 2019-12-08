@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface ZolPerDoorsDAO {
 
-    public ZolPerDoors create(ZolPerDoors zolPerDoors);
+    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors);
 
-    public List<ZolPerDoors> findByDate(LocalDate date);
+    public List<ZolPerDoors> findZolPerDoorsByDate(LocalDate date);
 
-    public void remove(Integer id);
+    public void removeZolPerDoors(Integer id);
 
-    public List<String> findDistinctZolPerDoorKamReferenceNameByLocalDate(LocalDate localDate);
+    public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate);
 
     public List<String> findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate localDate);
 

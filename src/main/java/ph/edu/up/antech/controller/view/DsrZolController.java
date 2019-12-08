@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
 import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class DsrZolController {
 
     @GetMapping("")
     public String loadDsrZolPage(Model model, @RequestParam(required = false) String date) {
-        LocalDate localDate = (date != null && !date.isEmpty())
+        LocalDate localDate = !StringUtils.isNullOrEmpty(date)
                 ? LocalDate.parse(date) : LocalDate.now();
         List<DsrZol> dsrZolList = generateDsrZolByLocalDate(localDate);
         List<String> antechProductDescriptionList = getZolPerDoorsProductByDate(localDate);
