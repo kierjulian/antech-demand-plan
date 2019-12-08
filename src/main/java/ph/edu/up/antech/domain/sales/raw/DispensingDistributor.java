@@ -247,8 +247,8 @@ public class DispensingDistributor implements Serializable {
 
     private void convertTotalAmountFromStringToBigDecimal() {
         if (this.totalAmountInString != null
-                && !this.priceInString.trim().isEmpty()
-                && !this.priceInString.startsWith("#")) {
+                && !this.totalAmountInString.trim().isEmpty()
+                && !this.totalAmountInString.startsWith("#")) {
             this.totalAmount = new BigDecimal(totalAmountInString.trim()
                     .replaceAll(",", "")
                     .replaceAll("\\(", "")
@@ -258,8 +258,8 @@ public class DispensingDistributor implements Serializable {
 
     private void convertFinalAmountFromStringToBigDecimal() {
         if (this.finalAmountInString != null
-                && !this.priceInString.trim().isEmpty()
-                && !this.priceInString.startsWith("#")) {
+                && !this.finalAmountInString.trim().isEmpty()
+                && !this.finalAmountInString.startsWith("#")) {
             this.finalAmount = new BigDecimal(finalAmountInString.trim()
                     .replaceAll(",", "")
                     .replaceAll("\\(", "")
