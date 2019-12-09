@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -595,44 +596,44 @@ public class DailySalesDataDetail {
     }
 
     private void convertVlamtFromStringToBigDecimal() {
-        if (vlamtInString != null && !vlamtInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(vlamtInString)) {
             vlamt = new BigDecimal(vlamtInString.trim());
         }
     }
 
     private void convertSellprFromStringToBigDecimal() {
-        if (sellprInString != null && !sellprInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(sellprInString)) {
             sellpr = new BigDecimal(sellprInString.trim());
         }
     }
 
     private void convertPdsFromStringToBigDecimal() {
-        if (pdsInString != null && !pdsInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(pdsInString)) {
             pds = new BigDecimal(pdsInString.trim());
         }
     }
 
     private void convertFindscFromStringToBigDecimal() {
-        if (findscInString != null && !findscInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(findscInString)) {
             findsc = new BigDecimal(findscInString.trim());
         }
     }
 
     private void convertNetSalesFromStringToBigDecimal() {
-        if (netSalesInString != null && !netSalesInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(netSalesInString)) {
             netSales = new BigDecimal(netSalesInString.trim());
         }
     }
 
     private void convertExpiryDateFromStringToLocalDate() {
-        if (expiryDateInString != null && !expiryDateInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(expiryDateInString)) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             expiryDate = LocalDate.parse(expiryDateInString, dateTimeFormatter);
         }
     }
 
     private void convertRefdtToReferenceDate() {
-        if (refdt != null && !refdt.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(refdt)) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             referenceDate = LocalDate.parse(refdt, dateTimeFormatter);
         }

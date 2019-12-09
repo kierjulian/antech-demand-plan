@@ -61,7 +61,6 @@ public class StatusReportController {
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
-            e.printStackTrace();
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
 

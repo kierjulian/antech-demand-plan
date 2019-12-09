@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -363,28 +364,28 @@ public class CustomerSalesByItem {
     }
 
     private void convertDateInStringToLocalDate() {
-        if (dateInString != null && !dateInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(dateInString)) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/d/yy");
             date = LocalDate.parse(dateInString, dateTimeFormatter);
         }
     }
 
     private void convertQuantitySoldInStringToInteger() {
-        if (quantitySoldInString != null && !quantitySoldInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(quantitySoldInString)) {
             Double quantitySoldInDouble = Double.parseDouble(quantitySoldInString);
             quantitySold = quantitySoldInDouble.intValue();
         }
     }
 
     private void convertSalesPriceInStringToBigDecimal() {
-        if (salesPriceInString != null && !salesPriceInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(salesPriceInString)) {
             salesPrice = new BigDecimal(
                     salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""));
         }
     }
 
     private void convertNetAmountInStringToBigDecimal() {
-        if (netAmountInString != null && !netAmountInString.trim().isEmpty()) {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(netAmountInString)) {
             netAmount = new BigDecimal(
                     netAmountInString.replaceAll("PHP", "").replaceAll(",", ""));
         }

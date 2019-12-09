@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
+import ph.edu.up.antech.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -235,8 +236,7 @@ public class DispensingDistributor implements Serializable {
     }
 
     private void convertPriceFromStringToBigDecimal() {
-        if (this.priceInString != null
-                && !this.priceInString.trim().isEmpty()
+        if (!StringUtils.isTrimmedValueNullOrEmpty(priceInString)
                 && !this.priceInString.startsWith("#")) {
             this.price = new BigDecimal(priceInString.trim()
                     .replaceAll(",", "")
@@ -246,8 +246,7 @@ public class DispensingDistributor implements Serializable {
     }
 
     private void convertTotalAmountFromStringToBigDecimal() {
-        if (this.totalAmountInString != null
-                && !this.totalAmountInString.trim().isEmpty()
+        if (!StringUtils.isTrimmedValueNullOrEmpty(totalAmountInString)
                 && !this.totalAmountInString.startsWith("#")) {
             this.totalAmount = new BigDecimal(totalAmountInString.trim()
                     .replaceAll(",", "")
@@ -257,8 +256,7 @@ public class DispensingDistributor implements Serializable {
     }
 
     private void convertFinalAmountFromStringToBigDecimal() {
-        if (this.finalAmountInString != null
-                && !this.finalAmountInString.trim().isEmpty()
+        if (!StringUtils.isTrimmedValueNullOrEmpty(finalAmountInString)
                 && !this.finalAmountInString.startsWith("#")) {
             this.finalAmount = new BigDecimal(finalAmountInString.trim()
                     .replaceAll(",", "")

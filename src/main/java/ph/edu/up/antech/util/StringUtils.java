@@ -9,4 +9,8 @@ public class StringUtils {
         return toCheck == null || toCheck.isEmpty();
     }
 
+    public static Boolean isTrimmedValueNullOrEmpty(String toCheck) {
+        return toCheck == null || toCheck.trim().isEmpty();
+    }
+
 }
