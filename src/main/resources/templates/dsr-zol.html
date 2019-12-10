@@ -43,8 +43,6 @@
                 <thead class="thead-light">
                     <tr>
                         <th></th>
-                        <th></th>
-                        <th></th>
                         <th class="align-middle" style="text-align: center;"
                             th:attr="colspan=${#lists.size(productList)}">Amount</th>
                         <th></th>
@@ -52,9 +50,7 @@
                             th:attr="colspan=${#lists.size(productList)}">Units</th>
                     </tr>
                     <tr>
-                        <th class="sticky-top">Row</th>
-                        <th class="sticky-top">Kam Reference Name</th>
-                        <th class="sticky-top">Account</th>
+                        <th class="sticky-top">Row Label</th>
                         <th:block th:each="product : ${productList}">
                             <th scope="col" class="sticky-top" th:text="${product}"></th>
                         </th:block>
@@ -65,25 +61,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <th:block th:each="dsrZol, row : ${dsrZolList}">
-                        <tr>
-                            <td th:text="${row.count}"></td>
-                            <td th:text="${dsrZol.kamReferenceName}"></td>
-                            <td th:text="${dsrZol.account}"></td>
+                    <th:block th:each="kamRefName : ${kamReferenceNameList}">
+                        <tr class="bg-dark text-white">
+                            <td class="font-weight-bold" th:text="${kamRefName}"></td>
                             <th:block th:each="product : ${productList}">
-                                <td th:if="${product == dsrZol.antechProductDescription}"
-                                    th:text="${dsrZol.amount}">
-                                </td>
-                                <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                <!-- Do something here -->
+                                <td>-</td>
                             </th:block>
                             <td></td>
                             <th:block th:each="product : ${productList}">
-                                <td th:if="${product == dsrZol.antechProductDescription}"
-                                    th:text="${dsrZol.salesUnit}">
-                                </td>
-                                <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                <!-- Do something here -->
+                                <td>-</td>
                             </th:block>
                         </tr>
+                        <th:block th:each="dsrZol, row : ${dsrZolList}">
+                            <tr th:if="${kamRefName == dsrZol.kamReferenceName}">
+                                <td th:text="${dsrZol.account}"></td>
+                                <th:block th:each="product : ${productList}">
+                                    <td th:if="${product == dsrZol.antechProductDescription}"
+                                        th:text="${dsrZol.amount}">
+                                    </td>
+                                    <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                </th:block>
+                                <td></td>
+                                <th:block th:each="product : ${productList}">
+                                    <td th:if="${product == dsrZol.antechProductDescription}"
+                                        th:text="${dsrZol.salesUnit}">
+                                    </td>
+                                    <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                </th:block>
+                            </tr>
+                        </th:block>
                     </th:block>
                 </tbody>
             </table>

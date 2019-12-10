@@ -28,15 +28,16 @@ public class DsrZolController {
                 ? LocalDate.parse(date) : LocalDate.now();
         List<DsrZol> dsrZolList = generateDsrZolByLocalDate(localDate);
         List<String> antechProductDescriptionList = getZolPerDoorsProductByDate(localDate);
+        List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(localDate);
 
         model.addAttribute("dsrZolList", dsrZolList);
         model.addAttribute("productList", antechProductDescriptionList);
+        model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         return "dsr-zol";
     }
 
     private List<DsrZol> generateDsrZolByLocalDate(LocalDate date) {
-        List<String> kamReferenceNameList = zolPerDoorsService
-                .findDistinctZolPerDoorsKamReferenceNameByLocalDate(date);
+        List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(date);
         List<String> antechProductDescriptionList =
                 getZolPerDoorsProductByDate(date);
 
@@ -58,6 +59,11 @@ public class DsrZolController {
 
     private List<String> getZolPerDoorsProductByDate(LocalDate localDate) {
         return zolPerDoorsService.findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(localDate);
+    }
+
+    private List<String> getZolPerDoorsKamReferenceNameByDate(LocalDate localDate) {
+        return zolPerDoorsService
+                .findDistinctZolPerDoorsKamReferenceNameByLocalDate(localDate);
     }
 
 }
