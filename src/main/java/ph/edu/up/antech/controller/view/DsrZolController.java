@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
 import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.util.DsrZolCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
@@ -29,10 +30,14 @@ public class DsrZolController {
         List<DsrZol> dsrZolList = generateDsrZolByLocalDate(localDate);
         List<String> antechProductDescriptionList = getZolPerDoorsProductByDate(localDate);
         List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(localDate);
+        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
+
+        model.addAttribute("localDate", localDate);
 
         model.addAttribute("dsrZolList", dsrZolList);
         model.addAttribute("productList", antechProductDescriptionList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
+        model.addAttribute("dsrZolCalculator", dsrZolCalculator);
         return "dsr-zol";
     }
 

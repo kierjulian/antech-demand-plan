@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.output;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.service.impl.ZolPerDoorsServiceImpl;
+import ph.edu.up.antech.util.DsrZolCalculator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -66,7 +68,6 @@ public class GenerateDsrZolFromZolPerDoorsTest {
                 List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
                         .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(LocalDate.of(2019, 12, 7),
                                 kamReferenceName, antechProductDescription);
-
                 for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
                     DsrZol dsrZol = new DsrZol(zolPerDoors);
                     dsrZolList.add(dsrZol);
@@ -84,6 +85,10 @@ public class GenerateDsrZolFromZolPerDoorsTest {
                 System.out.println();
             }
         });
+
+        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
+        Assert.assertEquals(Integer.valueOf(185), dsrZolCalculator.calculateTotalAmountPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
+        Assert.assertEquals(Integer.valueOf(205), dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
     }
 
 }

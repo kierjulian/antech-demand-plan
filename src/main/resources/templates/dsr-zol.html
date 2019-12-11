@@ -32,7 +32,7 @@
         </div>
         <div class="card-body bg-light">
             <form class="form-inline" method="get" action="/dsr-zol">
-                <input type="date" class="form-control" name="date">&nbsp;&nbsp;
+                <input type="date" class="form-control" name="date" th:value="${localDate}">&nbsp;&nbsp;
                 <div class="btn-group">
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-search">&nbsp; Search</i></button>
@@ -44,20 +44,26 @@
                     <tr>
                         <th></th>
                         <th class="align-middle" style="text-align: center;"
-                            th:attr="colspan=${#lists.size(productList)}">Amount</th>
-                        <th></th>
+                            th:attr="colspan=${#lists.size(productList) + 3}">Amount</th>
+                        <th class="bg-dark"></th>
                         <th class="align-middle" style="text-align: center;"
-                            th:attr="colspan=${#lists.size(productList)}">Units</th>
+                            th:attr="colspan=${#lists.size(productList) + 3}">Units</th>
                     </tr>
                     <tr>
-                        <th class="sticky-top">Row Label</th>
+                        <th class="sticky-top">Row Labels</th>
                         <th:block th:each="product : ${productList}">
                             <th scope="col" class="sticky-top" th:text="${product}"></th>
                         </th:block>
-                        <th class="sticky-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th class="sticky-top">Total Milk</th>
+                        <th class="sticky-top">Total Water</th>
+                        <th class="sticky-top">Total HiPP Amount</th>
+                        <th class="sticky-top bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         <th:block th:each="product : ${productList}">
                             <th scope="col" class="sticky-top" th:text="${product}"></th>
                         </th:block>
+                        <th class="sticky-top">Total Milk</th>
+                        <th class="sticky-top">Total Water</th>
+                        <th class="sticky-top">Total HiPP Units</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,14 +71,20 @@
                         <tr class="bg-dark text-white">
                             <td class="font-weight-bold" th:text="${kamRefName}"></td>
                             <th:block th:each="product : ${productList}">
-                                <!-- Do something here -->
-                                <td>-</td>
+                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, product)}">
+                                </td>
                             </th:block>
+                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
                             <td></td>
+                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
+                            <td class="bg-dark"></td>
                             <th:block th:each="product : ${productList}">
-                                <!-- Do something here -->
-                                <td>-</td>
+                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, product)}">
+                                </td>
                             </th:block>
+                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
+                            <td></td>
+                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
                         </tr>
                         <th:block th:each="dsrZol, row : ${dsrZolList}">
                             <tr th:if="${kamRefName == dsrZol.kamReferenceName}">
@@ -83,16 +95,40 @@
                                     </td>
                                     <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
                                 </th:block>
+                                <td th:text="${dsrZol.amount}"></td>
                                 <td></td>
+                                <td th:text="${dsrZol.amount}"></td>
+                                <td class="bg-dark"></td>
                                 <th:block th:each="product : ${productList}">
                                     <td th:if="${product == dsrZol.antechProductDescription}"
                                         th:text="${dsrZol.salesUnit}">
                                     </td>
                                     <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
                                 </th:block>
+                                <td th:text="${dsrZol.salesUnit}"></td>
+                                <td></td>
+                                <td th:text="${dsrZol.salesUnit}"></td>
                             </tr>
                         </th:block>
                     </th:block>
+                    <tr class="bg-dark text-white">
+                        <td>Grand Total</td>
+                        <th:block th:each="product : ${productList}">
+                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(product)}">
+                            </td>
+                        </th:block>
+                        <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
+                        <td></td>
+                        <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
+                        <td class="bg-dark"></td>
+                        <th:block th:each="product : ${productList}">
+                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(product)}">
+                            </td>
+                        </th:block>
+                        <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                        <td></td>
+                        <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
