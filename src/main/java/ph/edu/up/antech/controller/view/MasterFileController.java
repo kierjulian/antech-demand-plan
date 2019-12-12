@@ -29,6 +29,8 @@ public class MasterFileController {
     public String loadZolPerDoorsMasterFile(Model model, @RequestParam(required = false) String date) {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
         List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsByDate(localDate);
+
+        model.addAttribute("searchedDate", localDate);
         model.addAttribute("zolPerDoorsList", zolPerDoorsList);
         return "zol-per-doors";
     }
@@ -48,6 +50,8 @@ public class MasterFileController {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
         List<DispensingDistributor> dispensingDistributorList =
                 dispensingDistributorService.findDispensingDistributorByDate(localDate);
+
+        model.addAttribute("searchedDate", localDate);
         model.addAttribute("dispensingDistributorList", dispensingDistributorList);
         return "dispensing-distributor";
     }

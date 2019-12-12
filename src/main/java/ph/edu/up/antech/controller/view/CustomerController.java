@@ -23,6 +23,8 @@ public class CustomerController {
         List<Customer> customerList = !StringUtils.isNullOrEmpty(code) ?
                 customerService.findAllCustomersByCustomerCode(code) :
                 customerService.findAllCustomers();
+
+        model.addAttribute("searchedCode", code);
         model.addAttribute("customerList", customerList);
         return "customer";
     }

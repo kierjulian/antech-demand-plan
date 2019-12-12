@@ -32,7 +32,7 @@ public class DsrZolController {
         List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(localDate);
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
 
-        model.addAttribute("localDate", localDate);
+        model.addAttribute("searchedDate", localDate);
 
         model.addAttribute("dsrZolList", dsrZolList);
         model.addAttribute("productList", antechProductDescriptionList);

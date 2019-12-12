@@ -36,7 +36,7 @@
                 </div>
                 <div class="card-body bg-light">
                     <form class="form-inline" method="get" action="/customers">
-                        <input type="text" class="form-control" name="code" placeholder="Customer Code">&nbsp;&nbsp;
+                        <input type="text" class="form-control" name="code" placeholder="Customer Code" th:value="${searchedCode}">&nbsp;&nbsp;
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-search">&nbsp; Search</i></button>

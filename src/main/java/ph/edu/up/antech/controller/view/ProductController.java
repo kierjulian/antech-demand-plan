@@ -26,6 +26,8 @@ public class ProductController {
         List<Product> productList = !StringUtils.isNullOrEmpty(code) ?
                 productService.findProductsByCode(code) :
                 productService.findAllProducts();
+
+        model.addAttribute("searchedCode", code);
         model.addAttribute("productList", productList);
         return "product";
     }
