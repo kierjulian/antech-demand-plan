@@ -25,6 +25,8 @@ public class ZolDailySalesPerBranchParserTest {
                     .build();
             List<ZolDailySalesPerBranch> zolDailySalesPerBranchList = csvToBean.parse();
             zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
+                zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
+
                 System.out.println(zolDailySalesPerBranch.getCono());
                 System.out.println(zolDailySalesPerBranch.getRec());
                 System.out.println(zolDailySalesPerBranch.getBran());

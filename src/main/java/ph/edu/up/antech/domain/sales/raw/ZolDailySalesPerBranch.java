@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
 
@@ -57,8 +58,12 @@ public class ZolDailySalesPerBranch {
     @CsvBindByName(column = "NET VALUE")
     private String netValueInString;
 
+    private BigDecimal netValue;
+
     @CsvBindByName(column = "Final Net Vat")
     private String finalNetVatInString;
+
+    private BigDecimal finalNetVat;
 
     @CsvBindByName(column = "UNITS")
     private Integer units;
@@ -523,4 +528,40 @@ public class ZolDailySalesPerBranch {
         this.debtorCode = debtorCode;
     }
 
+    public BigDecimal getNetValue() {
+        return netValue;
+    }
+
+    public void setNetValue(BigDecimal netValue) {
+        this.netValue = netValue;
+    }
+
+    public BigDecimal getFinalNetVat() {
+        return finalNetVat;
+    }
+
+    public void setFinalNetVat(BigDecimal finalNetVat) {
+        this.finalNetVat = finalNetVat;
+    }
+
+    public void convertStringValuesToCorrectTypes() {
+        convertNetValueInStringToBigDecimal();
+        convertFinalNetVatInStringToBigDecimal();
+    }
+
+    private void convertNetValueInStringToBigDecimal() {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(netValueInString)
+                && netValueInString.contains("#")) {
+            netValue = new BigDecimal(netValueInString.replaceAll(",", "").trim());
+        }
+    }
+
+    private void convertFinalNetVatInStringToBigDecimal() {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(finalNetVatInString)
+                && netValueInString.contains("#")) {
+            finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", "").trim());
+        }
+    }
+
 }
+
