@@ -2,42 +2,116 @@ package ph.edu.up.antech.domain.sales.master;
 
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class Netsuite {
+@Entity
+@Table(name = "netsuite")
+@NamedQueries({
+        @NamedQuery(name = "findNetsuiteByItemDate",
+                query = "select o from Netsuite o where o.itemDate = :itemDate")
+})
+public class Netsuite implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "item_date")
     private LocalDate itemDate;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "customer")
     private String customer;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "num")
     private String num;
+
+    @Column(name = "created_from")
     private String createdFrom;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "sales_price")
     private BigDecimal salesPrice;
+
+    @Column(name = "revenue")
     private BigDecimal revenue;
+
+    @Column(name = "price_level")
     private String priceLevel;
+
+    @Column(name = "territorial_manager")
     private String creditedToTerritorialManager;
+
+    @Column(name = "sales_rep")
     private String salesRep;
+
+    @Column(name = "customer_since")
     private String customerSince;
+
+    @Column(name = "zone")
     private String zone;
+
+    @Column(name = "customer_job_zone")
     private String customerJobZone;
+
+    @Column(name = "pickup")
     private String pickup;
+
+    @Column(name = "bill_address_1")
     private String billingAddressLine1;
+
+    @Column(name = "bill_address_2")
     private String billingAddressLine2;
+
+    @Column(name = "kam_ref_name1")
     private String kamRefName1;
+
+    @Column(name = "region")
     private String region;
+
+    @Column(name = "revenue_converted")
     private BigDecimal revenueConverted;
+
+    @Transient
     private Month month;
+
+    @Column(name = "na_left")
     private String naLeft;
+
+    @Column(name = "trim")
     private String trim;
+
+    @Column(name = "kam_ref_name2")
     private String kamRefName2;
+
+    @Column(name = "mgmt")
     private String mgmt;
+
+    @Column(name = "csr_tagging")
     private String csrTagging;
+
+    @Column(name = "asm")
     private String asm;
+
+    @Column(name = "product_category")
     private String productCategory;
 
     public Netsuite() {
@@ -62,6 +136,14 @@ public class Netsuite {
         this.zone = customerSalesByItem.getAddressZipCode();
         this.customerJobZone = customerSalesByItem.getAddressBillingAddress1();
         this.pickup = customerSalesByItem.getAddressBillingAddress2();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getItemDate() {

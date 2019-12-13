@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.Customer;
+import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
+import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.util.CsvToObjectConverter;
@@ -39,6 +41,9 @@ public class StatusReportController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private NetsuiteService netsuiteService;
+
     @GetMapping("")
     public String loadStatusReportHomePage() {
         return "status-report";
@@ -48,16 +53,20 @@ public class StatusReportController {
     public String addCsvFiles(RedirectAttributes redirectAttributes,
                               @RequestParam("customerItemSalesPerPeriodFile") MultipartFile customerItemSalesPerPeriodFile,
                               @RequestParam("dispensingDistributorFile") MultipartFile dispensingDistributorFile,
+                              @RequestParam("customerSalesByItemFile") MultipartFile customerSalesByItemFile,
                               @RequestParam("date") String date) {
         try {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = CsvToObjectConverter
                     .convertCsvToListOfCustomerItemSalesPerPeriod(customerItemSalesPerPeriodFile.getInputStream());
             List<DispensingDistributor> dispensingDistributorList = CsvToObjectConverter
                     .convertCsvToListOfDispensingDistributor(dispensingDistributorFile.getInputStream());
+            List<CustomerSalesByItem> customerSalesByItemList = CsvToObjectConverter
+                    .convertCsvToListOfCustomerSalesByItem(customerSalesByItemFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
 
             handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
             handleDispensingDistributor(dispensingDistributorList, localDate);
+            handleCustomerSalesByItem(customerSalesByItemList, localDate);
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
@@ -129,6 +138,30 @@ public class StatusReportController {
             dispensingDistributorService.createDispensingDistributor(dispensingDistributor);
         }
     }
+
+    private void handleCustomerSalesByItem(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
+        removeNetsuiteByDate(localDate);
+        createNetsuiteByCustomerSalesByItemList(customerSalesByItemList, localDate);
+    }
+
+    private void removeNetsuiteByDate(LocalDate localDate) {
+        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteByItemDate(localDate);
+        if (netsuiteList != null) {
+            netsuiteList.forEach(netsuite -> {
+                netsuiteService.removeNetsuite(netsuite.getId());
+            });
+        }
+    }
+
+    private void createNetsuiteByCustomerSalesByItemList(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
+        customerSalesByItemList.forEach(customerSalesByItem -> {
+            customerSalesByItem.setItemDate(localDate);
+            customerSalesByItem.convertAllStringFieldsToProperType();
+            Netsuite netsuite = new Netsuite(customerSalesByItem);
+            netsuiteService.createNetsuite(netsuite);
+        });
+    }
+
 
     private void initializeSuccessMessage(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("successMessage",

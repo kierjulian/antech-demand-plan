@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="card-body bg-light">
-            <form class="form-inline" method="get" action="#">
-                <input type="date" class="form-control" name="date">&nbsp;&nbsp;
+            <form class="form-inline" method="get" action="/master/netsuite">
+                <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
                 <div class="btn-group">
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-search">&nbsp; Search</i></button>
@@ -35,41 +35,72 @@
             <br>
             <table class="table table-striped table-bordered table-hover table-sm table-responsive">
                 <thead class="thead-light">
-                <tr>
-                    <th scope="col">Item</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Customer / Job</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Num</th>
-                    <th scope="col">Created From</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Sales Price</th>
-                    <th scope="col">Revenue</th>
-                    <th scope="col">Price Level</th>
-                    <th scope="col">Customer / Job: Credited to Territory Manager</th>
-                    <th scope="col">Customer Since</th>
-                    <th scope="col">Amount Converted</th>
-                    <th scope="col">Zone</th>
-                    <th scope="col">Customer / Job: Zone</th>
-                    <th scope="col">Pickup</th>
-                    <th scope="col">Billing Address Line 1</th>
-                    <th scope="col">Billing Address Line 2</th>
-                    <th scope="col">Kam Reference Name</th>
-                    <th scope="col">Region</th>
-                    <th scope="col">Revunue Converted</th>
-                    <th scope="col">Loc2</th>
-                    <th scope="col">Na Left</th>
-                    <th scope="col">Trim</th>
-                    <th scope="col">Kam Reference Name 2</th>
-                    <th scope="col">Management</th>
-                    <th scope="col">CSR Tagging</th>
-                    <th scope="col">ASM</th>
-                    <th scope="col">Product Category</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Row</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Customer / Job</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Num</th>
+                        <th scope="col">Created From</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Sales Price</th>
+                        <th scope="col">Revenue</th>
+                        <th scope="col">Price Level</th>
+                        <th scope="col">Customer / Job: Credited to Territory Manager</th>
+                        <th scope="col">Sales Rep</th>
+                        <th scope="col">Customer Since</th>
+                        <th scope="col">Zone</th>
+                        <th scope="col">Customer / Job: Zone</th>
+                        <th scope="col">Pickup</th>
+                        <th scope="col">Billing Address Line 1</th>
+                        <th scope="col">Billing Address Line 2</th>
+                        <th scope="col">Kam Reference Name</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Revunue Converted</th>
+                        <th scope="col">Na Left</th>
+                        <th scope="col">Trim</th>
+                        <th scope="col">Kam Reference Name 2</th>
+                        <th scope="col">Management</th>
+                        <th scope="col">CSR Tagging</th>
+                        <th scope="col">ASM</th>
+                        <th scope="col">Product Category</th>
+                    </tr>
                 </thead>
                 <tbody>
+                    <tr th:each="netsuite, row : ${netsuiteList}">
+                        <td class="align-middle" th:text="${row.count}"></td>
+                        <td class="align-middle" th:text="${netsuite.type}"></td>
+                        <td class="align-middle" th:text="${netsuite.customer}"></td>
+                        <td class="align-middle" th:text="${netsuite.category}"></td>
+                        <td class="align-middle" th:text="${netsuite.date}"></td>
+                        <td class="align-middle" th:text="${netsuite.num}"></td>
+                        <td class="align-middle" th:text="${netsuite.createdFrom}"></td>
+                        <td class="align-middle" th:text="${netsuite.description}"></td>
+                        <td class="align-middle" th:text="${netsuite.quantity}"></td>
+                        <td class="align-middle" th:text="${netsuite.salesPrice}"></td>
+                        <td class="align-middle" th:text="${netsuite.revenue}"></td>
+                        <td class="align-middle" th:text="${netsuite.priceLevel}"></td>
+                        <td class="align-middle" th:text="${netsuite.creditedToTerritorialManager}"></td>
+                        <td class="align-middle" th:text="${netsuite.salesRep}"></td>
+                        <td class="align-middle" th:text="${netsuite.customerSince}"></td>
+                        <td class="align-middle" th:text="${netsuite.zone}"></td>
+                        <td class="align-middle" th:text="${netsuite.customerJobZone}"></td>
+                        <td class="align-middle" th:text="${netsuite.pickup}"></td>
+                        <td class="align-middle" th:text="${netsuite.billingAddressLine1}"></td>
+                        <td class="align-middle" th:text="${netsuite.billingAddressLine2}"></td>
+                        <td class="align-middle" th:text="${netsuite.kamRefName1}">-</td>
+                        <td class="align-middle" th:text="${netsuite.region}">-</td>
+                        <td class="align-middle" th:text="${netsuite.revenueConverted}">-</td>
+                        <td class="align-middle" th:text="${netsuite.naLeft}">-</td>
+                        <td class="align-middle" th:text="${netsuite.trim}">-</td>
+                        <td class="align-middle" th:text="${netsuite.kamRefName2}">-</td>
+                        <td class="align-middle" th:text="${netsuite.mgmt}">-</td>
+                        <td class="align-middle" th:text="${netsuite.csrTagging}">-</td>
+                        <td class="align-middle" th:text="${netsuite.asm}">-</td>
+                        <td class="align-middle" th:text="${netsuite.productCategory}">-</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

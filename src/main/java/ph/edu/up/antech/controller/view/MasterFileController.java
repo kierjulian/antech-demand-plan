@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 import ph.edu.up.antech.service.DispensingDistributorService;
+import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.util.StringUtils;
 
@@ -24,6 +26,9 @@ public class MasterFileController {
 
     @Autowired
     private DispensingDistributorService dispensingDistributorService;
+
+    @Autowired
+    private NetsuiteService netsuiteService;
 
     @GetMapping("/zol-per-doors")
     public String loadZolPerDoorsMasterFile(Model model, @RequestParam(required = false) String date) {
@@ -57,7 +62,12 @@ public class MasterFileController {
     }
 
     @GetMapping("/netsuite")
-    public String loadNetsuiteMasterFile() {
+    public String loadNetsuiteMasterFile(Model model, @RequestParam(required = false) String date) {
+        LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
+        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteByItemDate(localDate);
+
+        model.addAttribute("searchedDate", localDate);
+        model.addAttribute("netsuiteList", netsuiteList);
         return "netsuite";
     }
 
