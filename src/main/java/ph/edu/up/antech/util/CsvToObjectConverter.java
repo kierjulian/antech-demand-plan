@@ -5,6 +5,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,6 +51,20 @@ public class CsvToObjectConverter {
                     .withType(CustomerSalesByItem.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withSkipLines(6)
+                    .build();
+            return csvToBean.parse();
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+
+    public static List<ZolDailySalesPerBranch> convertCsvToListOfZolDailySalesPerBranch(InputStream inputStream)
+            throws IOException {
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1)) {
+            CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(ZolDailySalesPerBranch.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .withSkipLines(0)
                     .build();
             return csvToBean.parse();
         } catch (IOException e) {

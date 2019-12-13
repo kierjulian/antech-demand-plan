@@ -16,6 +16,7 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.util.CsvToObjectConverter;
 
@@ -54,6 +55,7 @@ public class StatusReportController {
                               @RequestParam("customerItemSalesPerPeriodFile") MultipartFile customerItemSalesPerPeriodFile,
                               @RequestParam("dispensingDistributorFile") MultipartFile dispensingDistributorFile,
                               @RequestParam("customerSalesByItemFile") MultipartFile customerSalesByItemFile,
+                              @RequestParam("zolDailySalesPerBranchFile") MultipartFile zolDailySalesPerBranchFile,
                               @RequestParam("date") String date) {
         try {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = CsvToObjectConverter
@@ -62,11 +64,14 @@ public class StatusReportController {
                     .convertCsvToListOfDispensingDistributor(dispensingDistributorFile.getInputStream());
             List<CustomerSalesByItem> customerSalesByItemList = CsvToObjectConverter
                     .convertCsvToListOfCustomerSalesByItem(customerSalesByItemFile.getInputStream());
+            List<ZolDailySalesPerBranch> zolDailySalesPerBranchList = CsvToObjectConverter
+                    .convertCsvToListOfZolDailySalesPerBranch(zolDailySalesPerBranchFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
 
             handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
             handleDispensingDistributor(dispensingDistributorList, localDate);
             handleCustomerSalesByItem(customerSalesByItemList, localDate);
+            handleZolDailySalesPerBranch(zolDailySalesPerBranchList);
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
@@ -159,6 +164,13 @@ public class StatusReportController {
             customerSalesByItem.convertAllStringFieldsToProperType();
             Netsuite netsuite = new Netsuite(customerSalesByItem);
             netsuiteService.createNetsuite(netsuite);
+        });
+    }
+
+    private void handleZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList) {
+        zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
+            System.out.println(zolDailySalesPerBranch.getCono());
+            System.out.println();
         });
     }
 
