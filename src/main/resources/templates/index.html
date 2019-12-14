@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <link rel="stylesheet"
-              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
-        <link rel="icon" type="image/x-icon" href="../images/antech-favicon.ico"/>
+              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+        <link rel="icon" type="image/x-icon" th:href="@{images/antech-favicon.ico}"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Home</title>
         <style>
@@ -20,21 +21,21 @@
                     <div class="card border-dark">
                         <div class="text-center">
                             <div class="card-header border-dark">
-                                <img class="img-fluid" height="200" width="200" src="../images/antech-top.png" />
+                                <img class="img-fluid" height="200" width="200" th:src="@{images/antech-top.png}" />
                             </div>
                             <div class="card-body border-dark">
                                 <p class="h5 lead">Demand Plan Optimization Project</p>
                                 <br><br><br>
-                                <a class="btn btn-outline-secondary" href="/products" role="button">
+                                <a class="btn btn-outline-secondary" th:href="@{/products}" role="button">
                                     <i class="fas fa-shopping-basket">&nbsp; Item Master</i>
                                 </a>
-                                <a class="btn btn-outline-secondary" href="/customers" role="button">
+                                <a class="btn btn-outline-secondary" th:href="@{/customers}" role="button">
                                     <i class="fas fa-user-friends">&nbsp; Customer Master</i>
                                 </a>
-                                <a class="btn btn-outline-secondary" href="/reports" role="button">
+                                <a class="btn btn-outline-secondary" th:href="@{/reports}" role="button">
                                     <i class="fas fa-chart-pie">&nbsp; Status Reports</i>
                                 </a>
-                                <a class="btn btn-outline-secondary" href="/demand-plan" role="button">
+                                <a class="btn btn-outline-secondary" th:href="@{/demand-plan}" role="button">
                                     <i class="fas fa-project-diagram">&nbsp;  Demand Plan</i>
                                 </a>
                             </div>
@@ -44,7 +45,7 @@
             </div>
         </div>
 
-        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </body>
 </html>

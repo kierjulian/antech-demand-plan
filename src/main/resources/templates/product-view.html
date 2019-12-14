@@ -1,419 +1,420 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
-    <title>Item Master</title>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
-    <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
-</head>
-<body>
-<div class="container-fluid"><br>
-    <div class="alert alert-warning alert-dismissible fade show"
-         th:if="${warningMessage != null}">
-        <div th:text="${warningMessage}"></div>
-        <a class="close" data-dismiss="alert">&times;</a>
-    </div>
-    <div class="alert alert-success alert-dismissible fade show"
-         th:if="${successMessage != null}">
-        <div th:text="${successMessage}"></div>
-        <a class="close" data-dismiss="alert">&times;</a>
-    </div>
-    <div class="alert alert-danger alert-dismissible fade show"
-         th:if="${errorMessage != null}">
-        <div th:text="${errorMessage}"></div>
-        <a class="close" data-dismiss="alert">&times;</a>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-sm-4">
-                    <a href="/">
-                        <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                    </a>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+        <title>Item Master</title>
+        <link rel="stylesheet"
+              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="alert alert-warning alert-dismissible fade show"
+                 th:if="${warningMessage != null}">
+                <div th:text="${warningMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show"
+                 th:if="${successMessage != null}">
+                <div th:text="${successMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show"
+                 th:if="${errorMessage != null}">
+                <div th:text="${errorMessage}"></div>
+                <a class="close" data-dismiss="alert">&times;</a>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a th:href="@{/}">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                    d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">View Product</h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-8 text-center font-weight-bold
-                            d-flex align-items-center justify-content-center">
-                    <h1 class="display-4 text-monospace">View Product</h1>
+                <div class="card-body bg-light">
+                    <form>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" th:href="@{/products}" role="button">
+                                <i class="fas fa-list">&nbsp; Product List</i></a>
+                        </div>&nbsp;
+                        <div class="btn-group">
+                            <a class="btn btn-success" th:href="@{/products/edit/{id}(id=${product.id})}">
+                                <i class="fas fa-edit">&nbsp; Edit</i></a>
+                        </div>&nbsp;
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Product Information</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Manufacturer</label>
+                            <div class="col-sm-11">
+                                <input type="text" class="form-control" th:value="${product.manufacturer}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Product Name</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:value="${product.name}" disabled>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Product Code</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:value="${product.code}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Unit of Measure</label>
+                            <label class="col-sm-1 col-form-label">Base</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:value="${product.base}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Material Group</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       th:value="${product.materialGroup} + ': ' + ${product.materialGroup.description}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Shelf Life</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:value="${product.shelfLifeInDays}" disabled>
+                            </div>
+                            <small class="col-sm-2 form-text text-muted">(in days)</small>
+                            <label class="col-sm-1 col-form-label">Item Barcode</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:value="${product.itemBarcode}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:value="${product.minimumSaleableShelfLifeInDays}" disabled>
+                            </div>
+                            <small class="col-sm-2 form-text text-muted">(in days)</small>
+                            <label class="col-sm-1 col-form-label">Case Barcode</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:value="${product.caseBarcode}" disabled>
+                            </div>
+                        </div>
+                        <div class="text-center form-group row">
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
+
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
+
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Life Saving?</label>
+                            <small class="col-sm-1 form-text text-muted">(needed within 24 hours?)</small>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.lifeSaving}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.lifeSaving} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Bom Relevant?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.bomRelevant}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.bomRelevant} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Batch Managed?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.batchManaged}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.batchManaged} == false" disabled/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">With Expiry Date?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.withExpiryDate}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.withExpiryDate} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Serial Managed?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.serialManaged}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.serialManaged} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Centrally Stocked?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.centrallyStocked}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.centrallyStocked} == false" disabled/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">For IMS Extraction?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.forImsExtraction}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.forImsExtraction} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Download Asiarx</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.downloadAsiarx}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.downloadAsiarx} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Biological</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.biological}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" th:checked="*{product.productInformation.biological} == false" disabled/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">With Special Arrangement</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" value="1"
+                                       th:checked="*{product.productInformation.withSpecialArrangement}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" value="0"
+                                       th:checked="*{product.productInformation.withSpecialArrangement} == false" disabled/>
+                            </label>
+
+                            <label class="col-sm-2 col-form-label">Antibiotic</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" value="1"
+                                       th:checked="*{product.productInformation.antibiotic}" disabled/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" value="0"
+                                       th:checked="*{product.productInformation.antibiotic} == false" disabled/>
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>License Information / IMS Classification</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Product License Code</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:value="${product.licenseInformation.licenseCode.description}"
+                                       disabled>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control"
+                                       th:value="${product.licenseInformation.certificateOfProductRegistrationNo}" disabled>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CPRFile">
+                                    <i class="fas fa-paperclip">&nbsp; View File</i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:value="${product.licenseInformation.code}"
+                                       disabled>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Validity Period</label>
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control"
+                                       th:value="${product.licenseInformation.validityPeriod}" disabled>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Confirmation</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Pharmacist / Regulatory Officer</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:value="${product.confirmation.confirmedBy}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Confirmation Date</label>
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control" th:value="${product.confirmation.confirmationDate}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Remarks</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control"
+                                       th:value="${product.confirmation.remarks}" disabled>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Logistics</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Storage Condition</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.storageCondition}"
+                                       disabled>
+                            </div>
+                            <small class="col-sm-2 form-text text-muted" th:text="${product?.storageCondition?.description}"></small>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Alternative UOM</label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">1 Carton</label>
+                            <label class="col-sm-1 col-form-label">=</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.alternativeUOM.piecesPerCarton}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Each</label>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Dimension</label>
+                            <label class="col-sm-1 col-form-label">Length</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.dimension.length}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-4 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Gross</label>
+                            <label class="col-sm-1 col-form-label">Net</label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Width</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.dimension.width}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Weight</label>
+                            <small class="col-sm-1 form-text text-muted">(in KG)</small>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.productWeight.grossWeightPerSKU}"
+                                       disabled>
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.productWeight.netWeightPerSKU}"
+                                       disabled>
+                            </div>
+                            <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Height</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.dimension.height}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-4 col-form-label"></label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.productWeight.grossWeightPerStandard}"
+                                       disabled>
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.productWeight.netWeightPerStandard}"
+                                       disabled>
+                            </div>
+                            <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Issuance:</label>
+                            <label class="col-sm-1 col-form-label">Box Of</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" th:value="${product.issuance.box}"
+                                       disabled>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Completion</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Name</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:value="${product.completion.completedBy}"
+                                       disabled>
+                            </div>
+                            <label class="col-sm-1 col-form-label">Date</label>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" th:value="${product.completion.completionDate}"
+                                       disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Position</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:value="${product.completion.position}"
+                                       disabled>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="modal fade" id="CPRFile" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Certificate of Product Registration</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img th:src="@{'data:image/png;base64,' + ${image}}" width="765" alt=""/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body bg-light">
-            <form>
-                <div class="btn-group">
-                    <a class="btn btn-primary" th:href="@{/products}" role="button">
-                        <i class="fas fa-list">&nbsp; Product List</i></a>
-                </div>&nbsp;
-                <div class="btn-group">
-                    <a class="btn btn-success" th:href="@{/products/edit/{id}(id=${product.id})}">
-                        <i class="fas fa-edit">&nbsp; Edit</i></a>
-                </div>&nbsp;
-                <hr>
-                <div class="text-center form-group row">
-                    <div class="text-center col-sm">
-                        <h4>Product Information</h4>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Manufacturer</label>
-                    <div class="col-sm-11">
-                        <input type="text" class="form-control" th:value="${product.manufacturer}" disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Product Name</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" th:value="${product.name}" disabled>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Product Code</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" th:value="${product.code}" disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Unit of Measure</label>
-                    <label class="col-sm-1 col-form-label">Base</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" th:value="${product.base}" disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Material Group</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control"
-                               th:value="${product.materialGroup} + ': ' + ${product.materialGroup.description}" disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Shelf Life</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.shelfLifeInDays}" disabled>
-                    </div>
-                    <small class="col-sm-2 form-text text-muted">(in days)</small>
-                    <label class="col-sm-1 col-form-label">Item Barcode</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" th:value="${product.itemBarcode}" disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.minimumSaleableShelfLifeInDays}" disabled>
-                    </div>
-                    <small class="col-sm-2 form-text text-muted">(in days)</small>
-                    <label class="col-sm-1 col-form-label">Case Barcode</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" th:value="${product.caseBarcode}" disabled>
-                    </div>
-                </div>
-                <div class="text-center form-group row">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Yes</label>
-                    <label class="col-sm-1 col-form-label">No</label>
 
-                    <label class="col-sm-2 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Yes</label>
-                    <label class="col-sm-1 col-form-label">No</label>
-
-                    <label class="col-sm-2 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Yes</label>
-                    <label class="col-sm-1 col-form-label">No</label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Life Saving?</label>
-                    <small class="col-sm-1 form-text text-muted">(needed within 24 hours?)</small>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.lifeSaving}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.lifeSaving} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Bom Relevant?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.bomRelevant}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.bomRelevant} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Batch Managed?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.batchManaged}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.batchManaged} == false" disabled/>
-                    </label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">With Expiry Date?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.withExpiryDate}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.withExpiryDate} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Serial Managed?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.serialManaged}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.serialManaged} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Centrally Stocked?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.centrallyStocked}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.centrallyStocked} == false" disabled/>
-                    </label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">For IMS Extraction?</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.forImsExtraction}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.forImsExtraction} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Download Asiarx</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.downloadAsiarx}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.downloadAsiarx} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Biological</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.biological}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" th:checked="*{product.productInformation.biological} == false" disabled/>
-                    </label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">With Special Arrangement</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" value="1"
-                               th:checked="*{product.productInformation.withSpecialArrangement}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" value="0"
-                               th:checked="*{product.productInformation.withSpecialArrangement} == false" disabled/>
-                    </label>
-
-                    <label class="col-sm-2 col-form-label">Antibiotic</label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" value="1"
-                               th:checked="*{product.productInformation.antibiotic}" disabled/>
-                    </label>
-                    <label class="col-sm-1 text-center radio-inline">
-                        <input type="radio" value="0"
-                               th:checked="*{product.productInformation.antibiotic} == false" disabled/>
-                    </label>
-                </div>
-                <hr>
-                <div class="text-center form-group row">
-                    <div class="text-center col-sm">
-                        <h4>License Information / IMS Classification</h4>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Product License Code</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.licenseInformation.licenseCode.description}"
-                               disabled>
-                    </div>
-                    <div class="col-sm-1"></div>
-                    <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control"
-                               th:value="${product.licenseInformation.certificateOfProductRegistrationNo}" disabled>
-                    </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CPRFile">
-                            <i class="fas fa-paperclip">&nbsp; View File</i>
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.licenseInformation.code}"
-                               disabled>
-                    </div>
-                    <div class="col-sm-1"></div>
-                    <label class="col-sm-3 col-form-label">Validity Period</label>
-                    <div class="col-sm-2">
-                        <input type="date" class="form-control"
-                               th:value="${product.licenseInformation.validityPeriod}" disabled>
-                    </div>
-                </div>
-                <hr>
-                <div class="text-center form-group row">
-                    <div class="text-center col-sm">
-                        <h4>Confirmation</h4>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Pharmacist / Regulatory Officer</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" th:value="${product.confirmation.confirmedBy}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Confirmation Date</label>
-                    <div class="col-sm-2">
-                        <input type="date" class="form-control" th:value="${product.confirmation.confirmationDate}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Remarks</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control"
-                               th:value="${product.confirmation.remarks}" disabled>
-                    </div>
-                </div>
-                <hr>
-                <div class="text-center form-group row">
-                    <div class="text-center col-sm">
-                        <h4>Logistics</h4>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Storage Condition</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.storageCondition}"
-                               disabled>
-                    </div>
-                    <small class="col-sm-2 form-text text-muted" th:text="${product?.storageCondition?.description}"></small>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Alternative UOM</label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">1 Carton</label>
-                    <label class="col-sm-1 col-form-label">=</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.alternativeUOM.piecesPerCarton}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Each</label>
-                </div>
-                <hr>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Dimension</label>
-                    <label class="col-sm-1 col-form-label">Length</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.dimension.length}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-4 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Gross</label>
-                    <label class="col-sm-1 col-form-label">Net</label>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Width</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.dimension.width}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-2 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Weight</label>
-                    <small class="col-sm-1 form-text text-muted">(in KG)</small>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.productWeight.grossWeightPerSKU}"
-                               disabled>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.productWeight.netWeightPerSKU}"
-                               disabled>
-                    </div>
-                    <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label"></label>
-                    <label class="col-sm-1 col-form-label">Height</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.dimension.height}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-4 col-form-label"></label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.productWeight.grossWeightPerStandard}"
-                               disabled>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.productWeight.netWeightPerStandard}"
-                               disabled>
-                    </div>
-                    <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Issuance:</label>
-                    <label class="col-sm-1 col-form-label">Box Of</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control" th:value="${product.issuance.box}"
-                               disabled>
-                    </div>
-                </div>
-                <hr>
-                <div class="text-center form-group row">
-                    <div class="text-center col-sm">
-                        <h4>Completion</h4>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Name</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" th:value="${product.completion.completedBy}"
-                               disabled>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Date</label>
-                    <div class="col-sm-5">
-                        <input type="date" class="form-control" th:value="${product.completion.completionDate}"
-                               disabled>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-1 col-form-label">Position</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" th:value="${product.completion.position}"
-                               disabled>
-                    </div>
-                </div>
-            </form>
-
-            <div class="modal fade" id="CPRFile" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Certificate of Product Registration</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img th:src="@{'data:image/png;base64,' + ${image}}" width="765" alt=""/>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</body>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
 </html>

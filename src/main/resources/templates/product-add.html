@@ -1,400 +1,401 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
         <title>Item Master</title>
         <link rel="stylesheet"
-              href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
+              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
         <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
     </head>
     <body>
-    <div class="container-fluid"><br>
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="/">
-                            <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                        </a>
-                    </div>
-                    <div class="col-sm-8 text-center font-weight-bold
-                            d-flex align-items-center justify-content-center">
-                        <h1 class="display-4 text-monospace">Add Product</h1>
+        <div class="container-fluid"><br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a th:href="@{/}">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Add Product</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body bg-light">
-                <form th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-save">&nbsp; Save</i>
-                        </button>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-warning" th:href="@{/products}">
-                            <i class="fas fa-ban">&nbsp; Cancel</i>
-                        </a>
-                    </div>&nbsp;
-                    <hr>
-                    <input type="hidden"  th:field="*{id}">
-                    <div class="text-center form-group row">
-                        <div class="text-center col-sm">
-                            <h4>Product Information</h4>
+                <div class="card-body bg-light">
+                    <form th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save">&nbsp; Save</i>
+                            </button>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Manufacturer</label>
-                        <div class="col-sm-11">
-                            <input type="text" class="form-control" th:field="*{manufacturer}">
+                        <div class="btn-group">
+                            <a class="btn btn-warning" th:href="@{/products}">
+                                <i class="fas fa-ban">&nbsp; Cancel</i>
+                            </a>
+                        </div>&nbsp;
+                        <hr>
+                        <input type="hidden"  th:field="*{id}">
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Product Information</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Product Name</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" th:field="*{name}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Manufacturer</label>
+                            <div class="col-sm-11">
+                                <input type="text" class="form-control" th:field="*{manufacturer}">
+                            </div>
                         </div>
-                        <label class="col-sm-1 col-form-label">Product Code</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" th:field="*{code}" required>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Product Name</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:field="*{name}">
+                            </div>
+                            <label class="col-sm-1 col-form-label">Product Code</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:field="*{code}" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Unit of Measure</label>
-                        <label class="col-sm-1 col-form-label">Base</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" th:field="*{base}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Unit of Measure</label>
+                            <label class="col-sm-1 col-form-label">Base</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:field="*{base}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Material Group</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" th:field="*{materialGroup}">
-                                <option th:each="materialGroup : ${T(ph.edu.up.antech.domain.MaterialGroup).values()}"
-                                        th:value="${materialGroup}"
-                                        th:text="${materialGroup} + ': ' + ${materialGroup.description} ">
-                                </option>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Material Group</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" th:field="*{materialGroup}">
+                                    <option th:each="materialGroup : ${T(ph.edu.up.antech.domain.MaterialGroup).values()}"
+                                            th:value="${materialGroup}"
+                                            th:text="${materialGroup} + ': ' + ${materialGroup.description} ">
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Shelf Life</label>
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control" th:field="*{shelfLifeInDays}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Shelf Life</label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" th:field="*{shelfLifeInDays}">
+                            </div>
+                            <small class="col-sm-2 form-text text-muted">(in days)</small>
+                            <label class="col-sm-1 col-form-label">Item Barcode</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:field="*{itemBarcode}">
+                            </div>
                         </div>
-                        <small class="col-sm-2 form-text text-muted">(in days)</small>
-                        <label class="col-sm-1 col-form-label">Item Barcode</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" th:field="*{itemBarcode}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
+                            </div>
+                            <small class="col-sm-2 form-text text-muted">(in days)</small>
+                            <label class="col-sm-1 col-form-label">Case Barcode</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" th:field="*{caseBarcode}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
-                        </div>
-                        <small class="col-sm-2 form-text text-muted">(in days)</small>
-                        <label class="col-sm-1 col-form-label">Case Barcode</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" th:field="*{caseBarcode}">
-                        </div>
-                    </div>
-                    <div class="text-center form-group row">
-                        <label class="col-sm-2 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Yes</label>
-                        <label class="col-sm-1 col-form-label">No</label>
+                        <div class="text-center form-group row">
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
 
-                        <label class="col-sm-2 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Yes</label>
-                        <label class="col-sm-1 col-form-label">No</label>
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
 
-                        <label class="col-sm-2 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Yes</label>
-                        <label class="col-sm-1 col-form-label">No</label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Life Saving?</label>
-                        <small class="col-sm-1 form-text text-muted">(needed within 24 hours?)</small>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="lifeSavingRadioButton" value="true" required
-                                   th:field="*{productInformation.lifeSaving}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="lifeSavingRadioButton" value="false"
-                                   th:field="*{productInformation.lifeSaving}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Yes</label>
+                            <label class="col-sm-1 col-form-label">No</label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Life Saving?</label>
+                            <small class="col-sm-1 form-text text-muted">(needed within 24 hours?)</small>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="lifeSavingRadioButton" value="true" required
+                                       th:field="*{productInformation.lifeSaving}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="lifeSavingRadioButton" value="false"
+                                       th:field="*{productInformation.lifeSaving}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Bom Relevant?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="bomRelevantRadioButton" value="true"
-                                   th:field="*{productInformation.bomRelevant}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="bomRelevantRadioButton" value="false"
-                                   th:field="*{productInformation.bomRelevant}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label">Bom Relevant?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="bomRelevantRadioButton" value="true"
+                                       th:field="*{productInformation.bomRelevant}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="bomRelevantRadioButton" value="false"
+                                       th:field="*{productInformation.bomRelevant}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Batch Managed?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="batchManagedRadioButton" value="true"
-                                   th:field="*{productInformation.batchManaged}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="batchManagedRadioButton" value="false"
-                                   th:field="*{productInformation.batchManaged}"/>
-                        </label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">With Expiry Date?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="withExpiryDateRadioButton" value="true"
-                                   th:field="*{productInformation.withExpiryDate}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="withExpiryDateRadioButton" value="false"
-                                   th:field="*{productInformation.withExpiryDate}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label">Batch Managed?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="batchManagedRadioButton" value="true"
+                                       th:field="*{productInformation.batchManaged}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="batchManagedRadioButton" value="false"
+                                       th:field="*{productInformation.batchManaged}"/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">With Expiry Date?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="withExpiryDateRadioButton" value="true"
+                                       th:field="*{productInformation.withExpiryDate}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="withExpiryDateRadioButton" value="false"
+                                       th:field="*{productInformation.withExpiryDate}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Serial Managed?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="serialManagedRadioButton" value="true"
-                                   th:field="*{productInformation.serialManaged}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="serialManagedRadioButton" value="false"
-                                   th:field="*{productInformation.serialManaged}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label">Serial Managed?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="serialManagedRadioButton" value="true"
+                                       th:field="*{productInformation.serialManaged}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="serialManagedRadioButton" value="false"
+                                       th:field="*{productInformation.serialManaged}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Centrally Stocked?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="centrallyStockRadioButton" value="true"
-                                   th:field="*{productInformation.centrallyStocked}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="centrallyStockRadioButton" value="false"
-                                   th:field="*{productInformation.centrallyStocked}"/>
-                        </label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">For IMS Extraction?</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="forImsExtractionRadioButton" value="true"
-                                   th:field="*{productInformation.forImsExtraction}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="forImsExtractionRadioButton" value="false"
-                                   th:field="*{productInformation.forImsExtraction}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label">Centrally Stocked?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="centrallyStockRadioButton" value="true"
+                                       th:field="*{productInformation.centrallyStocked}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="centrallyStockRadioButton" value="false"
+                                       th:field="*{productInformation.centrallyStocked}"/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">For IMS Extraction?</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="forImsExtractionRadioButton" value="true"
+                                       th:field="*{productInformation.forImsExtraction}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="forImsExtractionRadioButton" value="false"
+                                       th:field="*{productInformation.forImsExtraction}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Download Asiarx</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="downloadAsiarxRadioButton" value="true"
-                                   th:field="*{productInformation.downloadAsiarx}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="downloadAsiarxRadioButton" value="false"
-                                   th:field="*{productInformation.downloadAsiarx}" />
-                        </label>
+                            <label class="col-sm-2 col-form-label">Download Asiarx</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="downloadAsiarxRadioButton" value="true"
+                                       th:field="*{productInformation.downloadAsiarx}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="downloadAsiarxRadioButton" value="false"
+                                       th:field="*{productInformation.downloadAsiarx}" />
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Biological</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="biologicalRadioButton" value="true"
-                                   th:field="*{productInformation.biological}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="biologicalRadioButton" value="false"
-                                   th:field="*{productInformation.biological}"/>
-                        </label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">With Special Arrangement</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="withSpecialArrangementRadioButton" value="true"
-                                   th:field="*{productInformation.withSpecialArrangement}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="withSpecialArrangementRadioButton" value="false"
-                                   th:field="*{productInformation.withSpecialArrangement}"/>
-                        </label>
+                            <label class="col-sm-2 col-form-label">Biological</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="biologicalRadioButton" value="true"
+                                       th:field="*{productInformation.biological}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="biologicalRadioButton" value="false"
+                                       th:field="*{productInformation.biological}"/>
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">With Special Arrangement</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="withSpecialArrangementRadioButton" value="true"
+                                       th:field="*{productInformation.withSpecialArrangement}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="withSpecialArrangementRadioButton" value="false"
+                                       th:field="*{productInformation.withSpecialArrangement}"/>
+                            </label>
 
-                        <label class="col-sm-2 col-form-label">Antibiotic</label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="antibioticRadioButton" value="true"
-                                   th:field="*{productInformation.antibiotic}"/>
-                        </label>
-                        <label class="col-sm-1 text-center radio-inline">
-                            <input type="radio" name="antibioticRadioButton" value="false"
-                                   th:field="*{productInformation.antibiotic}"/>
-                        </label>
-                    </div>
-                    <hr>
-                    <div class="text-center form-group row">
-                        <div class="text-center col-sm">
-                            <h4>License Information / IMS Classification</h4>
+                            <label class="col-sm-2 col-form-label">Antibiotic</label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="antibioticRadioButton" value="true"
+                                       th:field="*{productInformation.antibiotic}"/>
+                            </label>
+                            <label class="col-sm-1 text-center radio-inline">
+                                <input type="radio" name="antibioticRadioButton" value="false"
+                                       th:field="*{productInformation.antibiotic}"/>
+                            </label>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Product License Code</label>
-                        <div class="col-sm-2">
-                            <select class="form-control" th:field="*{licenseInformation.licenseCode}">
-                                <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
-                                        th:value="${licenseCode}"
-                                        th:text="${licenseCode.description  }">
-                                </option>
-                            </select>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>License Information / IMS Classification</h4>
+                            </div>
                         </div>
-                        <div class="col-sm-1"></div>
-                        <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control"
-                                   th:field="*{licenseInformation.certificateOfProductRegistrationNo}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Product License Code</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" th:field="*{licenseInformation.licenseCode}">
+                                    <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
+                                            th:value="${licenseCode}"
+                                            th:text="${licenseCode.description  }">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control"
+                                       th:field="*{licenseInformation.certificateOfProductRegistrationNo}">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="file" class="form-control" id="certificateFile" name="certificateFile"
+                                       accept="image/*">
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                            <input type="file" class="form-control" id="certificateFile" name="certificateFile"
-                                   accept="image/*">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:field="*{licenseInformation.code}">
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3 col-form-label">Validity Period</label>
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control"
+                                       th:field="*{licenseInformation.validityPeriod}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" th:field="*{licenseInformation.code}">
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Confirmation</h4>
+                            </div>
                         </div>
-                        <div class="col-sm-1"></div>
-                        <label class="col-sm-3 col-form-label">Validity Period</label>
-                        <div class="col-sm-2">
-                            <input type="date" class="form-control"
-                                   th:field="*{licenseInformation.validityPeriod}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Pharmacist / Regulatory Officer</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" th:field="*{confirmation.confirmedBy}">
+                            </div>
+                            <label class="col-sm-1 col-form-label">Confirmation Date</label>
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control" th:field="*{confirmation.confirmationDate}">
+                            </div>
+                            <label class="col-sm-1 col-form-label">Remarks</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control"
+                                       th:field="*{confirmation.remarks}">
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="text-center form-group row">
-                        <div class="text-center col-sm">
-                            <h4>Confirmation</h4>
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Logistics</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Pharmacist / Regulatory Officer</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" th:field="*{confirmation.confirmedBy}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Storage Condition</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" th:field="*{storageCondition}">
+                                    <option th:each="storageCondition : ${T(ph.edu.up.antech.domain.StorageCondition).values()}"
+                                            th:value="${storageCondition}"
+                                            th:text="${storageCondition}  + ' (' + ${storageCondition.description} + ')'">
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                        <label class="col-sm-1 col-form-label">Confirmation Date</label>
-                        <div class="col-sm-2">
-                            <input type="date" class="form-control" th:field="*{confirmation.confirmationDate}">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Alternative UOM</label>
                         </div>
-                        <label class="col-sm-1 col-form-label">Remarks</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control"
-                                   th:field="*{confirmation.remarks}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">1 Carton</label>
+                            <label class="col-sm-1 col-form-label">=</label>
+                            <div class="col-sm-1">
+                                <input type="number" class="form-control" th:field="*{alternativeUOM.piecesPerCarton}">
+                            </div>
+                            <label class="col-sm-1 col-form-label">Each</label>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="text-center form-group row">
-                        <div class="text-center col-sm">
-                            <h4>Logistics</h4>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Dimension</label>
+                            <label class="col-sm-1 col-form-label">Length</label>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{dimension.length}">
+                            </div>
+                            <label class="col-sm-4 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Gross</label>
+                            <label class="col-sm-1 col-form-label">Net</label>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Storage Condition</label>
-                        <div class="col-sm-3">
-                            <select class="form-control" th:field="*{storageCondition}">
-                                <option th:each="storageCondition : ${T(ph.edu.up.antech.domain.StorageCondition).values()}"
-                                        th:value="${storageCondition}"
-                                        th:text="${storageCondition}  + ' (' + ${storageCondition.description} + ')'">
-                                </option>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Width</label>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{dimension.width}">
+                            </div>
+                            <label class="col-sm-2 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Weight</label>
+                            <small class="col-sm-1 form-text text-muted">(in KG)</small>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerSKU}">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerSKU}">
+                            </div>
+                            <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Alternative UOM</label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">1 Carton</label>
-                        <label class="col-sm-1 col-form-label">=</label>
-                        <div class="col-sm-1">
-                            <input type="number" class="form-control" th:field="*{alternativeUOM.piecesPerCarton}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label"></label>
+                            <label class="col-sm-1 col-form-label">Height</label>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{dimension.height}">
+                            </div>
+                            <label class="col-sm-4 col-form-label"></label>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerStandard}">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerStandard}">
+                            </div>
+                            <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
                         </div>
-                        <label class="col-sm-1 col-form-label">Each</label>
-                    </div>
-                    <hr>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Dimension</label>
-                        <label class="col-sm-1 col-form-label">Length</label>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{dimension.length}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Issuance:</label>
+                            <label class="col-sm-1 col-form-label">Box Of</label>
+                            <div class="col-sm-1">
+                                <input type="number" class="form-control" th:field="*{issuance.box}">
+                            </div>
                         </div>
-                        <label class="col-sm-4 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Gross</label>
-                        <label class="col-sm-1 col-form-label">Net</label>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Width</label>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{dimension.width}">
+                        <hr>
+                        <div class="text-center form-group row">
+                            <div class="text-center col-sm">
+                                <h4>Completion</h4>
+                            </div>
                         </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Weight</label>
-                        <small class="col-sm-1 form-text text-muted">(in KG)</small>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerSKU}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Name</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:field="*{completion.completedBy}">
+                            </div>
+                            <label class="col-sm-1 col-form-label">Date</label>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" th:field="*{completion.completionDate}">
+                            </div>
                         </div>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerSKU}">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Position</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" th:field="*{completion.position}">
+                            </div>
                         </div>
-                        <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label"></label>
-                        <label class="col-sm-1 col-form-label">Height</label>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{dimension.height}">
-                        </div>
-                        <label class="col-sm-4 col-form-label"></label>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerStandard}">
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerStandard}">
-                        </div>
-                        <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Issuance:</label>
-                        <label class="col-sm-1 col-form-label">Box Of</label>
-                        <div class="col-sm-1">
-                            <input type="number" class="form-control" th:field="*{issuance.box}">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="text-center form-group row">
-                        <div class="text-center col-sm">
-                            <h4>Completion</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Name</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" th:field="*{completion.completedBy}">
-                        </div>
-                        <label class="col-sm-1 col-form-label">Date</label>
-                        <div class="col-sm-5">
-                            <input type="date" class="form-control" th:field="*{completion.completionDate}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-1 col-form-label">Position</label>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" th:field="*{completion.position}">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </body>
 </html>

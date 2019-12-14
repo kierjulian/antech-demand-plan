@@ -1,142 +1,143 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
-    <title>Status Report</title>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.css">
-    <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
-    <style>
-        .table-responsive{
-            height: 700px;
-            overflow: scroll;
-        }
-    </style>
-</head>
-<body>
-<div class="container-fluid"><br>
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-sm-4">
-                    <a href="/">
-                        <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
-                    </a>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+        <title>Status Report</title>
+        <link rel="stylesheet"
+              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+        <style>
+            .table-responsive{
+                height: 700px;
+                overflow: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a th:href="@{/}">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                    d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">DSR ZOL</h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-8 text-center font-weight-bold
-                            d-flex align-items-center justify-content-center">
-                    <h1 class="display-4 text-monospace">DSR ZOL</h1>
+                <div class="card-body bg-light">
+                    <form class="form-inline" method="get" th:action="@{/dsr-zol}">
+                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search">&nbsp; Search</i></button>
+                        </div>&nbsp;
+                    </form>
+                    <br>
+                    <table class="table-responsive table-sm table-striped table-bordered table-hover table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th></th>
+                                <th class="align-middle" style="text-align: center;"
+                                    th:attr="colspan=${#lists.size(productList) + 3}">Amount</th>
+                                <th class="bg-dark"></th>
+                                <th class="align-middle" style="text-align: center;"
+                                    th:attr="colspan=${#lists.size(productList) + 3}">Units</th>
+                            </tr>
+                            <tr>
+                                <th class="sticky-top">Row Labels</th>
+                                <th:block th:each="product : ${productList}">
+                                    <th scope="col" class="sticky-top" th:text="${product}"></th>
+                                </th:block>
+                                <th class="sticky-top">Total Milk</th>
+                                <th class="sticky-top">Total Water</th>
+                                <th class="sticky-top">Total HiPP Amount</th>
+                                <th class="sticky-top bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th:block th:each="product : ${productList}">
+                                    <th scope="col" class="sticky-top" th:text="${product}"></th>
+                                </th:block>
+                                <th class="sticky-top">Total Milk</th>
+                                <th class="sticky-top">Total Water</th>
+                                <th class="sticky-top">Total HiPP Units</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="kamRefName : ${kamReferenceNameList}">
+                                <tr class="bg-dark text-white">
+                                    <td class="font-weight-bold" th:text="${kamRefName}"></td>
+                                    <th:block th:each="product : ${productList}">
+                                        <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, product)}">
+                                        </td>
+                                    </th:block>
+                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
+                                    <td></td>
+                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
+                                    <td class="bg-dark"></td>
+                                    <th:block th:each="product : ${productList}">
+                                        <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, product)}">
+                                        </td>
+                                    </th:block>
+                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
+                                    <td></td>
+                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
+                                </tr>
+                                <th:block th:each="dsrZol, row : ${dsrZolList}">
+                                    <tr th:if="${kamRefName == dsrZol.kamReferenceName}">
+                                        <td th:text="${dsrZol.account}"></td>
+                                        <th:block th:each="product : ${productList}">
+                                            <td th:if="${product == dsrZol.antechProductDescription}"
+                                                th:text="${dsrZol.amount}">
+                                            </td>
+                                            <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                        </th:block>
+                                        <td th:text="${dsrZol.amount}"></td>
+                                        <td></td>
+                                        <td th:text="${dsrZol.amount}"></td>
+                                        <td class="bg-dark"></td>
+                                        <th:block th:each="product : ${productList}">
+                                            <td th:if="${product == dsrZol.antechProductDescription}"
+                                                th:text="${dsrZol.salesUnit}">
+                                            </td>
+                                            <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                        </th:block>
+                                        <td th:text="${dsrZol.salesUnit}"></td>
+                                        <td></td>
+                                        <td th:text="${dsrZol.salesUnit}"></td>
+                                    </tr>
+                                </th:block>
+                            </th:block>
+                            <tr class="bg-dark text-white">
+                                <td>Grand Total</td>
+                                <th:block th:each="product : ${productList}">
+                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(product)}">
+                                    </td>
+                                </th:block>
+                                <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
+                                <td></td>
+                                <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
+                                <td class="bg-dark"></td>
+                                <th:block th:each="product : ${productList}">
+                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(product)}">
+                                    </td>
+                                </th:block>
+                                <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                                <td></td>
+                                <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="card-body bg-light">
-            <form class="form-inline" method="get" action="/dsr-zol">
-                <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-search">&nbsp; Search</i></button>
-                </div>&nbsp;
-            </form>
-            <br>
-            <table class="table-responsive table-sm table-striped table-bordered table-hover table">
-                <thead class="thead-light">
-                    <tr>
-                        <th></th>
-                        <th class="align-middle" style="text-align: center;"
-                            th:attr="colspan=${#lists.size(productList) + 3}">Amount</th>
-                        <th class="bg-dark"></th>
-                        <th class="align-middle" style="text-align: center;"
-                            th:attr="colspan=${#lists.size(productList) + 3}">Units</th>
-                    </tr>
-                    <tr>
-                        <th class="sticky-top">Row Labels</th>
-                        <th:block th:each="product : ${productList}">
-                            <th scope="col" class="sticky-top" th:text="${product}"></th>
-                        </th:block>
-                        <th class="sticky-top">Total Milk</th>
-                        <th class="sticky-top">Total Water</th>
-                        <th class="sticky-top">Total HiPP Amount</th>
-                        <th class="sticky-top bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th:block th:each="product : ${productList}">
-                            <th scope="col" class="sticky-top" th:text="${product}"></th>
-                        </th:block>
-                        <th class="sticky-top">Total Milk</th>
-                        <th class="sticky-top">Total Water</th>
-                        <th class="sticky-top">Total HiPP Units</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <th:block th:each="kamRefName : ${kamReferenceNameList}">
-                        <tr class="bg-dark text-white">
-                            <td class="font-weight-bold" th:text="${kamRefName}"></td>
-                            <th:block th:each="product : ${productList}">
-                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, product)}">
-                                </td>
-                            </th:block>
-                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
-                            <td></td>
-                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
-                            <td class="bg-dark"></td>
-                            <th:block th:each="product : ${productList}">
-                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, product)}">
-                                </td>
-                            </th:block>
-                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
-                            <td></td>
-                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
-                        </tr>
-                        <th:block th:each="dsrZol, row : ${dsrZolList}">
-                            <tr th:if="${kamRefName == dsrZol.kamReferenceName}">
-                                <td th:text="${dsrZol.account}"></td>
-                                <th:block th:each="product : ${productList}">
-                                    <td th:if="${product == dsrZol.antechProductDescription}"
-                                        th:text="${dsrZol.amount}">
-                                    </td>
-                                    <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
-                                </th:block>
-                                <td th:text="${dsrZol.amount}"></td>
-                                <td></td>
-                                <td th:text="${dsrZol.amount}"></td>
-                                <td class="bg-dark"></td>
-                                <th:block th:each="product : ${productList}">
-                                    <td th:if="${product == dsrZol.antechProductDescription}"
-                                        th:text="${dsrZol.salesUnit}">
-                                    </td>
-                                    <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
-                                </th:block>
-                                <td th:text="${dsrZol.salesUnit}"></td>
-                                <td></td>
-                                <td th:text="${dsrZol.salesUnit}"></td>
-                            </tr>
-                        </th:block>
-                    </th:block>
-                    <tr class="bg-dark text-white">
-                        <td>Grand Total</td>
-                        <th:block th:each="product : ${productList}">
-                            <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(product)}">
-                            </td>
-                        </th:block>
-                        <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
-                        <td></td>
-                        <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
-                        <td class="bg-dark"></td>
-                        <th:block th:each="product : ${productList}">
-                            <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(product)}">
-                            </td>
-                        </th:block>
-                        <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
-                        <td></td>
-                        <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
-<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-</body>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </body>
 </html>
