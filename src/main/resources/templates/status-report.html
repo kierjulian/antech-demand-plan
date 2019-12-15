@@ -41,104 +41,131 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <form method="post" enctype="multipart/form-data" th:action="@{/reports/upload}">
-                                    <div class="card-header text-center font-weight-bold">
-                                        New Daily Report
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Date:
-                                                <input type="date" name="date" class="form-control" required>&nbsp;&nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Customer Item Sales Per Period:
-                                                <input type="file" name="customerItemSalesPerPeriodFile" class="form-control" required/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                Customer Sales By Item:
-                                                <input type="file" name="customerSalesByItemFile" class="form-control" required/>
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Zol Daily Sales Per Branch:
-                                                <input type="file" name="zolDailySalesPerBranchFile" class="form-control" required/>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                Dispensing Distributor:
-                                                <input type="file" name="dispensingDistributorFile" class="form-control" required/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#warningModal">
-                                            <i class="fas fa-plus">&nbsp; Add</i></button>
-                                    </div>
-                                    <div id="warningModal" class="modal fade" role="dialog"
-                                         aria-labelledby="warningModel" aria-hidden="true" tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Confirm Adding of New Master Files</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>If some master files exist with the same date as the inputted date,
-                                                    the previous master files will be overridden. Are you sure you want to proceed?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-warning" role="button">Proceed</button>
-                                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="card">
+                    <div class="card-deck">
+                        <div class="card">
+                            <form method="post" enctype="multipart/form-data" th:action="@{/reports/upload}">
                                 <div class="card-header text-center font-weight-bold">
-                                    Master Files
+                                    New Daily Report
                                 </div>
-                                <div class="card-body text-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/zol-per-doors"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-door-open">&nbsp; ZOL Per Doors</i></a>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Date:
+                                            <input type="date" name="date" class="form-control" required>&nbsp;&nbsp;
+                                        </div>
                                     </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/zol-mdc"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-code-branch">&nbsp; ZOL MDC</i></a>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Customer Item Sales Per Period:
+                                            <input type="file" name="customerItemSalesPerPeriodFile" class="form-control" required/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            Customer Sales By Item:
+                                            <input type="file" name="customerSalesByItemFile" class="form-control" required/>
+                                        </div>
                                     </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/zol-mt"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-tags">&nbsp; ZOL MT</i></a>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Zol Daily Sales Per Branch:
+                                            <input type="file" name="zolDailySalesPerBranchFile" class="form-control" required/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            Dispensing Distributor:
+                                            <input type="file" name="dispensingDistributorFile" class="form-control" required/>
+                                        </div>
                                     </div>
-                                    <br><br>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/mdc-branch"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-cart-arrow-down">&nbsp; MDC Per Branch Sales</i></a>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#warningModal">
+                                        <i class="fas fa-plus">&nbsp; Add</i></button>
+                                </div>
+                                <div id="warningModal" class="modal fade" role="dialog"
+                                     aria-labelledby="warningModel" aria-hidden="true" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirm Adding of New Master Files</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>If some master files exist with the same date as the inputted date,
+                                                    the previous master files will be overridden. Are you sure you want to proceed?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-warning" role="button">Proceed</button>
+                                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/netsuite"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-network-wired">&nbsp; Netsuite</i></a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-center font-weight-bold">
+                                Master Files
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="card-deck">
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-door-open fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/zol-per-doors}" target="_blank">ZOL Per Doors</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" href="/master/dispensing-distributor"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-briefcase">&nbsp; Dispensing Distributor</i></a>
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-code-branch fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/zol-mdc}" target="_blank">ZOL MDC</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-tags fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/zol-mt}" target="_blank">ZOL MT</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-cart-arrow-down fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/mdc-branch}" target="_blank">MDC Per Branch</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-network-wired fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/netsuite}" target="_blank">Netsuite</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <br>
+                                        <br>
+                                        <i class="fas fa-briefcase fa-2x text-center"></i>
+                                        <div class="card-body text-center">
+                                            <p class="card-text lead font-weight-bold">
+                                                <a th:href="@{/master/dispensing-distributor}" target="_blank">Dispensing Distributor</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +176,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header text-center font-weight-bold">
-                                    View Status Reports
+                                    Output
                                 </div>
                                 <div class="card-body text-center">
                                     <div class="btn-group">

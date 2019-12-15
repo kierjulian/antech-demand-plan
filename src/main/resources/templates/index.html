@@ -8,39 +8,62 @@
         <link rel="icon" type="image/x-icon" th:href="@{images/antech-favicon.ico}"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Home</title>
-        <style>
+        <style type="text/css">
             body, html{
-                height: 100%;
+                background: #f5f5f5;
             }
         </style>
     </head>
     <body>
-        <div class="container h-100">
-            <div class="row align-items-center h-100">
-                <div class="col-8 mx-auto">
-                    <div class="card border-dark">
-                        <div class="text-center">
-                            <div class="card-header border-dark">
-                                <img class="img-fluid" height="200" width="200" th:src="@{images/antech-top.png}" />
+        <div class="container"><br>
+            <div class="card">
+                <div class="card-header text-center">
+                    <img th:src="@{/images/antech-top.png}" />
+                </div>
+                <div class="card-body">
+                    <div class="card-deck">
+                        <div class="card">
+                            <br>
+                            <br>
+                            <i class="fas fa-shopping-basket fa-5x text-center"></i>
+                            <div class="card-body text-center">
+                                <p class="card-text lead font-weight-bold">
+                                    <a th:href="@{/products}" target="_blank">Item Master</a>
+                                </p>
                             </div>
-                            <div class="card-body border-dark">
-                                <p class="h5 lead">Demand Plan Optimization Project</p>
-                                <br><br><br>
-                                <a class="btn btn-outline-secondary" th:href="@{/products}" role="button">
-                                    <i class="fas fa-shopping-basket">&nbsp; Item Master</i>
-                                </a>
-                                <a class="btn btn-outline-secondary" th:href="@{/customers}" role="button">
-                                    <i class="fas fa-user-friends">&nbsp; Customer Master</i>
-                                </a>
-                                <a class="btn btn-outline-secondary" th:href="@{/reports}" role="button">
-                                    <i class="fas fa-chart-pie">&nbsp; Status Reports</i>
-                                </a>
-                                <a class="btn btn-outline-secondary" th:href="@{/demand-plan}" role="button">
-                                    <i class="fas fa-project-diagram">&nbsp;  Demand Plan</i>
-                                </a>
+                        </div>
+                        <div class="card">
+                            <br>
+                            <br>
+                            <i class="fas fa-user-friends fa-5x text-center"></i>
+                            <div class="card-body text-center">
+                                <p class="card-text lead font-weight-bold">
+                                    <a th:href="@{/customers}" target="_blank">Customer Master</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <br>
+                            <br>
+                            <i class="fas fa-chart-pie fa-5x text-center"></i>
+                            <div class="card-body text-center">
+                                <p class="card-text lead font-weight-bold">
+                                    <a th:href="@{/reports}" target="_blank">Status Reports</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <br>
+                            <br>
+                            <i class="fas fa-project-diagram fa-5x text-center"></i>
+                            <div class="card-body text-center">
+                                <p class="card-text lead font-weight-bold">
+                                    <a th:href="@{/demand-plan}" target="_blank">Demand Plan</a>
+                                </p>
                             </div>
                         </div>
                     </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>
