@@ -2,12 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
-        <title>Status Report</title>
-        <link rel="stylesheet"
-              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
-        <link rel="icon" type="image/x-icon" th:href="@{/images/antech-favicon.ico}"/>
+        <div th:replace="fragments/template :: header(title = 'Status Report')"></div>
     </head>
     <body>
         <div class="container-fluid"><br>
@@ -76,8 +71,6 @@
             </div>
         </div>
 
-        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-        <script src="/webjars/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <div th:replace="fragments/template :: footer"></div>
     </body>
 </html>
