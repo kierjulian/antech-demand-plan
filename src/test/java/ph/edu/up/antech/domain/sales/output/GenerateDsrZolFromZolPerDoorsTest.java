@@ -16,6 +16,7 @@ import ph.edu.up.antech.util.DsrZolCalculator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -89,6 +90,45 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
         Assert.assertEquals(Integer.valueOf(185), dsrZolCalculator.calculateTotalAmountPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
         Assert.assertEquals(Integer.valueOf(205), dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
+    }
+
+    @Test
+    public void convertListOfDsrZolToDsrZolCombinationList_andPrintContents_shouldBeSuccessful() {
+        List<DsrZol> dsrZolList = new ArrayList<>();
+        List<String> kamReferenceNameList = zolPerDoorsService
+                .findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate.of(2019, 12, 7));
+        List<String> antechProductDescriptionList = zolPerDoorsService
+                .findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate.of(2019, 12, 7));
+
+        for (String kamReferenceName : kamReferenceNameList) {
+            for (String antechProductDescription : antechProductDescriptionList) {
+                List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
+                        .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(LocalDate.of(2019, 12, 7),
+                                kamReferenceName, antechProductDescription);
+                for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+                    DsrZol dsrZol = new DsrZol(zolPerDoors);
+                    dsrZolList.add(dsrZol);
+                }
+            }
+        }
+
+        List<DsrZol> dsrZolListFiltered = dsrZolList.stream()
+                .filter(dsrZol -> dsrZol.getKamReferenceName().equals("E. Rick Tilawan - Min"))
+                .filter(dsrZol -> dsrZol.getAccount().equals("LTS SUPERMARKETS"))
+                .collect(Collectors.toList());
+
+        DsrZolCombination dsrZolCombination = new DsrZolCombination(dsrZolListFiltered);
+        System.out.println(dsrZolCombination.getKamReferenceName());
+        System.out.println(dsrZolCombination.getAccount());
+        System.out.println();
+
+        dsrZolCombination.getProductSalesAmountAndUnitList().forEach(productSalesAmountAndUnit -> {
+            System.out.println(productSalesAmountAndUnit.getProduct());
+            System.out.println(productSalesAmountAndUnit.getAmount());
+            System.out.println(productSalesAmountAndUnit.getSalesUnit());
+            System.out.println();
+        });
+
     }
 
 }
