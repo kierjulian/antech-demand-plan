@@ -65,4 +65,12 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
         return query.getResultList();
     }
 
+    @Override
+    public List<String> findDistinctZolPerDoorsAccountByLocalDate(LocalDate localDate) {
+        TypedQuery<String> query = entityManager.createNamedQuery("findDistinctZolPerDoorsAccountByLocalDate",
+                String.class);
+        query.setParameter("localDate", localDate);
+        return query.getResultList();
+    }
+
 }

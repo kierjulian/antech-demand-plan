@@ -20,4 +20,6 @@ public interface ZolPerDoorsDAO {
     public List<ZolPerDoors> findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
             LocalDate localDate, String kamReferenceName, String antechProductDescription);
 
+    public List<String> findDistinctZolPerDoorsAccountByLocalDate(LocalDate localDate);
+
 }

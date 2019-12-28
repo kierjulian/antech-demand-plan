@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain.sales.output;
 
+import java.util.Objects;
+
 public class ProductSalesAmountAndUnit {
 
     private String product;
@@ -34,6 +36,27 @@ public class ProductSalesAmountAndUnit {
 
     public void setSalesUnit(Integer salesUnit) {
         this.salesUnit = salesUnit;
+    }
+
+    public void addAmount(Integer amount) {
+        this.amount += amount;
+    }
+
+    public void addSalesUnit(Integer salesUnit) {
+        this.salesUnit += salesUnit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductSalesAmountAndUnit that = (ProductSalesAmountAndUnit) o;
+        return Objects.equals(product, that.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product);
     }
 
 }

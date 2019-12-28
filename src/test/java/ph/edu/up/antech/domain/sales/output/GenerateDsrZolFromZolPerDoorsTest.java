@@ -113,8 +113,8 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         }
 
         List<DsrZol> dsrZolListFiltered = dsrZolList.stream()
-                .filter(dsrZol -> dsrZol.getKamReferenceName().equals("E. Rick Tilawan - Min"))
-                .filter(dsrZol -> dsrZol.getAccount().equals("LTS SUPERMARKETS"))
+                .filter(dsrZol -> dsrZol.getKamReferenceName().equals("A. Errol Ramirez"))
+                .filter(dsrZol -> dsrZol.getAccount().equals("ROBINSONS"))
                 .collect(Collectors.toList());
 
         DsrZolCombination dsrZolCombination = new DsrZolCombination(dsrZolListFiltered);

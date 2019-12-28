@@ -47,4 +47,9 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
                 localDate, kamReferenceName, antechProductDescription);
     }
 
+    @Override
+    public List<String> findDistinctZolPerDoorsAccountByLocalDate(LocalDate localDate) {
+        return zolPerDoorsDAO.findDistinctZolPerDoorsAccountByLocalDate(localDate);
+    }
+
 }

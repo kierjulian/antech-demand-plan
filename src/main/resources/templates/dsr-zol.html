@@ -82,28 +82,40 @@
                                     <td></td>
                                     <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
                                 </tr>
-                                <th:block th:each="dsrZol, row : ${dsrZolList}">
+                                <th:block th:each="dsrZol, row : ${dsrZolCombinationList}">
                                     <tr th:if="${kamRefName == dsrZol.kamReferenceName}">
                                         <td th:text="${dsrZol.account}"></td>
                                         <th:block th:each="product : ${productList}">
-                                            <td th:if="${product == dsrZol.antechProductDescription}"
-                                                th:text="${dsrZol.amount}">
-                                            </td>
-                                            <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                            <th:block th:if="${dsrZol.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <th:block th:each="productSalesAmountAndUnitList : ${dsrZol.productSalesAmountAndUnitList}">
+                                                    <td th:if="${product == productSalesAmountAndUnitList.product}"
+                                                        th:text="${productSalesAmountAndUnitList.amount}">
+                                                    </td>
+                                                </th:block>
+                                            </th:block>
+                                            <th:block th:unless="${dsrZol.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <td>-</td>
+                                            </th:block>
                                         </th:block>
-                                        <td th:text="${dsrZol.amount}"></td>
                                         <td></td>
-                                        <td th:text="${dsrZol.amount}"></td>
+                                        <td></td>
+                                        <td></td>
                                         <td class="bg-dark"></td>
                                         <th:block th:each="product : ${productList}">
-                                            <td th:if="${product == dsrZol.antechProductDescription}"
-                                                th:text="${dsrZol.salesUnit}">
-                                            </td>
-                                            <td th:unless="${product == dsrZol.antechProductDescription}">-</td>
+                                            <th:block th:if="${dsrZol.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <th:block th:each="productSalesAmountAndUnitList : ${dsrZol.productSalesAmountAndUnitList}">
+                                                    <td th:if="${product == productSalesAmountAndUnitList.product}"
+                                                        th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                    </td>
+                                                </th:block>
+                                            </th:block>
+                                            <th:block th:unless="${dsrZol.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <td>-</td>
+                                            </th:block>
                                         </th:block>
-                                        <td th:text="${dsrZol.salesUnit}"></td>
                                         <td></td>
-                                        <td th:text="${dsrZol.salesUnit}"></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </th:block>
                             </th:block>

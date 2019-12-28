@@ -2,6 +2,7 @@ package ph.edu.up.antech.domain.sales.output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DsrZolCombination {
 
@@ -22,7 +23,15 @@ public class DsrZolCombination {
 
             ProductSalesAmountAndUnit productSalesAmountAndUnit = new ProductSalesAmountAndUnit(
                     dsrZol.getAntechProductDescription(), dsrZol.getAmount(), dsrZol.getSalesUnit());
-            this.productSalesAmountAndUnitList.add(productSalesAmountAndUnit);
+            if (productSalesAmountAndUnitList.contains(productSalesAmountAndUnit)) {
+                Integer indexOfExistingProductSalesAmountAndUnit =
+                        productSalesAmountAndUnitList.indexOf(productSalesAmountAndUnit);
+                ProductSalesAmountAndUnit retrievedProductSalesAndAmountUnit = productSalesAmountAndUnitList.get(indexOfExistingProductSalesAmountAndUnit);
+                retrievedProductSalesAndAmountUnit.addAmount(productSalesAmountAndUnit.getAmount());
+                retrievedProductSalesAndAmountUnit.addSalesUnit(productSalesAmountAndUnit.getSalesUnit());
+            } else {
+                this.productSalesAmountAndUnitList.add(productSalesAmountAndUnit);
+            }
         });
     }
 
@@ -48,6 +57,14 @@ public class DsrZolCombination {
 
     public void setProductSalesAmountAndUnitList(List<ProductSalesAmountAndUnit> productSalesAmountAndUnitList) {
         this.productSalesAmountAndUnitList = productSalesAmountAndUnitList;
+    }
+
+    public Boolean doesProductExistInProductSalesAmountAndUnitList(String product) {
+        return productSalesAmountAndUnitList.stream()
+                .map(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct())
+                .collect(Collectors.toList())
+                .stream()
+                .anyMatch(productName -> productName.equals(product));
     }
 
 }
