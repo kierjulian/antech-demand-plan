@@ -1,5 +1,7 @@
 package ph.edu.up.antech.controller.view;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ProductService productService;
@@ -63,6 +67,7 @@ public class ProductController {
                 }
             } catch (IOException e) {
                 redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+                LOGGER.error(e.getMessage());
             }
         } else {
             Product oldProduct = productService.findProductById(product.getId());
@@ -77,6 +82,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/products/view/" + product.getId();
@@ -102,6 +108,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/products/view/" + product.getId();
@@ -114,6 +121,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred during deletion of product.");
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/products";

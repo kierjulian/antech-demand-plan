@@ -1,5 +1,7 @@
 package ph.edu.up.antech.controller.view;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/dsr-zol")
 public class DsrZolController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DsrZolController.class);
 
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;

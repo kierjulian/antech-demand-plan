@@ -1,5 +1,7 @@
 package ph.edu.up.antech.controller.view;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     private CustomerService customerService;
@@ -51,6 +55,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/customers/view/" + customer.getId();
@@ -71,6 +76,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/customers/view/" + customer.getId();
@@ -83,6 +89,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
         }
 
         return "redirect:/customers";
