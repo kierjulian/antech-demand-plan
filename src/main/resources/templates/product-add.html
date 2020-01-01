@@ -95,6 +95,7 @@
                                 <input type="text" class="form-control" th:field="*{caseBarcode}">
                             </div>
                         </div>
+                        <br>
                         <div class="text-center form-group row">
                             <label class="col-sm-2 col-form-label"></label>
                             <label class="col-sm-1 col-form-label">Yes</label>
@@ -112,115 +113,115 @@
                             <label class="col-sm-1 col-form-label">Life Saving?</label>
                             <small class="col-sm-1 form-text text-muted">(needed within 24 hours?)</small>
                             <label class="col-sm-1 text-center radio-inline">
-                                <input type="radio" name="lifeSavingRadioButton" value="true" required
-                                       th:field="*{productInformation.lifeSaving}"/>
+                                <input type="radio" name="lifeSavingRadioButton" value="true"
+                                       th:field="*{lifeSaving}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="lifeSavingRadioButton" value="false"
-                                       th:field="*{productInformation.lifeSaving}"/>
+                                       th:field="*{lifeSaving}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Bom Relevant?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="bomRelevantRadioButton" value="true"
-                                       th:field="*{productInformation.bomRelevant}"/>
+                                       th:field="*{bomRelevant}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="bomRelevantRadioButton" value="false"
-                                       th:field="*{productInformation.bomRelevant}"/>
+                                       th:field="*{bomRelevant}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Batch Managed?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="batchManagedRadioButton" value="true"
-                                       th:field="*{productInformation.batchManaged}"/>
+                                       th:field="*{batchManaged}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="batchManagedRadioButton" value="false"
-                                       th:field="*{productInformation.batchManaged}"/>
+                                       th:field="*{batchManaged}"/>
                             </label>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">With Expiry Date?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="withExpiryDateRadioButton" value="true"
-                                       th:field="*{productInformation.withExpiryDate}"/>
+                                       th:field="*{withExpiryDate}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="withExpiryDateRadioButton" value="false"
-                                       th:field="*{productInformation.withExpiryDate}"/>
+                                       th:field="*{withExpiryDate}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Serial Managed?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="serialManagedRadioButton" value="true"
-                                       th:field="*{productInformation.serialManaged}"/>
+                                       th:field="*{serialManaged}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="serialManagedRadioButton" value="false"
-                                       th:field="*{productInformation.serialManaged}"/>
+                                       th:field="*{serialManaged}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Centrally Stocked?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="centrallyStockRadioButton" value="true"
-                                       th:field="*{productInformation.centrallyStocked}"/>
+                                       th:field="*{centrallyStocked}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="centrallyStockRadioButton" value="false"
-                                       th:field="*{productInformation.centrallyStocked}"/>
+                                       th:field="*{centrallyStocked}"/>
                             </label>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">For IMS Extraction?</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="forImsExtractionRadioButton" value="true"
-                                       th:field="*{productInformation.forImsExtraction}"/>
+                                       th:field="*{forImsExtraction}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="forImsExtractionRadioButton" value="false"
-                                       th:field="*{productInformation.forImsExtraction}"/>
+                                       th:field="*{forImsExtraction}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Download Asiarx</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="downloadAsiarxRadioButton" value="true"
-                                       th:field="*{productInformation.downloadAsiarx}"/>
+                                       th:field="*{downloadAsiarx}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="downloadAsiarxRadioButton" value="false"
-                                       th:field="*{productInformation.downloadAsiarx}" />
+                                       th:field="*{downloadAsiarx}" />
                             </label>
 
                             <label class="col-sm-2 col-form-label">Biological</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="biologicalRadioButton" value="true"
-                                       th:field="*{productInformation.biological}"/>
+                                       th:field="*{biological}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="biologicalRadioButton" value="false"
-                                       th:field="*{productInformation.biological}"/>
+                                       th:field="*{biological}"/>
                             </label>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">With Special Arrangement</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="withSpecialArrangementRadioButton" value="true"
-                                       th:field="*{productInformation.withSpecialArrangement}"/>
+                                       th:field="*{withSpecialArrangement}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="withSpecialArrangementRadioButton" value="false"
-                                       th:field="*{productInformation.withSpecialArrangement}"/>
+                                       th:field="*{withSpecialArrangement}"/>
                             </label>
 
                             <label class="col-sm-2 col-form-label">Antibiotic</label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="antibioticRadioButton" value="true"
-                                       th:field="*{productInformation.antibiotic}"/>
+                                       th:field="*{antibiotic}"/>
                             </label>
                             <label class="col-sm-1 text-center radio-inline">
                                 <input type="radio" name="antibioticRadioButton" value="false"
-                                       th:field="*{productInformation.antibiotic}"/>
+                                       th:field="*{antibiotic}"/>
                             </label>
                         </div>
                         <hr>
@@ -232,10 +233,10 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Product License Code</label>
                             <div class="col-sm-2">
-                                <select class="form-control" th:field="*{licenseInformation.licenseCode}">
+                                <select class="form-control" th:field="*{productLicenseCode}">
                                     <option th:each="licenseCode : ${T(ph.edu.up.antech.domain.ProductLicenseCode).values()}"
                                             th:value="${licenseCode}"
-                                            th:text="${licenseCode.description  }">
+                                            th:text="${licenseCode.description}">
                                     </option>
                                 </select>
                             </div>
@@ -243,23 +244,23 @@
                             <label class="col-sm-3 col-form-label">Certificate of Product Registration No.</label>
                             <div class="col-sm-2">
                                 <input type="text" class="form-control"
-                                       th:field="*{licenseInformation.certificateOfProductRegistrationNo}">
+                                       th:field="*{certificateOfProductRegistrationNo}">
                             </div>
                             <div class="col-sm-2">
-                                <input type="file" class="form-control" id="certificateFile" name="certificateFile"
+                                <input type="file" class="form-control" id="certificateImage" name="certificateImage"
                                        accept="image/*">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">IMS Therapeutic Code</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" th:field="*{licenseInformation.code}">
+                                <input type="text" class="form-control" th:field="*{imsTherapeuticCode}">
                             </div>
                             <div class="col-sm-1"></div>
                             <label class="col-sm-3 col-form-label">Validity Period</label>
                             <div class="col-sm-2">
                                 <input type="date" class="form-control"
-                                       th:field="*{licenseInformation.validityPeriod}">
+                                       th:field="*{validityPeriod}">
                             </div>
                         </div>
                         <hr>
@@ -271,16 +272,16 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Pharmacist / Regulatory Officer</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" th:field="*{confirmation.confirmedBy}">
+                                <input type="text" class="form-control" th:field="*{confirmedBy}">
                             </div>
                             <label class="col-sm-1 col-form-label">Confirmation Date</label>
                             <div class="col-sm-2">
-                                <input type="date" class="form-control" th:field="*{confirmation.confirmationDate}">
+                                <input type="date" class="form-control" th:field="*{confirmationDate}">
                             </div>
                             <label class="col-sm-1 col-form-label">Remarks</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control"
-                                       th:field="*{confirmation.remarks}">
+                                       th:field="*{confirmationRemarks}">
                             </div>
                         </div>
                         <hr>
@@ -308,7 +309,7 @@
                             <label class="col-sm-1 col-form-label">1 Carton</label>
                             <label class="col-sm-1 col-form-label">=</label>
                             <div class="col-sm-1">
-                                <input type="number" class="form-control" th:field="*{alternativeUOM.piecesPerCarton}">
+                                <input type="number" class="form-control" th:field="*{piecesPerCarton}">
                             </div>
                             <label class="col-sm-1 col-form-label">Each</label>
                         </div>
@@ -317,7 +318,7 @@
                             <label class="col-sm-1 col-form-label">Dimension</label>
                             <label class="col-sm-1 col-form-label">Length</label>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{dimension.length}">
+                                <input type="number" step=".01" class="form-control" th:field="*{length}">
                             </div>
                             <label class="col-sm-4 col-form-label"></label>
                             <label class="col-sm-1 col-form-label">Gross</label>
@@ -327,16 +328,16 @@
                             <label class="col-sm-1 col-form-label"></label>
                             <label class="col-sm-1 col-form-label">Width</label>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{dimension.width}">
+                                <input type="number" step=".01" class="form-control" th:field="*{width}">
                             </div>
                             <label class="col-sm-2 col-form-label"></label>
                             <label class="col-sm-1 col-form-label">Weight</label>
                             <small class="col-sm-1 form-text text-muted">(in KG)</small>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerSKU}">
+                                <input type="number" step=".01" class="form-control" th:field="*{grossWeightPerSKU}">
                             </div>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerSKU}">
+                                <input type="number" step=".01" class="form-control" th:field="*{netWeightPerSKU}">
                             </div>
                             <small class="col-sm-1 form-text text-muted">per SKU / EA</small>
                         </div>
@@ -344,14 +345,14 @@
                             <label class="col-sm-1 col-form-label"></label>
                             <label class="col-sm-1 col-form-label">Height</label>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{dimension.height}">
+                                <input type="number" step=".01" class="form-control" th:field="*{height}">
                             </div>
                             <label class="col-sm-4 col-form-label"></label>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.grossWeightPerStandard}">
+                                <input type="number" step=".01" class="form-control" th:field="*{grossWeightPerStandard}">
                             </div>
                             <div class="col-sm-1">
-                                <input type="number" step=".01" class="form-control" th:field="*{productWeight.netWeightPerStandard}">
+                                <input type="number" step=".01" class="form-control" th:field="*{netWeightPerStandard}">
                             </div>
                             <small class="col-sm-1 form-text text-muted">per standard / shipping carton</small>
                         </div>
@@ -359,7 +360,7 @@
                             <label class="col-sm-1 col-form-label">Issuance:</label>
                             <label class="col-sm-1 col-form-label">Box Of</label>
                             <div class="col-sm-1">
-                                <input type="number" class="form-control" th:field="*{issuance.box}">
+                                <input type="number" class="form-control" th:field="*{box}">
                             </div>
                         </div>
                         <hr>
@@ -371,17 +372,17 @@
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Name</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" th:field="*{completion.completedBy}">
+                                <input type="text" class="form-control" th:field="*{completedBy}">
                             </div>
                             <label class="col-sm-1 col-form-label">Date</label>
                             <div class="col-sm-5">
-                                <input type="date" class="form-control" th:field="*{completion.completionDate}">
+                                <input type="date" class="form-control" th:field="*{completionDate}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Position</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" th:field="*{completion.position}">
+                                <input type="text" class="form-control" th:field="*{completedByPosition}">
                             </div>
                         </div>
                     </form>

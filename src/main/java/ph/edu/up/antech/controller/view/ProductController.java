@@ -39,9 +39,9 @@ public class ProductController {
     @GetMapping("/view/{id}")
     public String viewProduct(@PathVariable Integer id, Model model) {
         Product product = productService.findProductById(id);
-        if (product.getLicenseInformation() != null && product.getLicenseInformation().getCertificateFile() != null) {
+        if (product != null && product.getCertificateFile() != null) {
             model.addAttribute("image", Base64.getEncoder().
-                    encodeToString(product.getLicenseInformation().getCertificateFile()));
+                    encodeToString(product.getCertificateFile()));
         }
 
         model.addAttribute("product", product);
@@ -58,12 +58,12 @@ public class ProductController {
     @PostMapping("/update")
     public String updateProduct(RedirectAttributes redirectAttributes,
                                 @ModelAttribute(value = "product") Product product,
-                                @RequestParam("certificateFile") MultipartFile image) {
+                                @RequestParam("certificateImage") MultipartFile image) {
         if (image != null && !image.isEmpty()) {
             try {
                 byte[] imageBytes = image.getBytes();
                 if (imageBytes != null) {
-                    product.getLicenseInformation().setCertificateFile(imageBytes);
+                    product.setCertificateFile(imageBytes);
                 }
             } catch (IOException e) {
                 redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -71,9 +71,9 @@ public class ProductController {
             }
         } else {
             Product oldProduct = productService.findProductById(product.getId());
-            if (oldProduct.getLicenseInformation().getCertificateFile() != null) {
-                product.getLicenseInformation().setCertificateFile(
-                        oldProduct.getLicenseInformation().getCertificateFile());
+            if (oldProduct.getCertificateFile() != null) {
+                product.setCertificateFile(
+                        oldProduct.getCertificateFile());
             }
         }
 
@@ -97,12 +97,12 @@ public class ProductController {
 
     @PostMapping("/save")
     public String saveProduct(RedirectAttributes redirectAttributes,
-                              @ModelAttribute(value = "product") Product product,
-                              @RequestParam("certificateFile") MultipartFile image) {
+                              @ModelAttribute("product") Product product,
+                              @RequestParam("certificateImage") MultipartFile image) {
         try {
             byte[] imageBytes = image.getBytes();
             if (imageBytes != null) {
-                product.getLicenseInformation().setCertificateFile(imageBytes);
+                product.setCertificateFile(imageBytes);
             }
             product = productService.createProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
