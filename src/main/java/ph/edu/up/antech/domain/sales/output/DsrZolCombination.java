@@ -67,4 +67,16 @@ public class DsrZolCombination {
                 .anyMatch(productName -> productName.equals(product));
     }
 
+    public Integer getTotalAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
+    public Integer getTotalSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
+                .sum();
+    }
+
 }
