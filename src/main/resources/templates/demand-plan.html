@@ -96,69 +96,6 @@
                                     </thead>
                                 </table>
                             </td>
-                            <td th:each="productSales : ${productSalesList}">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td th:text="${productSales.month}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.generalInformation.plan}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.generalInformation.inMarketSales}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.generalInformation.averageInMarketSales}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.generalInformation.offTake}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtSource.production}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtSource.totalGoodsAvailable}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtSource.loading}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtSource.hippEndingInventory}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtSource.hippDaysOnHand}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.beginningInventory}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.shipmentsReceived}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.totalAvailableForSaleInPhilippines}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.actualSales}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.endingInventory}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtAntechZPC.daysOnHand}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtTrade.beginningInventory}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtTrade.totalEndingInventory}" />
-                                        </tr>
-                                        <tr>
-                                            <td th:text="${productSales.inventoryAtTrade.daysOnHand}" /
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
                         </tr>
                     </table>
                 </div>
