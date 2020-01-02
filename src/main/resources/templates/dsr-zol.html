@@ -71,7 +71,7 @@
                                         </td>
                                     </th:block>
                                     <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
-                                    <td></td>
+                                    <td>0</td>
                                     <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
                                     <td class="bg-dark"></td>
                                     <th:block th:each="product : ${productList}">
@@ -79,7 +79,7 @@
                                         </td>
                                     </th:block>
                                     <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
-                                    <td></td>
+                                    <td>0</td>
                                     <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
                                 </tr>
                                 <th:block th:each="dsrZolCombination, row : ${dsrZolCombinationList}">
@@ -98,7 +98,7 @@
                                             </th:block>
                                         </th:block>
                                         <td th:text="${dsrZolCombination.getTotalAmount()}"></td>
-                                        <td></td>
+                                        <td>0</td>
                                         <td th:text="${dsrZolCombination.getTotalAmount()}"></td>
                                         <td class="bg-dark"></td>
                                         <th:block th:each="product : ${productList}">
@@ -114,7 +114,7 @@
                                             </th:block>
                                         </th:block>
                                         <td th:text="${dsrZolCombination.getTotalSalesUnit()}"></td>
-                                        <td></td>
+                                        <td>0</td>
                                         <td th:text="${dsrZolCombination.getTotalSalesUnit()}"></td>
                                     </tr>
                                 </th:block>
@@ -126,7 +126,7 @@
                                     </td>
                                 </th:block>
                                 <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
-                                <td></td>
+                                <td>0</td>
                                 <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
                                 <td class="bg-dark"></td>
                                 <th:block th:each="product : ${productList}">
@@ -134,7 +134,7 @@
                                     </td>
                                 </th:block>
                                 <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
-                                <td></td>
+                                <td>0</td>
                                 <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
                             </tr>
                         </tbody>
