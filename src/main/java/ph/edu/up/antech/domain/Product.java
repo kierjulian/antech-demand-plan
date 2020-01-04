@@ -2,7 +2,6 @@ package ph.edu.up.antech.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -122,6 +121,9 @@ public class Product implements Serializable {
     @Column(name = "pieces_per_carton")
     private Integer piecesPerCarton;
 
+    @Column(name = "pieces_per_pallet")
+    private Integer piecesPerPallet;
+
     @Column(name = "length")
     private BigDecimal length;
 
@@ -145,6 +147,12 @@ public class Product implements Serializable {
 
     @Column(name = "box")
     private Integer box;
+
+    @Column(name = "cartons_per_layer")
+    private Integer shippingCartonsPerLayer;
+
+    @Column(name = "layers_per_pallet")
+    private Integer layersPerPallet;
 
     @Column(name = "completed_by")
     private String completedBy;
@@ -493,6 +501,30 @@ public class Product implements Serializable {
 
     public void setCompletionDate(LocalDate completionDate) {
         this.completionDate = completionDate;
+    }
+
+    public Integer getPiecesPerPallet() {
+        return piecesPerPallet;
+    }
+
+    public void setPiecesPerPallet(Integer piecesPerPallet) {
+        this.piecesPerPallet = piecesPerPallet;
+    }
+
+    public Integer getShippingCartonsPerLayer() {
+        return shippingCartonsPerLayer;
+    }
+
+    public void setShippingCartonsPerLayer(Integer shippingCartonsPerLayer) {
+        this.shippingCartonsPerLayer = shippingCartonsPerLayer;
+    }
+
+    public Integer getLayersPerPallet() {
+        return layersPerPallet;
+    }
+
+    public void setLayersPerPallet(Integer layersPerPallet) {
+        this.layersPerPallet = layersPerPallet;
     }
 
     @Override
