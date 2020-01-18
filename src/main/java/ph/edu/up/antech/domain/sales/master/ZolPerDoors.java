@@ -14,9 +14,11 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(name = "findZolPerDoorsByDate", query = "select o from ZolPerDoors o where o.date = :date"),
         @NamedQuery(name = "findDistinctZolPerDoorsKamReferenceNameByLocalDate",
-                query = "select distinct(o.kamReferenceName) from ZolPerDoors o where o.date = :localDate"),
+                query = "select distinct(o.kamReferenceName) from ZolPerDoors o where o.date = :localDate " +
+                        "and o.kamReferenceName != null"),
         @NamedQuery(name = "findDistinctZolPerDoorsAntechProductDescriptionByLocalDate",
-                query = "select distinct(o.antechProductDescription) from ZolPerDoors o where o.date = :localDate"),
+                query = "select distinct(o.antechProductDescription) from ZolPerDoors o where o.date = :localDate " +
+                        "and o.antechProductDescription != null"),
         @NamedQuery(name = "findZolPerDoorsByKamReferenceNameAndProductDescriptionAndLocalDate",
                 query = "select o from ZolPerDoors o where o.date = :localDate and o.kamReferenceName = :kamReferenceName " +
                         "and o.antechProductDescription = :antechProductDescription"),

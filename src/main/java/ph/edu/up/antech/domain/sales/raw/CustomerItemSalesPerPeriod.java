@@ -28,9 +28,13 @@ public class CustomerItemSalesPerPeriod {
     private String materialDescription;
 
     @CsvBindByPosition(position = 5)
+    private String quantityInString;
+
     private Integer quantity;
 
     @CsvBindByPosition(position = 6)
+    private String quantityBonusInString;
+
     private Integer quantityBonus;
 
     @CsvBindByPosition(position = 7)
@@ -86,6 +90,14 @@ public class CustomerItemSalesPerPeriod {
         this.materialDescription = materialDescription;
     }
 
+    public String getQuantityInString() {
+        return quantityInString;
+    }
+
+    public void setQuantityInString(String quantityInString) {
+        this.quantityInString = quantityInString;
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -96,6 +108,14 @@ public class CustomerItemSalesPerPeriod {
 
     public Integer getQuantityBonus() {
         return quantityBonus;
+    }
+
+    public String getQuantityBonusInString() {
+        return quantityBonusInString;
+    }
+
+    public void setQuantityBonusInString(String quantityBonusInString) {
+        this.quantityBonusInString = quantityBonusInString;
     }
 
     public void setQuantityBonus(Integer quantityBonus) {
@@ -120,6 +140,16 @@ public class CustomerItemSalesPerPeriod {
 
     public void convertAllStringValuesToProperType() {
         convertSalesAmountFromStringToBigDecimal();
+        convertQuantityBonusInStringToInteger();
+        convertQuantityInStringToInteger();
+    }
+
+    private void convertQuantityInStringToInteger() {
+        quantity = Integer.parseInt(quantityInString.replace(",", ""));
+    }
+
+    private void convertQuantityBonusInStringToInteger() {
+        quantityBonus = Integer.parseInt(quantityBonusInString.replace(",", ""));
     }
 
     private void convertSalesAmountFromStringToBigDecimal() {
@@ -135,5 +165,6 @@ public class CustomerItemSalesPerPeriod {
             customerName = customer.getZolCustomerName();
         }
     }
+
 
 }
