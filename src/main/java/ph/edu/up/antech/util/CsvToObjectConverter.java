@@ -25,8 +25,9 @@ public class CsvToObjectConverter {
                     .withSkipLines(3)
                     .build();
             return csvToBean.parse();
-        } catch (IOException e) {
-            throw new IOException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while uploading file for Customer Item Sales Per Period: "
+                    + e.getMessage());
         }
     }
 
@@ -39,8 +40,9 @@ public class CsvToObjectConverter {
                     .withSkipLines(0)
                     .build();
             return csvToBean.parse();
-        } catch (IOException e) {
-            throw new IOException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while uploading file for Dispensing Distributor: "
+                    + e.getMessage());
         }
     }
 
@@ -53,8 +55,9 @@ public class CsvToObjectConverter {
                     .withSkipLines(6)
                     .build();
             return csvToBean.parse();
-        } catch (IOException e) {
-            throw new IOException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while uploading file for Customer Sales By Item: "
+                    + e.getMessage());
         }
     }
 
@@ -67,8 +70,9 @@ public class CsvToObjectConverter {
                     .withSkipLines(0)
                     .build();
             return csvToBean.parse();
-        } catch (IOException e) {
-            throw new IOException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while uploading file for ZOL Daily Sales Per Branch: "
+                    + e.getMessage());
         }
     }
 
