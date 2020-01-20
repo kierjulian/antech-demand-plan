@@ -2,13 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <div th:replace="fragments/template :: header(title = 'Status Report')"></div>
-        <style>
-            .table-responsive{
-                height: 700px;
-                overflow: scroll;
-            }
-        </style>
+        <div th:replace="fragments/template :: header(title = 'Daily Sales Report ZOL')"></div>
+        <script>
+            $(document).ready(function() {
+                $('#dailySalesReportZOLTable').DataTable({
+                    "scrollX": true,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'csv'
+                    ],
+                    "ordering": false,
+                    "lengthChange": false,
+                    "paging": false,
+                    "searching": false,
+                    "info": false
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="container-fluid"><br>
@@ -22,7 +32,7 @@
                         </div>
                         <div class="col-sm-8 text-center font-weight-bold
                                     d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">DSR ZOL</h1>
+                            <h1 class="display-4 text-monospace">Daily Sales Report ZOL</h1>
                         </div>
                     </div>
                 </div>
@@ -35,7 +45,8 @@
                         </div>&nbsp;
                     </form>
                     <br>
-                    <table class="table-responsive table-sm table-striped table-bordered table-hover table">
+                    <table id="dailySalesReportZOLTable" class="table-sm table-striped table-bordered
+                     table-hover table">
                         <thead class="thead-light">
                             <tr>
                                 <th></th>
@@ -50,16 +61,16 @@
                                 <th:block th:each="product : ${productList}">
                                     <th scope="col" class="sticky-top" th:text="${product}"></th>
                                 </th:block>
-                                <th class="sticky-top">Total Milk</th>
-                                <th class="sticky-top">Total Water</th>
-                                <th class="sticky-top">Total HiPP Amount</th>
-                                <th class="sticky-top bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>Total Milk</th>
+                                <th>Total Water</th>
+                                <th>Total HiPP Amount</th>
+                                <th class="bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 <th:block th:each="product : ${productList}">
-                                    <th scope="col" class="sticky-top" th:text="${product}"></th>
+                                    <th scope="col" th:text="${product}"></th>
                                 </th:block>
-                                <th class="sticky-top">Total Milk</th>
-                                <th class="sticky-top">Total Water</th>
-                                <th class="sticky-top">Total HiPP Units</th>
+                                <th>Total Milk</th>
+                                <th>Total Water</th>
+                                <th>Total HiPP Units</th>
                             </tr>
                         </thead>
                         <tbody>
