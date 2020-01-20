@@ -3,22 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Daily Sales Report ZOL')"></div>
-        <script>
-            $(document).ready(function() {
-                $('#dailySalesReportZOLTable').DataTable({
-                    "scrollX": true,
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'csv'
-                    ],
-                    "ordering": false,
-                    "lengthChange": false,
-                    "paging": false,
-                    "searching": false,
-                    "info": false
-                });
-            });
-        </script>
+        <script th:src="@{/js/dsr-zol.js}"></script>
     </head>
     <body>
         <div class="container-fluid"><br>
