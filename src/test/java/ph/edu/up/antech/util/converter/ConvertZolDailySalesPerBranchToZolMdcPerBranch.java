@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcRaw;
+import ph.edu.up.antech.domain.sales.master.converter.ZolMdcSheet;
 import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolMdcAccountService;
@@ -35,7 +36,7 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
-        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/ZolDailySalesPerBranch.csv"))) {
+        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/ZolDailySalesPerBranchTest.csv"))) {
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
                     .withIgnoreLeadingWhiteSpace(true)
@@ -63,6 +64,7 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                     .filter(zolMdcRaw -> zolMdcRaw.getAccountName() != null)
                     .collect(Collectors.toList());
 
+            List<ZolMdcSheet> zolMdcSheetList = new ArrayList<>();
             zolMdcRawFilteredList.forEach(zolMdcRaw -> {
                 System.out.println(zolMdcRaw.getCono());
                 System.out.println(zolMdcRaw.getRec());
@@ -71,7 +73,7 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcRaw.getCusno());
                 System.out.println(zolMdcRaw.getShpcn());
                 System.out.println(zolMdcRaw.getCustnm());
-                System.out.println("Account Name: " + zolMdcRaw.getAccountName());
+                System.out.println(zolMdcRaw.getAccountName());
                 System.out.println(zolMdcRaw.getCadd1());
                 System.out.println(zolMdcRaw.getCadd2());
                 System.out.println(zolMdcRaw.getClazz());
@@ -82,7 +84,7 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcRaw.getRefcd());
                 System.out.println(zolMdcRaw.getTag());
                 System.out.println(zolMdcRaw.getNetValueInString());
-                System.out.println(zolMdcRaw.getFinalNetVatInString());
+                System.out.println(zolMdcRaw.getFinalNetVat());
                 System.out.println(zolMdcRaw.getUnits());
                 System.out.println(zolMdcRaw.getRefdt());
                 System.out.println(zolMdcRaw.getRefno());
@@ -113,7 +115,19 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcRaw.getNetsales());
                 System.out.println(zolMdcRaw.getDebtorCode());
                 System.out.println();
+                ZolMdcSheet zolMdcSheet = new ZolMdcSheet(zolMdcRaw);
+                zolMdcSheetList.add(zolMdcSheet);
             });
+
+            zolMdcSheetList.forEach(zolMdcSheet -> {
+                System.out.println(zolMdcSheet.getAccountName());
+                System.out.println(zolMdcSheet.getZapCode());
+                System.out.println(zolMdcSheet.getItemDescription());
+                System.out.println(zolMdcSheet.getSumOfUnits());
+                System.out.println(zolMdcSheet.getSumOfFinalNetValue());
+                System.out.println();
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();

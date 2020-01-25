@@ -8,6 +8,17 @@ public class ZolMdcSheet {
     private Integer sumOfUnits;
     private Integer sumOfFinalNetValue;
 
+    public ZolMdcSheet() {
+    }
+
+    public ZolMdcSheet(ZolMdcRaw zolMdcRaw) {
+        this.accountName = zolMdcRaw.getAccountName();
+        this.zapCode = zolMdcRaw.getZapCode();
+        this.itemDescription = zolMdcRaw.getItemDescription();
+        this.sumOfUnits = zolMdcRaw.getUnits();
+        this.sumOfFinalNetValue = zolMdcRaw.getFinalNetVat().intValue();
+    }
+
     public String getAccountName() {
         return accountName;
     }
