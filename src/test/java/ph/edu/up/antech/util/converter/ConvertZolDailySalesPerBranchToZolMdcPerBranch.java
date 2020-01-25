@@ -156,10 +156,20 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcPerBranch.getSalesValue());
                 System.out.println(zolMdcPerBranch.getAntechProductDescription());
                 System.out.println(zolMdcPerBranch.getAccount());
+                System.out.println(zolMdcPerBranch.getAntechPrice());
+                System.out.println(zolMdcPerBranch.getAmount());
                 System.out.println(zolMdcPerBranch.getKamRefName());
                 System.out.println(zolMdcPerBranch.getStage());
+                System.out.println(zolMdcPerBranch.getAmountConverted());
+                System.out.println(zolMdcPerBranch.getType());
+                System.out.println(zolMdcPerBranch.getLessThan00375());
+                System.out.println(zolMdcPerBranch.getV1());
+                System.out.println(zolMdcPerBranch.getLessThan0853());
+                System.out.println(zolMdcPerBranch.getV2());
+                System.out.println(zolMdcPerBranch.getFinalAmount());
+                System.out.println(zolMdcPerBranch.getAmountTimes1000());
+                System.out.println(zolMdcPerBranch.getA());
                 System.out.println();
-                System.exit(1);
             });
         } catch (Exception e) {
             e.printStackTrace();
