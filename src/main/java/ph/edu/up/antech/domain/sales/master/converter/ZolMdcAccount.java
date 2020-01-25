@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Table(name = "zol_mdc_account")
 @NamedQueries({
         @NamedQuery(name = "findZolMdcAccountByShpcn",
-                query = "select o from ZolMdcAccount o where o.shpcn = :shpcn")
+                query = "select o from ZolMdcAccount o where o.shpcn = :shpcn"),
+        @NamedQuery(name = "findZolMdcAccountByBranchName",
+                query = "select o from ZolMdcAccount o where o.branchName = :branchName")
 })
 public class ZolMdcAccount {
 

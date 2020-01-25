@@ -8,4 +8,6 @@ public interface ZolMdcAccountService {
 
     public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
 
+    public ZolMdcAccount findZolMdcAccountByBranchName(String branchName);
+
 }

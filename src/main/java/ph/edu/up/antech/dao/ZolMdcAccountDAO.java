@@ -8,4 +8,6 @@ public interface ZolMdcAccountDAO {
 
     public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
 
+    public ZolMdcAccount findZolMdcAccountByBranchName(String branchName);
+
 }

@@ -1,5 +1,9 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
+import ph.edu.up.antech.domain.sales.master.converter.ZolMdcSheet;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -32,6 +36,17 @@ public class ZolMdcPerBranch {
     private Integer a;
     private String dsm;
     private LocalDate cmInd;
+
+    public ZolMdcPerBranch() {
+    }
+
+    public ZolMdcPerBranch(ZolMdcSheet zolMdcSheet) {
+        this.customerName = zolMdcSheet.getAccountName();
+        this.itemCode = zolMdcSheet.getZapCode();
+        this.itemName = zolMdcSheet.getItemDescription();
+        this.salesUnit = zolMdcSheet.getSumOfUnits();
+        this.salesValue = BigDecimal.valueOf(zolMdcSheet.getSumOfFinalNetValue());
+    }
 
     public LocalDate getDate() {
         return date;
@@ -247,6 +262,22 @@ public class ZolMdcPerBranch {
 
     public void setCmInd(LocalDate cmInd) {
         this.cmInd = cmInd;
+    }
+
+    public void setValuesFromZolPerDoorsGeneralInformation(
+            ZolPerDoorsGeneralInformation generalInformation) {
+        if (generalInformation != null) {
+            this.antechProductDescription = generalInformation.getBrand();
+            this.antechPrice = generalInformation.getNewPrice();
+            this.stage = generalInformation.getStage();
+        }
+    }
+
+    public void setValuesFromZolMdcAccount(ZolMdcAccount zolMdcAccount) {
+        if (zolMdcAccount != null) {
+            this.account = zolMdcAccount.getBranchName();
+            this.kamRefName = zolMdcAccount.getNa();
+        }
     }
 
 }

@@ -22,4 +22,9 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
         return zolMdcAccountDAO.findZolMdcAccountByShpcn(shpcn);
     }
 
+    @Override
+    public ZolMdcAccount findZolMdcAccountByBranchName(String branchName) {
+        return zolMdcAccountDAO.findZolMdcAccountByBranchName(branchName);
+    }
+
 }

@@ -83,6 +83,14 @@ public class ZolPerDoorsGeneralInformation implements Serializable {
     public ZolPerDoorsGeneralInformation() {
     }
 
+    public Integer getGeneralInformationId() {
+        return generalInformationId;
+    }
+
+    public void setGeneralInformationId(Integer generalInformationId) {
+        this.generalInformationId = generalInformationId;
+    }
+
     public String getZpcItemCode() {
         return zpcItemCode;
     }

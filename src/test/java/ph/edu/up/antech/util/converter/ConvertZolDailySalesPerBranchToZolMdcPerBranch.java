@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcRaw;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcSheet;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolMdcAccountService;
+import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.impl.ZolMdcAccountServiceImpl;
 
 import java.io.Reader;
@@ -27,12 +30,15 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
-        ZolMdcAccountServiceImpl.class
+        ZolMdcAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class
 })
 public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
 
     @Autowired
     private ZolMdcAccountService zolMdcAccountService;
+
+    @Autowired
+    private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
@@ -115,9 +121,12 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcRaw.getNetsales());
                 System.out.println(zolMdcRaw.getDebtorCode());
                 System.out.println();
+
                 ZolMdcSheet zolMdcSheet = new ZolMdcSheet(zolMdcRaw);
                 zolMdcSheetList.add(zolMdcSheet);
             });
+
+            List<ZolMdcPerBranch> zolMdcPerBranchList = new ArrayList<>();
 
             zolMdcSheetList.forEach(zolMdcSheet -> {
                 System.out.println(zolMdcSheet.getAccountName());
@@ -126,8 +135,32 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcSheet.getSumOfUnits());
                 System.out.println(zolMdcSheet.getSumOfFinalNetValue());
                 System.out.println();
+
+                ZolMdcPerBranch zolMdcPerBranch = new ZolMdcPerBranch(zolMdcSheet);
+                zolMdcPerBranchList.add(zolMdcPerBranch);
             });
 
+            zolMdcPerBranchList.forEach(zolMdcPerBranch -> {
+                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
+                        .findZolPerDoorsGeneralInformationByZpcItemCode(zolMdcPerBranch.getItemCode());
+                zolMdcPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
+
+                ZolMdcAccount zolMdcAccount = zolMdcAccountService
+                        .findZolMdcAccountByBranchName(zolMdcPerBranch.getCustomerName());
+                zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
+
+                System.out.println(zolMdcPerBranch.getCustomerName());
+                System.out.println(zolMdcPerBranch.getItemCode());
+                System.out.println(zolMdcPerBranch.getItemName());
+                System.out.println(zolMdcPerBranch.getSalesUnit());
+                System.out.println(zolMdcPerBranch.getSalesValue());
+                System.out.println(zolMdcPerBranch.getAntechProductDescription());
+                System.out.println(zolMdcPerBranch.getAccount());
+                System.out.println(zolMdcPerBranch.getKamRefName());
+                System.out.println(zolMdcPerBranch.getStage());
+                System.out.println();
+                System.exit(1);
+            });
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
