@@ -6,4 +6,6 @@ public interface ZolMdcAccountService {
 
     public ZolMdcAccount createZolMdcAccount(ZolMdcAccount zolMdcAccount);
 
+    public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
+
 }

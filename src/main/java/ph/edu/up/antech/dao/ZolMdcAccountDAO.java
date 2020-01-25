@@ -6,4 +6,6 @@ public interface ZolMdcAccountDAO {
 
     public ZolMdcAccount createZolMdcAccount(ZolMdcAccount mdcAccount);
 
+    public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
+
 }

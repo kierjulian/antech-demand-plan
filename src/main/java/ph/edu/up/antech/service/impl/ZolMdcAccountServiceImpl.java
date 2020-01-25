@@ -17,4 +17,9 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
         return zolMdcAccountDAO.createZolMdcAccount(zolMdcAccount);
     }
 
+    @Override
+    public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn) {
+        return zolMdcAccountDAO.findZolMdcAccountByShpcn(shpcn);
+    }
+
 }

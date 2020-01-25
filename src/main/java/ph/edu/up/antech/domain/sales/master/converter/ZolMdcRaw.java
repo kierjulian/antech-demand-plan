@@ -1,5 +1,7 @@
 package ph.edu.up.antech.domain.sales.master.converter;
 
+import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
+
 import java.math.BigDecimal;
 
 public class ZolMdcRaw {
@@ -55,6 +57,59 @@ public class ZolMdcRaw {
     private String guartran;
     private BigDecimal netsales;
     private String debtorCode;
+
+    public ZolMdcRaw() {
+    }
+
+    public ZolMdcRaw(ZolDailySalesPerBranch zolDailySalesPerBranch) {
+        this.cono = zolDailySalesPerBranch.getCono();
+        this.rec = zolDailySalesPerBranch.getRec();
+        this.bran = zolDailySalesPerBranch.getBran();
+        this.satbrn = zolDailySalesPerBranch.getSatbrn();
+        this.cusno = zolDailySalesPerBranch.getCusno();
+        this.shpcn = zolDailySalesPerBranch.getShpcn();
+        this.custnm = zolDailySalesPerBranch.getCustnm();
+        this.cadd1 = zolDailySalesPerBranch.getCadd1();
+        this.cadd2 = zolDailySalesPerBranch.getCadd2();
+        this.clazz = zolDailySalesPerBranch.getClazz();
+        this.zipcd = zolDailySalesPerBranch.getZipcd();
+        this.sman = zolDailySalesPerBranch.getSman();
+        this.prin = zolDailySalesPerBranch.getPrin();
+        this.subpr = zolDailySalesPerBranch.getSubpr();
+        this.refcd = zolDailySalesPerBranch.getRefcd();
+        this.tag = zolDailySalesPerBranch.getTag();
+        this.netValue = zolDailySalesPerBranch.getNetValue();
+        this.finalNetVat = zolDailySalesPerBranch.getFinalNetVat();
+        this.units = zolDailySalesPerBranch.getUnits();
+        this.refdt = zolDailySalesPerBranch.getRefdt();
+        this.refno = zolDailySalesPerBranch.getRefno();
+        this.xrefno = zolDailySalesPerBranch.getXrefno();
+        this.reasn = zolDailySalesPerBranch.getReasn();
+        this.prodcd = zolDailySalesPerBranch.getProdcd();
+        this.zapCode = zolDailySalesPerBranch.getZapCode();
+        this.itemDescription = zolDailySalesPerBranch.getItemDescription();
+        this.qtyor = zolDailySalesPerBranch.getQtyor();
+        this.qtysh = zolDailySalesPerBranch.getQtysh();
+        this.um = zolDailySalesPerBranch.getUm();
+        this.vlamt = zolDailySalesPerBranch.getVlamt();
+        this.sellPr = zolDailySalesPerBranch.getSellPr();
+        this.pds = zolDailySalesPerBranch.getPds();
+        this.expdte = zolDailySalesPerBranch.getExpdte();
+        this.lotno = zolDailySalesPerBranch.getLotno();
+        this.barcode = zolDailySalesPerBranch.getBarcode();
+        this.pdcode = zolDailySalesPerBranch.getPdcode();
+        this.dman = zolDailySalesPerBranch.getDman();
+        this.findsc = zolDailySalesPerBranch.getFindsc();
+        this.frtamt = zolDailySalesPerBranch.getFrtamt();
+        this.slsyr = zolDailySalesPerBranch.getSlsyr();
+        this.slsmo = zolDailySalesPerBranch.getSlsmo();
+        this.slswk = zolDailySalesPerBranch.getSlswk();
+        this.appnum = zolDailySalesPerBranch.getAppnum();
+        this.ponum = zolDailySalesPerBranch.getPonum();
+        this.guartran = zolDailySalesPerBranch.getGuartran();
+        this.netsales = zolDailySalesPerBranch.getNetsales();
+        this.debtorCode = zolDailySalesPerBranch.getDebtorCode();
+    }
 
     public String getCono() {
         return cono;

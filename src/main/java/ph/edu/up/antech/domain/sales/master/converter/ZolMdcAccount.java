@@ -6,6 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "zol_mdc_account")
+@NamedQueries({
+        @NamedQuery(name = "findZolMdcAccountByShpcn",
+                query = "select o from ZolMdcAccount o where o.shpcn = :shpcn")
+})
 public class ZolMdcAccount {
 
     @Id
