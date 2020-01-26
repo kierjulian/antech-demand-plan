@@ -11,4 +11,6 @@ public interface ZolMdcPerBranchService {
 
     public List<ZolMdcPerBranch> findZolMdcPerBranchByLocalDate(LocalDate localDate);
 
+    public void removeZolMdcPerBranchById(Integer id);
+
 }

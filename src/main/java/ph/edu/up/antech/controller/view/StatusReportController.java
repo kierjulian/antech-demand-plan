@@ -12,9 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
+import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
@@ -22,9 +22,10 @@ import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.util.CsvToObjectConverter;
 
-import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reports")
@@ -49,6 +50,12 @@ public class StatusReportController {
 
     @Autowired
     private NetsuiteService netsuiteService;
+
+    @Autowired
+    private ZolMdcAccountService zolMdcAccountService;
+
+    @Autowired
+    private ZolMdcPerBranchService zolMdcPerBranchService;
 
     @GetMapping("")
     public String loadStatusReportHomePage() {
@@ -76,7 +83,7 @@ public class StatusReportController {
             handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
             handleDispensingDistributor(dispensingDistributorList, localDate);
             handleCustomerSalesByItem(customerSalesByItemList, localDate);
-            handleZolDailySalesPerBranch(zolDailySalesPerBranchList);
+            handleZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
@@ -173,10 +180,61 @@ public class StatusReportController {
         });
     }
 
-    private void handleZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList) {
+    private void handleZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
+        removeZolMdcPerBranchByDate(localDate);
+        createZolMdcPerBranchByZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
+    }
+
+    private void removeZolMdcPerBranchByDate(LocalDate localDate) {
+        List<ZolMdcPerBranch> zolMdcPerBranchList = zolMdcPerBranchService.findZolMdcPerBranchByLocalDate(localDate);
+        if (zolMdcPerBranchList != null) {
+            zolMdcPerBranchList.forEach(zolMdcPerBranch -> zolMdcPerBranchService
+                    .removeZolMdcPerBranchById(zolMdcPerBranch.getId()));
+        }
+    }
+
+    private void createZolMdcPerBranchByZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
+        List<ZolMdcRaw> zolMdcRawList = new ArrayList<>();
         zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
-            System.out.println(zolDailySalesPerBranch.getCono());
-            System.out.println();
+            zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
+            ZolMdcAccount zolMdcAccount = zolMdcAccountService
+                    .findZolMdcAccountByShpcn(zolDailySalesPerBranch.getShpcn());
+
+            ZolMdcRaw zolMdcRaw = new ZolMdcRaw(zolDailySalesPerBranch);
+            if (zolMdcAccount != null) {
+                zolMdcRaw.setAccountName(zolMdcAccount.getBranchName());
+            }
+
+            zolMdcRawList.add(zolMdcRaw);
+        });
+
+        List<ZolMdcSheet> zolMdcSheetList = new ArrayList<>();
+
+        List<ZolMdcRaw> zolMdcRawFilteredList = zolMdcRawList.stream()
+                .filter(zolMdcRaw -> zolMdcRaw.getAccountName() != null)
+                .collect(Collectors.toList());
+        zolMdcRawFilteredList.forEach(zolMdcRaw -> {
+            ZolMdcSheet zolMdcSheet = new ZolMdcSheet(zolMdcRaw);
+            zolMdcSheetList.add(zolMdcSheet);
+        });
+
+        List<ZolMdcPerBranch> zolMdcPerBranchList = new ArrayList<>();
+        zolMdcSheetList.forEach(zolMdcSheet -> {
+            ZolMdcPerBranch zolMdcPerBranch = new ZolMdcPerBranch(zolMdcSheet);
+            zolMdcPerBranchList.add(zolMdcPerBranch);
+        });
+
+        zolMdcPerBranchList.forEach(zolMdcPerBranch -> {
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
+                    .findZolPerDoorsGeneralInformationByZpcItemCode(zolMdcPerBranch.getItemCode());
+            zolMdcPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
+
+            ZolMdcAccount zolMdcAccount = zolMdcAccountService
+                    .findZolMdcAccountByBranchName(zolMdcPerBranch.getCustomerName());
+            zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
+
+            zolMdcPerBranch.setDate(localDate);
+            zolMdcPerBranchService.createZolMdcPerBranch(zolMdcPerBranch);
         });
     }
 

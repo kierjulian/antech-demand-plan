@@ -25,4 +25,9 @@ public class ZolMdcPerBranchServiceImpl implements ZolMdcPerBranchService {
         return zolMdcPerBranchDAO.findZolMdcPerBranchByLocalDate(localDate);
     }
 
+    @Override
+    public void removeZolMdcPerBranchById(Integer id) {
+        zolMdcPerBranchDAO.removeZolMdcPerBranchById(id);
+    }
+
 }

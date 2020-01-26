@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 import ph.edu.up.antech.service.DispensingDistributorService;
 import ph.edu.up.antech.service.NetsuiteService;
+import ph.edu.up.antech.service.ZolMdcPerBranchService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.util.StringUtils;
 
@@ -34,6 +36,9 @@ public class MasterFileController {
     @Autowired
     private NetsuiteService netsuiteService;
 
+    @Autowired
+    private ZolMdcPerBranchService zolMdcPerBranchService;
+
     @GetMapping("/zol-per-doors")
     public String loadZolPerDoorsMasterFile(Model model, @RequestParam(required = false) String date) {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
@@ -45,7 +50,12 @@ public class MasterFileController {
     }
 
     @GetMapping("/zol-mdc")
-    public String loadZolMdc() {
+    public String loadZolMdc(Model model, @RequestParam(required = false) String date) {
+        LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
+        List<ZolMdcPerBranch> zolMdcPerBranchList = zolMdcPerBranchService.findZolMdcPerBranchByLocalDate(localDate);
+
+        model.addAttribute("searchedDate", localDate);
+        model.addAttribute("zolMdcPerBranchList", zolMdcPerBranchList);
         return "zol-mdc";
     }
 

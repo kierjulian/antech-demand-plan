@@ -33,4 +33,10 @@ public class ZolMdcPerBranchDAOImpl implements ZolMdcPerBranchDAO {
         return query.getResultList();
     }
 
+    @Override
+    public void removeZolMdcPerBranchById(Integer id) {
+        ZolMdcPerBranch zolMdcPerBranch = em.find(ZolMdcPerBranch.class, id);
+        em.remove(zolMdcPerBranch);
+    }
+
 }
