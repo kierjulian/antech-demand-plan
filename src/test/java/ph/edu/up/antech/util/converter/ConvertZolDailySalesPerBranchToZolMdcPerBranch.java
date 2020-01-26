@@ -17,12 +17,15 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolMdcAccountService;
+import ph.edu.up.antech.service.ZolMdcPerBranchService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.impl.ZolMdcAccountServiceImpl;
+import ph.edu.up.antech.service.impl.ZolMdcPerBranchServiceImpl;
 
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +33,8 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
-        ZolMdcAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class
+        ZolMdcAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class,
+        ZolMdcPerBranchServiceImpl.class
 })
 public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
 
@@ -39,6 +43,9 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
+
+    @Autowired
+    private ZolMdcPerBranchService zolMdcPerBranchService;
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
@@ -170,6 +177,10 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranch {
                 System.out.println(zolMdcPerBranch.getAmountTimes1000());
                 System.out.println(zolMdcPerBranch.getA());
                 System.out.println();
+
+                LocalDate localDate = LocalDate.now();
+                zolMdcPerBranch.setDate(localDate);
+                //zolMdcPerBranchService.createZolMdcPerBranch(zolMdcPerBranch);
             });
         } catch (Exception e) {
             e.printStackTrace();
