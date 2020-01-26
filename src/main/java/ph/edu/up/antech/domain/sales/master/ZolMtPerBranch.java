@@ -1,10 +1,15 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.ZolMtAccount;
+import ph.edu.up.antech.domain.sales.master.converter.ZolMtSheet;
+import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ZolMtPerBranch {
 
+    private Integer id;
     private LocalDate date;
     private String customerCode;
     private String customerName;
@@ -32,6 +37,28 @@ public class ZolMtPerBranch {
     private Integer a;
     private LocalDate cmInd;
     private String dsm;
+
+    public ZolMtPerBranch() {
+    }
+
+    public ZolMtPerBranch(ZolMtSheet zolMtSheet) {
+        this.customerName = zolMtSheet.getAccountName();
+        this.itemCode = zolMtSheet.getZapCode();
+        this.itemName = zolMtSheet.getItemDescription();
+        this.salesUnit = zolMtSheet.getSumOfUnits();
+        this.salesValue = BigDecimal.valueOf(zolMtSheet.getSumOfFinalNetValue());
+        generateLessThan00375();
+        generateV1();
+        generateLessThan0853();
+        generateV2();
+        generateFinalAmount();
+        generalAmountTimes1000();
+        generateA();
+        this.amount = BigDecimal.valueOf(a);
+        generateAmountConverted();
+        generateType();
+        generateCm();
+    }
 
     public LocalDate getDate() {
         return date;
@@ -247,6 +274,94 @@ public class ZolMtPerBranch {
 
     public void setDsm(String dsm) {
         this.dsm = dsm;
+    }
+
+    private void generateLessThan00375() {
+        if (salesValue != null) {
+            lessThan00375 = salesValue.multiply(new BigDecimal("0.00375"));
+        }
+    }
+
+    private void generateV1() {
+        if (salesValue != null && lessThan00375 != null) {
+            v1 = salesValue.subtract(lessThan00375);
+        }
+    }
+
+    private void generateLessThan0853() {
+        if (v1 != null) {
+            if (true) {
+                lessThan0853 = v1.multiply(new BigDecimal("0.0853"));
+            } else {
+                lessThan0853 = v1.multiply(new BigDecimal("0.05"));
+            }
+        }
+    }
+
+    private void generateV2() {
+        if (v1 != null && lessThan0853 != null) {
+            v2 = v1.subtract(lessThan0853);
+        }
+    }
+
+    private void generateFinalAmount() {
+        if (salesValue != null && lessThan00375 != null && lessThan0853 != null) {
+            finalAmount = salesValue
+                    .subtract(lessThan00375)
+                    .subtract(lessThan0853)
+                    .multiply(new BigDecimal("0.001"));
+        }
+    }
+
+    private void generalAmountTimes1000() {
+        if (finalAmount != null) {
+            amountTimes1000 = finalAmount.multiply(new BigDecimal("1000"));
+        }
+    }
+
+    private void generateA() {
+        if (finalAmount != null) {
+            a = finalAmount.intValue();
+        }
+    }
+
+    private void generateAmountConverted() {
+        if (amount != null) {
+            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(amount);
+            //this.amountConverted = amountConvertedInBigDecimal.intValue();
+        }
+    }
+
+    private void generateType() {
+        if (amount != null) {
+            type = "CM";
+        } else {
+            type = "FALSE";
+        }
+    }
+
+    private void generateCm() {
+        if (salesValue != null && salesValue.compareTo(BigDecimal.ZERO) < 0) {
+            cm = "CM";
+        } else {
+            cm = "";
+        }
+    }
+
+    public void setValuesFromZolPerDoorsGeneralInformation(
+            ZolPerDoorsGeneralInformation generalInformation) {
+        if (generalInformation != null) {
+            this.antechProductDescription = generalInformation.getBrand();
+            this.antechPrice = generalInformation.getNewPrice();
+            this.stage = generalInformation.getStage();
+        }
+    }
+
+    public void setValuesFromZolMtAccount(ZolMtAccount zolMtAccount) {
+        if (zolMtAccount != null) {
+            this.account = zolMtAccount.getBranchName();
+            this.kamRefName = zolMtAccount.getNa();
+        }
     }
 
 }

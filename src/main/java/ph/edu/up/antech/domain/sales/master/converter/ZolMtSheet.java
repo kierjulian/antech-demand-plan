@@ -11,12 +11,12 @@ public class ZolMtSheet {
     public ZolMtSheet() {
     }
 
-    public ZolMtSheet(ZolMdcRaw zolMdcRaw) {
-        this.accountName = zolMdcRaw.getAccountName();
-        this.zapCode = zolMdcRaw.getZapCode();
-        this.itemDescription = zolMdcRaw.getItemDescription();
-        this.sumOfUnits = zolMdcRaw.getUnits();
-        this.sumOfFinalNetValue = zolMdcRaw.getFinalNetVat().intValue();
+    public ZolMtSheet(ZolMtRaw zolMtRaw) {
+        this.accountName = zolMtRaw.getAccountName();
+        this.zapCode = zolMtRaw.getZapCode();
+        this.itemDescription = zolMtRaw.getItemDescription();
+        this.sumOfUnits = zolMtRaw.getUnits();
+        this.sumOfFinalNetValue = zolMtRaw.getFinalNetVat().intValue();
     }
 
     public String getAccountName() {
