@@ -3,6 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Status Report')"></div>
+        <style>
+            .card-footer{
+                position:absolute;
+                bottom:0;
+                width:100%;
+            }
+        </style>
     </head>
     <body>
         <div class="container-fluid"><br>
@@ -132,6 +139,9 @@
                                             </p>
                                         </div>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="card-deck">
                                     <div class="card">
                                         <br>
                                         <br>
@@ -174,10 +184,36 @@
                                     Output
                                 </div>
                                 <div class="card-body text-center">
-                                    <div class="btn-group">
-                                        <a class="btn btn-outline-dark" th:href="@{/dsr-zol}"
-                                           target="_blank" role="button">
-                                            <i class="fas fa-briefcase">&nbsp; DSR ZOL</i></a>
+                                    <div class="card-deck">
+                                        <div class="card">
+                                            <br>
+                                            <br>
+                                            <i class="fas fa-briefcase fa-2x text-center"></i>
+                                            <div class="card-body text-center">
+                                                <p class="card-text lead font-weight-bold">
+                                                    <a class="stretched-link" th:href="@{/dsr-zol}" target="_blank">DSR ZOL</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="card border-0">
+
+                                        </div>
+                                        <div class="card border-0">
+
+                                        </div>
+                                        <div class="card border-0">
+
+                                        </div>
+                                        <div class="card border-0">
+
+                                        </div>
+
+                                        <div class="card border-0">
+
+                                        </div>
+                                        <div class="card border-0">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
