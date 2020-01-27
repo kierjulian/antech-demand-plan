@@ -22,8 +22,8 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
-                        <input type="date" class="form-control" name="date">&nbsp;&nbsp;
+                    <form class="form-inline" method="get" th:action="@{/master/zol-mt}">
+                        <input type="date" class="form-control" th:value="${searchedDate}">&nbsp;&nbsp;
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-search">&nbsp; Search</i></button>
@@ -63,7 +63,35 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                        <tr th:each="zolMtPerBranch, row : ${zolMtPerBranchList}">
+                            <td class="align-middle" th:text="${row.count}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.customerCode}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.customerName}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.itemCode}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.itemName}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.salesUnit}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.salesValue}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.antechProductDescription}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.antechPrice}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.amount}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.account}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.kam}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.kamRefName}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.stage}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.amountConverted}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.type}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.loc}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.cm}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.lessThan00375}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.v1}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.lessThan0853}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.v2}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.finalAmount}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.amountTimes1000}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.a}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.dsm}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.cmInd}"></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

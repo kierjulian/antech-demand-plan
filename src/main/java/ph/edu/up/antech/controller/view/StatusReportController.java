@@ -61,6 +61,9 @@ public class StatusReportController {
     @Autowired
     private ZolMtAccountService zolMtAccountService;
 
+    @Autowired
+    private ZolMtPerBranchService zolMtPerBranchService;
+
     @GetMapping("")
     public String loadStatusReportHomePage() {
         return "status-report";
@@ -84,10 +87,11 @@ public class StatusReportController {
                     .convertCsvToListOfZolDailySalesPerBranch(zolDailySalesPerBranchFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
 
-            handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
-            handleDispensingDistributor(dispensingDistributorList, localDate);
-            handleCustomerSalesByItem(customerSalesByItemList, localDate);
+            //handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
+            //handleDispensingDistributor(dispensingDistributorList, localDate);
+            //handleCustomerSalesByItem(customerSalesByItemList, localDate);
             handleZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
+            handleZolDailySalesPerBranchToZolMtPerBranch(zolDailySalesPerBranchList, localDate);
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
@@ -243,6 +247,12 @@ public class StatusReportController {
     }
 
     private void handleZolDailySalesPerBranchToZolMtPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
+        List<ZolMtPerBranch> zolMtPerBranches = zolMtPerBranchService.findZolMtPerBranchByLocalDate(localDate);
+        if (zolMtPerBranches != null) {
+            zolMtPerBranches.forEach(zolMtPerBranch -> zolMtPerBranchService
+                    .removeZolMtPerBranchById(zolMtPerBranch.getId()));
+        }
+
         List<ZolMtRaw> zolMtRawList = new ArrayList<>();
 
         zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
@@ -284,30 +294,9 @@ public class StatusReportController {
             ZolMtAccount zolMtAccount = zolMtAccountService
                     .findZolMtAccountByBranchName(zolMtPerBranch.getCustomerName());
             zolMtPerBranch.setValuesFromZolMtAccount(zolMtAccount);
-
-            System.out.println(zolMtPerBranch.getCustomerName());
-            System.out.println(zolMtPerBranch.getItemCode());
-            System.out.println(zolMtPerBranch.getItemName());
-            System.out.println(zolMtPerBranch.getSalesUnit());
-            System.out.println(zolMtPerBranch.getSalesValue());
-            System.out.println(zolMtPerBranch.getAntechProductDescription());
-            System.out.println(zolMtPerBranch.getAccount());
-            System.out.println(zolMtPerBranch.getAntechPrice());
-            System.out.println(zolMtPerBranch.getAmount());
-            System.out.println(zolMtPerBranch.getKamRefName());
-            System.out.println(zolMtPerBranch.getStage());
-            System.out.println(zolMtPerBranch.getAmountConverted());
-            System.out.println(zolMtPerBranch.getType());
-            System.out.println(zolMtPerBranch.getLessThan00375());
-            System.out.println(zolMtPerBranch.getV1());
-            System.out.println(zolMtPerBranch.getLessThan0853());
-            System.out.println(zolMtPerBranch.getV2());
-            System.out.println(zolMtPerBranch.getFinalAmount());
-            System.out.println(zolMtPerBranch.getAmountTimes1000());
-            System.out.println(zolMtPerBranch.getA());
-            System.out.println();
-
             zolMtPerBranch.setDate(localDate);
+
+            zolMtPerBranchService.createZolMtPerBranch(zolMtPerBranch);
         });
     }
 

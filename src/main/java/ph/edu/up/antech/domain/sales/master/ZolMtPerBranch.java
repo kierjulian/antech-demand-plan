@@ -63,7 +63,7 @@ public class ZolMtPerBranch {
     @Column(name = "stage")
     private String stage;
 
-    @Column(name = "amount_converted")
+    @Transient
     private BigDecimal amountConverted;
 
     @Column(name = "type")
@@ -122,6 +122,14 @@ public class ZolMtPerBranch {
         generateAmountConverted();
         generateType();
         generateCm();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {
