@@ -43,4 +43,10 @@ public class ZolMdcAccountDAOImpl implements ZolMdcAccountDAO {
         return !StringUtils.isNullOrEmpty(zolMdcAccountList) ? zolMdcAccountList.get(0) : null;
     }
 
+    @Override
+    public List<ZolMdcAccount> findAllZOlMdcAccount() {
+        TypedQuery<ZolMdcAccount> query = em.createNamedQuery("findAllZolMdcAccount", ZolMdcAccount.class);
+        return query.getResultList();
+    }
+
 }

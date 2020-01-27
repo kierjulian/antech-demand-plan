@@ -2,6 +2,8 @@ package ph.edu.up.antech.service;
 
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 
+import java.util.List;
+
 public interface ZolMdcAccountService {
 
     public ZolMdcAccount createZolMdcAccount(ZolMdcAccount zolMdcAccount);
@@ -9,5 +11,7 @@ public interface ZolMdcAccountService {
     public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
 
     public ZolMdcAccount findZolMdcAccountByBranchName(String branchName);
+
+    public List<ZolMdcAccount> findAllZolMdcAccount();
 
 }

@@ -45,4 +45,11 @@ public class ZolMtAccountDAOImpl implements ZolMtAccountDAO {
         return !StringUtils.isNullOrEmpty(zolMtAccounts) ? zolMtAccounts.get(0) : null;
     }
 
+    @Override
+    public List<ZolMtAccount> findAllZolMtAccount() {
+        TypedQuery<ZolMtAccount> query = em.createNamedQuery("findAllZolMtAccount",
+                ZolMtAccount.class);
+        return query.getResultList();
+    }
+
 }

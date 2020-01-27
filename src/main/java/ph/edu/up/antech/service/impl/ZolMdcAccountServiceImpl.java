@@ -6,6 +6,8 @@ import ph.edu.up.antech.dao.ZolMdcAccountDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 
+import java.util.List;
+
 @Service
 public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
 
@@ -25,6 +27,11 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
     @Override
     public ZolMdcAccount findZolMdcAccountByBranchName(String branchName) {
         return zolMdcAccountDAO.findZolMdcAccountByBranchName(branchName);
+    }
+
+    @Override
+    public List<ZolMdcAccount> findAllZolMdcAccount() {
+        return zolMdcAccountDAO.findAllZOlMdcAccount();
     }
 
 }
