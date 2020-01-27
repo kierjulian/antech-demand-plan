@@ -110,7 +110,11 @@ public class ZolMtPerBranch {
         this.itemCode = zolMtSheet.getZapCode();
         this.itemName = zolMtSheet.getItemDescription();
         this.salesUnit = zolMtSheet.getSumOfUnits();
-        this.salesValue = BigDecimal.valueOf(zolMtSheet.getSumOfFinalNetValue());
+
+        if (zolMtSheet.getSumOfFinalNetValue() != null) {
+            this.salesValue = BigDecimal.valueOf(zolMtSheet.getSumOfFinalNetValue());
+        }
+
         generateLessThan00375();
         generateV1();
         generateLessThan0853();
@@ -118,7 +122,11 @@ public class ZolMtPerBranch {
         generateFinalAmount();
         generalAmountTimes1000();
         generateA();
-        this.amount = BigDecimal.valueOf(a);
+
+        if (a != null) {
+            this.amount = BigDecimal.valueOf(a);
+        }
+
         generateAmountConverted();
         generateType();
         generateCm();

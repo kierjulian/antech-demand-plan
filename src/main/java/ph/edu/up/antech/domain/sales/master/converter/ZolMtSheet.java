@@ -16,7 +16,9 @@ public class ZolMtSheet {
         this.zapCode = zolMtRaw.getZapCode();
         this.itemDescription = zolMtRaw.getItemDescription();
         this.sumOfUnits = zolMtRaw.getUnits();
-        this.sumOfFinalNetValue = zolMtRaw.getFinalNetVat().intValue();
+        if (zolMtRaw.getFinalNetVat() != null) {
+            this.sumOfFinalNetValue = zolMtRaw.getFinalNetVat().intValue();
+        }
     }
 
     public String getAccountName() {

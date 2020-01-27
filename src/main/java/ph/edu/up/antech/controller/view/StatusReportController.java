@@ -87,9 +87,9 @@ public class StatusReportController {
                     .convertCsvToListOfZolDailySalesPerBranch(zolDailySalesPerBranchFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
 
-            //handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
-            //handleDispensingDistributor(dispensingDistributorList, localDate);
-            //handleCustomerSalesByItem(customerSalesByItemList, localDate);
+            handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
+            handleDispensingDistributor(dispensingDistributorList, localDate);
+            handleCustomerSalesByItem(customerSalesByItemList, localDate);
             handleZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
             handleZolDailySalesPerBranchToZolMtPerBranch(zolDailySalesPerBranchList, localDate);
 
