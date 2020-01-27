@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class ConvertDailySalesDataDetailToMdcPerBranchSales {
+public class ConvertDailySalesDataDetailToMdcPerBranchSalesTest {
 
     @Test
     public void convertDailySalesDataDetailToMdcPerBranchSales_andPrintContents_shouldBeSuccessful() {

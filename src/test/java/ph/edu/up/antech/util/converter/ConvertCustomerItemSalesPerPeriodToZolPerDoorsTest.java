@@ -35,7 +35,7 @@ import java.util.List;
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
         ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsServiceImpl.class, CustomerServiceImpl.class})
-public class ConvertCustomerItemSalesPerPeriodToZolPerDoors {
+public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;

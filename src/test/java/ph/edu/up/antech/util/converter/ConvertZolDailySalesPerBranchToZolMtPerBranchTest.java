@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
         ZolMtAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class,
         ZolMtPerBranchServiceImpl.class
 })
-public class ConvertZolDailySalesPerBranchToZolMtPerBranch {
+public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
 
     @Autowired
     private ZolMtAccountService zolMtAccountService;

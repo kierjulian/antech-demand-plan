@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ConvertCustomerSalesByItemToNetsuite {
+public class ConvertCustomerSalesByItemToNetsuiteTest {
 
     @Test
     public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
