@@ -17,9 +17,10 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolMtAccountService;
+import ph.edu.up.antech.service.ZolMtPerBranchService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
-import ph.edu.up.antech.service.impl.ZolMdcPerBranchServiceImpl;
 import ph.edu.up.antech.service.impl.ZolMtAccountServiceImpl;
+import ph.edu.up.antech.service.impl.ZolMtPerBranchServiceImpl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
         ZolMtAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class,
-        ZolMdcPerBranchServiceImpl.class
+        ZolMtPerBranchServiceImpl.class
 })
 public class ConvertZolDailySalesPerBranchToZolMtPerBranch {
 
@@ -43,6 +44,9 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranch {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
+
+    @Autowired
+    private ZolMtPerBranchService zolMtPerBranchService;
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMtPerBranch_shouldBeSuccessful() {
@@ -120,6 +124,7 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranch {
 
                 LocalDate localDate = LocalDate.now();
                 zolMtPerBranch.setDate(localDate);
+                //zolMtPerBranchService.createZolMtPerBranch(zolMtPerBranch);
             });
         } catch (IOException e) {
             e.printStackTrace();

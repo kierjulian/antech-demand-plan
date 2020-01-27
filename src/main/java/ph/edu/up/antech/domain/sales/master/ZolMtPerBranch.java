@@ -4,38 +4,102 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolMtAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtSheet;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "zol_mt_per_branch")
+@NamedQueries({
+        @NamedQuery(name = "findZolMtPerBranchByLocalDate",
+                query = "select o from ZolMtPerBranch o where o.date = :localDate")
+})
 public class ZolMtPerBranch {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "customer_code")
     private String customerCode;
+
+    @Column(name = "customer_name")
     private String customerName;
+
+    @Column(name = "item_code")
     private String itemCode;
+
+    @Column(name = "item_name")
     private String itemName;
+
+    @Column(name = "sales_unit")
     private Integer salesUnit;
+
+    @Column(name = "sales_value")
     private BigDecimal salesValue;
+
+    @Column(name = "antech_prod_desc")
     private String antechProductDescription;
+
+    @Column(name = "antech_price")
     private BigDecimal antechPrice;
+
+    @Column(name = "amount")
     private BigDecimal amount;
+
+    @Column(name = "account")
     private String account;
+
+    @Column(name = "kam")
     private String kam;
+
+    @Column(name = "kam_ref_name")
     private String kamRefName;
+
+    @Column(name = "stage")
     private String stage;
+
+    @Column(name = "amount_converted")
     private BigDecimal amountConverted;
+
+    @Column(name = "type")
     private String type;
+
+    @Column(name = "loc")
     private String loc;
+
+    @Column(name = "cm")
     private String cm;
+
+    @Column(name = "less_than_00375")
     private BigDecimal lessThan00375;
+
+    @Column(name = "v1")
     private BigDecimal v1;
+
+    @Column(name = "less_than_0853")
     private BigDecimal lessThan0853;
+
+    @Column(name = "v2")
     private BigDecimal v2;
+
+    @Column(name = "final_amount")
     private BigDecimal finalAmount;
+
+    @Column(name = "amount_times_1000")
     private BigDecimal amountTimes1000;
+
+    @Column(name = "a")
     private Integer a;
+
+    @Column(name = "cm_ind")
     private LocalDate cmInd;
+
+    @Transient
     private String dsm;
 
     public ZolMtPerBranch() {
