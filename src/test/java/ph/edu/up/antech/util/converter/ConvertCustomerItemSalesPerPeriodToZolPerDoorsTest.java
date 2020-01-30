@@ -29,6 +29,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -51,35 +52,60 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
 
     @Test
     public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
+        Long startTime = System.nanoTime();
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerItemSalesPerPeriod.csv"))) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
                     .withSkipLines(3).withType(CustomerItemSalesPerPeriod.class).build();
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = csvToBean.parse();
+
+            List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
+                    .findAllZolPerDoorsGeneralInformation();
+            List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
+            List<Customer> customerList = customerService.findAllCustomers();
+
+            List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();
             for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
                 customerItemSalesPerPeriod.convertAllStringValuesToProperType();
                 customerItemSalesPerPeriod.setDate(LocalDate.now());
 
                 // Update customer code and name
-                Customer customer = customerService.findCustomerByCustomerCode(customerItemSalesPerPeriod.getCustomerCode());
+                Customer customer = customerList.stream()
+                        .filter(cust -> cust.getCustomerCode().equals(customerItemSalesPerPeriod.getCustomerCode()))
+                        .findFirst()
+                        .orElse(null);
                 customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
 
                 // Update material code
-                String materialCode = customerService.findCustomerZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
-                customerItemSalesPerPeriod.setMaterialCode(materialCode);
+                Customer otherCustomer = customerList.stream()
+                        .filter(cust -> cust.getZolMaterialCode().equals(customerItemSalesPerPeriod.getMaterialCode()))
+                        .findFirst()
+                        .orElse(null);
+
+                if (otherCustomer != null) {
+                    String materialCode = otherCustomer.getZolMaterialCode();
+                    customerItemSalesPerPeriod.setMaterialCode(materialCode);
+                }
 
                 ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
                 // Find ZolPerDoorsGeneralInformation where itemCode = itemCode
                 // Populate ZolPerDoors
-                ZolPerDoorsGeneralInformation generalInformation =
-                        zolPerDoorsGeneralInformationService.findZolPerDoorsGeneralInformationByZpcItemCode(zolPerDoors.getItemCode());
-                zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(generalInformation);
+                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation =
+                        zolPerDoorsGeneralInformationList.stream()
+                                .filter(generalInformation -> generalInformation.getZpcItemCode().equals(zolPerDoors.getItemCode()))
+                                .findFirst()
+                                .orElse(null);
+                zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
                 // Find ZolPerDoorsPerAcct where zol == customerCode
                 // Populate ZolPerDoors
-                ZolPerDoorsPerAcct perAcct = zolPerDoorsPerAcctService.findZolPerDoorsPerAcctByZol(zolPerDoors.getCustomerCode());
-                zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(perAcct);
+                ZolPerDoorsPerAcct zolPerDoorsPerAcct =
+                        zolPerDoorsPerAcctList.stream()
+                                .filter(perAcct -> perAcct.getZol().equals(zolPerDoors.getCustomerCode()))
+                                .findFirst()
+                                .orElse(null);
+                zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
 
-                if (zolPerDoors == null || perAcct == null) {
+                if (zolPerDoors == null || zolPerDoorsPerAcct == null) {
                     continue;
                 }
 
@@ -108,12 +134,17 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
                 System.out.println("Final Amount: " + zolPerDoors.getFinalAmount());
                 System.out.println("Amount Times 1000: " + zolPerDoors.getAmountTimesOneThousand());
                 System.out.println("A: " + zolPerDoors.getA());
-
                 System.out.println();
 
-                // Save to database
-                //zolPerDoorsService.create(zolPerDoors);
+                zolPerDoorsList.add(zolPerDoors);
             }
+
+            zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
+            zolPerDoorsService.removeZolPerDoorsByLocalDate(LocalDate.now());
+
+            Long endTime = System.nanoTime();
+            System.out.println(zolPerDoorsList.size());
+            System.out.println(endTime - startTime);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

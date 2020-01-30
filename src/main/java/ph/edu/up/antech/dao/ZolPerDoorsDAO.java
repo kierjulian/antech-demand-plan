@@ -22,4 +22,8 @@ public interface ZolPerDoorsDAO {
 
     public List<String> findDistinctZolPerDoorsAccountByLocalDate(LocalDate localDate);
 
+    public void removeZolPerDoorsByLocalDate(LocalDate localDate);
+
+    public void saveZolPerDoorsByBatch(List<ZolPerDoors> zolPerDoorsList);
+
 }

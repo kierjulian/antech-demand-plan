@@ -38,4 +38,11 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
         return null;
     }
 
+    @Override
+    public List<ZolPerDoorsPerAcct> findAllZolPerDoors() {
+        TypedQuery<ZolPerDoorsPerAcct> query = entityManager
+                .createNamedQuery("findAllZolPerDoorsPerAcct", ZolPerDoorsPerAcct.class);
+        return query.getResultList();
+    }
+
 }

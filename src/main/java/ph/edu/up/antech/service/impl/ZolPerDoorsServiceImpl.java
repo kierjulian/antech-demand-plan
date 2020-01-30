@@ -52,4 +52,14 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
         return zolPerDoorsDAO.findDistinctZolPerDoorsAccountByLocalDate(localDate);
     }
 
+    @Override
+    public void removeZolPerDoorsByLocalDate(LocalDate localDate) {
+        zolPerDoorsDAO.removeZolPerDoorsByLocalDate(localDate);
+    }
+
+    @Override
+    public void saveZolPerDoorsByBatch(List<ZolPerDoors> zolPerDoorsList) {
+        zolPerDoorsDAO.saveZolPerDoorsByBatch(zolPerDoorsList);
+    }
+
 }

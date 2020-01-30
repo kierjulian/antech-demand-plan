@@ -6,6 +6,7 @@ import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -71,6 +72,25 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
                 String.class);
         query.setParameter("localDate", localDate);
         return query.getResultList();
+    }
+
+    @Override
+    public void removeZolPerDoorsByLocalDate(LocalDate localDate) {
+        Query query = entityManager.createNamedQuery("deleteZolPerDoorsByLocalDate");
+        query.setParameter("localDate", localDate);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void saveZolPerDoorsByBatch(List<ZolPerDoors> zolPerDoorsList) {
+        for (int i = 0; i < zolPerDoorsList.size(); i++) {
+            if (i % 50 == 0) {
+                entityManager.flush();
+                entityManager.clear();
+            }
+
+            entityManager.persist(zolPerDoorsList.get(i));
+        }
     }
 
 }

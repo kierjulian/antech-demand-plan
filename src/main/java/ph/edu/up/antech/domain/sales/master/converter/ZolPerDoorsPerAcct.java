@@ -9,7 +9,9 @@ import java.io.Serializable;
 @Table(name = "zol_door_acct")
 @NamedQueries({
         @NamedQuery(name = "findZolPerDoorsPerAcctByZol",
-                query = "select o from ZolPerDoorsPerAcct o where o.zol = :zol")
+                query = "select o from ZolPerDoorsPerAcct o where o.zol = :zol"),
+        @NamedQuery(name = "findAllZolPerDoorsPerAcct",
+                query = "select o from ZolPerDoorsPerAcct o")
 })
 public class ZolPerDoorsPerAcct implements Serializable {
 

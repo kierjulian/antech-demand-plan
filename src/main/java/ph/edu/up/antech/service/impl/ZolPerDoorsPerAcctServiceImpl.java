@@ -6,6 +6,8 @@ import ph.edu.up.antech.dao.ZolPerDoorsPerAcctDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 
+import java.util.List;
+
 @Service
 public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService {
 
@@ -20,6 +22,11 @@ public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService 
     @Override
     public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String customerCode) {
         return zolPerDoorsPerAcctDAO.findZolPerDoorsPerAcctByZol(customerCode);
+    }
+
+    @Override
+    public List<ZolPerDoorsPerAcct> findAllZolPerDoors() {
+        return zolPerDoorsPerAcctDAO.findAllZolPerDoors();
     }
 
 }

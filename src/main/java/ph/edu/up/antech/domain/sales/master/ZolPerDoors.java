@@ -23,7 +23,9 @@ import java.time.LocalDate;
                 query = "select o from ZolPerDoors o where o.date = :localDate and o.kamReferenceName = :kamReferenceName " +
                         "and o.antechProductDescription = :antechProductDescription"),
         @NamedQuery(name = "findDistinctZolPerDoorsAccountByLocalDate",
-                query = "select distinct(o.account) from ZolPerDoors o where o.date = :localDate")
+                query = "select distinct(o.account) from ZolPerDoors o where o.date = :localDate"),
+        @NamedQuery(name = "deleteZolPerDoorsByLocalDate",
+                query = "delete from ZolPerDoors o where o.date = :localDate")
 })
 public class ZolPerDoors implements Serializable {
 
