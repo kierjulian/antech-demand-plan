@@ -30,4 +30,14 @@ public class DispensingDistributorServiceImpl implements DispensingDistributorSe
         dispensingDistributorDAO.removeDispensingDistributor(id);
     }
 
+    @Override
+    public void saveDispensingDistributorByBatch(List<DispensingDistributor> dispensingDistributorList) {
+        dispensingDistributorDAO.saveDispensingDistributorByBatch(dispensingDistributorList);
+    }
+
+    @Override
+    public void removeDispensingDistributorByLocalDate(LocalDate localDate) {
+        dispensingDistributorDAO.removeDispensingDistributorByLocalDate(localDate);
+    }
+
 }

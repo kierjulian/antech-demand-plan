@@ -12,7 +12,9 @@ import java.time.LocalDate;
 @Table(name = "dispensing_distributor")
 @NamedQueries({
         @NamedQuery(name = "findDispensingDistributorByDate",
-                query = "SELECT o FROM DispensingDistributor o where o.date = :date")
+                query = "SELECT o FROM DispensingDistributor o where o.date = :date"),
+        @NamedQuery(name = "deleteDispensingDistributorByLocalDate",
+                query = "delete from DispensingDistributor o where o.date = :localDate")
 })
 public class DispensingDistributor implements Serializable {
 

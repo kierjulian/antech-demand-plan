@@ -13,4 +13,8 @@ public interface DispensingDistributorDAO {
 
     public void removeDispensingDistributor(Integer id);
 
+    public void saveDispensingDistributorByBatch(List<DispensingDistributor> dispensingDistributorList);
+
+    public void removeDispensingDistributorByLocalDate(LocalDate localDate);
+
 }

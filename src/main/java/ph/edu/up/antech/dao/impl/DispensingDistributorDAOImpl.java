@@ -6,6 +6,7 @@ import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -37,6 +38,25 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
     public void removeDispensingDistributor(Integer id) {
         DispensingDistributor dispensingDistributor = entityManager.find(DispensingDistributor.class, id);
         entityManager.remove(dispensingDistributor);
+    }
+
+    @Override
+    public void saveDispensingDistributorByBatch(List<DispensingDistributor> dispensingDistributorList) {
+        for (int i = 0; i < dispensingDistributorList.size(); i++) {
+            if (i % 50 == 0) {
+                entityManager.flush();
+                entityManager.clear();
+            }
+
+            entityManager.persist(dispensingDistributorList.get(i));
+        }
+    }
+
+    @Override
+    public void removeDispensingDistributorByLocalDate(LocalDate localDate) {
+        Query query = entityManager.createNamedQuery("deleteDispensingDistributorByLocalDate");
+        query.setParameter("localDate", localDate);
+        query.executeUpdate();
     }
 
 }
