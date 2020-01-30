@@ -49,6 +49,8 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
+        Long startTime = System.nanoTime();
+
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/ZolDailySalesPerBranchTest.csv"))) {
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
@@ -58,20 +60,22 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
             List<ZolDailySalesPerBranch> zolDailySalesPerBranchList = csvToBean.parse();
             List<ZolMdcRaw> zolMdcRawList = new ArrayList<>();
 
+            List<ZolMdcAccount> zolMdcAccountList = zolMdcAccountService.findAllZolMdcAccount();
+
             zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
                 zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
-                ZolMdcAccount zolMdcAccount = zolMdcAccountService
-                        .findZolMdcAccountByShpcn(zolDailySalesPerBranch.getShpcn());
+                ZolMdcAccount zolMdcAccount = zolMdcAccountList.stream()
+                        .filter(account -> account.getShpcn().equals(zolDailySalesPerBranch.getShpcn()))
+                        .findFirst()
+                        .orElse(null);
 
                 ZolMdcRaw zolMdcRaw = new ZolMdcRaw(zolDailySalesPerBranch);
-
                 if (zolMdcAccount != null) {
                     zolMdcRaw.setAccountName(zolMdcAccount.getBranchName());
                 }
 
                 zolMdcRawList.add(zolMdcRaw);
             });
-
 
             List<ZolMdcRaw> zolMdcRawFilteredList = zolMdcRawList.stream()
                     .filter(zolMdcRaw -> zolMdcRaw.getAccountName() != null)
@@ -147,13 +151,20 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                 zolMdcPerBranchList.add(zolMdcPerBranch);
             });
 
+            List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList =
+                    zolPerDoorsGeneralInformationService.findAllZolPerDoorsGeneralInformation();
+
             zolMdcPerBranchList.forEach(zolMdcPerBranch -> {
-                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                        .findZolPerDoorsGeneralInformationByZpcItemCode(zolMdcPerBranch.getItemCode());
+                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
+                        .filter(generalInformation -> generalInformation.getZpcItemCode().equals(zolMdcPerBranch.getItemCode()))
+                        .findFirst()
+                        .orElse(null);
                 zolMdcPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-                ZolMdcAccount zolMdcAccount = zolMdcAccountService
-                        .findZolMdcAccountByBranchName(zolMdcPerBranch.getCustomerName());
+                ZolMdcAccount zolMdcAccount = zolMdcAccountList.stream()
+                        .filter(account -> account.getBranchName().equals(zolMdcPerBranch.getCustomerName()))
+                        .findFirst()
+                        .orElse(null);
                 zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
 
                 System.out.println(zolMdcPerBranch.getCustomerName());
@@ -178,14 +189,18 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                 System.out.println(zolMdcPerBranch.getA());
                 System.out.println();
 
-                LocalDate localDate = LocalDate.now();
-                zolMdcPerBranch.setDate(localDate);
-                //zolMdcPerBranchService.createZolMdcPerBranch(zolMdcPerBranch);
+                zolMdcPerBranch.setDate(LocalDate.now());
             });
+
+            zolMdcPerBranchService.saveZolMdcPerBranchByBatch(zolMdcPerBranchList);
+            zolMdcPerBranchService.removeZolMdcPerBranchByLocalDate(LocalDate.now());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
         }
+
+        Long endTime = System.nanoTime();
+        System.out.println(endTime - startTime);
     }
 
 }

@@ -13,4 +13,8 @@ public interface ZolMdcPerBranchService {
 
     public void removeZolMdcPerBranchById(Integer id);
 
+    public void removeZolMdcPerBranchByLocalDate(LocalDate localDate);
+
+    public void saveZolMdcPerBranchByBatch(List<ZolMdcPerBranch> zolMdcPerBranchList);
+
 }

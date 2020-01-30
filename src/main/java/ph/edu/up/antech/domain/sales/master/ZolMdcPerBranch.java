@@ -12,7 +12,9 @@ import java.time.LocalDate;
 @Table(name = "zol_mdc_per_branch")
 @NamedQueries({
         @NamedQuery(name = "findZolMdcPerBranchByLocalDate",
-                query = "select o from ZolMdcPerBranch o where o.date = :localDate")
+                query = "select o from ZolMdcPerBranch o where o.date = :localDate"),
+        @NamedQuery(name = "deleteZolMdcPerBranchByLocalDate",
+                query = "delete from ZolMdcPerBranch o where o.date = :localDate")
 })
 public class ZolMdcPerBranch {
 
