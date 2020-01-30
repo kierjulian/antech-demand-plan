@@ -30,4 +30,14 @@ public class ZolMtPerBranchServiceImpl implements ZolMtPerBranchService {
         zolMtPerBranchDAO.removeZolMtPerBranchById(id);
     }
 
+    @Override
+    public void removeZolMtPerBranchByLocalDate(LocalDate localDate) {
+        zolMtPerBranchDAO.removeZolMtPerBranchByLocalDate(localDate);
+    }
+
+    @Override
+    public void saveZolMtPerBranchByBatch(List<ZolMtPerBranch> zolMtPerBranchList) {
+        zolMtPerBranchDAO.saveZolMtPerBranchByBatch(zolMtPerBranchList);
+    }
+
 }

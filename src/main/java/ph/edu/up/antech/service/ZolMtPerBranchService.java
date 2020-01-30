@@ -13,4 +13,9 @@ public interface ZolMtPerBranchService {
 
     public void removeZolMtPerBranchById(Integer id);
 
+    public void removeZolMtPerBranchByLocalDate(LocalDate localDate);
+
+    public void saveZolMtPerBranchByBatch(List<ZolMtPerBranch> zolMtPerBranchList);
+
+
 }

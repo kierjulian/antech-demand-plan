@@ -6,6 +6,8 @@ import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 
+import java.util.List;
+
 @Service
 public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGeneralInformationService {
 
@@ -25,6 +27,11 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
     @Override
     public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByZpcItemCode(String zpcItemCode) {
         return zolPerDoorsGeneralInformationDAO.findZolPerDoorsGeneralInformationByZpcItemCode(zpcItemCode);
+    }
+
+    @Override
+    public List<ZolPerDoorsGeneralInformation> findAllZolPerDoorsGeneralInformation() {
+        return zolPerDoorsGeneralInformationDAO.findAllZolPerDoorsGeneralInformation();
     }
 
 }

@@ -6,6 +6,7 @@ import ph.edu.up.antech.domain.sales.master.ZolMtPerBranch;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -37,6 +38,25 @@ public class ZolMtPerBranchDAOImpl implements ZolMtPerBranchDAO {
     public void removeZolMtPerBranchById(Integer id) {
         ZolMtPerBranch zolMdcPerBranch = em.find(ZolMtPerBranch.class, id);
         em.remove(zolMdcPerBranch);
+    }
+
+    @Override
+    public void removeZolMtPerBranchByLocalDate(LocalDate localDate) {
+        Query query = em.createNamedQuery("deleteZolMtPerBranchByLocalDate");
+        query.setParameter("localDate", localDate);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void saveZolMtPerBranchByBatch(List<ZolMtPerBranch> zolMtPerBranchList) {
+        for (int i = 0; i < zolMtPerBranchList.size(); i++) {
+            if (i % 50 == 0) {
+                em.flush();
+                em.clear();
+            }
+
+            em.persist(zolMtPerBranchList.get(i));
+        }
     }
 
 }

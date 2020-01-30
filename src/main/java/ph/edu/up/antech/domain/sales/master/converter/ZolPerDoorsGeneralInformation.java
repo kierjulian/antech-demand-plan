@@ -12,7 +12,9 @@ import java.math.BigDecimal;
         @NamedQuery(name = "findZolPerDoorsGeneralInformationByItemCode",
                 query = "select o from ZolPerDoorsGeneralInformation o where o.itemCode = :itemCode"),
         @NamedQuery(name = "findZolPerDoorsGeneralInformationByZpcItemCode",
-                query = "select o from ZolPerDoorsGeneralInformation o where o.zpcItemCode = :zpcItemCode")
+                query = "select o from ZolPerDoorsGeneralInformation o where o.zpcItemCode = :zpcItemCode"),
+        @NamedQuery(name = "findAllZolPerDoorsGeneralInformation",
+                query = "select o from ZolPerDoorsGeneralInformation o")
 })
 public class ZolPerDoorsGeneralInformation implements Serializable {
 

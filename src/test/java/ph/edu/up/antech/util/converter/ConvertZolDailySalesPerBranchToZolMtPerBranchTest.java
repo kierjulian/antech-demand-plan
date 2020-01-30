@@ -52,6 +52,7 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
     public void convertZolDailySalesPerBranch_toZolMtPerBranch_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(
                 Paths.get("src/test/resources/ZolDailySalesPerBranch.csv"))) {
+            Long startTime = System.nanoTime();
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
                     .withIgnoreLeadingWhiteSpace(true)
@@ -60,11 +61,15 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
             List<ZolDailySalesPerBranch> zolDailySalesPerBranchList = csvToBean.parse();
             List<ZolMtRaw> zolMtRawList = new ArrayList<>();
 
+            List<ZolMtAccount> zolMtAccountList = zolMtAccountService.findAllZolMtAccount();
+
             zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
                 zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
 
-                ZolMtAccount zolMtAccount = zolMtAccountService
-                        .findZolMtAccountByShpcn(zolDailySalesPerBranch.getShpcn());
+                ZolMtAccount zolMtAccount = zolMtAccountList.stream()
+                        .filter(zol -> zol.getShpcn().equals(zolDailySalesPerBranch.getShpcn()))
+                        .findFirst()
+                        .orElse(null);
 
                 ZolMtRaw zolMtRaw = new ZolMtRaw(zolDailySalesPerBranch);
                 if (zolMtAccount != null) {
@@ -91,13 +96,20 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
                 zolMtPerBranchList.add(zolMtPerBranch);
             });
 
+            List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
+                    .findAllZolPerDoorsGeneralInformation();
+
             zolMtPerBranchList.forEach(zolMtPerBranch -> {
-                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                        .findZolPerDoorsGeneralInformationByZpcItemCode(zolMtPerBranch.getItemCode());
+                ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
+                        .filter(generalInfo -> generalInfo.getZpcItemCode().equals(zolMtPerBranch.getItemCode()))
+                        .findFirst()
+                        .orElse(null);
                 zolMtPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-                ZolMtAccount zolMtAccount = zolMtAccountService
-                        .findZolMtAccountByBranchName(zolMtPerBranch.getCustomerName());
+                ZolMtAccount zolMtAccount = zolMtAccountList.stream()
+                        .filter(zol -> zol.getBranchName().equals(zolMtPerBranch.getCustomerName()))
+                        .findFirst()
+                        .orElse(null);
                 zolMtPerBranch.setValuesFromZolMtAccount(zolMtAccount);
 
                 System.out.println(zolMtPerBranch.getCustomerName());
@@ -124,8 +136,13 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
 
                 LocalDate localDate = LocalDate.now();
                 zolMtPerBranch.setDate(localDate);
-                //zolMtPerBranchService.createZolMtPerBranch(zolMtPerBranch);
             });
+
+            zolMtPerBranchService.saveZolMtPerBranchByBatch(zolMtPerBranchList);
+            zolMtPerBranchService.removeZolMtPerBranchByLocalDate(LocalDate.now());
+
+            Long endTime = System.nanoTime();
+            System.out.println(endTime - startTime);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

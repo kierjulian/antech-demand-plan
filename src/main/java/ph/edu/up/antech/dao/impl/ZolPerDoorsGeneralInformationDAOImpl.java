@@ -52,4 +52,9 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
         return null;
     }
 
+    @Override
+    public List<ZolPerDoorsGeneralInformation> findAllZolPerDoorsGeneralInformation() {
+        return entityManager.createNamedQuery("findAllZolPerDoorsGeneralInformation").getResultList();
+    }
+
 }
