@@ -139,8 +139,8 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
                 zolPerDoorsList.add(zolPerDoors);
             }
 
-            zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
-            zolPerDoorsService.removeZolPerDoorsByLocalDate(LocalDate.now());
+            //zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
+            //zolPerDoorsService.removeZolPerDoorsByLocalDate(LocalDate.now());
 
             Long endTime = System.nanoTime();
             System.out.println(zolPerDoorsList.size());

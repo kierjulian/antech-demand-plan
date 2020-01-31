@@ -192,8 +192,8 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                 zolMdcPerBranch.setDate(LocalDate.now());
             });
 
-            zolMdcPerBranchService.saveZolMdcPerBranchByBatch(zolMdcPerBranchList);
-            zolMdcPerBranchService.removeZolMdcPerBranchByLocalDate(LocalDate.now());
+            //zolMdcPerBranchService.saveZolMdcPerBranchByBatch(zolMdcPerBranchList);
+            //zolMdcPerBranchService.removeZolMdcPerBranchByLocalDate(LocalDate.now());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();

@@ -138,8 +138,8 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
                 zolMtPerBranch.setDate(localDate);
             });
 
-            zolMtPerBranchService.saveZolMtPerBranchByBatch(zolMtPerBranchList);
-            zolMtPerBranchService.removeZolMtPerBranchByLocalDate(LocalDate.now());
+            //zolMtPerBranchService.saveZolMtPerBranchByBatch(zolMtPerBranchList);
+            //zolMtPerBranchService.removeZolMtPerBranchByLocalDate(LocalDate.now());
 
             Long endTime = System.nanoTime();
             System.out.println(endTime - startTime);
