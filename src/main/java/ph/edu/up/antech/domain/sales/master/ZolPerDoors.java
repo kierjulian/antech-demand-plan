@@ -7,6 +7,7 @@ import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @Entity
@@ -405,7 +406,8 @@ public class ZolPerDoors implements Serializable {
 
     private void generateA() {
         if (finalAmount != null) {
-            a = finalAmount.intValue();
+            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_UP);
+            a = roundOffNumber.intValue();
         }
     }
 

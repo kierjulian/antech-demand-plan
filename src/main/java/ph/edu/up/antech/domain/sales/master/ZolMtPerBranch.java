@@ -1,11 +1,13 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import org.springframework.stereotype.Controller;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtSheet;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @Entity
@@ -65,8 +67,8 @@ public class ZolMtPerBranch {
     @Column(name = "stage")
     private String stage;
 
-    @Transient
-    private BigDecimal amountConverted;
+    @Column(name = "amount_converted")
+    private String amountConverted;
 
     @Column(name = "type")
     private String type;
@@ -254,11 +256,11 @@ public class ZolMtPerBranch {
         this.stage = stage;
     }
 
-    public BigDecimal getAmountConverted() {
+    public String getAmountConverted() {
         return amountConverted;
     }
 
-    public void setAmountConverted(BigDecimal amountConverted) {
+    public void setAmountConverted(String amountConverted) {
         this.amountConverted = amountConverted;
     }
 
@@ -403,19 +405,21 @@ public class ZolMtPerBranch {
 
     private void generateA() {
         if (finalAmount != null) {
-            a = finalAmount.intValue();
+            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_UP);
+            a = roundOffNumber.intValue();
         }
     }
 
     private void generateAmountConverted() {
         if (amount != null) {
             BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(amount);
-            //this.amountConverted = amountConvertedInBigDecimal.intValue();
+            this.amountConverted = String.valueOf(amountConvertedInBigDecimal.intValue());
+
         }
     }
 
     private void generateType() {
-        if (amount != null) {
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0) {
             type = "CM";
         } else {
             type = "FALSE";

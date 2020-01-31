@@ -6,6 +6,7 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @Entity
@@ -395,19 +396,20 @@ public class ZolMdcPerBranch {
 
     private void generateA() {
         if (finalAmount != null) {
-            a = finalAmount.intValue();
+            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_UP);
+            a = roundOffNumber.intValue();
         }
     }
 
     private void generateAmountConverted() {
         if (amount != null) {
             BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(amount);
-            //this.amountConverted = amountConvertedInBigDecimal.intValue();
+            this.amountConverted = String.valueOf(amountConvertedInBigDecimal.intValue());
         }
     }
 
     private void generateType() {
-        if (amount != null) {
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0 ) {
             type = "CM";
         } else {
             type = "FALSE";
