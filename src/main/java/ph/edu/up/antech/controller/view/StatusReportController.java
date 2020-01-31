@@ -90,7 +90,7 @@ public class StatusReportController {
             handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
             handleDispensingDistributor(dispensingDistributorList, localDate);
             handleCustomerSalesByItem(customerSalesByItemList, localDate);
-            handleZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
+            handleZolDailySalesPerBranchToZolMdcPerBranch(zolDailySalesPerBranchList, localDate);
             handleZolDailySalesPerBranchToZolMtPerBranch(zolDailySalesPerBranchList, localDate);
 
             initializeSuccessMessage(redirectAttributes);
@@ -108,33 +108,49 @@ public class StatusReportController {
     }
 
     private void removeZolPerDoorsByDate(LocalDate localDate) {
-        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsByDate(localDate);
-        if (zolPerDoorsList != null) {
-            for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
-                zolPerDoorsService.removeZolPerDoors(zolPerDoors.getId());
-            }
-        }
+        zolPerDoorsService.removeZolPerDoorsByLocalDate(localDate);
     }
 
     private void createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate date) {
+        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
+                .findAllZolPerDoorsGeneralInformation();
+        List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
+        List<Customer> customerList = customerService.findAllCustomers();
+
         for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
 
-            Customer customer = customerService.findCustomerByCustomerCode(customerItemSalesPerPeriod.getCustomerCode());
+            Customer customer = customerList.stream()
+                    .filter(cust -> cust.getCustomerCode().equals(customerItemSalesPerPeriod.getCustomerCode()))
+                    .findFirst()
+                    .orElse(null);
             customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
 
-            String materialCode = customerService.findCustomerZolMaterialCodeByMaterialCode(customerItemSalesPerPeriod.getMaterialCode());
-            customerItemSalesPerPeriod.setMaterialCode(materialCode);
+            Customer otherCustomer = customerList.stream()
+                    .filter(cust -> cust.getZolMaterialCode().equals(customerItemSalesPerPeriod.getMaterialCode()))
+                    .findFirst()
+                    .orElse(null);
+            if (otherCustomer != null) {
+                String materialCode = otherCustomer.getZolMaterialCode();
+                customerItemSalesPerPeriod.setMaterialCode(materialCode);
+            }
 
             ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
             zolPerDoors.setDate(date);
 
-            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                    .findZolPerDoorsGeneralInformationByZpcItemCode(zolPerDoors.getItemCode());
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation =
+                    zolPerDoorsGeneralInformationList.stream()
+                            .filter(generalInformation -> generalInformation.getItemCode().equals(zolPerDoors.getItemCode()))
+                            .findFirst()
+                            .orElse(null);
             zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-            ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService.findZolPerDoorsPerAcctByZol(zolPerDoors.getCustomerCode());
+            ZolPerDoorsPerAcct zolPerDoorsPerAcct =
+                    zolPerDoorsPerAcctList.stream()
+                            .filter(perAcct -> perAcct.getZol().equals(zolPerDoors.getCustomerCode()))
+                            .findFirst()
+                            .orElse(null);
             zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
 
             zolPerDoorsService.createZolPerDoors(zolPerDoors);
@@ -148,12 +164,7 @@ public class StatusReportController {
     }
 
     private void removeDispensingDistributorByDate(LocalDate date) {
-        List<DispensingDistributor> dispensingDistributorList = dispensingDistributorService.findDispensingDistributorByDate(date);
-        if (dispensingDistributorList != null) {
-            for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
-                dispensingDistributorService.removeDispensingDistributor(dispensingDistributor.getId());
-            }
-        }
+        dispensingDistributorService.removeDispensingDistributorByLocalDate(date);
     }
 
     private void createDispensingDistributorBasedOnCsvFile(List<DispensingDistributor> dispensingDistributorList,
@@ -161,8 +172,9 @@ public class StatusReportController {
         for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
             dispensingDistributor.convertAllStringTypeToProperType();
             dispensingDistributor.setDate(localDate);
-            dispensingDistributorService.createDispensingDistributor(dispensingDistributor);
         }
+
+        dispensingDistributorService.saveDispensingDistributorByBatch(dispensingDistributorList);
     }
 
     private void handleCustomerSalesByItem(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
@@ -188,25 +200,26 @@ public class StatusReportController {
         });
     }
 
-    private void handleZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
+    private void handleZolDailySalesPerBranchToZolMdcPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
         removeZolMdcPerBranchByDate(localDate);
         createZolMdcPerBranchByZolDailySalesPerBranch(zolDailySalesPerBranchList, localDate);
     }
 
     private void removeZolMdcPerBranchByDate(LocalDate localDate) {
-        List<ZolMdcPerBranch> zolMdcPerBranchList = zolMdcPerBranchService.findZolMdcPerBranchByLocalDate(localDate);
-        if (zolMdcPerBranchList != null) {
-            zolMdcPerBranchList.forEach(zolMdcPerBranch -> zolMdcPerBranchService
-                    .removeZolMdcPerBranchById(zolMdcPerBranch.getId()));
-        }
+        zolMdcPerBranchService.removeZolMdcPerBranchByLocalDate(localDate);
     }
 
     private void createZolMdcPerBranchByZolDailySalesPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
         List<ZolMdcRaw> zolMdcRawList = new ArrayList<>();
+
+        List<ZolMdcAccount> zolMdcAccountList = zolMdcAccountService.findAllZolMdcAccount();
+
         zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
             zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
-            ZolMdcAccount zolMdcAccount = zolMdcAccountService
-                    .findZolMdcAccountByShpcn(zolDailySalesPerBranch.getShpcn());
+            ZolMdcAccount zolMdcAccount = zolMdcAccountList.stream()
+                    .filter(account -> account.getShpcn().equals(zolDailySalesPerBranch.getShpcn()))
+                    .findFirst()
+                    .orElse(null);
 
             ZolMdcRaw zolMdcRaw = new ZolMdcRaw(zolDailySalesPerBranch);
             if (zolMdcAccount != null) {
@@ -232,34 +245,41 @@ public class StatusReportController {
             zolMdcPerBranchList.add(zolMdcPerBranch);
         });
 
+        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList =
+                zolPerDoorsGeneralInformationService.findAllZolPerDoorsGeneralInformation();
+
         zolMdcPerBranchList.forEach(zolMdcPerBranch -> {
-            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                    .findZolPerDoorsGeneralInformationByZpcItemCode(zolMdcPerBranch.getItemCode());
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
+                    .filter(generalInformation -> generalInformation.getZpcItemCode().equals(zolMdcPerBranch.getItemCode()))
+                    .findFirst()
+                    .orElse(null);
             zolMdcPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-            ZolMdcAccount zolMdcAccount = zolMdcAccountService
-                    .findZolMdcAccountByBranchName(zolMdcPerBranch.getCustomerName());
+            ZolMdcAccount zolMdcAccount = zolMdcAccountList.stream()
+                    .filter(account -> account.getBranchName().equals(zolMdcPerBranch.getCustomerName()))
+                    .findFirst()
+                    .orElse(null);
             zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
 
             zolMdcPerBranch.setDate(localDate);
-            zolMdcPerBranchService.createZolMdcPerBranch(zolMdcPerBranch);
         });
+
+        zolMdcPerBranchService.saveZolMdcPerBranchByBatch(zolMdcPerBranchList);
     }
 
     private void handleZolDailySalesPerBranchToZolMtPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
-        List<ZolMtPerBranch> zolMtPerBranches = zolMtPerBranchService.findZolMtPerBranchByLocalDate(localDate);
-        if (zolMtPerBranches != null) {
-            zolMtPerBranches.forEach(zolMtPerBranch -> zolMtPerBranchService
-                    .removeZolMtPerBranchById(zolMtPerBranch.getId()));
-        }
+        zolMtPerBranchService.removeZolMtPerBranchByLocalDate(localDate);
 
         List<ZolMtRaw> zolMtRawList = new ArrayList<>();
+        List<ZolMtAccount> zolMtAccountList = zolMtAccountService.findAllZolMtAccount();
 
         zolDailySalesPerBranchList.forEach(zolDailySalesPerBranch -> {
             zolDailySalesPerBranch.convertStringValuesToCorrectTypes();
 
-            ZolMtAccount zolMtAccount = zolMtAccountService
-                    .findZolMtAccountByShpcn(zolDailySalesPerBranch.getShpcn());
+            ZolMtAccount zolMtAccount = zolMtAccountList.stream()
+                    .filter(zol -> zol.getShpcn().equals(zolDailySalesPerBranch.getShpcn()))
+                    .findFirst()
+                    .orElse(null);
 
             ZolMtRaw zolMtRaw = new ZolMtRaw(zolDailySalesPerBranch);
             if (zolMtAccount != null) {
@@ -286,13 +306,20 @@ public class StatusReportController {
             zolMtPerBranchList.add(zolMtPerBranch);
         });
 
+        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
+                .findAllZolPerDoorsGeneralInformation();
+
         zolMtPerBranchList.forEach(zolMtPerBranch -> {
-            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
-                    .findZolPerDoorsGeneralInformationByZpcItemCode(zolMtPerBranch.getItemCode());
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
+                    .filter(generalInfo -> generalInfo.getZpcItemCode().equals(zolMtPerBranch.getItemCode()))
+                    .findFirst()
+                    .orElse(null);
             zolMtPerBranch.setValuesFromZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-            ZolMtAccount zolMtAccount = zolMtAccountService
-                    .findZolMtAccountByBranchName(zolMtPerBranch.getCustomerName());
+            ZolMtAccount zolMtAccount = zolMtAccountList.stream()
+                    .filter(zol -> zol.getBranchName().equals(zolMtPerBranch.getCustomerName()))
+                    .findFirst()
+                    .orElse(null);
             zolMtPerBranch.setValuesFromZolMtAccount(zolMtAccount);
             zolMtPerBranch.setDate(localDate);
 
