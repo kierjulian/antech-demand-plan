@@ -1,6 +1,8 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.ZolMtRaw;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
+import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -109,6 +111,49 @@ public class MdcPerBranchSales {
         this.guartran = dailySalesDataDetail.getGuartran();
         this.netSales = dailySalesDataDetail.getNetSales();
         this.debtorCode = dailySalesDataDetail.getDebtorCode();
+    }
+
+    public MdcPerBranchSales(ZolMtRaw zolMtRaw) {
+        this.cono = zolMtRaw.getCono();
+        this.rec = zolMtRaw.getRec();
+        this.bran = zolMtRaw.getBran();
+        this.satbrn = zolMtRaw.getSatbrn();
+        this.customerNo = zolMtRaw.getCusno();
+        this.shpcn = zolMtRaw.getShpcn();
+        this.customerName = zolMtRaw.getCustnm();
+        this.cadd1 = zolMtRaw.getCadd1();
+        this.cadd2 = zolMtRaw.getCadd2();
+        this.clazz = zolMtRaw.getClazz();
+        this.zipcd = zolMtRaw.getZipcd();
+        this.sman = zolMtRaw.getSman();
+        this.prin = zolMtRaw.getPrin();
+        this.subpr = zolMtRaw.getSubpr();
+        //this.referenceDate = zolMtRaw.getRefdt();
+        this.referenceNo = zolMtRaw.getRefno();
+        this.xreferenceNo = zolMtRaw.getXrefno();
+        this.reasn = zolMtRaw.getReasn();
+        this.prodcd = zolMtRaw.getProdcd();
+        this.quantityQr = zolMtRaw.getQtyor();
+        this.quantitySh = zolMtRaw.getQtysh();
+        this.um = zolMtRaw.getUm();
+        this.vlamt = zolMtRaw.getVlamt();
+        this.sellpr = zolMtRaw.getSellPr();
+        this.pds = zolMtRaw.getPds();
+        //this.expirationDate = zolMtRaw.getExpdte();
+        this.lotNo = zolMtRaw.getLotno();
+        this.barcode = zolMtRaw.getBarcode();
+        this.pdcode = zolMtRaw.getPdcode();
+        this.dman = zolMtRaw.getDman();
+        this.findsc = zolMtRaw.getFindsc();
+        this.framt = zolMtRaw.getFrtamt();
+        //this.slsyr = zolMtRaw.getSlsyr();
+        //this.slsmo = zolMtRaw.getSlsmo();
+        //this.slswk = zolMtRaw.getSlswk();
+        this.appNum = zolMtRaw.getAppnum();
+        this.poNum = zolMtRaw.getPonum();
+        this.guartran = zolMtRaw.getGuartran();
+        this.netSales = zolMtRaw.getNetsales();
+        this.debtorCode = zolMtRaw.getDebtorCode();
     }
 
     public MdcPerBranchSales() {
