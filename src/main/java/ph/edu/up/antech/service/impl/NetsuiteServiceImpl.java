@@ -30,4 +30,14 @@ public class NetsuiteServiceImpl implements NetsuiteService {
         netsuiteDAO.removeNetsuite(id);
     }
 
+    @Override
+    public void removeNetsuiteByDate(LocalDate localDate) {
+        netsuiteDAO.removeNetsuiteByDate(localDate);
+    }
+
+    @Override
+    public void saveNetsuiteByBatch(List<Netsuite> netsuiteList) {
+        netsuiteDAO.saveNetsuiteByBatch(netsuiteList);
+    }
+
 }

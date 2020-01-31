@@ -6,6 +6,7 @@ import ph.edu.up.antech.domain.sales.master.Netsuite;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -37,6 +38,25 @@ public class NetsuiteDAOImpl implements NetsuiteDAO {
     public void removeNetsuite(Integer id) {
         Netsuite netsuite = entityManager.find(Netsuite.class, id);
         entityManager.remove(netsuite);
+    }
+
+    @Override
+    public void removeNetsuiteByDate(LocalDate localDate) {
+        Query query = entityManager.createNamedQuery("removeNetsuiteByDate");
+        query.setParameter("itemDate", localDate);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void saveNetsuiteByBatch(List<Netsuite> netsuiteList) {
+        for (int i = 0; i < netsuiteList.size(); i++) {
+            if (i % 50 == 0) {
+                entityManager.flush();
+                entityManager.clear();
+            }
+
+            entityManager.persist(netsuiteList.get(i));
+        }
     }
 
 }

@@ -183,21 +183,19 @@ public class StatusReportController {
     }
 
     private void removeNetsuiteByDate(LocalDate localDate) {
-        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteByItemDate(localDate);
-        if (netsuiteList != null) {
-            netsuiteList.forEach(netsuite -> {
-                netsuiteService.removeNetsuite(netsuite.getId());
-            });
-        }
+        netsuiteService.removeNetsuiteByDate(localDate);
     }
 
     private void createNetsuiteByCustomerSalesByItemList(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
+        List<Netsuite> netsuiteList = new ArrayList<>();
         customerSalesByItemList.forEach(customerSalesByItem -> {
             customerSalesByItem.setItemDate(localDate);
             customerSalesByItem.convertAllStringFieldsToProperType();
             Netsuite netsuite = new Netsuite(customerSalesByItem);
-            netsuiteService.createNetsuite(netsuite);
+            netsuiteList.add(netsuite);
         });
+
+        netsuiteService.saveNetsuiteByBatch(netsuiteList);
     }
 
     private void handleZolDailySalesPerBranchToZolMdcPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {

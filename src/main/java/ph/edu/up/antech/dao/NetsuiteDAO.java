@@ -13,4 +13,8 @@ public interface NetsuiteDAO {
 
     public void removeNetsuite(Integer id);
 
+    public void removeNetsuiteByDate(LocalDate localDate);
+
+    public void saveNetsuiteByBatch(List<Netsuite> netsuiteList);
+
 }

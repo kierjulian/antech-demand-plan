@@ -12,7 +12,9 @@ import java.time.Month;
 @Table(name = "netsuite")
 @NamedQueries({
         @NamedQuery(name = "findNetsuiteByItemDate",
-                query = "select o from Netsuite o where o.itemDate = :itemDate")
+                query = "select o from Netsuite o where o.itemDate = :itemDate"),
+        @NamedQuery(name = "removeNetsuiteByDate",
+                query = "delete from Netsuite o where o.itemDate = :itemDate")
 })
 public class Netsuite implements Serializable {
 
