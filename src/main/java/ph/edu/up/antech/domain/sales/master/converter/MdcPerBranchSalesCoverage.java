@@ -2,25 +2,42 @@ package ph.edu.up.antech.domain.sales.master.converter;
 
 import com.opencsv.bean.CsvBindByName;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "mdc_per_branch_sales_coverage")
+@NamedQueries({
+        @NamedQuery(name = "findAllMdcPerBranchSalesCoverage",
+                query = "select o from MdcPerBranchSalesCoverage o")
+})
 public class MdcPerBranchSalesCoverage {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "branch_code")
     @CsvBindByName(column = "Branch Code")
     private String branchCode;
 
+    @Column(name = "branch_name")
     @CsvBindByName(column = "BRANCH NAME")
     private String branchName;
 
+    @Column(name = "new_coverage")
     @CsvBindByName(column = "NEW COVERAGE")
     private String newCoverage;
 
+    @Column(name = "old_coverage")
     @CsvBindByName(column = "OLD COVERAGE")
     private String oldCoverage;
 
+    @Column(name = "coordinator")
     @CsvBindByName(column = "COORDINATOR")
     private String coordinator;
 
+    @Column(name = "region")
     @CsvBindByName(column = "REGION")
     private String region;
 
