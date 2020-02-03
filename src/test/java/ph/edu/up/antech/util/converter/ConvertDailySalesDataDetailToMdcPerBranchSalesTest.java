@@ -3,6 +3,7 @@ package ph.edu.up.antech.util.converter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
@@ -13,9 +14,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+@Ignore("Test not needed")
 public class ConvertDailySalesDataDetailToMdcPerBranchSalesTest {
 
-    @Test
+    @Ignore
     public void convertDailySalesDataDetailToMdcPerBranchSales_andPrintContents_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/DailySalesDataDetail.csv"))) {
             CsvToBean<DailySalesDataDetail> csvToBean = new CsvToBeanBuilder(reader)
@@ -40,7 +42,6 @@ public class ConvertDailySalesDataDetailToMdcPerBranchSalesTest {
                 System.out.println("SMAN: " + mdcPerBranchSales.getSman());
                 System.out.println("PRIN: " + mdcPerBranchSales.getPrin());
                 System.out.println("SUBPR: " + mdcPerBranchSales.getSubpr());
-                System.out.println("REFCD: " + mdcPerBranchSales.getRefcd());
                 System.out.println("REFDT: " + mdcPerBranchSales.getReferenceDate());
                 System.out.println("REFNO: " + mdcPerBranchSales.getReferenceNo());
                 System.out.println("XREFNO: " + mdcPerBranchSales.getXreferenceNo());
@@ -66,7 +67,6 @@ public class ConvertDailySalesDataDetailToMdcPerBranchSalesTest {
                 System.out.println("PONUM: " + mdcPerBranchSales.getPoNum());
                 System.out.println("GUARTRAN: " + mdcPerBranchSales.getGuartran());
                 System.out.println("NETSALES: " + mdcPerBranchSales.getNetSales());
-
                 System.out.println();
             }
         } catch (IOException e) {

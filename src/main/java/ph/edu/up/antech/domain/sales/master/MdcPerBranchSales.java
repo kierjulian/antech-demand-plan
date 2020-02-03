@@ -1,16 +1,19 @@
 package ph.edu.up.antech.domain.sales.master;
 
-import ph.edu.up.antech.domain.sales.master.converter.ZolMtRaw;
+import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
-import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
+import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 
 public class MdcPerBranchSales {
 
+    private Integer id;
     private LocalDate date;
     private String cono;
     private String rec;
@@ -26,9 +29,9 @@ public class MdcPerBranchSales {
     private String sman;
     private String prin;
     private String subpr;
-    private String refcd;
-    private String refcd1;
-    private String netQuantity;
+    private Integer refcd;
+    private Integer refcd1;
+    private Integer netQuantity;
     private BigDecimal netValue;
     private BigDecimal netValue2;
     private String sku;
@@ -54,9 +57,9 @@ public class MdcPerBranchSales {
     private String dman;
     private BigDecimal findsc;
     private String framt;
-    private String slsyr;
-    private String slsmo;
-    private String slswk;
+    private Integer slsyr;
+    private Integer slsmo;
+    private Integer slswk;
     private String appNum;
     private String poNum;
     private String guartran;
@@ -85,7 +88,6 @@ public class MdcPerBranchSales {
         this.sman = dailySalesDataDetail.getSman();
         this.prin = dailySalesDataDetail.getPrin();
         this.subpr = dailySalesDataDetail.getSubpr();
-        this.refcd = dailySalesDataDetail.getRefcd();
         this.referenceDate = dailySalesDataDetail.getReferenceDate();
         this.referenceNo = dailySalesDataDetail.getRefno();
         this.xreferenceNo = dailySalesDataDetail.getXrefno();
@@ -103,9 +105,6 @@ public class MdcPerBranchSales {
         this.pdcode = dailySalesDataDetail.getPdcode();
         this.dman = dailySalesDataDetail.getDman();
         this.findsc = dailySalesDataDetail.getFindsc();
-        this.slsyr = dailySalesDataDetail.getSlsyr();
-        this.slsmo = dailySalesDataDetail.getSlsmo();
-        this.slswk = dailySalesDataDetail.getSlswk();
         this.appNum = dailySalesDataDetail.getAppnum();
         this.poNum = dailySalesDataDetail.getPonum();
         this.guartran = dailySalesDataDetail.getGuartran();
@@ -128,7 +127,8 @@ public class MdcPerBranchSales {
         this.sman = zolMtRaw.getSman();
         this.prin = zolMtRaw.getPrin();
         this.subpr = zolMtRaw.getSubpr();
-        //this.referenceDate = zolMtRaw.getRefdt();
+        this.refcd = zolMtRaw.getRefcd();
+        this.referenceDate = convertStringToLocalDate(zolMtRaw.getRefdt());
         this.referenceNo = zolMtRaw.getRefno();
         this.xreferenceNo = zolMtRaw.getXrefno();
         this.reasn = zolMtRaw.getReasn();
@@ -146,14 +146,58 @@ public class MdcPerBranchSales {
         this.dman = zolMtRaw.getDman();
         this.findsc = zolMtRaw.getFindsc();
         this.framt = zolMtRaw.getFrtamt();
-        //this.slsyr = zolMtRaw.getSlsyr();
-        //this.slsmo = zolMtRaw.getSlsmo();
-        //this.slswk = zolMtRaw.getSlswk();
+        this.slsyr = zolMtRaw.getSlsyr();
+        this.slsmo = zolMtRaw.getSlsmo();
+        this.slswk = zolMtRaw.getSlswk();
         this.appNum = zolMtRaw.getAppnum();
         this.poNum = zolMtRaw.getPonum();
         this.guartran = zolMtRaw.getGuartran();
         this.netSales = zolMtRaw.getNetsales();
         this.debtorCode = zolMtRaw.getDebtorCode();
+    }
+
+    public MdcPerBranchSales(ZolMdcRaw zolMdcRaw) {
+        this.cono = zolMdcRaw.getCono();
+        this.rec = zolMdcRaw.getRec();
+        this.bran = zolMdcRaw.getBran();
+        this.satbrn = zolMdcRaw.getSatbrn();
+        this.customerNo = zolMdcRaw.getCusno();
+        this.shpcn = zolMdcRaw.getShpcn();
+        this.customerName = zolMdcRaw.getCustnm();
+        this.cadd1 = zolMdcRaw.getCadd1();
+        this.cadd2 = zolMdcRaw.getCadd2();
+        this.clazz = zolMdcRaw.getClazz();
+        this.zipcd = zolMdcRaw.getZipcd();
+        this.sman = zolMdcRaw.getSman();
+        this.prin = zolMdcRaw.getPrin();
+        this.subpr = zolMdcRaw.getSubpr();
+        this.refcd = zolMdcRaw.getRefcd();
+        this.referenceDate = convertStringToLocalDate(zolMdcRaw.getRefdt());
+        this.referenceNo = zolMdcRaw.getRefno();
+        this.xreferenceNo = zolMdcRaw.getXrefno();
+        this.reasn = zolMdcRaw.getReasn();
+        this.prodcd = zolMdcRaw.getProdcd();
+        this.quantityQr = zolMdcRaw.getQtyor();
+        this.quantitySh = zolMdcRaw.getQtysh();
+        this.um = zolMdcRaw.getUm();
+        this.vlamt = zolMdcRaw.getVlamt();
+        this.sellpr = zolMdcRaw.getSellPr();
+        this.pds = zolMdcRaw.getPds();
+        this.expirationDate = convertStringToLocalDate(zolMdcRaw.getExpdte());
+        this.lotNo = zolMdcRaw.getLotno();
+        this.barcode = zolMdcRaw.getBarcode();
+        this.pdcode = zolMdcRaw.getPdcode();
+        this.dman = zolMdcRaw.getDman();
+        this.findsc = zolMdcRaw.getFindsc();
+        this.framt = zolMdcRaw.getFrtamt();
+        this.slsyr = zolMdcRaw.getSlsyr();
+        this.slsmo = zolMdcRaw.getSlsmo();
+        this.slswk = zolMdcRaw.getSlswk();
+        this.appNum = zolMdcRaw.getAppnum();
+        this.poNum = zolMdcRaw.getPonum();
+        this.guartran = zolMdcRaw.getGuartran();
+        this.netSales = zolMdcRaw.getNetsales();
+        this.debtorCode = zolMdcRaw.getDebtorCode();
     }
 
     public MdcPerBranchSales() {
@@ -279,27 +323,27 @@ public class MdcPerBranchSales {
         this.subpr = subpr;
     }
 
-    public String getRefcd() {
+    public Integer getRefcd() {
         return refcd;
     }
 
-    public void setRefcd(String refcd) {
+    public void setRefcd(Integer refcd) {
         this.refcd = refcd;
     }
 
-    public String getRefcd1() {
+    public Integer getRefcd1() {
         return refcd1;
     }
 
-    public void setRefcd1(String refcd1) {
+    public void setRefcd1(Integer refcd1) {
         this.refcd1 = refcd1;
     }
 
-    public String getNetQuantity() {
+    public Integer getNetQuantity() {
         return netQuantity;
     }
 
-    public void setNetQuantity(String netQuantity) {
+    public void setNetQuantity(Integer netQuantity) {
         this.netQuantity = netQuantity;
     }
 
@@ -503,27 +547,27 @@ public class MdcPerBranchSales {
         this.framt = framt;
     }
 
-    public String getSlsyr() {
+    public Integer getSlsyr() {
         return slsyr;
     }
 
-    public void setSlsyr(String slsyr) {
+    public void setSlsyr(Integer slsyr) {
         this.slsyr = slsyr;
     }
 
-    public String getSlsmo() {
+    public Integer getSlsmo() {
         return slsmo;
     }
 
-    public void setSlsmo(String slsmo) {
+    public void setSlsmo(Integer slsmo) {
         this.slsmo = slsmo;
     }
 
-    public String getSlswk() {
+    public Integer getSlswk() {
         return slswk;
     }
 
-    public void setSlswk(String slswk) {
+    public void setSlswk(Integer slswk) {
         this.slswk = slswk;
     }
 
@@ -629,6 +673,97 @@ public class MdcPerBranchSales {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public void setOtherDetails() {
+        computeRefcd1();
+        computeNetQty();
+        computeNetValue();
+        computeNetValue2();
+        computeGrossValue();
+    }
+
+    private void computeRefcd1() {
+        if (refcd == 0) {
+            refcd1 = 1;
+        } else {
+            refcd1 = -1;
+        }
+    }
+
+    private void computeNetQty() {
+        netQuantity = refcd1 * quantitySh;
+    }
+
+    private void computeNetValue() {
+        if (vlamt != null) {
+            netValue = BigDecimal.valueOf(refcd1)
+                    .multiply(vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_UP));
+        }
+    }
+
+    private void computeNetValue2() {
+        if (netValue != null) {
+            netValue2 = netValue.multiply(BigDecimal.valueOf(0.91127))
+                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP);
+        }
+    }
+
+    private void computeGrossValue() {
+        if (vlamt != null) {
+            grossValue = vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_UP)
+                    .multiply(BigDecimal.valueOf(0.91127))
+                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP);
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesInformation(MdcPerBranchSalesInformation information) {
+        if (information != null) {
+            this.sku = information.getItemCode();
+            this.category = information.getItemType();
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesAccount(MdcPerBranchSalesAccount account) {
+        if (account != null) {
+            this.strCode = account.getStrCode();
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesCoverage(MdcPerBranchSalesCoverage coverage) {
+        if (coverage != null) {
+            this.coverage = coverage.getNewCoverage();
+            this.coordinator = coverage.getCoordinator();
+            this.region = coverage.getRegion();
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesBrn(MdcPerBranchSalesBrn brn) {
+        if (brn != null) {
+            this.branchNo = brn.getBranchName();
+            this.naName = brn.getNa();
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesNaConfiguration(MdcPerBranchSalesNaConfiguration configuration) {
+        if (configuration != null) {
+            this.dsmName = configuration.getDsm();
+        }
+    }
+
+    public void generateValuesBasedOnMdcPerBranchSalesCode(MdcPerBranchSalesCode mdcPerBranchSalesCode) {
+        if (mdcPerBranchSalesCode != null) {
+            this.reason = mdcPerBranchSalesCode.getDescription();
+        }
+    }
+
+    private LocalDate convertStringToLocalDate(String dateInString) {
+        if (!StringUtils.isNullOrEmpty(dateInString)) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            return LocalDate.parse(dateInString, formatter);
+        }
+
+        return null;
     }
 
 }
