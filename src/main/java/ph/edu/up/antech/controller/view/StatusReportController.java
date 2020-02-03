@@ -137,6 +137,8 @@ public class StatusReportController {
         List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
         List<Customer> customerList = customerService.findAllCustomers();
 
+        List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();
+
         customerItemSalesPerPeriodList.forEach(customerItemSalesPerPeriod -> {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
 
@@ -171,9 +173,10 @@ public class StatusReportController {
                             .findFirst()
                             .orElse(null);
             zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
-
-            zolPerDoorsService.createZolPerDoors(zolPerDoors);
+            zolPerDoorsList.add(zolPerDoors);
         });
+
+        zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
     }
 
     private void handleDispensingDistributorToDispensingDistributor(List<DispensingDistributor> dispensingDistributorList,
@@ -277,7 +280,6 @@ public class StatusReportController {
                     .findFirst()
                     .orElse(null);
             zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
-
             zolMdcPerBranch.setDate(localDate);
         });
 
@@ -339,9 +341,9 @@ public class StatusReportController {
                     .orElse(null);
             zolMtPerBranch.setValuesFromZolMtAccount(zolMtAccount);
             zolMtPerBranch.setDate(localDate);
-
-            zolMtPerBranchService.createZolMtPerBranch(zolMtPerBranch);
         });
+
+        zolMtPerBranchService.saveZolMtPerBranchByBatch(zolMtPerBranchList);
     }
 
     private void handleZolDailySalesPerBranchToMdcPerBranchSales(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
