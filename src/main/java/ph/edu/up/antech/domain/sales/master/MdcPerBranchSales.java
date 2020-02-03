@@ -4,6 +4,7 @@ import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.util.StringUtils;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -11,67 +12,196 @@ import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 
+@Entity
+@Table(name = "mdc_per_branch_sales")
+@NamedQueries({
+        @NamedQuery(name = "findMdcPerBranchSalesByDate",
+                query = "select o from MdcPerBranchSales o where o.date = :date"),
+        @NamedQuery(name = "deleteMdcPerBranchSalesByDate",
+                query = "delete from MdcPerBranchSales o where o.date = :date")
+})
 public class MdcPerBranchSales {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "cono")
     private String cono;
+
+    @Column(name = "rec")
     private String rec;
+
+    @Column(name = "bran")
     private String bran;
+
+    @Column(name = "satbrn")
     private String satbrn;
+
+    @Column(name = "customer_no")
     private String customerNo;
+
+    @Column(name = "shpcn")
     private String shpcn;
+
+    @Column(name = "customer_name")
     private String customerName;
+
+    @Column(name = "cadd1")
     private String cadd1;
+
+    @Column(name = "cadd2")
     private String cadd2;
+
+    @Column(name = "clazz")
     private String clazz;
+
+    @Column(name = "zipcd")
     private String zipcd;
+
+    @Column(name = "sman")
     private String sman;
+
+    @Column(name = "prin")
     private String prin;
+
+    @Column(name = "subpr")
     private String subpr;
+
+    @Column(name = "refcd")
     private Integer refcd;
+
+    @Column(name = "refcd1")
     private Integer refcd1;
+
+    @Column(name = "net_qty")
     private Integer netQuantity;
+
+    @Column(name = "net_value")
     private BigDecimal netValue;
+
+    @Column(name = "net_value2")
     private BigDecimal netValue2;
+
+    @Column(name = "sku")
     private String sku;
+
+    @Column(name = "category")
     private String category;
+
+    @Column(name = "gross_value")
     private BigDecimal grossValue;
+
+    @Transient
     private Month month;
+
+    @Transient
     private Year year;
+
+    @Column(name = "ref_dt")
     private LocalDate referenceDate;
+
+    @Column(name = "ref_no")
     private String referenceNo;
+
+    @Column(name = "xref_no")
     private String xreferenceNo;
+
+    @Column(name = "reasn")
     private String reasn;
+
+    @Column(name = "prodcd")
     private String prodcd;
-    private Integer quantityQr;
+
+    @Column(name = "qtyor")
+    private Integer quantityOr;
+
+    @Column(name = "qtysh")
     private Integer quantitySh;
+
+    @Column(name = "um")
     private String um;
+
+    @Column(name = "vlamt")
     private BigDecimal vlamt;
+
+    @Column(name = "sellpr")
     private BigDecimal sellpr;
+
+    @Column(name = "pds")
     private BigDecimal pds;
+
+    @Column(name = "exp_dt")
     private LocalDate expirationDate;
+
+    @Column(name = "lot_no")
     private String lotNo;
+
+    @Column(name = "barcode")
     private String barcode;
+
+    @Column(name = "pdcode")
     private String pdcode;
+
+    @Column(name = "dman")
     private String dman;
+
+    @Column(name = "findsc")
     private BigDecimal findsc;
+
+    @Column(name = "framt")
     private String framt;
+
+    @Column(name = "slsyr")
     private Integer slsyr;
+
+    @Column(name = "slsmo")
     private Integer slsmo;
+
+    @Column(name = "slswk")
     private Integer slswk;
+
+    @Column(name = "app_num")
     private String appNum;
+
+    @Column(name = "po_num")
     private String poNum;
+
+    @Column(name = "guartran")
     private String guartran;
+
+    @Column(name = "net_sales")
     private BigDecimal netSales;
+
+    @Column(name = "debtor_code")
     private String debtorCode;
+
+    @Column(name = "str_code")
     private String strCode;
+
+    @Column(name = "coverage")
     private String coverage;
+
+    @Column(name = "reason")
     private String reason;
-    private String branchNo;
+
+    @Column(name = "branch_name")
+    private String branchName;
+
+    @Column(name = "na_name")
     private String naName;
+
+    @Column(name = "dsm_name")
     private String dsmName;
+
+    @Column(name = "coordinator")
     private String coordinator;
+
+    @Column(name = "region")
     private String region;
 
     public MdcPerBranchSales(DailySalesDataDetail dailySalesDataDetail) {
@@ -93,7 +223,7 @@ public class MdcPerBranchSales {
         this.xreferenceNo = dailySalesDataDetail.getXrefno();
         this.reasn = dailySalesDataDetail.getReasn();
         this.prodcd = dailySalesDataDetail.getProdcd();
-        this.quantityQr = dailySalesDataDetail.getQuantityOr();
+        this.quantityOr = dailySalesDataDetail.getQuantityOr();
         this.quantitySh = dailySalesDataDetail.getQuantitySh();
         this.um = dailySalesDataDetail.getUm();
         this.vlamt = dailySalesDataDetail.getVlamt();
@@ -133,7 +263,7 @@ public class MdcPerBranchSales {
         this.xreferenceNo = zolMtRaw.getXrefno();
         this.reasn = zolMtRaw.getReasn();
         this.prodcd = zolMtRaw.getProdcd();
-        this.quantityQr = zolMtRaw.getQtyor();
+        this.quantityOr = zolMtRaw.getQtyor();
         this.quantitySh = zolMtRaw.getQtysh();
         this.um = zolMtRaw.getUm();
         this.vlamt = zolMtRaw.getVlamt();
@@ -177,7 +307,7 @@ public class MdcPerBranchSales {
         this.xreferenceNo = zolMdcRaw.getXrefno();
         this.reasn = zolMdcRaw.getReasn();
         this.prodcd = zolMdcRaw.getProdcd();
-        this.quantityQr = zolMdcRaw.getQtyor();
+        this.quantityOr = zolMdcRaw.getQtyor();
         this.quantitySh = zolMdcRaw.getQtysh();
         this.um = zolMdcRaw.getUm();
         this.vlamt = zolMdcRaw.getVlamt();
@@ -201,6 +331,14 @@ public class MdcPerBranchSales {
     }
 
     public MdcPerBranchSales() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {
@@ -443,12 +581,12 @@ public class MdcPerBranchSales {
         this.prodcd = prodcd;
     }
 
-    public Integer getQuantityQr() {
-        return quantityQr;
+    public Integer getQuantityOr() {
+        return quantityOr;
     }
 
-    public void setQuantityQr(Integer quantityQr) {
-        this.quantityQr = quantityQr;
+    public void setQuantityOr(Integer quantityOr) {
+        this.quantityOr = quantityOr;
     }
 
     public Integer getQuantitySh() {
@@ -635,12 +773,12 @@ public class MdcPerBranchSales {
         this.reason = reason;
     }
 
-    public String getBranchNo() {
-        return branchNo;
+    public String getBranchName() {
+        return branchName;
     }
 
-    public void setBranchNo(String branchNo) {
-        this.branchNo = branchNo;
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 
     public String getNaName() {
@@ -740,7 +878,7 @@ public class MdcPerBranchSales {
 
     public void generateValuesBasedOnMdcPerBranchSalesBrn(MdcPerBranchSalesBrn brn) {
         if (brn != null) {
-            this.branchNo = brn.getBranchName();
+            this.branchName = brn.getBranchName();
             this.naName = brn.getNa();
         }
     }

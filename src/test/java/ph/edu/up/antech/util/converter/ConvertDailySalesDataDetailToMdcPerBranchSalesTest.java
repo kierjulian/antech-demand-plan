@@ -4,7 +4,6 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Ignore;
-import org.junit.Test;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 
@@ -47,7 +46,7 @@ public class ConvertDailySalesDataDetailToMdcPerBranchSalesTest {
                 System.out.println("XREFNO: " + mdcPerBranchSales.getXreferenceNo());
                 System.out.println("REASN: " + mdcPerBranchSales.getReasn());
                 System.out.println("PRODCD: " + mdcPerBranchSales.getProdcd());
-                System.out.println("QTYQR: " + mdcPerBranchSales.getQuantityQr());
+                System.out.println("QTYQR: " + mdcPerBranchSales.getQuantityOr());
                 System.out.println("QTYSH: " + mdcPerBranchSales.getQuantitySh());
                 System.out.println("UM: " + mdcPerBranchSales.getUm());
                 System.out.println("VLAMT: " + mdcPerBranchSales.getVlamt());

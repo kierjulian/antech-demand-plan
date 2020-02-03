@@ -19,6 +19,7 @@ import ph.edu.up.antech.service.impl.*;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,15 +27,13 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
-        ZolMtAccountServiceImpl.class, MdcPerBranchSalesInformationServiceImpl.class,
+        MdcPerBranchSalesInformationServiceImpl.class,
         MdcPerBranchSalesAccountServiceImpl.class, MdcPerBranchSalesBrnServiceImpl.class,
         MdcPerBranchSalesCoverageServiceImpl.class, ZolMdcAccountServiceImpl.class,
-        MdcPerBranchSalesNaConfigurationServiceImpl.class, MdcPerBranchSalesCodeService.class
+        MdcPerBranchSalesNaConfigurationServiceImpl.class, MdcPerBranchSalesCodeService.class,
+        MdcPerBranchSalesServiceImpl.class
 })
 public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
-
-    @Autowired
-    private ZolMtAccountService zolMtAccountService;
 
     @Autowired
     private ZolMdcAccountService zolMdcAccountService;
@@ -56,6 +55,9 @@ public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
 
     @Autowired
     private MdcPerBranchSalesCodeService mdcPerBranchSalesCodeService;
+
+    @Autowired
+    private MdcPerBranchSalesService mdcPerBranchSalesService;
 
     @Test
     public void convertZolDailySalesPerBranch_toMdcPerBranchSales_andPrintContents_shouldBeSuccessful() {
@@ -109,6 +111,8 @@ public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
                     .filter(zolMdcRaw -> zolMdcRaw.getAccountName() != null)
                     .collect(Collectors.toList());
 
+            List<MdcPerBranchSales> mdcPerBranchSalesList = new ArrayList<>();
+
             zolMdcRawFilteredList.forEach(zolMdcRaw -> {
                 MdcPerBranchSales mdcPerBranchSales = new MdcPerBranchSales(zolMdcRaw);
                 mdcPerBranchSales.setOtherDetails();
@@ -153,6 +157,7 @@ public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
                         .findFirst()
                         .orElse(null);
                 mdcPerBranchSales.generateValuesBasedOnMdcPerBranchSalesCode(mdcPerBranchSalesCode);
+                mdcPerBranchSales.setDate(LocalDate.now());
 
                 System.out.println(mdcPerBranchSales.getCono());
                 System.out.println(mdcPerBranchSales.getRec());
@@ -181,7 +186,7 @@ public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
                 System.out.println(mdcPerBranchSales.getXreferenceNo());
                 System.out.println(mdcPerBranchSales.getReasn());
                 System.out.println(mdcPerBranchSales.getProdcd());
-                System.out.println(mdcPerBranchSales.getQuantityQr());
+                System.out.println(mdcPerBranchSales.getQuantityOr());
                 System.out.println(mdcPerBranchSales.getQuantitySh());
                 System.out.println(mdcPerBranchSales.getUm());
                 System.out.println(mdcPerBranchSales.getVlamt());
@@ -205,13 +210,18 @@ public class ConvertZolDailySalesPerBranchToMdcPerBranchSalesTest {
                 System.out.println("STRCODE: " + mdcPerBranchSales.getStrCode());
                 System.out.println("COVERAGE: " + mdcPerBranchSales.getCoverage());
                 System.out.println("REASON: " + mdcPerBranchSales.getReason());
-                System.out.println("BRANCHNAME: " + mdcPerBranchSales.getBranchNo());
+                System.out.println("BRANCHNAME: " + mdcPerBranchSales.getBranchName());
                 System.out.println("NA NAME: " + mdcPerBranchSales.getNaName());
                 System.out.println("DSM NAME: " + mdcPerBranchSales.getDsmName());
                 System.out.println("COORDINATOR: " + mdcPerBranchSales.getCoordinator());
                 System.out.println("REGION: " + mdcPerBranchSales.getRegion());
                 System.out.println();
+
+                mdcPerBranchSalesList.add(mdcPerBranchSales);
             });
+
+            //mdcPerBranchSalesService.saveMdcPerBranchSalesByBatch(mdcPerBranchSalesList);
+            //mdcPerBranchSalesService.removeMdcPerBranchSalesByDate(LocalDate.now());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
