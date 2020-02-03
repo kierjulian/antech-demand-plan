@@ -105,9 +105,9 @@ public class StatusReportController {
                     .convertCsvToListOfZolDailySalesPerBranch(zolDailySalesPerBranchFile.getInputStream());
             LocalDate localDate = LocalDate.parse(date);
 
-            handleZolPerDoors(customerItemSalesPerPeriodList, localDate);
-            handleDispensingDistributor(dispensingDistributorList, localDate);
-            handleCustomerSalesByItem(customerSalesByItemList, localDate);
+            handleCustomerItemSalesPerPeriodToZolPerDoors(customerItemSalesPerPeriodList, localDate);
+            handleDispensingDistributorToDispensingDistributor(dispensingDistributorList, localDate);
+            handleCustomerSalesByItemToNetsuite(customerSalesByItemList, localDate);
             handleZolDailySalesPerBranchToZolMdcPerBranch(zolDailySalesPerBranchList, localDate);
             handleZolDailySalesPerBranchToZolMtPerBranch(zolDailySalesPerBranchList, localDate);
             handleZolDailySalesPerBranchToMdcPerBranchSales(zolDailySalesPerBranchList, localDate);
@@ -121,7 +121,7 @@ public class StatusReportController {
         return "redirect:/reports";
     }
 
-    private void handleZolPerDoors(List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate localDate) {
+    private void handleCustomerItemSalesPerPeriodToZolPerDoors(List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate localDate) {
         removeZolPerDoorsByDate(localDate);
         createZolPerDoorsBasedOnCustomerItemSalesPerPeriodCsvFile(customerItemSalesPerPeriodList, localDate);
     }
@@ -137,7 +137,7 @@ public class StatusReportController {
         List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
         List<Customer> customerList = customerService.findAllCustomers();
 
-        for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
+        customerItemSalesPerPeriodList.forEach(customerItemSalesPerPeriod -> {
             customerItemSalesPerPeriod.convertAllStringValuesToProperType();
 
             Customer customer = customerList.stream()
@@ -173,11 +173,11 @@ public class StatusReportController {
             zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
 
             zolPerDoorsService.createZolPerDoors(zolPerDoors);
-        }
+        });
     }
 
-    private void handleDispensingDistributor(List<DispensingDistributor> dispensingDistributorList,
-                                             LocalDate localDate) {
+    private void handleDispensingDistributorToDispensingDistributor(List<DispensingDistributor> dispensingDistributorList,
+                                                                    LocalDate localDate) {
         removeDispensingDistributorByDate(localDate);
         createDispensingDistributorBasedOnCsvFile(dispensingDistributorList, localDate);
     }
@@ -188,15 +188,15 @@ public class StatusReportController {
 
     private void createDispensingDistributorBasedOnCsvFile(List<DispensingDistributor> dispensingDistributorList,
                                                            LocalDate localDate) {
-        for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
+        dispensingDistributorList.forEach(dispensingDistributor -> {
             dispensingDistributor.convertAllStringTypeToProperType();
             dispensingDistributor.setDate(localDate);
-        }
+        });
 
         dispensingDistributorService.saveDispensingDistributorByBatch(dispensingDistributorList);
     }
 
-    private void handleCustomerSalesByItem(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
+    private void handleCustomerSalesByItemToNetsuite(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
         removeNetsuiteByDate(localDate);
         createNetsuiteByCustomerSalesByItemList(customerSalesByItemList, localDate);
     }
@@ -443,65 +443,6 @@ public class StatusReportController {
                     .orElse(null);
             mdcPerBranchSales.generateValuesBasedOnMdcPerBranchSalesCode(mdcPerBranchSalesCode);
             mdcPerBranchSales.setDate(LocalDate.now());
-
-            System.out.println(mdcPerBranchSales.getCono());
-            System.out.println(mdcPerBranchSales.getRec());
-            System.out.println(mdcPerBranchSales.getBran());
-            System.out.println(mdcPerBranchSales.getSatbrn());
-            System.out.println(mdcPerBranchSales.getCustomerNo());
-            System.out.println("SHPCN: " + mdcPerBranchSales.getShpcn());
-            System.out.println(mdcPerBranchSales.getCustomerName());
-            System.out.println(mdcPerBranchSales.getCadd1());
-            System.out.println(mdcPerBranchSales.getCadd2());
-            System.out.println(mdcPerBranchSales.getClazz());
-            System.out.println(mdcPerBranchSales.getZipcd());
-            System.out.println(mdcPerBranchSales.getSman());
-            System.out.println(mdcPerBranchSales.getPrin());
-            System.out.println(mdcPerBranchSales.getSubpr());
-            System.out.println("REFCD: " + mdcPerBranchSales.getRefcd());
-            System.out.println("REFCD1: " + mdcPerBranchSales.getRefcd1());
-            System.out.println("NETQTY: " + mdcPerBranchSales.getNetQuantity());
-            System.out.println("NETVALUE: " + mdcPerBranchSales.getNetValue());
-            System.out.println("NETVALUE1: " + mdcPerBranchSales.getNetValue2());
-            System.out.println("GROSS VALUE: " + mdcPerBranchSales.getGrossValue());
-            System.out.println("SKU: " + mdcPerBranchSales.getSku());
-            System.out.println("CATEGORY: " + mdcPerBranchSales.getCategory());
-            System.out.println("REFERENCEDATE: " + mdcPerBranchSales.getReferenceDate());
-            System.out.println(mdcPerBranchSales.getReferenceNo());
-            System.out.println(mdcPerBranchSales.getXreferenceNo());
-            System.out.println(mdcPerBranchSales.getReasn());
-            System.out.println(mdcPerBranchSales.getProdcd());
-            System.out.println(mdcPerBranchSales.getQuantityOr());
-            System.out.println(mdcPerBranchSales.getQuantitySh());
-            System.out.println(mdcPerBranchSales.getUm());
-            System.out.println(mdcPerBranchSales.getVlamt());
-            System.out.println(mdcPerBranchSales.getSellpr());
-            System.out.println(mdcPerBranchSales.getPds());
-            System.out.println("EXPDTE: " + mdcPerBranchSales.getExpirationDate());
-            System.out.println(mdcPerBranchSales.getLotNo());
-            System.out.println(mdcPerBranchSales.getBarcode());
-            System.out.println(mdcPerBranchSales.getPdcode());
-            System.out.println(mdcPerBranchSales.getDman());
-            System.out.println(mdcPerBranchSales.getFindsc());
-            System.out.println(mdcPerBranchSales.getFramt());
-            System.out.println("SLSYEAR: " + mdcPerBranchSales.getSlsyr());
-            System.out.println("SLSMO: " + mdcPerBranchSales.getSlsmo());
-            System.out.println("SLSWK: " + mdcPerBranchSales.getSlswk());
-            System.out.println(mdcPerBranchSales.getAppNum());
-            System.out.println(mdcPerBranchSales.getPoNum());
-            System.out.println(mdcPerBranchSales.getGuartran());
-            System.out.println(mdcPerBranchSales.getNetSales());
-            System.out.println(mdcPerBranchSales.getDebtorCode());
-            System.out.println("STRCODE: " + mdcPerBranchSales.getStrCode());
-            System.out.println("COVERAGE: " + mdcPerBranchSales.getCoverage());
-            System.out.println("REASON: " + mdcPerBranchSales.getReason());
-            System.out.println("BRANCHNAME: " + mdcPerBranchSales.getBranchName());
-            System.out.println("NA NAME: " + mdcPerBranchSales.getNaName());
-            System.out.println("DSM NAME: " + mdcPerBranchSales.getDsmName());
-            System.out.println("COORDINATOR: " + mdcPerBranchSales.getCoordinator());
-            System.out.println("REGION: " + mdcPerBranchSales.getRegion());
-            System.out.println();
-
             mdcPerBranchSalesList.add(mdcPerBranchSales);
         });
 
