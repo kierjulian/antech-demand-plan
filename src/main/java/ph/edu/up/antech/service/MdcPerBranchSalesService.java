@@ -11,4 +11,6 @@ public interface MdcPerBranchSalesService {
 
     public void removeMdcPerBranchSalesByDate(LocalDate date);
 
+    public List<MdcPerBranchSales> findMdcPerBranchSalesByDate(LocalDate date);
+
 }

@@ -22,8 +22,8 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
-                        <input type="date" class="form-control" name="date">&nbsp;&nbsp;
+                    <form class="form-inline" method="get" th:action="@{/master/mdc-branch}">
+                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-search">&nbsp; Search</i></button>
@@ -33,6 +33,7 @@
                     <table id="mdcBranchTable" class="table table-striped table-bordered table-hover table-sm">
                         <thead class="thead-light">
                         <tr>
+                            <th scope="col">Row</th>
                             <th scope="col">CONO</th>
                             <th scope="col">REC</th>
                             <th scope="col">BRAN</th>
@@ -46,7 +47,6 @@
                             <th scope="col">ZIPCD</th>
                             <th scope="col">SMAN</th>
                             <th scope="col">PRIN</th>
-                            <th scope="col">Stage</th>
                             <th scope="col">SUBPR</th>
                             <th scope="col">REFCD</th>
                             <th scope="col">REFCD1</th>
@@ -95,7 +95,67 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                            <tr th:each="mdcPerBranchSales, row : ${mdcPerBranchSalesList}">
+                                <td class="align-middle" th:text="${row.count}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.rec}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.bran}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.satbrn}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.customerNo}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.shpcn}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.customerName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.cadd1}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.cadd2}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.clazz}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.zipcd}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.sman}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.prin}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.subpr}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.refcd}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.refcd1}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.netQuantity}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.netValue}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.netValue2}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.sku}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.category}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.grossValue}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.referenceDate}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.referenceNo}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.xreferenceNo}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.reasn}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.prodcd}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.quantityOr}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.quantitySh}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.um}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.vlamt}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.sellpr}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.pds}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.expirationDate}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.lotNo}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.barcode}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.pdcode}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.dman}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.findsc}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.framt}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.slsyr}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.slsmo}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.slswk}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.appNum}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.poNum}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.guartran}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.netSales}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.debtorCode}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.strCode}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.coverage}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.reason}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.branchName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.naName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.dsmName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.coordinator}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.region}"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

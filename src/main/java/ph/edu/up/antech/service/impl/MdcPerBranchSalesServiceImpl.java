@@ -25,4 +25,9 @@ public class MdcPerBranchSalesServiceImpl implements MdcPerBranchSalesService {
         mdcPerBranchSalesDAO.removeMdcPerBranchSalesByDate(date);
     }
 
+    @Override
+    public List<MdcPerBranchSales> findMdcPerBranchSalesByDate(LocalDate date) {
+        return mdcPerBranchSalesDAO.findMdcPerBranchSalesByDate(date);
+    }
+
 }

@@ -7,6 +7,7 @@ import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
@@ -36,6 +37,14 @@ public class MdcPerBranchSalesDAOImpl implements MdcPerBranchSalesDAO {
         Query query = em.createNamedQuery("deleteMdcPerBranchSalesByDate");
         query.setParameter("date", date);
         query.executeUpdate();
+    }
+
+    @Override
+    public List<MdcPerBranchSales> findMdcPerBranchSalesByDate(LocalDate date) {
+        TypedQuery<MdcPerBranchSales> query = em.createNamedQuery("findMdcPerBranchSalesByDate",
+                MdcPerBranchSales.class);
+        query.setParameter("date", date);
+        return query.getResultList();
     }
 
 }
