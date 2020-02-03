@@ -103,6 +103,7 @@ public class StatusReportController {
                     .convertCsvToListOfCustomerSalesByItem(customerSalesByItemFile.getInputStream());
             List<ZolDailySalesPerBranch> zolDailySalesPerBranchList = CsvToObjectConverter
                     .convertCsvToListOfZolDailySalesPerBranch(zolDailySalesPerBranchFile.getInputStream());
+
             LocalDate localDate = LocalDate.parse(date);
 
             handleCustomerItemSalesPerPeriodToZolPerDoors(customerItemSalesPerPeriodList, localDate);
@@ -173,6 +174,7 @@ public class StatusReportController {
                             .findFirst()
                             .orElse(null);
             zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
+
             zolPerDoorsList.add(zolPerDoors);
         });
 
@@ -210,6 +212,7 @@ public class StatusReportController {
 
     private void createNetsuiteByCustomerSalesByItemList(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
         List<Netsuite> netsuiteList = new ArrayList<>();
+
         customerSalesByItemList.forEach(customerSalesByItem -> {
             customerSalesByItem.setItemDate(localDate);
             customerSalesByItem.convertAllStringFieldsToProperType();
@@ -254,12 +257,14 @@ public class StatusReportController {
         List<ZolMdcRaw> zolMdcRawFilteredList = zolMdcRawList.stream()
                 .filter(zolMdcRaw -> zolMdcRaw.getAccountName() != null)
                 .collect(Collectors.toList());
+
         zolMdcRawFilteredList.forEach(zolMdcRaw -> {
             ZolMdcSheet zolMdcSheet = new ZolMdcSheet(zolMdcRaw);
             zolMdcSheetList.add(zolMdcSheet);
         });
 
         List<ZolMdcPerBranch> zolMdcPerBranchList = new ArrayList<>();
+
         zolMdcSheetList.forEach(zolMdcSheet -> {
             ZolMdcPerBranch zolMdcPerBranch = new ZolMdcPerBranch(zolMdcSheet);
             zolMdcPerBranchList.add(zolMdcPerBranch);
@@ -280,6 +285,7 @@ public class StatusReportController {
                     .findFirst()
                     .orElse(null);
             zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
+
             zolMdcPerBranch.setDate(localDate);
         });
 
@@ -287,8 +293,15 @@ public class StatusReportController {
     }
 
     private void handleZolDailySalesPerBranchToZolMtPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
-        zolMtPerBranchService.removeZolMtPerBranchByLocalDate(localDate);
+        removeZolMtPerBranchByDate(localDate);
+        createZolMtPerBranch(zolDailySalesPerBranchList, localDate);
+    }
 
+    private void removeZolMtPerBranchByDate(LocalDate localDate) {
+        zolMtPerBranchService.removeZolMtPerBranchByLocalDate(localDate);
+    }
+
+    private void createZolMtPerBranch(List<ZolDailySalesPerBranch> zolDailySalesPerBranchList, LocalDate localDate) {
         List<ZolMtRaw> zolMtRawList = new ArrayList<>();
         List<ZolMtAccount> zolMtAccountList = zolMtAccountService.findAllZolMtAccount();
 
