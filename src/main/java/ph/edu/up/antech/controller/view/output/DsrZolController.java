@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view;
+package ph.edu.up.antech.controller.view.output;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/dsr-zol")
 public class DsrZolController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DsrZolController.class);
@@ -29,7 +27,7 @@ public class DsrZolController {
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
 
-    @GetMapping("")
+    @GetMapping("/output/dsr-zol")
     public String loadDsrZolPage(Model model, @RequestParam(required = false) String date) {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date)
                 ? LocalDate.parse(date) : LocalDate.now();
