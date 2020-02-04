@@ -1,7 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
 import ph.edu.up.antech.domain.sales.master.converter.*;
-import ph.edu.up.antech.domain.sales.raw.DailySalesDataDetail;
 import ph.edu.up.antech.util.StringUtils;
 
 import javax.persistence.*;
@@ -203,44 +202,6 @@ public class MdcPerBranchSales {
 
     @Column(name = "region")
     private String region;
-
-    public MdcPerBranchSales(DailySalesDataDetail dailySalesDataDetail) {
-        this.cono = dailySalesDataDetail.getCono();
-        this.rec = dailySalesDataDetail.getRec();
-        this.bran = dailySalesDataDetail.getBran();
-        this.satbrn = dailySalesDataDetail.getSatbrn();
-        this.customerNo = dailySalesDataDetail.getCustomerNo();
-        this.shpcn = dailySalesDataDetail.getShpcn();
-        this.cadd1 = dailySalesDataDetail.getCadd1();
-        this.cadd2 = dailySalesDataDetail.getCadd2();
-        this.clazz = dailySalesDataDetail.getClazz();
-        this.zipcd = dailySalesDataDetail.getZipcd();
-        this.sman = dailySalesDataDetail.getSman();
-        this.prin = dailySalesDataDetail.getPrin();
-        this.subpr = dailySalesDataDetail.getSubpr();
-        this.referenceDate = dailySalesDataDetail.getReferenceDate();
-        this.referenceNo = dailySalesDataDetail.getRefno();
-        this.xreferenceNo = dailySalesDataDetail.getXrefno();
-        this.reasn = dailySalesDataDetail.getReasn();
-        this.prodcd = dailySalesDataDetail.getProdcd();
-        this.quantityOr = dailySalesDataDetail.getQuantityOr();
-        this.quantitySh = dailySalesDataDetail.getQuantitySh();
-        this.um = dailySalesDataDetail.getUm();
-        this.vlamt = dailySalesDataDetail.getVlamt();
-        this.sellpr = dailySalesDataDetail.getSellpr();
-        this.pds = dailySalesDataDetail.getPds();
-        this.expirationDate = dailySalesDataDetail.getExpiryDate();
-        this.lotNo = dailySalesDataDetail.getLotNo();
-        this.barcode = dailySalesDataDetail.getBarcode();
-        this.pdcode = dailySalesDataDetail.getPdcode();
-        this.dman = dailySalesDataDetail.getDman();
-        this.findsc = dailySalesDataDetail.getFindsc();
-        this.appNum = dailySalesDataDetail.getAppnum();
-        this.poNum = dailySalesDataDetail.getPonum();
-        this.guartran = dailySalesDataDetail.getGuartran();
-        this.netSales = dailySalesDataDetail.getNetSales();
-        this.debtorCode = dailySalesDataDetail.getDebtorCode();
-    }
 
     public MdcPerBranchSales(ZolMtRaw zolMtRaw) {
         this.cono = zolMtRaw.getCono();
