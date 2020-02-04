@@ -457,7 +457,7 @@ public class StatusReportController {
                     .findFirst()
                     .orElse(null);
             mdcPerBranchSales.generateValuesBasedOnMdcPerBranchSalesCode(mdcPerBranchSalesCode);
-            mdcPerBranchSales.setDate(LocalDate.now());
+            mdcPerBranchSales.setDate(localDate);
             mdcPerBranchSalesList.add(mdcPerBranchSales);
         });
 
