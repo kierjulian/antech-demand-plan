@@ -243,7 +243,8 @@ public class DispensingDistributor implements Serializable {
             this.price = new BigDecimal(priceInString.trim()
                     .replaceAll(",", "")
                     .replaceAll("\\(", "")
-                    .replaceAll("\\)", ""));
+                    .replaceAll("\\)", ""))
+                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
     }
 
@@ -253,7 +254,8 @@ public class DispensingDistributor implements Serializable {
             this.totalAmount = new BigDecimal(totalAmountInString.trim()
                     .replaceAll(",", "")
                     .replaceAll("\\(", "")
-                    .replaceAll("\\)", ""));
+                    .replaceAll("\\)", ""))
+                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
     }
 
@@ -263,7 +265,8 @@ public class DispensingDistributor implements Serializable {
             this.finalAmount = new BigDecimal(finalAmountInString.trim()
                     .replaceAll(",", "")
                     .replaceAll("\\(", "")
-                    .replaceAll("\\)", ""));
+                    .replaceAll("\\)", ""))
+                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
     }
 

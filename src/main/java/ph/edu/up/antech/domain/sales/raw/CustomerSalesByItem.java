@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -380,14 +381,16 @@ public class CustomerSalesByItem {
     private void convertSalesPriceInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesPriceInString)) {
             salesPrice = new BigDecimal(
-                    salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""));
+                    salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""))
+                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
     }
 
     private void convertNetAmountInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(netAmountInString)) {
             netAmount = new BigDecimal(
-                    netAmountInString.replaceAll("PHP", "").replaceAll(",", ""));
+                    netAmountInString.replaceAll("PHP", "").replaceAll(",", ""))
+                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
         }
     }
 
