@@ -83,6 +83,45 @@ public class Netsuite implements Serializable {
     @Column(name = "bill_address_2")
     private String billingAddressLine2;
 
+    @Transient
+    private String customerJobHospital1;
+
+    @Transient
+    private String x;
+
+    @Transient
+    private String a;
+
+    @Transient
+    private String b;
+
+    @Transient
+    private String c;
+
+    @Transient
+    private String formula;
+
+    @Transient
+    private String brand;
+
+    @Transient
+    private String stage;
+
+    @Transient
+    private String transfersCat;
+
+    @Transient
+    private String transfersCatRecode;
+
+    @Transient
+    private Integer inPcs;
+
+    @Transient
+    private Integer convUnits;
+
+    @Transient
+    private String desc;
+
     @Column(name = "kam_ref_name1")
     private String kamRefName1;
 
@@ -306,6 +345,110 @@ public class Netsuite implements Serializable {
 
     public void setBillingAddressLine2(String billingAddressLine2) {
         this.billingAddressLine2 = billingAddressLine2;
+    }
+
+    public String getCustomerJobHospital1() {
+        return customerJobHospital1;
+    }
+
+    public void setCustomerJobHospital1(String customerJobHospital1) {
+        this.customerJobHospital1 = customerJobHospital1;
+    }
+
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public String getA() {
+        return a;
+    }
+
+    public void setA(String a) {
+        this.a = a;
+    }
+
+    public String getB() {
+        return b;
+    }
+
+    public void setB(String b) {
+        this.b = b;
+    }
+
+    public String getC() {
+        return c;
+    }
+
+    public void setC(String c) {
+        this.c = c;
+    }
+
+    public String getFormula() {
+        return formula;
+    }
+
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
+
+    public String getTransfersCat() {
+        return transfersCat;
+    }
+
+    public void setTransfersCat(String transfersCat) {
+        this.transfersCat = transfersCat;
+    }
+
+    public String getTransfersCatRecode() {
+        return transfersCatRecode;
+    }
+
+    public void setTransfersCatRecode(String transfersCatRecode) {
+        this.transfersCatRecode = transfersCatRecode;
+    }
+
+    public Integer getInPcs() {
+        return inPcs;
+    }
+
+    public void setInPcs(Integer inPcs) {
+        this.inPcs = inPcs;
+    }
+
+    public Integer getConvUnits() {
+        return convUnits;
+    }
+
+    public void setConvUnits(Integer convUnits) {
+        this.convUnits = convUnits;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getKamRefName1() {
