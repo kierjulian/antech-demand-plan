@@ -2,23 +2,42 @@ package ph.edu.up.antech.domain.sales.master.converter;
 
 import com.opencsv.bean.CsvBindByName;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "netsuite_gen_info")
+@NamedQueries({
+        @NamedQuery(name = "findAllNetsuiteGeneralInformation",
+                query = "select o from NetsuiteGeneralInformation o")
+})
 public class NetsuiteGeneralInformation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "customer_job")
     @CsvBindByName(column = "Customer/Job")
     private String customerJob;
 
+    @Column(name = "account")
     @CsvBindByName(column = "Account")
     private String account;
 
+    @Column(name = "name")
     @CsvBindByName(column = "Name")
     private String name;
 
+    @Column(name = "na_number")
     @CsvBindByName(column = "NA #")
     private String naNumber;
 
+    @Column(name = "kam_ref_name")
     @CsvBindByName(column = "KAM_REF_NAME")
     private String kamReferenceName;
 
+    @Column(name = "location")
     @CsvBindByName(column = "Location")
     private String location;
 
