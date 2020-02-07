@@ -1,0 +1,26 @@
+Type,Description,Other Description
+Dispensing Doctor,3. Dispensing MD,3. Dispensing MD
+Pedia Doctors,3. Dispensing MD,3. Dispensing MD
+,3. Dispensing MD,3. Dispensing MD
+Dispensing MD,3. Dispensing MD,
+HD-Dispensing,4. HD-Dispensing,8. HD-Dispensing
+Distributor -BBJ,7. BBJ,6. BBJ
+Employee,8. Employee,5. Employee
+HD ref MD,5. Home Delivery,7. Home Delivery
+Home Delivery,5. Home Delivery,7. Home Delivery
+Home Delivery Doctor,5. Home Delivery,
+Hospital/Clinic,6. Institutional,2. Institutional
+Hospital Old Price,6. Institutional,2. Institutional
+Hospital/Clinic,6. Institutional,2. Institutional
+Trade-MDC,1. MDC,1. MDC
+Trade,2. Trade,4. Trade
+Distributor,9. Distributor,
+Trade-Akromont,9. Distributor,
+Trade-Dabisco,9. Distributor,
+Trade-BNBI,9. Distributor,
+VISAYAS -Distributor,2. Trade,
+VISAYAS/Davao -Distributor,2. Trade,
+Distributor-Bicol Region,2. Trade,
+Distributor-Blocs,2. Trade,2. Institutional
+Distributor-North Luzon,2. Trade,
+Institutional,6. Institutional,
