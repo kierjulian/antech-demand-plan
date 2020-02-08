@@ -28,7 +28,7 @@ import java.util.List;
 @ContextConfiguration(classes = {
         NetsuiteProductListSourceServiceImpl.class, NetsuiteProductListDeServiceImpl.class,
         NetsuiteGeneralInformationServiceImpl.class, NetsuiteOtherInformationServiceImpl.class,
-        MdcPerBranchSalesNaConfigurationServiceImpl.class, NetsuiteBjjTaggingServiceImpl.class
+        MdcPerBranchSalesNaConfigurationServiceImpl.class, NetsuiteBbjTaggingServiceImpl.class
 })
 public class ConvertCustomerSalesByItemToNetsuiteTest {
 
@@ -48,7 +48,7 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
     private MdcPerBranchSalesNaConfigurationService mdcPerBranchSalesNaConfigurationService;
 
     @Autowired
-    private NetsuiteBjjTaggingService netsuiteBjjTaggingService;
+    private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
     @Test
     public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
@@ -69,8 +69,8 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                     netsuiteOtherInformationService.findAllNetsuiteOtherInformation();
             List<MdcPerBranchSalesNaConfiguration> mdcPerBranchSalesNaConfigurationList =
                     mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
-            List<NetsuiteBjjTagging> netsuiteBjjTaggingList =
-                    netsuiteBjjTaggingService.findAllNetsuiteBjjTagging();
+            List<NetsuiteBbjTagging> netsuiteBbjTaggingList =
+                    netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
 
             for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
                 customerSalesByItem.convertAllStringFieldsToProperType();
@@ -144,12 +144,12 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                 netsuite.generateValuesFromNetsuiteOtherInformation(netsuiteOtherInformation);
                 System.out.println("MGNT: " + netsuite.getMgmt());
 
-                NetsuiteBjjTagging netsuiteBjjTagging =
-                        netsuiteBjjTaggingList.stream()
+                NetsuiteBbjTagging netsuiteBbjTagging =
+                        netsuiteBbjTaggingList.stream()
                                 .filter(tagging -> tagging.getCustomerName().equals(netsuite.getCustomer()))
                                 .findFirst()
                                 .orElse(null);
-                netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBjjTagging);
+                netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBbjTagging);
                 System.out.println("CSR TAGGING: " + netsuite.getCsrTagging());
                 System.out.println();
             }

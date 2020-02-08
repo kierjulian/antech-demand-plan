@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBjjTagging;
+import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
 import ph.edu.up.antech.runner.Application;
-import ph.edu.up.antech.service.NetsuiteBjjTaggingService;
-import ph.edu.up.antech.service.impl.NetsuiteBjjTaggingServiceImpl;
+import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
+import ph.edu.up.antech.service.impl.NetsuiteBbjTaggingServiceImpl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -25,23 +25,23 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {Application.class})
 @ContextConfiguration(classes = {
-        NetsuiteBjjTaggingServiceImpl.class
+        NetsuiteBbjTaggingServiceImpl.class
 })
-public class NetsuiteBjjTaggingSetup {
+public class NetsuiteBbjTaggingSetup {
 
     @Autowired
-    private NetsuiteBjjTaggingService netsuiteBjjTaggingService;
+    private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
     @Test
     public void readNetsuiteBjjTaggingFromCsvAndPersistToDatabase() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/NetsuiteBJJTagging.csv"))) {
-            CsvToBean<NetsuiteBjjTagging> csvToBean = new CsvToBeanBuilder(reader)
+            CsvToBean<NetsuiteBbjTagging> csvToBean = new CsvToBeanBuilder(reader)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withSkipLines(0)
-                    .withType(NetsuiteBjjTagging.class)
+                    .withType(NetsuiteBbjTagging.class)
                     .build();
-            List<NetsuiteBjjTagging> netsuiteBjjTaggingList = csvToBean.parse();
-            netsuiteBjjTaggingList.forEach(netsuiteBjjTagging -> {
+            List<NetsuiteBbjTagging> netsuiteBbjTaggingList = csvToBean.parse();
+            netsuiteBbjTaggingList.forEach(netsuiteBjjTagging -> {
                 System.out.println("Customer Name: " + netsuiteBjjTagging.getCustomerName());
                 System.out.println("Zone: " + netsuiteBjjTagging.getZone());
                 System.out.println("Address: " + netsuiteBjjTagging.getAddress());
@@ -49,7 +49,7 @@ public class NetsuiteBjjTaggingSetup {
                 System.out.println("New Tagging of CSR: " + netsuiteBjjTagging.getNewTaggingOfCsr());
                 System.out.println();
 
-                netsuiteBjjTaggingService.createNetsuiteBjjTagging(netsuiteBjjTagging);
+                netsuiteBbjTaggingService.createNetsuiteBjjTagging(netsuiteBjjTagging);
             });
         } catch (IOException e) {
             e.printStackTrace();

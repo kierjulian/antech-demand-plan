@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Table(name = "netsuite_bjj_tagging")
 @NamedQueries({
         @NamedQuery(name = "findAllNetsuiteBbjTagging",
-                query = "select o from NetsuiteBjjTagging o")
+                query = "select o from NetsuiteBbjTagging o")
 })
-public class NetsuiteBjjTagging implements Serializable {
+public class NetsuiteBbjTagging implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

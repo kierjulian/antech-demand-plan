@@ -594,9 +594,9 @@ public class Netsuite implements Serializable {
         }
     }
 
-    public void generateValuesFromNetsuiteBjjTagging(NetsuiteBjjTagging netsuiteBjjTagging) {
-        if (netsuiteBjjTagging != null) {
-            this.csrTagging = netsuiteBjjTagging.getNewTaggingOfCsr();
+    public void generateValuesFromNetsuiteBjjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
+        if (netsuiteBbjTagging != null) {
+            this.csrTagging = netsuiteBbjTagging.getNewTaggingOfCsr();
         }
     }
 

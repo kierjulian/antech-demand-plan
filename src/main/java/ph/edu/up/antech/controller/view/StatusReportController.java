@@ -95,7 +95,7 @@ public class StatusReportController {
     private NetsuiteOtherInformationService netsuiteOtherInformationService;
 
     @Autowired
-    private NetsuiteBjjTaggingService netsuiteBjjTaggingService;
+    private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
     @GetMapping("")
     public String loadStatusReportHomePage() {
@@ -238,8 +238,8 @@ public class StatusReportController {
                 netsuiteOtherInformationService.findAllNetsuiteOtherInformation();
         List<MdcPerBranchSalesNaConfiguration> mdcPerBranchSalesNaConfigurationList =
                 mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
-        List<NetsuiteBjjTagging> netsuiteBjjTaggingList =
-                netsuiteBjjTaggingService.findAllNetsuiteBjjTagging();
+        List<NetsuiteBbjTagging> netsuiteBbjTaggingList =
+                netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
 
         customerSalesByItemList.forEach(customerSalesByItem -> {
             customerSalesByItem.setItemDate(localDate);
@@ -281,12 +281,12 @@ public class StatusReportController {
                             .orElse(null);
             netsuite.generateValuesFromNetsuiteOtherInformation(netsuiteOtherInformation);
 
-            NetsuiteBjjTagging netsuiteBjjTagging =
-                    netsuiteBjjTaggingList.stream()
+            NetsuiteBbjTagging netsuiteBbjTagging =
+                    netsuiteBbjTaggingList.stream()
                             .filter(tagging -> tagging.getCustomerName().equals(netsuite.getCustomer()))
                             .findFirst()
                             .orElse(null);
-            netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBjjTagging);
+            netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBbjTagging);
 
             netsuiteList.add(netsuite);
         });
