@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view;
+package ph.edu.up.antech.controller.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/zol-gen-info")
+@RequestMapping("/config/zol-gen-info")
 public class ZolPerDoorsGeneralInformationController {
 
     @Autowired

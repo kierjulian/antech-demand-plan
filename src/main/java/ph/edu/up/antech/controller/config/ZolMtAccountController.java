@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view;
+package ph.edu.up.antech.controller.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.ZolMtAccountService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/zol-mt-accounts")
+@RequestMapping("/config/zol-mt-accounts")
 public class ZolMtAccountController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ZolMtAccountController.class);
