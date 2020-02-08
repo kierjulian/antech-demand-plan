@@ -82,6 +82,21 @@ public class StatusReportController {
     @Autowired
     private MdcPerBranchSalesService mdcPerBranchSalesService;
 
+    @Autowired
+    private NetsuiteProductListSourceService netsuiteProductListSourceService;
+
+    @Autowired
+    private NetsuiteProductListDeService netsuiteProductListDeService;
+
+    @Autowired
+    private NetsuiteGeneralInformationService netsuiteGeneralInformationService;
+
+    @Autowired
+    private NetsuiteOtherInformationService netsuiteOtherInformationService;
+
+    @Autowired
+    private NetsuiteBjjTaggingService netsuiteBjjTaggingService;
+
     @GetMapping("")
     public String loadStatusReportHomePage() {
         return "status-report";
@@ -213,10 +228,66 @@ public class StatusReportController {
     private void createNetsuiteByCustomerSalesByItemList(List<CustomerSalesByItem> customerSalesByItemList, LocalDate localDate) {
         List<Netsuite> netsuiteList = new ArrayList<>();
 
+        List<NetsuiteProductListSource> netsuiteProductListSourceList =
+                netsuiteProductListSourceService.findAllNetsuiteProductListSource();
+        List<NetsuiteProductListDe> netsuiteProductListDeList =
+                netsuiteProductListDeService.findAllNetsuiteProductListDe();
+        List<NetsuiteGeneralInformation> netsuiteGeneralInformationList =
+                netsuiteGeneralInformationService.findAllNetsuiteGeneralInformation();
+        List<NetsuiteOtherInformation> netsuiteOtherInformationList =
+                netsuiteOtherInformationService.findAllNetsuiteOtherInformation();
+        List<MdcPerBranchSalesNaConfiguration> mdcPerBranchSalesNaConfigurationList =
+                mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
+        List<NetsuiteBjjTagging> netsuiteBjjTaggingList =
+                netsuiteBjjTaggingService.findAllNetsuiteBjjTagging();
+
         customerSalesByItemList.forEach(customerSalesByItem -> {
             customerSalesByItem.setItemDate(localDate);
             customerSalesByItem.convertAllStringFieldsToProperType();
             Netsuite netsuite = new Netsuite(customerSalesByItem);
+
+            NetsuiteGeneralInformation netsuiteGeneralInformation =
+                    netsuiteGeneralInformationList.stream()
+                            .filter(info -> info.getCustomerJob().equals(netsuite.getCustomer()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteGeneralInformation(netsuiteGeneralInformation);
+
+            MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration =
+                    mdcPerBranchSalesNaConfigurationList.stream()
+                            .filter(config -> config.getNaName().equals(netsuite.getKamRefName1()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromMdcPerBranchSalesNaConfiguration(mdcPerBranchSalesNaConfiguration);
+
+            NetsuiteProductListSource netsuiteProductListSource =
+                    netsuiteProductListSourceList.stream()
+                            .filter(source -> source.getOrigin().equals(netsuite.getDescription()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteProductListSource(netsuiteProductListSource);
+
+            NetsuiteProductListDe netsuiteProductListDe =
+                    netsuiteProductListDeList.stream()
+                            .filter(de -> de.getDescription().equals(netsuite.getFormula()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteProductListDe(netsuiteProductListDe);
+
+            NetsuiteOtherInformation netsuiteOtherInformation =
+                    netsuiteOtherInformationList.stream()
+                            .filter(info -> info.getType().equals(netsuite.getCategory()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteOtherInformation(netsuiteOtherInformation);
+
+            NetsuiteBjjTagging netsuiteBjjTagging =
+                    netsuiteBjjTaggingList.stream()
+                            .filter(tagging -> tagging.getCustomerName().equals(netsuite.getCustomer()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBjjTagging);
+
             netsuiteList.add(netsuite);
         });
 
