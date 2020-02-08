@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/config/mdc-branch-brn")
-public class MdcPerBranchBrnController {
+public class MdcPerBranchSalesBrnController {
 
     @Autowired
     private MdcPerBranchSalesBrnService mdcPerBranchSalesBrnService;
