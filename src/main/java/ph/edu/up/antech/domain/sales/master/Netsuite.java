@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 
 import javax.persistence.*;
@@ -177,6 +178,9 @@ public class Netsuite implements Serializable {
         this.zone = customerSalesByItem.getAddressZipCode();
         this.customerJobZone = customerSalesByItem.getAddressBillingAddress1();
         this.pickup = customerSalesByItem.getAddressBillingAddress2();
+        this.billingAddressLine1 = customerSalesByItem.getCustomerJobHospital1();
+        this.billingAddressLine2 = customerSalesByItem.getCustomerJobDoctor1();
+        generateOtherValues();
     }
 
     public Integer getId() {
@@ -537,6 +541,63 @@ public class Netsuite implements Serializable {
 
     public void setProductCategory(String productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public void generateOtherValues() {
+        generateRevenueConverted();
+        generateNaLeftAndTrim();
+    }
+
+    private void generateRevenueConverted() {
+        if (revenue != null) {
+            revenueConverted = revenue.multiply(new BigDecimal("0.001"));
+        }
+    }
+
+    private void generateNaLeftAndTrim() {
+        if (creditedToTerritorialManager != null) {
+            naLeft = creditedToTerritorialManager;
+            trim = creditedToTerritorialManager;
+        }
+    }
+
+    public void generateValuesFromNetsuiteGeneralInformation(NetsuiteGeneralInformation netsuiteGeneralInformation) {
+        if (netsuiteGeneralInformation != null) {
+            this.kamRefName1 = netsuiteGeneralInformation.getKamReferenceName();
+        }
+    }
+
+    public void generateValuesFromMdcPerBranchSalesNaConfiguration(
+            MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration) {
+        if (mdcPerBranchSalesNaConfiguration != null) {
+            this.region = mdcPerBranchSalesNaConfiguration.getNaName();
+            this.asm = mdcPerBranchSalesNaConfiguration.getRegion();
+        }
+    }
+
+    public void generateValuesFromNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource) {
+        if (netsuiteProductListSource != null) {
+            this.formula = netsuiteProductListSource.getDestination();
+        }
+    }
+
+    public void generateValuesFromNetsuiteProductListDe(NetsuiteProductListDe netsuiteProductListDe) {
+        if (netsuiteProductListDe != null) {
+            this.brand = netsuiteProductListDe.getProductCode();
+            this.stage = netsuiteProductListDe.getStage();
+        }
+    }
+
+    public void generateValuesFromNetsuiteOtherInformation(NetsuiteOtherInformation netsuiteOtherInformation) {
+        if (netsuiteOtherInformation != null) {
+            this.mgmt = netsuiteOtherInformation.getDescription();
+        }
+    }
+
+    public void generateValuesFromNetsuiteBjjTagging(NetsuiteBjjTagging netsuiteBjjTagging) {
+        if (netsuiteBjjTagging != null) {
+            this.csrTagging = netsuiteBjjTagging.getNewTaggingOfCsr();
+        }
     }
 
 }
