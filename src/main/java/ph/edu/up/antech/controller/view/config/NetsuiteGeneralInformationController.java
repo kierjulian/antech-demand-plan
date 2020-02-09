@@ -1,10 +1,12 @@
 package ph.edu.up.antech.controller.view.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 
@@ -13,6 +15,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/config/netsuite-general-info")
 public class NetsuiteGeneralInformationController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteGeneralInformationController.class);
+
 
     @Autowired
     private NetsuiteGeneralInformationService netsuiteGeneralInformationService;
@@ -23,6 +28,73 @@ public class NetsuiteGeneralInformationController {
                 netsuiteGeneralInformationService.findAllNetsuiteGeneralInformation();
         model.addAttribute("netsuiteGeneralInformationList", netsuiteGeneralInformationList);
         return "netsuite-gen-info";
+    }
+
+    @GetMapping("/view/{id}")
+    public String viewNetsuiteGeneralInformation(Model model, @PathVariable Integer id) {
+        NetsuiteGeneralInformation netsuiteGeneralInformation = netsuiteGeneralInformationService
+                .findNetsuiteGeneralInformationById(id);
+        model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
+        return "netsuite-gen-info-view";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editNetsuiteGeneralInformation(Model model, @PathVariable Integer id) {
+        NetsuiteGeneralInformation netsuiteGeneralInformation = netsuiteGeneralInformationService
+                .findNetsuiteGeneralInformationById(id);
+        model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
+        return "netsuite-gen-info-edit";
+    }
+
+    @PostMapping("/update")
+    public String updateNetsuiteGeneralInformation(RedirectAttributes redirectAttributes,
+                                                   @ModelAttribute(value = "netsuiteGeneralInformation")
+                                                           NetsuiteGeneralInformation netsuiteGeneralInformation) {
+        try {
+            netsuiteGeneralInformationService.updateNetsuiteGeneralInformation(netsuiteGeneralInformation);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully updated.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-general-info/view/" + netsuiteGeneralInformation.getId();
+    }
+
+    @GetMapping("/add")
+    public String addNetsuiteGeneralInformation(Model model) {
+        NetsuiteGeneralInformation netsuiteGeneralInformation = new NetsuiteGeneralInformation();
+        model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
+        return "netsuite-gen-info-add";
+    }
+
+    @PostMapping("/create")
+    public String createNetsuiteGeneralInformation(RedirectAttributes redirectAttributes,
+                                                   @ModelAttribute(value = "netsuiteGeneralInformation")
+                                                           NetsuiteGeneralInformation netsuiteGeneralInformation) {
+        try {
+            netsuiteGeneralInformation = netsuiteGeneralInformationService.saveNetsuiteGeneralInformation(netsuiteGeneralInformation);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully created.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-general-info/view/" + netsuiteGeneralInformation.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String removeNetsuiteGeneralInformation(
+            RedirectAttributes redirectAttributes, @PathVariable Integer id) {
+        try {
+            netsuiteGeneralInformationService.removeNetsuiteGeneralInformation(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-general-info";
     }
 
 }

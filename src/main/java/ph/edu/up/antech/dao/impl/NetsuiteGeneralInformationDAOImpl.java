@@ -31,4 +31,23 @@ public class NetsuiteGeneralInformationDAOImpl implements NetsuiteGeneralInforma
         return query.getResultList();
     }
 
+    @Override
+    public NetsuiteGeneralInformation findNetsuiteGeneralInformationById(Integer id) {
+        TypedQuery<NetsuiteGeneralInformation> query = em.createNamedQuery("findNetsuiteGeneralInformationById",
+                NetsuiteGeneralInformation.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public NetsuiteGeneralInformation updateNetsuiteGeneralInformation(NetsuiteGeneralInformation netsuiteGeneralInformation) {
+        return em.merge(netsuiteGeneralInformation);
+    }
+
+    @Override
+    public void removeNetsuiteGeneralInformation(Integer id) {
+        NetsuiteGeneralInformation netsuiteGeneralInformation = em.find(NetsuiteGeneralInformation.class, id);
+        em.remove(netsuiteGeneralInformation);
+    }
+
 }

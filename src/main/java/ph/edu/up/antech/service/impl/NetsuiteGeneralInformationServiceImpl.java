@@ -24,4 +24,19 @@ public class NetsuiteGeneralInformationServiceImpl implements NetsuiteGeneralInf
         return netsuiteGeneralInformationDAO.findAllNetsuiteGeneralInformation();
     }
 
+    @Override
+    public NetsuiteGeneralInformation findNetsuiteGeneralInformationById(Integer id) {
+        return netsuiteGeneralInformationDAO.findNetsuiteGeneralInformationById(id);
+    }
+
+    @Override
+    public NetsuiteGeneralInformation updateNetsuiteGeneralInformation(NetsuiteGeneralInformation netsuiteGeneralInformation) {
+        return netsuiteGeneralInformationDAO.updateNetsuiteGeneralInformation(netsuiteGeneralInformation);
+    }
+
+    @Override
+    public void removeNetsuiteGeneralInformation(Integer id) {
+        netsuiteGeneralInformationDAO.removeNetsuiteGeneralInformation(id);
+    }
+
 }

@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Table(name = "netsuite_gen_info")
 @NamedQueries({
         @NamedQuery(name = "findAllNetsuiteGeneralInformation",
-                query = "select o from NetsuiteGeneralInformation o")
+                query = "select o from NetsuiteGeneralInformation o"),
+        @NamedQuery(name = "findNetsuiteGeneralInformationById",
+                query = "select o from NetsuiteGeneralInformation o where o.id = :id")
 })
 public class NetsuiteGeneralInformation {
 
@@ -40,6 +42,14 @@ public class NetsuiteGeneralInformation {
     @Column(name = "location")
     @CsvBindByName(column = "Location")
     private String location;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCustomerJob() {
         return customerJob;
