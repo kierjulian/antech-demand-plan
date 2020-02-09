@@ -24,4 +24,19 @@ public class NetsuiteProductListDeServiceImpl implements NetsuiteProductListDeSe
         return netsuiteProductListDeDAO.findAllNetsuiteProductListDe();
     }
 
+    @Override
+    public NetsuiteProductListDe findNetsuiteProductListDeById(Integer id) {
+        return netsuiteProductListDeDAO.findNetsuiteProductListDeById(id);
+    }
+
+    @Override
+    public NetsuiteProductListDe updateNetsuiteProductListDe(NetsuiteProductListDe netsuiteProductListDe) {
+        return netsuiteProductListDeDAO.updateNetsuiteProductListDe(netsuiteProductListDe);
+    }
+
+    @Override
+    public void removeNetsuiteProductListDe(Integer id) {
+        netsuiteProductListDeDAO.removeNetsuiteProductListDe(id);
+    }
+
 }

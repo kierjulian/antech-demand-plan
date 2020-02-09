@@ -31,4 +31,23 @@ public class NetsuiteProductListDeDAOImpl implements NetsuiteProductListDeDAO {
         return query.getResultList();
     }
 
+    @Override
+    public NetsuiteProductListDe findNetsuiteProductListDeById(Integer id) {
+        TypedQuery<NetsuiteProductListDe> query = em.createNamedQuery("findNetsuiteProductListDeById",
+                NetsuiteProductListDe.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public NetsuiteProductListDe updateNetsuiteProductListDe(NetsuiteProductListDe netsuiteProductListDe) {
+        return em.merge(netsuiteProductListDe);
+    }
+
+    @Override
+    public void removeNetsuiteProductListDe(Integer id) {
+        NetsuiteProductListDe netsuiteProductListDe = em.find(NetsuiteProductListDe.class, id);
+        em.remove(netsuiteProductListDe);
+    }
+
 }

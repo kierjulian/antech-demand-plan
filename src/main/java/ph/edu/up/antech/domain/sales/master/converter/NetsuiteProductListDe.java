@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Table(name = "netsuite_prod_list_de")
 @NamedQueries({
         @NamedQuery(name = "findAllNetsuiteProductListDe",
-                query = "select o from NetsuiteProductListDe o")
+                query = "select o from NetsuiteProductListDe o"),
+        @NamedQuery(name = "findNetsuiteProductListDeById",
+                query = "select o from NetsuiteProductListDe o where o.id = :id")
 })
 public class NetsuiteProductListDe {
 

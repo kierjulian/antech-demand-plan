@@ -10,4 +10,10 @@ public interface NetsuiteProductListDeService {
 
     public List<NetsuiteProductListDe> findAllNetsuiteProductListDe();
 
+    public NetsuiteProductListDe findNetsuiteProductListDeById(Integer id);
+
+    public NetsuiteProductListDe updateNetsuiteProductListDe(NetsuiteProductListDe netsuiteProductListDe);
+
+    public void removeNetsuiteProductListDe(Integer id);
+
 }
