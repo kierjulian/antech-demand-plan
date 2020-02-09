@@ -31,4 +31,23 @@ public class MdcPerBranchSalesBrnDAOImpl implements MdcPerBranchSalesBrnDAO {
         return query.getResultList();
     }
 
+    @Override
+    public MdcPerBranchSalesBrn findMdcPerBranchSalesBrnById(Integer id) {
+        TypedQuery<MdcPerBranchSalesBrn> query = em.createNamedQuery("findMdcPerBranchSalesBrnById",
+                MdcPerBranchSalesBrn.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public MdcPerBranchSalesBrn updateMdcPerBranchSalesBrn(MdcPerBranchSalesBrn mdcPerBranchSalesBrn) {
+        return em.merge(mdcPerBranchSalesBrn);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesBrn(Integer id) {
+        MdcPerBranchSalesBrn mdcPerBranchSalesBrn = em.find(MdcPerBranchSalesBrn.class, id);
+        em.remove(mdcPerBranchSalesBrn);
+    }
+
 }
