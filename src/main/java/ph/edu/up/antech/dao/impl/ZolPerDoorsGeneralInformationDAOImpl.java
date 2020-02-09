@@ -57,4 +57,24 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
         return entityManager.createNamedQuery("findAllZolPerDoorsGeneralInformation").getResultList();
     }
 
+    @Override
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationById(Integer id) {
+        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager
+                .createNamedQuery("findZolPerDoorsGeneralInformationById", ZolPerDoorsGeneralInformation.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public ZolPerDoorsGeneralInformation updateZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+        return entityManager.merge(zolPerDoorsGeneralInformation);
+    }
+
+    @Override
+    public void removeZolPerDoorsGeneralInformation(Integer id) {
+        ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = entityManager.find(
+                ZolPerDoorsGeneralInformation.class, id);
+        entityManager.remove(zolPerDoorsGeneralInformation);
+    }
+
 }

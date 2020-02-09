@@ -14,14 +14,16 @@ import java.math.BigDecimal;
         @NamedQuery(name = "findZolPerDoorsGeneralInformationByZpcItemCode",
                 query = "select o from ZolPerDoorsGeneralInformation o where o.zpcItemCode = :zpcItemCode"),
         @NamedQuery(name = "findAllZolPerDoorsGeneralInformation",
-                query = "select o from ZolPerDoorsGeneralInformation o")
+                query = "select o from ZolPerDoorsGeneralInformation o"),
+        @NamedQuery(name = "findZolPerDoorsGeneralInformationById",
+                query = "select o from ZolPerDoorsGeneralInformation o where o.id = :id")
 })
 public class ZolPerDoorsGeneralInformation implements Serializable {
 
     @Id
     @Column(name = "info_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer generalInformationId;
+    private Integer id;
 
     @CsvBindByName(column = "ZPCItemCode")
     @Column(name = "zpc_item_code")
@@ -85,12 +87,12 @@ public class ZolPerDoorsGeneralInformation implements Serializable {
     public ZolPerDoorsGeneralInformation() {
     }
 
-    public Integer getGeneralInformationId() {
-        return generalInformationId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGeneralInformationId(Integer generalInformationId) {
-        this.generalInformationId = generalInformationId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getZpcItemCode() {

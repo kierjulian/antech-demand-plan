@@ -34,4 +34,19 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
         return zolPerDoorsGeneralInformationDAO.findAllZolPerDoorsGeneralInformation();
     }
 
+    @Override
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationById(Integer id) {
+        return zolPerDoorsGeneralInformationDAO.findZolPerDoorsGeneralInformationById(id);
+    }
+
+    @Override
+    public ZolPerDoorsGeneralInformation updateZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+        return zolPerDoorsGeneralInformationDAO.updateZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
+    }
+
+    @Override
+    public void removeZolPerDoorsGeneralInformation(Integer id) {
+        zolPerDoorsGeneralInformationDAO.removeZolPerDoorsGeneralInformation(id);
+    }
+
 }

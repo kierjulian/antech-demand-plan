@@ -15,4 +15,11 @@ public interface ZolPerDoorsGeneralInformationDAO {
 
     public List<ZolPerDoorsGeneralInformation> findAllZolPerDoorsGeneralInformation();
 
+    public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationById(Integer id);
+
+    public ZolPerDoorsGeneralInformation updateZolPerDoorsGeneralInformation(
+            ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
+
+    public void removeZolPerDoorsGeneralInformation(Integer id);
+
 }

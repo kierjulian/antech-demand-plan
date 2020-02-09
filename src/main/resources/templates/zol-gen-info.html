@@ -32,10 +32,10 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
+                    <form class="form-inline">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#" role="button">
-                                <i class="fas fa-plus">&nbsp; Add Zol General Information</i></a>
+                            <a class="btn btn-primary" th:href="@{/config/zol-gen-info/add}" role="button">
+                                <i class="fas fa-plus">&nbsp; Add ZOL General Information</i></a>
                         </div>
                     </form>
                     <br>
@@ -55,22 +55,50 @@
                                 <th scope="col">Stage</th>
                                 <th scope="col">Old Price</th>
                                 <th scope="col">New Price</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="customer, row : ${zolPerDoorsGeneralInformationList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
-                                <td class="align-middle" th:text="${customer.zpcItemCode}"></td>
-                                <td class="align-middle" th:text="${customer.itemCode}"></td>
-                                <td class="align-middle" th:text="${customer.itemName}"></td>
-                                <td class="align-middle" th:text="${customer.antechProductDescription}"></td>
-                                <td class="align-middle" th:text="${customer.pcsCs}"></td>
-                                <td class="align-middle" th:text="${customer.pcAmount}"></td>
-                                <td class="align-middle" th:text="${customer.perCase}"></td>
-                                <td class="align-middle" th:text="${customer.brand}"></td>
-                                <td class="align-middle" th:text="${customer.stage}"></td>
-                                <td class="align-middle" th:text="${customer.oldPrice}"></td>
-                                <td class="align-middle" th:text="${customer.newPrice}"></td>
+                            <tr th:each="zolPerDoorsGeneralInformation, row : ${zolPerDoorsGeneralInformationList}">
+                                <td class="align-middle">
+                                    <a th:text="${row.count}"
+                                       th:href="@{/config/zol-gen-info/view/{id}(id=${zolPerDoorsGeneralInformation.id})}"></a>
+                                </td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.zpcItemCode}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.itemCode}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.itemName}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.antechProductDescription}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.pcsCs}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.pcAmount}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.perCase}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.brand}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.stage}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.oldPrice}"></td>
+                                <td class="align-middle" th:text="${zolPerDoorsGeneralInformation.newPrice}"></td>
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-danger" data-toggle="modal"
+                                       th:attr="data-target='#deleteZolPerDoorsGeneralInformationModal' + ${zolPerDoorsGeneralInformation.id}"
+                                       role="button"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                <div th:id="'deleteZolPerDoorsGeneralInformationModal' + ${zolPerDoorsGeneralInformation.id}" class="modal fade" role="dialog"
+                                     aria-labelledby="deleteZolPerDoorsGeneralInformationModal" aria-hidden="true" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete ZOL General Information</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete this entry?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger"
+                                                   th:href="@{/config/zol-gen-info/delete/{id}(id=${zolPerDoorsGeneralInformation.id})}"
+                                                   role="button">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                         </tbody>
                     </table>
