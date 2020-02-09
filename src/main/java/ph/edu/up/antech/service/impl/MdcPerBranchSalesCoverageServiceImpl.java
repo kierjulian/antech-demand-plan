@@ -24,4 +24,19 @@ public class MdcPerBranchSalesCoverageServiceImpl implements MdcPerBranchSalesCo
         return mdcPerBranchSalesCoverageDAO.findAllMdcPerBranchSalesCoverage();
     }
 
+    @Override
+    public MdcPerBranchSalesCoverage findMdcPerBranchSalesCoverageById(Integer id) {
+        return mdcPerBranchSalesCoverageDAO.findMdcPerBranchSalesCoverageById(id);
+    }
+
+    @Override
+    public MdcPerBranchSalesCoverage updateMdcPerBranchSalesCoverage(MdcPerBranchSalesCoverage mdcPerBranchSalesCoverage) {
+        return mdcPerBranchSalesCoverageDAO.updateMdcPerBranchSalesCoverage(mdcPerBranchSalesCoverage);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesCoverage(Integer id) {
+        mdcPerBranchSalesCoverageDAO.removeMdcPerBranchSalesCoverage(id);
+    }
+
 }

@@ -10,4 +10,10 @@ public interface MdcPerBranchSalesCoverageService {
 
     public List<MdcPerBranchSalesCoverage> findAllMdcPerBranchSalesCoverage();
 
+    public MdcPerBranchSalesCoverage findMdcPerBranchSalesCoverageById(Integer id);
+
+    public MdcPerBranchSalesCoverage updateMdcPerBranchSalesCoverage(MdcPerBranchSalesCoverage mdcPerBranchSalesCoverage);
+
+    public void removeMdcPerBranchSalesCoverage(Integer id);
+
 }
