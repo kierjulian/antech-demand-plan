@@ -15,20 +15,39 @@ import java.util.List;
 public class NetsuiteBbjTaggingDAOImpl implements NetsuiteBbjTaggingDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public NetsuiteBbjTagging createNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
-        entityManager.persist(netsuiteBbjTagging);
-        entityManager.flush();
+        em.persist(netsuiteBbjTagging);
+        em.flush();
         return netsuiteBbjTagging;
     }
 
     @Override
     public List<NetsuiteBbjTagging> findAllNetsuiteBbjTagging() {
-        TypedQuery<NetsuiteBbjTagging> query = entityManager.createNamedQuery("findAllNetsuiteBbjTagging",
+        TypedQuery<NetsuiteBbjTagging> query = em.createNamedQuery("findAllNetsuiteBbjTagging",
                 NetsuiteBbjTagging.class);
         return query.getResultList();
+    }
+
+    @Override
+    public NetsuiteBbjTagging findNetsuiteBbjTaggingById(Integer id) {
+        TypedQuery<NetsuiteBbjTagging> query = em.createNamedQuery("findNetsuiteBbjTaggingById",
+                NetsuiteBbjTagging.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public NetsuiteBbjTagging updateNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
+        return em.merge(netsuiteBbjTagging);
+    }
+
+    @Override
+    public void removeNetsuiteBbjTagging(Integer id) {
+        NetsuiteBbjTagging netsuiteBbjTagging = em.find(NetsuiteBbjTagging.class, id);
+        em.remove(netsuiteBbjTagging);
     }
 
 }

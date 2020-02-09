@@ -1,10 +1,12 @@
 package ph.edu.up.antech.controller.view.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
 import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 
@@ -14,6 +16,8 @@ import java.util.List;
 @RequestMapping("/config/netsuite-bbj")
 public class NetsuiteBbjTaggingController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteBbjTaggingController.class);
+
     @Autowired
     private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
@@ -22,6 +26,73 @@ public class NetsuiteBbjTaggingController {
         List<NetsuiteBbjTagging> netsuiteBbjTaggingList = netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
         model.addAttribute("netsuiteBbjTaggingList", netsuiteBbjTaggingList);
         return "netsuite-bbj-tagging";
+    }
+
+    @GetMapping("/view/{id}")
+    public String viewNetsuiteBbjTagging(Model model, @PathVariable Integer id) {
+        NetsuiteBbjTagging netsuiteBbjTagging = netsuiteBbjTaggingService
+                .findNetsuiteBbjTaggingById(id);
+        model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
+        return "netsuite-bbj-tagging-view";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editNetsuiteBbjTagging(Model model, @PathVariable Integer id) {
+        NetsuiteBbjTagging netsuiteBbjTagging = netsuiteBbjTaggingService
+                .findNetsuiteBbjTaggingById(id);
+        model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
+        return "netsuite-bbj-tagging-edit";
+    }
+
+    @PostMapping("/update")
+    public String updateNetsuiteBbjTagging(RedirectAttributes redirectAttributes,
+                                           @ModelAttribute(value = "netsuiteBbjTagging")
+                                                   NetsuiteBbjTagging netsuiteBbjTagging) {
+        try {
+            netsuiteBbjTaggingService.updateNetsuiteBbjTagging(netsuiteBbjTagging);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully updated.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-bbj/view/" + netsuiteBbjTagging.getId();
+    }
+
+    @GetMapping("/add")
+    public String addNetsuiteBbjTagging(Model model) {
+        NetsuiteBbjTagging netsuiteBbjTagging = new NetsuiteBbjTagging();
+        model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
+        return "netsuite-bbj-tagging-add";
+    }
+
+    @PostMapping("/create")
+    public String createNetsuiteBbjTagging(RedirectAttributes redirectAttributes,
+                                           @ModelAttribute(value = "netsuiteBbjTagging")
+                                                   NetsuiteBbjTagging netsuiteBbjTagging) {
+        try {
+            netsuiteBbjTagging = netsuiteBbjTaggingService.createNetsuiteBjjTagging(netsuiteBbjTagging);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully created.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-bbj/view/" + netsuiteBbjTagging.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String removeNetsuiteBbjTagging(
+            RedirectAttributes redirectAttributes, @PathVariable Integer id) {
+        try {
+            netsuiteBbjTaggingService.removeNetsuiteBbjTagging(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            LOGGER.error(e.getMessage());
+        }
+
+        return "redirect:/config/netsuite-bbj";
     }
 
 }

@@ -24,4 +24,19 @@ public class NetsuiteBbjTaggingServiceImpl implements NetsuiteBbjTaggingService 
         return netsuiteBbjTaggingDAO.findAllNetsuiteBbjTagging();
     }
 
+    @Override
+    public NetsuiteBbjTagging findNetsuiteBbjTaggingById(Integer id) {
+        return netsuiteBbjTaggingDAO.findNetsuiteBbjTaggingById(id);
+    }
+
+    @Override
+    public NetsuiteBbjTagging updateNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
+        return netsuiteBbjTaggingDAO.updateNetsuiteBbjTagging(netsuiteBbjTagging);
+    }
+
+    @Override
+    public void removeNetsuiteBbjTagging(Integer id) {
+        netsuiteBbjTaggingDAO.removeNetsuiteBbjTagging(id);
+    }
+
 }

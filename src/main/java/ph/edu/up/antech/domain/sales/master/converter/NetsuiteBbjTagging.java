@@ -9,7 +9,9 @@ import java.io.Serializable;
 @Table(name = "netsuite_bjj_tagging")
 @NamedQueries({
         @NamedQuery(name = "findAllNetsuiteBbjTagging",
-                query = "select o from NetsuiteBbjTagging o")
+                query = "select o from NetsuiteBbjTagging o"),
+        @NamedQuery(name = "findNetsuiteBbjTaggingById",
+                query = "select o from NetsuiteBbjTagging o where o.id = :id")
 })
 public class NetsuiteBbjTagging implements Serializable {
 
