@@ -14,4 +14,10 @@ public interface ZolMdcAccountDAO {
 
     public List<ZolMdcAccount> findAllZOlMdcAccount();
 
+    public ZolMdcAccount findZolMdcAccountById(Integer id);
+
+    public ZolMdcAccount updateZolMdcAccount(ZolMdcAccount zolMdcAccount);
+
+    public void removeZolMdcAccount(Integer id);
+
 }

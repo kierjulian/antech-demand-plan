@@ -12,7 +12,9 @@ import javax.persistence.*;
         @NamedQuery(name = "findZolMdcAccountByBranchName",
                 query = "select o from ZolMdcAccount o where o.branchName = :branchName"),
         @NamedQuery(name = "findAllZolMdcAccount",
-                query = "select o from ZolMdcAccount o")
+                query = "select o from ZolMdcAccount o"),
+        @NamedQuery(name = "findZolMdcAccountById",
+                query = "select o from ZolMdcAccount o where o.id = :id")
 })
 public class ZolMdcAccount {
 

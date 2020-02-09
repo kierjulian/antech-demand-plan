@@ -14,4 +14,10 @@ public interface ZolMdcAccountService {
 
     public List<ZolMdcAccount> findAllZolMdcAccount();
 
+    public ZolMdcAccount findZolMdcAccountById(Integer id);
+
+    public ZolMdcAccount updateZolMdcAccount(ZolMdcAccount zolMdcAccount);
+
+    public void removeZolMdcAccount(Integer id);
+
 }

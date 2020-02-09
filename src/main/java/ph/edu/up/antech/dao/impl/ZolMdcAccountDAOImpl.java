@@ -49,4 +49,22 @@ public class ZolMdcAccountDAOImpl implements ZolMdcAccountDAO {
         return query.getResultList();
     }
 
+    @Override
+    public ZolMdcAccount findZolMdcAccountById(Integer id) {
+        TypedQuery<ZolMdcAccount> query = em.createNamedQuery("findZolMdcAccountById", ZolMdcAccount.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public ZolMdcAccount updateZolMdcAccount(ZolMdcAccount zolMdcAccount) {
+        return em.merge(zolMdcAccount);
+    }
+
+    @Override
+    public void removeZolMdcAccount(Integer id) {
+        ZolMdcAccount zolMdcAccount = em.find(ZolMdcAccount.class, id);
+        em.remove(zolMdcAccount);
+    }
+
 }
