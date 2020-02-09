@@ -32,9 +32,9 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
+                    <form class="form-inline">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#" role="button">
+                            <a class="btn btn-primary" th:href="@{/config/netsuite-product-list-source/add}" role="button">
                                 <i class="fas fa-plus">&nbsp; Add Netsuite Product List Source</i></a>
                         </div>
                     </form>
@@ -50,17 +50,45 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">In PCS</th>
                                 <th scope="col">Product</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="netsuiteOtherInformation, row : ${netsuiteProductListSourceList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.source}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.origin}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.destination}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.description}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.inPcs}"></td>
-                                <td class="align-middle" th:text="${netsuiteOtherInformation.product}"></td>
+                            <tr th:each="netsuiteProductListSource, row : ${netsuiteProductListSourceList}">
+                                <td class="align-middle">
+                                    <a th:text="${row.count}"
+                                       th:href="@{/config/netsuite-product-list-source/view/{id}(id=${netsuiteProductListSource.id})}"></a>
+                                </td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.source}"></td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.origin}"></td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.destination}"></td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.description}"></td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.inPcs}"></td>
+                                <td class="align-middle" th:text="${netsuiteProductListSource.product}"></td>
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-danger" data-toggle="modal"
+                                       th:attr="data-target='#deleteNetsuiteProductListSourceModal' + ${netsuiteProductListSource.id}"
+                                       role="button"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                <div th:id="'deleteNetsuiteProductListSourceModal' + ${netsuiteProductListSource.id}" class="modal fade" role="dialog"
+                                     aria-labelledby="deleteNetsuiteProductListSourceModalLabel" aria-hidden="true" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete Netsuite Product List Source</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete this entry?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger"
+                                                   th:href="@{/config/netsuite-product-list-source/delete/{id}(id=${netsuiteProductListSource.id})}"
+                                                   role="button">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                         </tbody>
                     </table>

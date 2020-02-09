@@ -24,4 +24,19 @@ public class NetsuiteProductListSourceServiceImpl implements NetsuiteProductList
         return netsuiteProductListSourceDAO.findAllNetsuiteProductListSource();
     }
 
+    @Override
+    public NetsuiteProductListSource findNetsuiteProductListSourceById(Integer id) {
+        return netsuiteProductListSourceDAO.findNetsuiteProductListSourceById(id);
+    }
+
+    @Override
+    public NetsuiteProductListSource updateNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource) {
+        return netsuiteProductListSourceDAO.updateNetsuiteProductListSource(netsuiteProductListSource);
+    }
+
+    @Override
+    public void removeNetsuiteProductListSource(Integer id) {
+        netsuiteProductListSourceDAO.removeNetsuiteProductListSource(id);
+    }
+
 }

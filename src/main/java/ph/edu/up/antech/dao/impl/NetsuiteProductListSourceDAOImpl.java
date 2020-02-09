@@ -31,4 +31,23 @@ public class NetsuiteProductListSourceDAOImpl implements NetsuiteProductListSour
         return query.getResultList();
     }
 
+    @Override
+    public NetsuiteProductListSource findNetsuiteProductListSourceById(Integer id) {
+        TypedQuery<NetsuiteProductListSource> query = em.createNamedQuery("findNetsuiteProductListSourceById",
+                NetsuiteProductListSource.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public NetsuiteProductListSource updateNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource) {
+        return em.merge(netsuiteProductListSource);
+    }
+
+    @Override
+    public void removeNetsuiteProductListSource(Integer id) {
+        NetsuiteProductListSource netsuiteProductListSource = em.find(NetsuiteProductListSource.class, id);
+        em.remove(netsuiteProductListSource);
+    }
+
 }

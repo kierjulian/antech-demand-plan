@@ -11,4 +11,10 @@ public interface NetsuiteProductListSourceService {
 
     public List<NetsuiteProductListSource> findAllNetsuiteProductListSource();
 
+    public NetsuiteProductListSource findNetsuiteProductListSourceById(Integer id);
+
+    public NetsuiteProductListSource updateNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource);
+
+    public void removeNetsuiteProductListSource(Integer id);
+
 }
