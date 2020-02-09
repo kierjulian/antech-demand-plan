@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Table(name = "mdc_per_branch_sales_code")
 @NamedQueries({
         @NamedQuery(name = "findAllMdcPerBranchSalesCode",
-                query = "select o from MdcPerBranchSalesCode o")
+                query = "select o from MdcPerBranchSalesCode o"),
+        @NamedQuery(name = "findMdcPerBranchSalesCodeById",
+                query = "select o from MdcPerBranchSalesCode o where o.id = :id")
 })
 public class MdcPerBranchSalesCode {
 

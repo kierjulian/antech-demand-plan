@@ -30,4 +30,23 @@ public class MdcPerBranchSalesCodeDAOImpl implements MdcPerBranchSalesCodeDAO {
         return query.getResultList();
     }
 
+    @Override
+    public MdcPerBranchSalesCode findMdcPerBranchSalesCodeById(Integer id) {
+        TypedQuery<MdcPerBranchSalesCode> query = em.createNamedQuery("findMdcPerBranchSalesCodeById",
+                MdcPerBranchSalesCode.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public MdcPerBranchSalesCode updateMdcPerBranchSalesCode(MdcPerBranchSalesCode mdcPerBranchSalesCode) {
+        return em.merge(mdcPerBranchSalesCode);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesCode(Integer id) {
+        MdcPerBranchSalesCode mdcPerBranchSalesCode = em.find(MdcPerBranchSalesCode.class, id);
+        em.remove(mdcPerBranchSalesCode);
+    }
+
 }
