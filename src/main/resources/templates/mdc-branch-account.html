@@ -32,9 +32,9 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
+                    <form class="form-inline">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#" role="button">
+                            <a class="btn btn-primary" th:href="@{/config/mdc-branch-accounts/add}" role="button">
                                 <i class="fas fa-plus">&nbsp; Add MDC Per Branch Sales Account</i></a>
                         </div>
                     </form>
@@ -53,20 +53,48 @@
                             <th scope="col">DSM</th>
                             <th scope="col">Str Code</th>
                             <th scope="col">Coverage</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="customer, row : ${mdcPerBranchSalesAccountList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
-                                <td class="align-middle" th:text="${customer.shpcn}"></td>
-                                <td class="align-middle" th:text="${customer.customerName}"></td>
-                                <td class="align-middle" th:text="${customer.branchName}"></td>
-                                <td class="align-middle" th:text="${customer.cadd1}"></td>
-                                <td class="align-middle" th:text="${customer.cadd2}"></td>
-                                <td class="align-middle" th:text="${customer.na}"></td>
-                                <td class="align-middle" th:text="${customer.dsm}"></td>
-                                <td class="align-middle" th:text="${customer.strCode}"></td>
-                                <td class="align-middle" th:text="${customer.coverage}"></td>
+                            <tr th:each="mdcPerBranchSalesAccount, row : ${mdcPerBranchSalesAccountList}">
+                                <td class="align-middle">
+                                    <a th:text="${row.count}"
+                                       th:href="@{/config/mdc-branch-accounts/view/{id}(id=${mdcPerBranchSalesAccount.id})}"></a>
+                                </td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.shpcn}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.customerName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.branchName}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.cadd1}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.cadd2}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.na}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.dsm}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.strCode}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSalesAccount.coverage}"></td>
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-danger" data-toggle="modal"
+                                       th:attr="data-target='#deleteMdcPerBranchSalesAccountModal' + ${mdcPerBranchSalesAccount.id}"
+                                       role="button"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                <div th:id="'deleteMdcPerBranchSalesAccountModal' + ${mdcPerBranchSalesAccount.id}" class="modal fade" role="dialog"
+                                     aria-labelledby="deleteMdcPerBranchSalesAccountModalLabel" aria-hidden="true" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete MDC Per Branch Sales Account</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete this entry?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger"
+                                                   th:href="@{/config/mdc-branch-accounts/delete/{id}(id=${mdcPerBranchSalesAccount.id})}"
+                                                   role="button">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                         </tbody>
                     </table>

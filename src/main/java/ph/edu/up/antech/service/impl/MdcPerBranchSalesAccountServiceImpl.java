@@ -24,4 +24,19 @@ public class MdcPerBranchSalesAccountServiceImpl implements MdcPerBranchSalesAcc
         return mdcPerBranchSalesAccountDAO.findAllMdcPerBranchSalesAccount();
     }
 
+    @Override
+    public MdcPerBranchSalesAccount findMdcPerBranchSalesAccount(Integer id) {
+        return mdcPerBranchSalesAccountDAO.findMdcPerBranchSalesAccount(id);
+    }
+
+    @Override
+    public MdcPerBranchSalesAccount updateMdcPerBranchSalesAccount(MdcPerBranchSalesAccount mdcPerBranchSalesAccount) {
+        return mdcPerBranchSalesAccountDAO.updateMdcPerBranchSalesAccount(mdcPerBranchSalesAccount);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesAccount(Integer id) {
+        mdcPerBranchSalesAccountDAO.removeMdcPerBranchSalesAccount(id);
+    }
+
 }
