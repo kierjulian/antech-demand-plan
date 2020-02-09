@@ -24,4 +24,19 @@ public class NetsuiteOtherInformationServiceImpl implements NetsuiteOtherInforma
         return netsuiteOtherInformationDAO.findAllNetsuiteOtherInformation();
     }
 
+    @Override
+    public NetsuiteOtherInformation findNetsuiteOtherInformationById(Integer id) {
+        return netsuiteOtherInformationDAO.findNetsuiteOtherInformationById(id);
+    }
+
+    @Override
+    public NetsuiteOtherInformation updateNetsuiteOtherInformation(NetsuiteOtherInformation netsuiteOtherInformation) {
+        return netsuiteOtherInformationDAO.updateNetsuiteOtherInformation(netsuiteOtherInformation);
+    }
+
+    @Override
+    public void removeNetsuiteOtherInformation(Integer id) {
+        netsuiteOtherInformationDAO.removeNetsuiteOtherInformation(id);
+    }
+
 }

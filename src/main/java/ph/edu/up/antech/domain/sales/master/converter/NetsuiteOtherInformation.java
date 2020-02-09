@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Table(name = "netsuite_other_info")
 @NamedQueries({
         @NamedQuery(name = "findAllNetsuiteOtherInformation",
-                query = "select o from NetsuiteOtherInformation o")
+                query = "select o from NetsuiteOtherInformation o"),
+        @NamedQuery(name = "findNetsuiteOtherInformationById",
+                query = "select o from NetsuiteOtherInformation o where o.id = :id")
 })
 public class NetsuiteOtherInformation {
 

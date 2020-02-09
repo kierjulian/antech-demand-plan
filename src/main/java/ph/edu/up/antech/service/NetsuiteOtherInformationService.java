@@ -10,4 +10,10 @@ public interface NetsuiteOtherInformationService {
 
     public List<NetsuiteOtherInformation> findAllNetsuiteOtherInformation();
 
+    public NetsuiteOtherInformation findNetsuiteOtherInformationById(Integer id);
+
+    public NetsuiteOtherInformation updateNetsuiteOtherInformation(NetsuiteOtherInformation netsuiteOtherInformation);
+
+    public void removeNetsuiteOtherInformation(Integer id);
+
 }

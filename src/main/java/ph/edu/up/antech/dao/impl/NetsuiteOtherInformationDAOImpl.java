@@ -31,4 +31,23 @@ public class NetsuiteOtherInformationDAOImpl implements NetsuiteOtherInformation
         return query.getResultList();
     }
 
+    @Override
+    public NetsuiteOtherInformation findNetsuiteOtherInformationById(Integer id) {
+        TypedQuery<NetsuiteOtherInformation> query = em.createNamedQuery("findNetsuiteOtherInformationById",
+                NetsuiteOtherInformation.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public NetsuiteOtherInformation updateNetsuiteOtherInformation(NetsuiteOtherInformation netsuiteOtherInformation) {
+        return em.merge(netsuiteOtherInformation);
+    }
+
+    @Override
+    public void removeNetsuiteOtherInformation(Integer id) {
+        NetsuiteOtherInformation netsuiteOtherInformation = em.find(NetsuiteOtherInformation.class, id);
+        em.remove(netsuiteOtherInformation);
+    }
+
 }
