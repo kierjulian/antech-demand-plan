@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.config;
+package ph.edu.up.antech.controller.view.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

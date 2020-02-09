@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.config;
+package ph.edu.up.antech.controller.view.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
