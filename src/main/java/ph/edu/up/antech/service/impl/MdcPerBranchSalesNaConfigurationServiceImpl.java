@@ -24,4 +24,19 @@ public class MdcPerBranchSalesNaConfigurationServiceImpl implements MdcPerBranch
         return mdcPerBranchSalesNaConfigurationDAO.findAllMdcPerBranchSalesNaConfiguration();
     }
 
+    @Override
+    public MdcPerBranchSalesNaConfiguration findMdcPerBranchSalesNaConfigurationById(Integer id) {
+        return mdcPerBranchSalesNaConfigurationDAO.findMdcPerBranchSalesNaConfigurationById(id);
+    }
+
+    @Override
+    public MdcPerBranchSalesNaConfiguration updateMdcPerBranchSalesNaConfiguration(MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration) {
+        return mdcPerBranchSalesNaConfigurationDAO.updateMdcPerBranchSalesNaConfiguration(mdcPerBranchSalesNaConfiguration);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesNaConfiguration(Integer id) {
+        mdcPerBranchSalesNaConfigurationDAO.removeMdcPerBranchSalesNaConfiguration(id);
+    }
+
 }

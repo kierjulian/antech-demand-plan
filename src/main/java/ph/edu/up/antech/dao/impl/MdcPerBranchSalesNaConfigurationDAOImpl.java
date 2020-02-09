@@ -32,4 +32,24 @@ public class MdcPerBranchSalesNaConfigurationDAOImpl implements MdcPerBranchSale
         return query.getResultList();
     }
 
+    @Override
+    public MdcPerBranchSalesNaConfiguration findMdcPerBranchSalesNaConfigurationById(Integer id) {
+        TypedQuery<MdcPerBranchSalesNaConfiguration> query = em.createNamedQuery(
+                "findMdcPerBranchSalesNaConfigurationById", MdcPerBranchSalesNaConfiguration.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public MdcPerBranchSalesNaConfiguration updateMdcPerBranchSalesNaConfiguration(MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration) {
+        return em.merge(mdcPerBranchSalesNaConfiguration);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesNaConfiguration(Integer id) {
+        MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = em.find(
+                MdcPerBranchSalesNaConfiguration.class, id);
+        em.remove(mdcPerBranchSalesNaConfiguration);
+    }
+
 }

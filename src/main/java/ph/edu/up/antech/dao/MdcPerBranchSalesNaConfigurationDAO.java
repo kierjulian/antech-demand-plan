@@ -11,4 +11,11 @@ public interface MdcPerBranchSalesNaConfigurationDAO {
 
     public List<MdcPerBranchSalesNaConfiguration> findAllMdcPerBranchSalesNaConfiguration();
 
+    public MdcPerBranchSalesNaConfiguration findMdcPerBranchSalesNaConfigurationById(Integer id);
+
+    public MdcPerBranchSalesNaConfiguration updateMdcPerBranchSalesNaConfiguration(
+            MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration);
+
+    public void removeMdcPerBranchSalesNaConfiguration(Integer id);
+
 }
