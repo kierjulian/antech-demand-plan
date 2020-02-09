@@ -14,4 +14,10 @@ public interface ZolMtAccountService {
 
     public List<ZolMtAccount> findAllZolMtAccount();
 
+    public ZolMtAccount findZolMtAccountById(Integer id);
+
+    public ZolMtAccount updateZolMtAccount(ZolMtAccount zolMtAccount);
+
+    public void removeZolMtAccount(Integer id);
+
 }

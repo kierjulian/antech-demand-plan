@@ -34,4 +34,19 @@ public class ZolMtAccountServiceImpl implements ZolMtAccountService {
         return zolMtAccountDAO.findAllZolMtAccount();
     }
 
+    @Override
+    public ZolMtAccount findZolMtAccountById(Integer id) {
+        return zolMtAccountDAO.findZolMtAccountById(id);
+    }
+
+    @Override
+    public ZolMtAccount updateZolMtAccount(ZolMtAccount zolMtAccount) {
+        return zolMtAccountDAO.updateZolMtAccount(zolMtAccount);
+    }
+
+    @Override
+    public void removeZolMtAccount(Integer id) {
+        zolMtAccountDAO.removeZolMtAccount(id);
+    }
+
 }

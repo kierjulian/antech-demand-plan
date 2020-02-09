@@ -32,9 +32,9 @@
                     </div>
                 </div>
                 <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
+                    <form class="form-inline">
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#" role="button">
+                            <a class="btn btn-primary" th:href="@{/config/zol-mt-accounts/add}" role="button">
                                 <i class="fas fa-plus">&nbsp; Add Zol MT Account</i></a>
                         </div>
                     </form>
@@ -49,17 +49,45 @@
                                 <th scope="col">Cadd 1</th>
                                 <th scope="col">Cadd 2</th>
                                 <th scope="col">NA</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="zolMtAccount, row : ${zolMtAccountList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
+                                <td class="align-middle">
+                                    <a th:text="${row.count}"
+                                       th:href="@{/config/zol-mt-accounts/view/{id}(id=${zolMtAccount.id})}"></a>
+                                </td>
                                 <td class="align-middle" th:text="${zolMtAccount.shpcn}"></td>
                                 <td class="align-middle" th:text="${zolMtAccount.branchName}"></td>
                                 <td class="align-middle" th:text="${zolMtAccount.customerName}"></td>
                                 <td class="align-middle" th:text="${zolMtAccount.cadd1}"></td>
                                 <td class="align-middle" th:text="${zolMtAccount.cadd2}"></td>
                                 <td class="align-middle" th:text="${zolMtAccount.na}"></td>
+                                <td class="align-middle">
+                                    <a class="btn btn-outline-danger" data-toggle="modal"
+                                       th:attr="data-target='#deleteZolMtAccountModal' + ${zolMtAccount.id}"
+                                       role="button"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                                <div th:id="'deleteZolMtAccountModal' + ${zolMtAccount.id}" class="modal fade" role="dialog"
+                                     aria-labelledby="deleteZolMtAccountModalLabel" aria-hidden="true" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete ZOL MT Account</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to delete this account?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger"
+                                                   th:href="@{/config/zol-mt-accounts/delete/{id}(id=${zolMtAccount.id})}"
+                                                   role="button">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                         </tbody>
                     </table>
