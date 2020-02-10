@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
+import org.springframework.format.annotation.DateTimeFormat;
 import ph.edu.up.antech.util.StringUtils;
 
 import javax.persistence.*;
@@ -14,7 +15,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "findDispensingDistributorByDate",
                 query = "SELECT o FROM DispensingDistributor o where o.date = :date"),
         @NamedQuery(name = "deleteDispensingDistributorByLocalDate",
-                query = "delete from DispensingDistributor o where o.date = :localDate")
+                query = "delete from DispensingDistributor o where o.date = :localDate"),
+        @NamedQuery(name = "findDispensingDistributorById",
+                query = "select o from DispensingDistributor o where o.id = :id")
 })
 public class DispensingDistributor implements Serializable {
 
@@ -23,6 +26,7 @@ public class DispensingDistributor implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 

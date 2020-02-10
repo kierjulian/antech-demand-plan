@@ -17,18 +17,18 @@ import java.util.List;
 public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor) {
-        entityManager.persist(dispensingDistributor);
-        entityManager.flush();
+        em.persist(dispensingDistributor);
+        em.flush();
         return dispensingDistributor;
     }
 
     @Override
     public List<DispensingDistributor> findDispensingDistributorByDate(LocalDate localDate) {
-        TypedQuery<DispensingDistributor> query = entityManager.createNamedQuery("findDispensingDistributorByDate",
+        TypedQuery<DispensingDistributor> query = em.createNamedQuery("findDispensingDistributorByDate",
                 DispensingDistributor.class);
         query.setParameter("date", localDate);
         return query.getResultList();
@@ -36,27 +36,40 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
 
     @Override
     public void removeDispensingDistributor(Integer id) {
-        DispensingDistributor dispensingDistributor = entityManager.find(DispensingDistributor.class, id);
-        entityManager.remove(dispensingDistributor);
+        DispensingDistributor dispensingDistributor = em.find(DispensingDistributor.class, id);
+        em.remove(dispensingDistributor);
     }
 
     @Override
     public void saveDispensingDistributorByBatch(List<DispensingDistributor> dispensingDistributorList) {
         for (int i = 0; i < dispensingDistributorList.size(); i++) {
             if (i % 50 == 0) {
-                entityManager.flush();
-                entityManager.clear();
+                em.flush();
+                em.clear();
             }
 
-            entityManager.persist(dispensingDistributorList.get(i));
+            em.persist(dispensingDistributorList.get(i));
         }
     }
 
     @Override
     public void removeDispensingDistributorByLocalDate(LocalDate localDate) {
-        Query query = entityManager.createNamedQuery("deleteDispensingDistributorByLocalDate");
+        Query query = em.createNamedQuery("deleteDispensingDistributorByLocalDate");
         query.setParameter("localDate", localDate);
         query.executeUpdate();
+    }
+
+    @Override
+    public DispensingDistributor findDispensingDistributorById(Integer id) {
+        TypedQuery<DispensingDistributor> query = em.createNamedQuery("findDispensingDistributorById",
+                DispensingDistributor.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public DispensingDistributor updateDispensingDistributor(DispensingDistributor dispensingDistributor) {
+        return em.merge(dispensingDistributor);
     }
 
 }

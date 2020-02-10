@@ -17,4 +17,8 @@ public interface DispensingDistributorService {
 
     public void removeDispensingDistributorByLocalDate(LocalDate localDate);
 
+    public DispensingDistributor findDispensingDistributorById(Integer id);
+
+    public DispensingDistributor updateDispensingDistributor(DispensingDistributor dispensingDistributor);
+
 }

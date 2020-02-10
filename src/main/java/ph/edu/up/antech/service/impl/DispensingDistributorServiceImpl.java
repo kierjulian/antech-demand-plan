@@ -40,4 +40,14 @@ public class DispensingDistributorServiceImpl implements DispensingDistributorSe
         dispensingDistributorDAO.removeDispensingDistributorByLocalDate(localDate);
     }
 
+    @Override
+    public DispensingDistributor findDispensingDistributorById(Integer id) {
+        return dispensingDistributorDAO.findDispensingDistributorById(id);
+    }
+
+    @Override
+    public DispensingDistributor updateDispensingDistributor(DispensingDistributor dispensingDistributor) {
+        return dispensingDistributorDAO.updateDispensingDistributor(dispensingDistributor);
+    }
+
 }
