@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Netsuite Summary')"></div>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a th:href="@{/}">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                            d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Netsuite Summary</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body bg-light">
+                    <form class="form-inline" method="get" th:action="@{/output/netsuite/summary}">
+                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search">&nbsp; Search</i></button>
+                        </div>&nbsp;
+                    </form>
+                    <br>
+                    <table id="dailySalesReportZOLTable" class="table-sm table-striped table-bordered
+                             table-hover table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th></th>
+                            <th class="align-middle" style="text-align: center;"
+                                th:attr="colspan=${#lists.size(productList) + 3}">Amount</th>
+                            <th class="bg-dark"></th>
+                            <th class="align-middle" style="text-align: center;"
+                                th:attr="colspan=${#lists.size(productList) + 3}">Units</th>
+                        </tr>
+                        <tr>
+                            <th class="sticky-top">Row Labels</th>
+                            <th:block th:each="product : ${productList}">
+                                <th scope="col" class="sticky-top" th:text="${product}"></th>
+                            </th:block>
+                            <th scope="col" class="sticky-top">Total Milk</th>
+                            <th scope="col" class="sticky-top">Total Water</th>
+                            <th scope="col" class="sticky-top">Total HiPP Amount</th>
+                            <th class="bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th:block th:each="product : ${productList}">
+                                <th scope="col" class="sticky-top" th:text="${product}"></th>
+                            </th:block>
+                            <th scope="col" class="sticky-top">Total Milk</th>
+                            <th scope="col" class="sticky-top">Total Water</th>
+                            <th scope="col" class="sticky-top">Total HiPP Units</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="kamRefName : ${kamReferenceNameList}">
+                                <th:block th:each="netsuite, row : ${netsuiteList}">
+                                    <tr th:if="${kamRefName == netsuite.kamRefName1}">
+                                        <td th:text="${kamRefName}"></td>
+                                        <th:block th:each="product : ${productList}">
+                                            <th:block th:if="${netsuite.brand == product}">
+                                                <td th:text="${netsuite.revenueConverted}">
+                                                </td>
+                                            </th:block>
+                                            <th:block th:unless="${netsuite.brand == product}">
+                                                <td>-</td>
+                                            </th:block>
+                                        </th:block>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td class="bg-dark"></td>
+                                        <th:block th:each="product : ${productList}">
+                                            <th:block th:if="${netsuite.brand == product}">
+                                                <td th:text="${netsuite.quantity}">
+                                                </td>
+                                            </th:block>
+                                            <th:block th:unless="${netsuite.brand == product}">
+                                                <td>-</td>
+                                            </th:block>
+                                        </th:block>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </th:block>
+                            </th:block>
+                            <tr class="bg-dark text-white">
+                                <td class="font-weight-bold">Grand Total</td>
+                                <th:block th:each="product : ${productList}">
+                                    <td>0</td>
+                                </th:block>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="bg-dark"></td>
+                                <th:block th:each="product : ${productList}">
+                                    <td>0</td>
+                                </th:block>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>
