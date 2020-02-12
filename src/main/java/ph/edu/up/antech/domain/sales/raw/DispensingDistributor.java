@@ -17,7 +17,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "deleteDispensingDistributorByLocalDate",
                 query = "delete from DispensingDistributor o where o.date = :localDate"),
         @NamedQuery(name = "findDispensingDistributorById",
-                query = "select o from DispensingDistributor o where o.id = :id")
+                query = "select o from DispensingDistributor o where o.id = :id"),
+        @NamedQuery(name = "findDispensingDistributorBetweenTwoDates",
+                query = "select o from DispensingDistributor o where o.date between :startDate and :endDate")
 })
 public class DispensingDistributor implements Serializable {
 

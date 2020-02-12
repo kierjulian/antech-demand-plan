@@ -21,4 +21,6 @@ public interface DispensingDistributorDAO {
 
     public DispensingDistributor updateDispensingDistributor(DispensingDistributor dispensingDistributor);
 
+    public List<DispensingDistributor> findDispensingDistributorBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

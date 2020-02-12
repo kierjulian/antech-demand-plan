@@ -24,12 +24,17 @@ public class DispensingDistributorController {
     private DispensingDistributorService dispensingDistributorService;
 
     @GetMapping("")
-    public String loadDispensingDistributorMasterFile(Model model, @RequestParam(required = false) String date) {
-        LocalDate localDate = !StringUtils.isNullOrEmpty(date) ? LocalDate.parse(date) : LocalDate.now();
+    public String loadDispensingDistributorMasterFile(Model model, @RequestParam(required = false) String startDate,
+                                                      @RequestParam(required = false) String endDate) {
+        LocalDate localStartDate = !StringUtils.isNullOrEmpty(startDate)
+                ? LocalDate.parse(startDate) : LocalDate.now();
+        LocalDate localEndDate = !StringUtils.isNullOrEmpty(endDate)
+                ? LocalDate.parse(endDate) : LocalDate.now();
         List<DispensingDistributor> dispensingDistributorList =
-                dispensingDistributorService.findDispensingDistributorByDate(localDate);
+                dispensingDistributorService.findDispensingDistributorBetweenTwoDates(localStartDate, localEndDate);
 
-        model.addAttribute("searchedDate", localDate);
+        model.addAttribute("searchedStartDate", localStartDate);
+        model.addAttribute("searchedEndDate", localEndDate);
         model.addAttribute("dispensingDistributorList", dispensingDistributorList);
         return "dispensing-distributor";
     }

@@ -72,4 +72,13 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
         return em.merge(dispensingDistributor);
     }
 
+    @Override
+    public List<DispensingDistributor> findDispensingDistributorBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        TypedQuery<DispensingDistributor> query = em.createNamedQuery("findDispensingDistributorBetweenTwoDates",
+                DispensingDistributor.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
+    }
+
 }

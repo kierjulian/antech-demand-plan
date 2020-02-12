@@ -21,4 +21,7 @@ public interface DispensingDistributorService {
 
     public DispensingDistributor updateDispensingDistributor(DispensingDistributor dispensingDistributor);
 
+    public List<DispensingDistributor> findDispensingDistributorBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
+
 }
