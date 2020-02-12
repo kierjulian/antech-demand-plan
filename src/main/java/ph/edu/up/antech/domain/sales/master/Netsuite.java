@@ -99,13 +99,13 @@ public class Netsuite implements Serializable {
     @Transient
     private String c;
 
-    @Transient
+    @Column(name = "formula")
     private String formula;
 
-    @Transient
+    @Column(name = "brand")
     private String brand;
 
-    @Transient
+    @Column(name = "stage")
     private String stage;
 
     @Transient
