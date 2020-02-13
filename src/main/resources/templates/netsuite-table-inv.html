@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Netsuite Table Inventory')"></div>
+    </head>
+    <body>
+        <div class="container-fluid"><br>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a th:href="@{/}">
+                                <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 text-center font-weight-bold
+                                                    d-flex align-items-center justify-content-center">
+                            <h1 class="display-4 text-monospace">Netsuite Table Summary</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body bg-light">
+                    <form class="form-inline" method="get">
+                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search">&nbsp; Search</i></button>
+                        </div>&nbsp;
+                    </form>
+                    <br>
+                    <table id="dailySalesReportZOLTable" class="table-sm table-striped table-bordered
+                                     table-hover table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>AFPCES</th>
+                                <th>Total HiPP</th>
+                                <th>Total Jar</th>
+                                <th>Total Water</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>
