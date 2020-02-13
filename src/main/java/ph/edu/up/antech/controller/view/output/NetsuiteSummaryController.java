@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.sales.output.NetsuiteCombination;
 import ph.edu.up.antech.service.NetsuiteService;
+import ph.edu.up.antech.util.NetsuiteSummaryCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,11 +32,16 @@ public class NetsuiteSummaryController {
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteByItemDate(localDate);
         List<String> productList = generateListOfUniqueProductBrandFromNetsuiteList(netsuiteList);
         List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
+        List<NetsuiteCombination> netsuiteCombinationList =
+                generateNetsuiteCombinationKamReferenceName(netsuiteList, kamReferenceNameList);
+        NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList);
 
         model.addAttribute("searchedDate", localDate);
         model.addAttribute("netsuiteList", netsuiteList);
         model.addAttribute("productList", productList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
+        model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
+        model.addAttribute("netsuiteSummaryCalculator", netsuiteSummaryCalculator);
         return "netsuite-summary";
     }
 
@@ -51,6 +59,23 @@ public class NetsuiteSummaryController {
                 .distinct()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    private List<NetsuiteCombination> generateNetsuiteCombinationKamReferenceName(
+            List<Netsuite> netsuiteList, List<String> kamReferenceNameList) {
+        List<NetsuiteCombination> netsuiteCombinationList = new ArrayList<>();
+        for (String kamReferenceName : kamReferenceNameList) {
+            List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
+                    .filter(netsuite -> netsuite.getKamRefName1() != null)
+                    .filter(netsuite -> netsuite.getBrand() != null)
+                    .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                    .collect(Collectors.toList());
+            if (!netsuiteFilteredList.isEmpty()) {
+                netsuiteCombinationList.add(new NetsuiteCombination(netsuiteFilteredList));
+            }
+        }
+
+        return netsuiteCombinationList;
     }
 
 }

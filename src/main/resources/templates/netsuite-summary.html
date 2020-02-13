@@ -29,7 +29,7 @@
                         </div>&nbsp;
                     </form>
                     <br>
-                    <table id="dailySalesReportZOLTable" class="table-sm table-striped table-bordered
+                    <table id="netsuiteSummaryTable" class="table-sm table-striped table-bordered
                              table-hover table">
                         <thead class="thead-light">
                         <tr>
@@ -59,52 +59,58 @@
                         </thead>
                         <tbody>
                             <th:block th:each="kamRefName : ${kamReferenceNameList}">
-                                <th:block th:each="netsuite, row : ${netsuiteList}">
-                                    <tr th:if="${kamRefName == netsuite.kamRefName1}">
-                                        <td th:text="${kamRefName}"></td>
+                                <th:block th:each="netsuiteCombination, row : ${netsuiteCombinationList}">
+                                    <tr th:if="${kamRefName == netsuiteCombination.kamReferenceName}">
+                                        <td th:text="${netsuiteCombination.kamReferenceName}"></td>
                                         <th:block th:each="product : ${productList}">
-                                            <th:block th:if="${netsuite.brand == product}">
-                                                <td th:text="${netsuite.revenueConverted}">
-                                                </td>
+                                            <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                    <td th:if="${product == productSalesAmountAndUnitList.product}"
+                                                        th:text="${productSalesAmountAndUnitList.amount}">
+                                                    </td>
+                                                </th:block>
                                             </th:block>
-                                            <th:block th:unless="${netsuite.brand == product}">
+                                            <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(product)}">
                                                 <td>-</td>
                                             </th:block>
                                         </th:block>
+                                        <td th:text="${netsuiteCombination.getTotalAmount()}"></td>
                                         <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
+                                        <td th:text="${netsuiteCombination.getTotalAmount()}"></td>
                                         <td class="bg-dark"></td>
                                         <th:block th:each="product : ${productList}">
-                                            <th:block th:if="${netsuite.brand == product}">
-                                                <td th:text="${netsuite.quantity}">
-                                                </td>
+                                            <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(product)}">
+                                                <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                    <td th:if="${product == productSalesAmountAndUnitList.product}"
+                                                        th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                    </td>
+                                                </th:block>
                                             </th:block>
-                                            <th:block th:unless="${netsuite.brand == product}">
+                                            <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(product)}">
                                                 <td>-</td>
                                             </th:block>
                                         </th:block>
+                                        <td th:text="${netsuiteCombination.getTotalSalesUnit()}"></td>
                                         <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
+                                        <td th:text="${netsuiteCombination.getTotalSalesUnit()}"></td>
                                     </tr>
                                 </th:block>
                             </th:block>
                             <tr class="bg-dark text-white">
                                 <td class="font-weight-bold">Grand Total</td>
                                 <th:block th:each="product : ${productList}">
-                                    <td>0</td>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerProduct(product)}"></td>
                                 </th:block>
+                                <td th:text="${netsuiteSummaryCalculator.calculateTotalAmount()}"></td>
                                 <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td th:text="${netsuiteSummaryCalculator.calculateTotalAmount()}"></td>
                                 <td class="bg-dark"></td>
                                 <th:block th:each="product : ${productList}">
-                                    <td>0</td>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitPerProduct(product)}"></td>
                                 </th:block>
+                                <td th:text="${netsuiteSummaryCalculator.calculateTotalUnit()}"></td>
                                 <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td th:text="${netsuiteSummaryCalculator.calculateTotalUnit()}"></td>
                             </tr>
                         </tbody>
                     </table>
