@@ -45,7 +45,7 @@ public class NetsuiteTransferCatDAOImpl implements NetsuiteTransferCatDAO {
 
     @Override
     public List<NetsuiteTransferCat> findAllNetsuiteTransferCat() {
-        TypedQuery<NetsuiteTransferCat> query = em.createNamedQuery("findNetsuiteTransferCat",
+        TypedQuery<NetsuiteTransferCat> query = em.createNamedQuery("findAllNetsuiteTransferCat",
                 NetsuiteTransferCat.class);
         return query.getResultList();
     }

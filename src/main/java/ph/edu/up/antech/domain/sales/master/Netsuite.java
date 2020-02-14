@@ -111,7 +111,7 @@ public class Netsuite implements Serializable {
     @Transient
     private String transfersCat;
 
-    @Transient
+    @Column(name = "transfers_cat_recode")
     private String transfersCatRecode;
 
     @Transient
@@ -597,6 +597,12 @@ public class Netsuite implements Serializable {
     public void generateValuesFromNetsuiteBjjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
         if (netsuiteBbjTagging != null) {
             this.csrTagging = netsuiteBbjTagging.getNewTaggingOfCsr();
+        }
+    }
+
+    public void generateValuesFromNetsuiteTransfersCat(NetsuiteTransferCat netsuiteTransferCat) {
+        if (netsuiteTransferCat != null) {
+            this.transfersCatRecode = netsuiteTransferCat.getRecode();
         }
     }
 

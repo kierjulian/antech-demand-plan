@@ -97,6 +97,9 @@ public class StatusReportController {
     @Autowired
     private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
+    @Autowired
+    private NetsuiteTransferCatService netsuiteTransferCatService;
+
     @GetMapping("")
     public String loadStatusReportHomePage() {
         return "status-report";
@@ -240,6 +243,8 @@ public class StatusReportController {
                 mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
         List<NetsuiteBbjTagging> netsuiteBbjTaggingList =
                 netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
+        List<NetsuiteTransferCat> netsuiteTransferCatList =
+                netsuiteTransferCatService.findAllNetsuiteTransferCat();
 
         customerSalesByItemList.forEach(customerSalesByItem -> {
             customerSalesByItem.setItemDate(localDate);
@@ -288,6 +293,12 @@ public class StatusReportController {
                             .orElse(null);
             netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBbjTagging);
 
+            NetsuiteTransferCat netsuiteTransferCat =
+                    netsuiteTransferCatList.stream()
+                            .filter(transferCat -> transferCat.getName().equals(netsuite.getCategory()))
+                            .findFirst()
+                            .orElse(null);
+            netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransferCat);
             netsuiteList.add(netsuite);
         });
 

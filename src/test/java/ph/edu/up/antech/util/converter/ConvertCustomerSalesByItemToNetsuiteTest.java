@@ -28,7 +28,8 @@ import java.util.List;
 @ContextConfiguration(classes = {
         NetsuiteProductListSourceServiceImpl.class, NetsuiteProductListDeServiceImpl.class,
         NetsuiteGeneralInformationServiceImpl.class, NetsuiteOtherInformationServiceImpl.class,
-        MdcPerBranchSalesNaConfigurationServiceImpl.class, NetsuiteBbjTaggingServiceImpl.class
+        MdcPerBranchSalesNaConfigurationServiceImpl.class, NetsuiteBbjTaggingServiceImpl.class,
+        NetsuiteTransferCatServiceImpl.class
 })
 public class ConvertCustomerSalesByItemToNetsuiteTest {
 
@@ -49,6 +50,9 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
 
     @Autowired
     private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
+
+    @Autowired
+    private NetsuiteTransferCatService netsuiteTransferCatService;
 
     @Test
     public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
@@ -71,6 +75,8 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                     mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
             List<NetsuiteBbjTagging> netsuiteBbjTaggingList =
                     netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
+            List<NetsuiteTransferCat> netsuiteTransferCatList =
+                    netsuiteTransferCatService.findAllNetsuiteTransferCat();
 
             for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
                 customerSalesByItem.convertAllStringFieldsToProperType();
@@ -152,6 +158,14 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                 netsuite.generateValuesFromNetsuiteBjjTagging(netsuiteBbjTagging);
                 System.out.println("CSR TAGGING: " + netsuite.getCsrTagging());
                 System.out.println();
+
+                NetsuiteTransferCat netsuiteTransferCat =
+                        netsuiteTransferCatList.stream()
+                                .filter(transferCat -> transferCat.getName().equals(netsuite.getCategory()))
+                                .findFirst()
+                                .orElse(null);
+                netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransferCat);
+                System.out.println("Transfers Cat Record: " + netsuite.getTransfersCatRecode());
             }
         } catch (IOException e) {
             e.printStackTrace();
