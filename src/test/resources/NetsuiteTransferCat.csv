@@ -1,0 +1,27 @@
+Name,Code,Recode
+BBJ,BBJ,5 BBJ
+Distributor -BBJ,BBJ,5 BBJ
+Dispensing Doctor,Dispensing MD,3 ETHICAL
+HD ref MD,Home Delivery,3 ETHICAL
+HD-Dispensing,Dispensing MD,3 ETHICAL
+Pedia Doctors,Dispensing MD,3 ETHICAL
+Ê,Dispensing MD,3 ETHICAL
+Distributor,Distributor,7 DISTRIBUTOR
+Trade-Dabisco,Distributor,7 DISTRIBUTOR
+Trade-BNBI,Distributor,7 DISTRIBUTOR
+Trade-Akromont,Distributor,7 DISTRIBUTOR
+Distributor-Blocs,Trade,2 TRADE (AFPCES/ZIP)
+VISAYAS -Distributor,Trade,2 TRADE (AFPCES/ZIP)
+VISAYAS/Davao -Distributor,Trade,2 TRADE (AFPCES/ZIP)
+Distributor-North Luzon,Trade,2 TRADE (AFPCES/ZIP)
+Distributor-Bicol Region,Trade,2 TRADE (AFPCES/ZIP)
+Employee,Employee,4 EMPLOYEE
+Home Delivery,Home Delivery,3 ETHICAL
+Home Delivery Doctor,Home Delivery,3 ETHICAL
+Hospital/Clinic,Institutional,3 ETHICAL
+Institutional,Institutional,3 ETHICAL
+Hospital Old Price,Institutional,3 ETHICAL
+Mercury Drug Corporation,MDC,1 MDC
+Trade-MDC,MDC,1 MDC
+Trade,Trade,2 TRADE (AFPCES/ZIP)
+ZPC,ZPC,8 ZPC
