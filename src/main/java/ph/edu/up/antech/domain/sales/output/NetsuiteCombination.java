@@ -9,15 +9,18 @@ import java.util.stream.Collectors;
 public class NetsuiteCombination {
 
     private String kamReferenceName;
+    private String transfersCatRecode;
     private List<ProductSalesAmountAndUnit> productSalesAmountAndUnitList;
 
     public NetsuiteCombination(List<Netsuite> netsuiteList) {
         kamReferenceName = netsuiteList.get(0).getKamRefName1();
+        transfersCatRecode = netsuiteList.get(0).getTransfersCatRecode();
         productSalesAmountAndUnitList = new ArrayList<>();
 
         netsuiteList.forEach(netsuite -> {
-            if (!netsuite.getKamRefName1().equals(kamReferenceName)) {
-                throw new RuntimeException("Kam reference name and account should be the same for one Netsuite Combination");
+            if (!netsuite.getKamRefName1().equals(kamReferenceName)
+                    && !netsuite.getTransfersCatRecode().equals(transfersCatRecode)) {
+                throw new RuntimeException("Kam reference name and transfers cat record should be the same for one Netsuite Combination");
             }
 
             ProductSalesAmountAndUnit productSalesAmountAndUnit = new ProductSalesAmountAndUnit(
@@ -40,6 +43,14 @@ public class NetsuiteCombination {
 
     public void setKamReferenceName(String kamReferenceName) {
         this.kamReferenceName = kamReferenceName;
+    }
+
+    public String getTransfersCatRecode() {
+        return transfersCatRecode;
+    }
+
+    public void setTransfersCatRecode(String transfersCatRecode) {
+        this.transfersCatRecode = transfersCatRecode;
     }
 
     public List<ProductSalesAmountAndUnit> getProductSalesAmountAndUnitList() {

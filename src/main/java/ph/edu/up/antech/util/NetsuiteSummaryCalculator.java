@@ -40,4 +40,38 @@ public class NetsuiteSummaryCalculator {
                 .sum();
     }
 
+    public Integer calculateTotalAmountPerTransferCatRecodePerProduct(
+            String transfersCatRecode, String antechProductDescription) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
+                .mapToInt(dsrZol -> dsrZol.getRevenueConverted().intValue())
+                .sum();
+    }
+
+    public Integer calculateTotalUnitsPerTransfersCatRecodePerProduct(
+            String transfersCatRecode, String antechProductDescription) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
+                .mapToInt(dsrZol -> dsrZol.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateTotalAmountPerTransfersCatRecode(String transfersCatRecode) {
+        return netsuiteList.stream()
+                .filter(dsrZol -> transfersCatRecode.equals(dsrZol.getTransfersCatRecode()))
+                .mapToInt(dsrZol -> dsrZol.getRevenueConverted().intValue())
+                .sum();
+    }
+
+    public Integer calculateTotalUnitsPerTransfersCatRecode(String transfersCatRecode) {
+        return netsuiteList.stream()
+                .filter(dsrZol -> transfersCatRecode.equals(dsrZol.getTransfersCatRecode()))
+                .mapToInt(dsrZol -> dsrZol.getQuantity())
+                .sum();
+    }
+
 }

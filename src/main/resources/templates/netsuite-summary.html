@@ -58,9 +58,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <th:block th:each="kamRefName : ${kamReferenceNameList}">
+                            <th:block th:each="transfersCatRecode : ${transfersCatRecodeList}">
+                                <tr class="bg-dark text-white">
+                                    <td class="font-weight-bold" th:text="${transfersCatRecode}"></td>
+                                    <th:block th:each="product : ${productList}">
+                                        <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerTransferCatRecodePerProduct(transfersCatRecode, product)}">
+                                        </td>
+                                    </th:block>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                    <td>0</td>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                    <td class="bg-dark"></td>
+                                    <th:block th:each="product : ${productList}">
+                                        <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitsPerTransfersCatRecodePerProduct(transfersCatRecode, product)}">
+                                        </td>
+                                    </th:block>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitsPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                    <td>0</td>
+                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitsPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                </tr>
                                 <th:block th:each="netsuiteCombination, row : ${netsuiteCombinationList}">
-                                    <tr th:if="${kamRefName == netsuiteCombination.kamReferenceName}">
+                                    <tr th:if="${transfersCatRecode == netsuiteCombination.transfersCatRecode}">
                                         <td th:text="${netsuiteCombination.kamReferenceName}"></td>
                                         <th:block th:each="product : ${productList}">
                                             <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(product)}">
