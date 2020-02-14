@@ -17,6 +17,7 @@ import ph.edu.up.antech.util.StringUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -31,14 +32,17 @@ public class DsrZolController {
     public String loadDsrZolPage(Model model, @RequestParam(required = false) String date) {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date)
                 ? LocalDate.parse(date) : LocalDate.now();
-        List<DsrZol> dsrZolList = generateDsrZolByLocalDate(localDate);
-        List<String> antechProductDescriptionList = getZolPerDoorsProductByDate(localDate);
-        List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(localDate);
-        List<String> accountList = getDistinctZolPerDoorsAccountByDate(localDate);
+
+        List<ZolPerDoors> zolPerDoorsList = findZolPerDoorsByLocalDate(localDate);
+        List<DsrZol> dsrZolList = generateDsrZolFromZolPerDoorsList(zolPerDoorsList);
+        List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
+        List<String> accountList = findDistinctAccountInZolPerDoorsList(zolPerDoorsList);
         List<DsrZolCombination> dsrZolCombinationList =
                 generateDsrZolCombinationByLocalDateAndKamReferenceNameAndAccount(dsrZolList, kamReferenceNameList,
                         accountList);
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
+
+        List<String> antechProductDescriptionList = findDistinctAntechProductDescriptionInZolPerDoorsList(zolPerDoorsList);
 
         model.addAttribute("searchedDate", localDate);
         model.addAttribute("dsrZolList", dsrZolList);
@@ -49,18 +53,49 @@ public class DsrZolController {
         return "dsr-zol";
     }
 
-    private List<DsrZol> generateDsrZolByLocalDate(LocalDate date) {
-        List<String> kamReferenceNameList = getZolPerDoorsKamReferenceNameByDate(date);
+    private List<ZolPerDoors> findZolPerDoorsByLocalDate(LocalDate localDate) {
+        return zolPerDoorsService.findZolPerDoorsByDate(localDate);
+    }
+
+    private List<String> findDistinctKamReferenceNameInZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
+        return zolPerDoorsList.stream()
+                .map(ZolPerDoors::getKamReferenceName)
+                .distinct()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> findDistinctAccountInZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
+        return zolPerDoorsList.stream()
+                .map(ZolPerDoors::getAccount)
+                .distinct()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> findDistinctAntechProductDescriptionInZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
+        return zolPerDoorsList.stream()
+                .map(ZolPerDoors::getAntechProductDescription)
+                .distinct()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<DsrZol> generateDsrZolFromZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
+        List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
         List<String> antechProductDescriptionList =
-                getZolPerDoorsProductByDate(date);
+                findDistinctAntechProductDescriptionInZolPerDoorsList(zolPerDoorsList);
 
         List<DsrZol> dsrZolList = new ArrayList<>();
         for (String kamReferenceName : kamReferenceNameList) {
             for (String antechProductDescription : antechProductDescriptionList) {
-                List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
-                        .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(date,
-                                kamReferenceName, antechProductDescription);
-                for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+                List<ZolPerDoors> filteredZolPerDoorsList = zolPerDoorsList.stream()
+                        .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getKamReferenceName()))
+                        .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getAntechProductDescription()))
+                        .filter(zolPerDoors -> zolPerDoors.getKamReferenceName().equals(kamReferenceName))
+                        .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(antechProductDescription))
+                        .collect(Collectors.toList());
+                for (ZolPerDoors zolPerDoors : filteredZolPerDoorsList) {
                     DsrZol dsrZol = new DsrZol(zolPerDoors);
                     dsrZolList.add(dsrZol);
                 }
@@ -68,20 +103,6 @@ public class DsrZolController {
         }
 
         return dsrZolList;
-    }
-
-    private List<String> getZolPerDoorsProductByDate(LocalDate localDate) {
-        return zolPerDoorsService.findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(localDate);
-    }
-
-    private List<String> getZolPerDoorsKamReferenceNameByDate(LocalDate localDate) {
-        return zolPerDoorsService
-                .findDistinctZolPerDoorsKamReferenceNameByLocalDate(localDate);
-    }
-
-    private List<String> getDistinctZolPerDoorsAccountByDate(LocalDate localDate) {
-        return zolPerDoorsService
-                .findDistinctZolPerDoorsAccountByLocalDate(localDate);
     }
 
     private List<DsrZolCombination> generateDsrZolCombinationByLocalDateAndKamReferenceNameAndAccount(
