@@ -29,17 +29,74 @@
                         </div>&nbsp;
                     </form>
                     <br>
-                    <table id="dailySalesReportZOLTable" class="table-sm table-striped table-bordered
-                                     table-hover table">
+                    <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
+                                     table-hover table-responsive table">
                         <thead class="thead-light">
                             <tr>
-                                <th>AFPCES</th>
-                                <th>Total HiPP</th>
-                                <th>Total Jar</th>
-                                <th>Total Water</th>
+                                <td class="text-center" colspan="100%">AMOUNT</td>
+                            </tr>
+                            <tr>
+                                <th class="bg-dark text-white">AFPCES</th>
+                                <th:block th:each="hippProduct : ${hippProductList}">
+                                    <th th:text="${hippProduct}"></th>
+                                </th:block>
+                                <th class="bg-dark text-white">Total HiPP</th>
+                                <th:block th:each="jarProduct : ${jarProductList}">
+                                    <th th:text="${jarProduct}"></th>
+                                </th:block>
+                                <th class="bg-dark text-white">Total Jar</th>
+                                <th class="bg-dark text-white">Total Water</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr th:each="kamReferenceName : ${kamReferenceNameList}">
+                                <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
+                                <th:block th:each="hippProduct : ${hippProductList}">
+                                    <td th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceNamePerBrand(kamReferenceName, hippProduct)}">-</td>
+                                </th:block>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceName(kamReferenceName)}">-</td>
+                                <th:block th:each="jarProduct : ${jarProductList}">
+                                    <td th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceNamePerBrand(kamReferenceName, jarProduct)}">-</td>
+                                </th:block>
+                                <td class="bg-dark text-white">0</td>
+                                <td class="bg-dark text-white">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
+                                     table-hover table-responsive table">
+                        <thead class="thead-light">
+                            <tr>
+                                <td class="text-center" colspan="100%">UNITS</td>
+                            </tr>
+                            <tr>
+                                <th class="bg-dark text-white">AFPCES</th>
+                                <th:block th:each="hippProduct : ${hippProductList}">
+                                    <th th:text="${hippProduct}"></th>
+                                </th:block>
+                                <th class="bg-dark text-white">Total HiPP</th>
+                                <th:block th:each="jarProduct : ${jarProductList}">
+                                    <th th:text="${jarProduct}"></th>
+                                </th:block>
+                                <th class="bg-dark text-white">Total Jar</th>
+                                <th class="bg-dark text-white">Total Water</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="kamReferenceName : ${kamReferenceNameList}">
+                                <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
+                                <th:block th:each="hippProduct : ${hippProductList}">
+                                    <td th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceNamePerBrand(kamReferenceName, hippProduct)}">-</td>
+                                </th:block>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceName(kamReferenceName)}">-</td>
+                                <th:block th:each="jarProduct : ${jarProductList}">
+                                    <td th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceNamePerBrand(kamReferenceName, jarProduct)}">-</td>
+                                </th:block>
+                                <td class="bg-dark text-white">0</td>
+                                <td class="bg-dark text-white">0</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
