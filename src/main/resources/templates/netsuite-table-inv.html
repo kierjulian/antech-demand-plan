@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Netsuite Table Inventory')"></div>
+        <script th:src="@{/js/netsuite-table-inv.js}"></script>
     </head>
     <body>
         <div class="container-fluid"><br>
@@ -30,10 +31,10 @@
                     </form>
                     <br>
                     <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
-                                     table-hover table-responsive table">
+                                     table-hover table">
                         <thead class="thead-light">
                             <tr>
-                                <td class="text-center" colspan="100%">AMOUNT</td>
+                                <td class="text-center font-weight-bold" colspan="42">AMOUNT</td>
                             </tr>
                             <tr>
                                 <th class="bg-dark text-white">AFPCES</th>
@@ -66,10 +67,10 @@
 
                     <br>
                     <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
-                                     table-hover table-responsive table">
+                                     table-hover table">
                         <thead class="thead-light">
                             <tr>
-                                <td class="text-center" colspan="100%">UNITS</td>
+                                <td class="text-center font-weight-bold" colspan="42">UNITS</td>
                             </tr>
                             <tr>
                                 <th class="bg-dark text-white">AFPCES</th>

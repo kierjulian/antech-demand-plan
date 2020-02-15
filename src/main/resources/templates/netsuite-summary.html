@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Netsuite Summary')"></div>
+        <script th:src="@{/js/netsuite-summary.js}"></script>
     </head>
     <body>
         <div class="container-fluid"><br>
@@ -34,10 +35,10 @@
                         <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th class="align-middle" style="text-align: center;"
+                            <th class="align-middle font-weight-bold" style="text-align: center;"
                                 th:attr="colspan=${#lists.size(productList) + 3}">Amount</th>
                             <th class="bg-dark"></th>
-                            <th class="align-middle" style="text-align: center;"
+                            <th class="align-middle font-weight-bold" style="text-align: center;"
                                 th:attr="colspan=${#lists.size(productList) + 3}">Units</th>
                         </tr>
                         <tr>
