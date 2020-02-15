@@ -1,4 +1,4 @@
-package ph.edu.up.antech.domain.sales.output;
+package ph.edu.up.antech.util;
 
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
