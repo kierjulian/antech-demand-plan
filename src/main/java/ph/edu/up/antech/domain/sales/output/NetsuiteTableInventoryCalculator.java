@@ -22,10 +22,22 @@ public class NetsuiteTableInventoryCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalAmountPerKamReferenceName(String kamReferenceName) {
+    public Integer calculateTotalHippAmountPerKamReferenceName(String kamReferenceName) {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getBrand().startsWith("S") || netsuite.getBrand().startsWith("CS"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .sum();
+    }
+
+    public Integer calculateTotalJarAmountPerKamReferenceName(String kamReferenceName) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
+                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
@@ -40,10 +52,22 @@ public class NetsuiteTableInventoryCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerKamReferenceName(String kamReferenceName) {
+    public Integer calculateTotalHippUnitsPerKamReferenceName(String kamReferenceName) {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateTotalJarUnitsPerKamReferenceName(String kamReferenceName) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
+                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }

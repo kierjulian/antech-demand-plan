@@ -54,11 +54,11 @@
                                 <th:block th:each="hippProduct : ${hippProductList}">
                                     <td th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceNamePerBrand(kamReferenceName, hippProduct)}">-</td>
                                 </th:block>
-                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceName(kamReferenceName)}">-</td>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalHippAmountPerKamReferenceName(kamReferenceName)}">-</td>
                                 <th:block th:each="jarProduct : ${jarProductList}">
                                     <td th:text="${netsuiteTableInventoryCalculator.calculateTotalAmountPerKamReferenceNamePerBrand(kamReferenceName, jarProduct)}">-</td>
                                 </th:block>
-                                <td class="bg-dark text-white">0</td>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalJarAmountPerKamReferenceName(kamReferenceName)}">-</td>
                                 <td class="bg-dark text-white">0</td>
                             </tr>
                         </tbody>
@@ -90,11 +90,11 @@
                                 <th:block th:each="hippProduct : ${hippProductList}">
                                     <td th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceNamePerBrand(kamReferenceName, hippProduct)}">-</td>
                                 </th:block>
-                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceName(kamReferenceName)}">-</td>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalHippUnitsPerKamReferenceName(kamReferenceName)}">-</td>
                                 <th:block th:each="jarProduct : ${jarProductList}">
                                     <td th:text="${netsuiteTableInventoryCalculator.calculateTotalUnitsPerKamReferenceNamePerBrand(kamReferenceName, jarProduct)}">-</td>
                                 </th:block>
-                                <td class="bg-dark text-white">0</td>
+                                <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateTotalJarUnitsPerKamReferenceName(kamReferenceName)}">-</td>
                                 <td class="bg-dark text-white">0</td>
                             </tr>
                         </tbody>
