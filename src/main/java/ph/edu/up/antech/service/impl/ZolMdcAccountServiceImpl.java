@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.ZolMdcAccountDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
 
     @Autowired

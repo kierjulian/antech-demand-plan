@@ -6,10 +6,12 @@ import ph.edu.up.antech.dao.MdcPerBranchSalesDAO;
 import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
 import ph.edu.up.antech.service.MdcPerBranchSalesService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class MdcPerBranchSalesServiceImpl implements MdcPerBranchSalesService {
 
     @Autowired

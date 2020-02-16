@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.ZolPerDoorsPerAcctDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService {
 
     @Autowired

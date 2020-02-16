@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.NetsuiteOtherInformationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteOtherInformation;
 import ph.edu.up.antech.service.NetsuiteOtherInformationService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetsuiteOtherInformationServiceImpl implements NetsuiteOtherInformationService {
 
     @Autowired

@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.MdcPerBranchSalesCoverageDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCoverage;
 import ph.edu.up.antech.service.MdcPerBranchSalesCoverageService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class MdcPerBranchSalesCoverageServiceImpl implements MdcPerBranchSalesCoverageService {
 
     @Autowired

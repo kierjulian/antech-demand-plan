@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-@Transactional
 public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @PersistenceContext

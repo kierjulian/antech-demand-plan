@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.util.CsvToObjectConverter;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +107,7 @@ public class StatusReportController {
         return "status-report";
     }
 
+    @Transactional(rollbackOn = Exception.class)
     @PostMapping("/upload")
     public String addCsvFiles(RedirectAttributes redirectAttributes,
                               @RequestParam("customerItemSalesPerPeriodFile") MultipartFile customerItemSalesPerPeriodFile,
@@ -135,6 +138,7 @@ public class StatusReportController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             LOGGER.error(e.getMessage());
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
 
         return "redirect:/reports";

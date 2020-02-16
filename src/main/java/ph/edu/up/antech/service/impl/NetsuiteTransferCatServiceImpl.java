@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.NetsuiteTransferCatDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteTransferCat;
 import ph.edu.up.antech.service.NetsuiteTransferCatService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetsuiteTransferCatServiceImpl implements NetsuiteTransferCatService {
 
     @Autowired

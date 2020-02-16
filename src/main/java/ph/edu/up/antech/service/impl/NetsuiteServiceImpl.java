@@ -6,10 +6,12 @@ import ph.edu.up.antech.dao.NetsuiteDAO;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.service.NetsuiteService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetsuiteServiceImpl implements NetsuiteService {
 
     @Autowired

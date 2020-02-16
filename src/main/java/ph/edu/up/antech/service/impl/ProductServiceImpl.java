@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.ProductDAO;
 import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.service.ProductService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired

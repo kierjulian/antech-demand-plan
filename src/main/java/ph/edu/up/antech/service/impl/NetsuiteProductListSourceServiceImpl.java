@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.NetsuiteProductListSourceDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
 import ph.edu.up.antech.service.NetsuiteProductListSourceService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetsuiteProductListSourceServiceImpl implements NetsuiteProductListSourceService {
 
     @Autowired

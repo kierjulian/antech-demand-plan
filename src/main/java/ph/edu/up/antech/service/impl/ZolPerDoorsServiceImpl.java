@@ -6,10 +6,12 @@ import ph.edu.up.antech.dao.ZolPerDoorsDAO;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
 
     @Autowired

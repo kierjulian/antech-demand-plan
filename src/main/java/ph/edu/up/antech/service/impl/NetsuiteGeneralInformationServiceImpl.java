@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.NetsuiteGeneralInformationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetsuiteGeneralInformationServiceImpl implements NetsuiteGeneralInformationService {
 
     @Autowired

@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.CustomerDAO;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.service.CustomerService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired

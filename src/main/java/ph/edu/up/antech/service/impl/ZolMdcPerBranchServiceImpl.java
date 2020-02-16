@@ -6,10 +6,12 @@ import ph.edu.up.antech.dao.ZolMdcPerBranchDAO;
 import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
 import ph.edu.up.antech.service.ZolMdcPerBranchService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class ZolMdcPerBranchServiceImpl implements ZolMdcPerBranchService {
 
     @Autowired

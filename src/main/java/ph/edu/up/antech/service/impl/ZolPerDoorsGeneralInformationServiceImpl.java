@@ -6,9 +6,11 @@ import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGeneralInformationService {
 
     @Autowired
