@@ -1,6 +1,7 @@
 package ph.edu.up.antech.domain.sales.master;
 
 import org.springframework.stereotype.Controller;
+import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesNaConfiguration;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtSheet;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
@@ -103,7 +104,7 @@ public class ZolMtPerBranch {
     @Column(name = "cm_ind")
     private LocalDate cmInd;
 
-    @Transient
+    @Column(name = "dsm")
     private String dsm;
 
     public ZolMtPerBranch() {
@@ -447,6 +448,13 @@ public class ZolMtPerBranch {
         if (zolMtAccount != null) {
             this.account = zolMtAccount.getBranchName();
             this.kamRefName = zolMtAccount.getNa();
+        }
+    }
+
+    public void generateValuesFromZolMdcPerBranchNaConfiguration(MdcPerBranchSalesNaConfiguration
+                                                                         mdcPerBranchSalesNaConfiguration) {
+        if (mdcPerBranchSalesNaConfiguration != null) {
+            this.dsm = mdcPerBranchSalesNaConfiguration.getDsm();
         }
     }
 

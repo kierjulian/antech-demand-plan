@@ -422,6 +422,8 @@ public class StatusReportController {
 
         List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
                 .findAllZolPerDoorsGeneralInformation();
+        List<MdcPerBranchSalesNaConfiguration> mdcPerBranchSalesNaConfigurationList =
+                mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
 
         zolMtPerBranchList.forEach(zolMtPerBranch -> {
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
@@ -435,6 +437,13 @@ public class StatusReportController {
                     .findFirst()
                     .orElse(null);
             zolMtPerBranch.setValuesFromZolMtAccount(zolMtAccount);
+
+            MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = mdcPerBranchSalesNaConfigurationList.stream()
+                    .filter(naConfig -> naConfig.getNaName().equals(zolMtPerBranch.getKamRefName()))
+                    .findFirst()
+                    .orElse(null);
+            zolMtPerBranch.generateValuesFromZolMdcPerBranchNaConfiguration(mdcPerBranchSalesNaConfiguration);
+
             zolMtPerBranch.setDate(localDate);
         });
 
