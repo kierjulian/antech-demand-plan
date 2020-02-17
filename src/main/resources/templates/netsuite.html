@@ -34,6 +34,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Row</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Customer / Job</th>
                                 <th scope="col">Category</th>
@@ -41,12 +42,16 @@
                                 <th scope="col">Num</th>
                                 <th scope="col">Created From</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Quantity Sold</th>
                                 <th scope="col">Sales Price</th>
                                 <th scope="col">Revenue</th>
                                 <th scope="col">Price Level</th>
                                 <th scope="col">Customer / Job: Credited to Territory Manager</th>
                                 <th scope="col">Sales Rep</th>
+                                <th scope="col">Customer / Job: Acquisition CSR Credited To</th>
+                                <th scope="col">Customer / Job: Retention CSR Credited To</th>
+                                <th scope="col">Order Taken By</th>
+                                <th scope="col">Customer / Job: Awareness</th>
                                 <th scope="col">Customer Since</th>
                                 <th scope="col">Zone</th>
                                 <th scope="col">Customer / Job: Zone</th>
@@ -59,7 +64,9 @@
                                 <th scope="col">Transfers Cat Recode</th>
                                 <th scope="col">Kam Reference Name</th>
                                 <th scope="col">Region</th>
-                                <th scope="col">Revunue Converted</th>
+                                <th scope="col">Revenue Converted</th>
+                                <th scope="col">Month</th>
+                                <th scope="col">Loc2</th>
                                 <th scope="col">Na Left</th>
                                 <th scope="col">Trim</th>
                                 <th scope="col">Kam Reference Name 2</th>
@@ -72,6 +79,7 @@
                         <tbody>
                             <tr th:each="netsuite, row : ${netsuiteList}">
                                 <td class="align-middle" th:text="${row.count}"></td>
+                                <td class="align-middle" th:text="${netsuite.date}"></td>
                                 <td class="align-middle" th:text="${netsuite.type}"></td>
                                 <td class="align-middle" th:text="${netsuite.customer}"></td>
                                 <td class="align-middle" th:text="${netsuite.category}"></td>
@@ -85,6 +93,10 @@
                                 <td class="align-middle" th:text="${netsuite.priceLevel}"></td>
                                 <td class="align-middle" th:text="${netsuite.creditedToTerritorialManager}"></td>
                                 <td class="align-middle" th:text="${netsuite.salesRep}"></td>
+                                <td class="align-middle" th:text="${netsuite.acquisitionCsrCreditedTo}"></td>
+                                <td class="align-middle" th:text="${netsuite.retentionCsrCreditedTo}"></td>
+                                <td class="align-middle" th:text="${netsuite.orderTakenBy}"></td>
+                                <td class="align-middle" th:text="${netsuite.awareness}"></td>
                                 <td class="align-middle" th:text="${netsuite.customerSince}"></td>
                                 <td class="align-middle" th:text="${netsuite.zone}"></td>
                                 <td class="align-middle" th:text="${netsuite.customerJobZone}"></td>
@@ -98,6 +110,8 @@
                                 <td class="align-middle" th:text="${netsuite.kamRefName1}">-</td>
                                 <td class="align-middle" th:text="${netsuite.region}">-</td>
                                 <td class="align-middle" th:text="${netsuite.revenueConverted}">-</td>
+                                <td class="align-middle" th:text="${netsuite.date.month}">-</td>
+                                <td class="align-middle"></td>
                                 <td class="align-middle" th:text="${netsuite.naLeft}">-</td>
                                 <td class="align-middle" th:text="${netsuite.trim}">-</td>
                                 <td class="align-middle" th:text="${netsuite.kamRefName2}">-</td>

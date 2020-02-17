@@ -66,6 +66,18 @@ public class Netsuite implements Serializable {
     @Column(name = "sales_rep")
     private String salesRep;
 
+    @Column(name = "acquisition_credited")
+    private String acquisitionCsrCreditedTo;
+
+    @Column(name = "retention_credited")
+    private String retentionCsrCreditedTo;
+
+    @Column(name = "order_taken_by")
+    private String orderTakenBy;
+
+    @Column(name = "awareness")
+    private String awareness;
+
     @Column(name = "customer_since")
     private String customerSince;
 
@@ -132,9 +144,6 @@ public class Netsuite implements Serializable {
     @Column(name = "revenue_converted")
     private BigDecimal revenueConverted;
 
-    @Transient
-    private Month month;
-
     @Column(name = "na_left")
     private String naLeft;
 
@@ -174,8 +183,12 @@ public class Netsuite implements Serializable {
         this.priceLevel = customerSalesByItem.getPriceLevel();
         this.creditedToTerritorialManager = customerSalesByItem.getCreditedToTerritorialManager();
         this.salesRep = customerSalesByItem.getSalesRepName();
+        this.acquisitionCsrCreditedTo = customerSalesByItem.getCustomerJobAcquisitionCsrCreditedTo();
+        this.retentionCsrCreditedTo = customerSalesByItem.getCustomerJobRetentionCsrCreditedTo();
+        this.orderTakenBy = customerSalesByItem.getOrderTakenBy();
+        this.awareness = customerSalesByItem.getAddressZipCode();
         this.customerSince = customerSalesByItem.getSalesRoleName();
-        this.zone = customerSalesByItem.getAddressZipCode();
+        this.zone = customerSalesByItem.getAddressShippingAddressCity();
         this.customerJobZone = customerSalesByItem.getAddressBillingAddress1();
         this.pickup = customerSalesByItem.getAddressBillingAddress2();
         this.billingAddressLine1 = customerSalesByItem.getCustomerJobHospital1();
@@ -301,6 +314,38 @@ public class Netsuite implements Serializable {
 
     public void setSalesRep(String salesRep) {
         this.salesRep = salesRep;
+    }
+
+    public String getAcquisitionCsrCreditedTo() {
+        return acquisitionCsrCreditedTo;
+    }
+
+    public void setAcquisitionCsrCreditedTo(String acquisitionCsrCreditedTo) {
+        this.acquisitionCsrCreditedTo = acquisitionCsrCreditedTo;
+    }
+
+    public String getRetentionCsrCreditedTo() {
+        return retentionCsrCreditedTo;
+    }
+
+    public void setRetentionCsrCreditedTo(String retentionCsrCreditedTo) {
+        this.retentionCsrCreditedTo = retentionCsrCreditedTo;
+    }
+
+    public String getOrderTakenBy() {
+        return orderTakenBy;
+    }
+
+    public void setOrderTakenBy(String orderTakenBy) {
+        this.orderTakenBy = orderTakenBy;
+    }
+
+    public String getAwareness() {
+        return awareness;
+    }
+
+    public void setAwareness(String awareness) {
+        this.awareness = awareness;
     }
 
     public String getCustomerSince() {
@@ -477,14 +522,6 @@ public class Netsuite implements Serializable {
 
     public void setRevenueConverted(BigDecimal revenueConverted) {
         this.revenueConverted = revenueConverted;
-    }
-
-    public Month getMonth() {
-        return month;
-    }
-
-    public void setMonth(Month month) {
-        this.month = month;
     }
 
     public String getNaLeft() {

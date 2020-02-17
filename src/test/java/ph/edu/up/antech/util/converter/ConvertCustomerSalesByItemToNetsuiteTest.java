@@ -96,6 +96,10 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                 System.out.println("Revenue: " + netsuite.getRevenue());
                 System.out.println("Price Level: " + netsuite.getPriceLevel());
                 System.out.println("Credited To Territorial Manager: " + netsuite.getCreditedToTerritorialManager());
+                System.out.println("CSR Acquisitions: " + netsuite.getAcquisitionCsrCreditedTo());
+                System.out.println("CSR Retention: " + netsuite.getRetentionCsrCreditedTo());
+                System.out.println("Order Taken By: " + netsuite.getOrderTakenBy());
+                System.out.println("Awareness: " + netsuite.getAwareness());
                 System.out.println("Sales Rep: " + netsuite.getSalesRep());
                 System.out.println("Revenue Converted: " + netsuite.getRevenueConverted());
                 System.out.println("Na Left: " + netsuite.getNaLeft());

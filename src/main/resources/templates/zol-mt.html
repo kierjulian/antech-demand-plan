@@ -34,6 +34,7 @@
                         <thead class="thead-light">
                         <tr>
                             <th scope="col">Row</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Customer Code</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Item Code</th>
@@ -65,6 +66,7 @@
                         <tbody>
                         <tr th:each="zolMtPerBranch, row : ${zolMtPerBranchList}">
                             <td class="align-middle" th:text="${row.count}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.date}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.customerCode}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.customerName}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.itemCode}"></td>
@@ -89,7 +91,7 @@
                             <td class="align-middle" th:text="${zolMtPerBranch.finalAmount}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.amountTimes1000}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.a}"></td>
-                            <td class="align-middle" th:text="${zolMtPerBranch.cmInd}"></td>
+                            <td class="align-middle" th:text="${zolMtPerBranch.date}"></td>
                             <td class="align-middle" th:text="${zolMtPerBranch.dsm}"></td>
                         </tr>
                         </tbody>

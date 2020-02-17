@@ -34,6 +34,7 @@
                         <thead class="thead-light">
                         <tr>
                             <th scope="col">Row</th>
+                            <th scope="col">Date</th>
                             <th scope="col">CONO</th>
                             <th scope="col">REC</th>
                             <th scope="col">BRAN</th>
@@ -97,6 +98,7 @@
                         <tbody>
                             <tr th:each="mdcPerBranchSales, row : ${mdcPerBranchSalesList}">
                                 <td class="align-middle" th:text="${row.count}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.date}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.rec}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.bran}"></td>
@@ -119,8 +121,8 @@
                                 <td class="align-middle" th:text="${mdcPerBranchSales.sku}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.category}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.grossValue}"></td>
-                                <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
-                                <td class="align-middle" th:text="${mdcPerBranchSales.cono}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.getDate().month}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.getDate().year}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.referenceDate}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.referenceNo}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.xreferenceNo}"></td>
@@ -149,7 +151,7 @@
                                 <td class="align-middle" th:text="${mdcPerBranchSales.debtorCode}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.strCode}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.coverage}"></td>
-                                <td class="align-middle" th:text="${mdcPerBranchSales.reason}"></td>
+                                <td class="align-middle" th:text="${mdcPerBranchSales.reason} ?: '0'"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.branchName}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.naName}"></td>
                                 <td class="align-middle" th:text="${mdcPerBranchSales.dsmName}"></td>

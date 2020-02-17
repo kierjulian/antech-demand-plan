@@ -552,16 +552,14 @@ public class ZolDailySalesPerBranch {
     private void convertNetValueInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(netValueInString)
                 && !netValueInString.contains("#")) {
-            netValue = new BigDecimal(netValueInString.replaceAll(",", "").trim())
-                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+            netValue = new BigDecimal(netValueInString.replaceAll(",", "").trim());
         }
     }
 
     private void convertFinalNetVatInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(finalNetVatInString)
                 && !netValueInString.contains("#")) {
-            finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", "").trim())
-                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+            finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", "").trim());
         }
     }
 

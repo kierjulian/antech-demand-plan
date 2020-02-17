@@ -381,16 +381,14 @@ public class CustomerSalesByItem {
     private void convertSalesPriceInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesPriceInString)) {
             salesPrice = new BigDecimal(
-                    salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""))
-                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""));
         }
     }
 
     private void convertNetAmountInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(netAmountInString)) {
             netAmount = new BigDecimal(
-                    netAmountInString.replaceAll("PHP", "").replaceAll(",", ""))
-                    .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    netAmountInString.replaceAll("PHP", "").replaceAll(",", ""));
         }
     }
 

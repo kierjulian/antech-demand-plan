@@ -10,15 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcRaw;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcSheet;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
 import ph.edu.up.antech.runner.Application;
+import ph.edu.up.antech.service.MdcPerBranchSalesNaConfigurationService;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 import ph.edu.up.antech.service.ZolMdcPerBranchService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
+import ph.edu.up.antech.service.impl.MdcPerBranchSalesNaConfigurationServiceImpl;
 import ph.edu.up.antech.service.impl.ZolMdcAccountServiceImpl;
 import ph.edu.up.antech.service.impl.ZolMdcPerBranchServiceImpl;
 
@@ -34,7 +33,7 @@ import java.util.stream.Collectors;
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
         ZolMdcAccountServiceImpl.class, ZolPerDoorsGeneralInformationService.class,
-        ZolMdcPerBranchServiceImpl.class
+        ZolMdcPerBranchServiceImpl.class, MdcPerBranchSalesNaConfigurationServiceImpl.class
 })
 public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
 
@@ -46,6 +45,9 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
 
     @Autowired
     private ZolMdcPerBranchService zolMdcPerBranchService;
+
+    @Autowired
+    private MdcPerBranchSalesNaConfigurationService mdcPerBranchSalesNaConfigurationService;
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
@@ -153,6 +155,8 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
 
             List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList =
                     zolPerDoorsGeneralInformationService.findAllZolPerDoorsGeneralInformation();
+            List<MdcPerBranchSalesNaConfiguration> mdcPerBranchSalesNaConfigurationList =
+                    mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
 
             zolMdcPerBranchList.forEach(zolMdcPerBranch -> {
                 ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationList.stream()
@@ -166,6 +170,12 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                         .findFirst()
                         .orElse(null);
                 zolMdcPerBranch.setValuesFromZolMdcAccount(zolMdcAccount);
+
+                MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = mdcPerBranchSalesNaConfigurationList.stream()
+                        .filter(naConfiguration -> naConfiguration.getNaName().equals(zolMdcPerBranch.getKamRefName()))
+                        .findFirst()
+                        .orElse(null);
+                zolMdcPerBranch.setValuesFromMdcPerBranchSalesNaConfiguration(mdcPerBranchSalesNaConfiguration);
 
                 System.out.println(zolMdcPerBranch.getCustomerName());
                 System.out.println(zolMdcPerBranch.getItemCode());
@@ -187,6 +197,7 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                 System.out.println(zolMdcPerBranch.getFinalAmount());
                 System.out.println(zolMdcPerBranch.getAmountTimes1000());
                 System.out.println(zolMdcPerBranch.getA());
+                System.out.println(zolMdcPerBranch.getDsm());
                 System.out.println();
 
                 zolMdcPerBranch.setDate(LocalDate.now());

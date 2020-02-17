@@ -50,6 +50,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Row</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Month</th>
                                 <th scope="col">Accounts</th>
                                 <th scope="col">DSM Name</th>
@@ -72,6 +73,7 @@
                                     <a th:text="${row.count}"
                                        th:href="@{/master/dispensing-distributor/view/{id}(id=${dispensingDistributor.id})}"></a>
                                 </td>
+                                <td class="align-middle" th:text="${dispensingDistributor.date}"></td>
                                 <td class="align-middle" th:text="${dispensingDistributor.month}"></td>
                                 <td class="align-middle" th:text="${dispensingDistributor.accounts}"></td>
                                 <td class="align-middle" th:text="${dispensingDistributor.dsmName}"></td>

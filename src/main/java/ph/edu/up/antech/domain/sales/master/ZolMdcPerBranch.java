@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesNaConfiguration;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcSheet;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
@@ -409,7 +410,7 @@ public class ZolMdcPerBranch {
     }
 
     private void generateType() {
-        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0 ) {
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0) {
             type = "CM";
         } else {
             type = "FALSE";
@@ -437,6 +438,12 @@ public class ZolMdcPerBranch {
         if (zolMdcAccount != null) {
             this.account = zolMdcAccount.getBranchName();
             this.kamRefName = zolMdcAccount.getNa();
+        }
+    }
+
+    public void setValuesFromMdcPerBranchSalesNaConfiguration(MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration) {
+        if (mdcPerBranchSalesNaConfiguration != null) {
+            this.dsm = mdcPerBranchSalesNaConfiguration.getDsm();
         }
     }
 
