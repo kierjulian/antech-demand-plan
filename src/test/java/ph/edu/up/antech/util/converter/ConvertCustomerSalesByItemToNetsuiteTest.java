@@ -18,6 +18,7 @@ import ph.edu.up.antech.service.impl.*;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -56,7 +57,8 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
 
     @Test
     public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
-        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerSalesByItem.csv"))) {
+        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerSalesByItem.csv"),
+                StandardCharsets.ISO_8859_1)) {
             CsvToBean<CustomerSalesByItem> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerSalesByItem.class)
                     .withSkipLines(6)
@@ -170,6 +172,8 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                                 .orElse(null);
                 netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransferCat);
                 System.out.println("Transfers Cat Record: " + netsuite.getTransfersCatRecode());
+
+                netsuite.generateValuesWhenOtherValuesArePopulated();
             }
         } catch (IOException e) {
             e.printStackTrace();

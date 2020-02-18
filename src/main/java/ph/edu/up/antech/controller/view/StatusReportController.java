@@ -136,6 +136,7 @@ public class StatusReportController {
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             LOGGER.error(e.getMessage());
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -303,6 +304,7 @@ public class StatusReportController {
                             .findFirst()
                             .orElse(null);
             netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransferCat);
+            netsuite.generateValuesWhenOtherValuesArePopulated();
             netsuiteList.add(netsuite);
         });
 

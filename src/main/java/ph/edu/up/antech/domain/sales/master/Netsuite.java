@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Month;
 
 @Entity
 @Table(name = "netsuite")
@@ -96,20 +95,14 @@ public class Netsuite implements Serializable {
     @Column(name = "bill_address_2")
     private String billingAddressLine2;
 
-    @Transient
+    @Column(name = "customer_job_hosp1")
     private String customerJobHospital1;
 
-    @Transient
+    @Column(name = "x")
     private String x;
 
-    @Transient
+    @Column(name = "a")
     private String a;
-
-    @Transient
-    private String b;
-
-    @Transient
-    private String c;
 
     @Column(name = "formula")
     private String formula;
@@ -120,19 +113,19 @@ public class Netsuite implements Serializable {
     @Column(name = "stage")
     private String stage;
 
-    @Transient
+    @Column(name = "transfers_cat")
     private String transfersCat;
 
     @Column(name = "transfers_cat_recode")
     private String transfersCatRecode;
 
-    @Transient
+    @Column(name = "in_pcs")
     private Integer inPcs;
 
-    @Transient
+    @Column(name = "conv_units")
     private Integer convUnits;
 
-    @Transient
+    @Column(name = "prod_desc")
     private String desc;
 
     @Column(name = "kam_ref_name1")
@@ -193,6 +186,9 @@ public class Netsuite implements Serializable {
         this.pickup = customerSalesByItem.getAddressBillingAddress2();
         this.billingAddressLine1 = customerSalesByItem.getCustomerJobHospital1();
         this.billingAddressLine2 = customerSalesByItem.getCustomerJobDoctor1();
+        this.customerJobHospital1 = customerSalesByItem.getCustomerJobReferredBy();
+        this.x = customerSalesByItem.getPoNumber();
+        this.a = customerSalesByItem.getMobileNo();
         generateOtherValues();
     }
 
@@ -420,22 +416,6 @@ public class Netsuite implements Serializable {
         this.a = a;
     }
 
-    public String getB() {
-        return b;
-    }
-
-    public void setB(String b) {
-        this.b = b;
-    }
-
-    public String getC() {
-        return c;
-    }
-
-    public void setC(String c) {
-        this.c = c;
-    }
-
     public String getFormula() {
         return formula;
     }
@@ -607,7 +587,7 @@ public class Netsuite implements Serializable {
     public void generateValuesFromMdcPerBranchSalesNaConfiguration(
             MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration) {
         if (mdcPerBranchSalesNaConfiguration != null) {
-            this.region = mdcPerBranchSalesNaConfiguration.getNaName();
+            this.region = mdcPerBranchSalesNaConfiguration.getDsm();
             this.asm = mdcPerBranchSalesNaConfiguration.getRegion();
         }
     }
@@ -615,6 +595,8 @@ public class Netsuite implements Serializable {
     public void generateValuesFromNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource) {
         if (netsuiteProductListSource != null) {
             this.formula = netsuiteProductListSource.getDestination();
+            this.inPcs = netsuiteProductListSource.getInPcs();
+            this.desc = netsuiteProductListSource.getProduct();
         }
     }
 
@@ -622,6 +604,7 @@ public class Netsuite implements Serializable {
         if (netsuiteProductListDe != null) {
             this.brand = netsuiteProductListDe.getProductCode();
             this.stage = netsuiteProductListDe.getStage();
+            this.productCategory = netsuiteProductListDe.getProductType();
         }
     }
 
@@ -639,7 +622,14 @@ public class Netsuite implements Serializable {
 
     public void generateValuesFromNetsuiteTransfersCat(NetsuiteTransferCat netsuiteTransferCat) {
         if (netsuiteTransferCat != null) {
+            this.transfersCat = netsuiteTransferCat.getCode();
             this.transfersCatRecode = netsuiteTransferCat.getRecode();
+        }
+    }
+
+    public void generateValuesWhenOtherValuesArePopulated() {
+        if (this.inPcs != null && this.quantity != null) {
+            this.convUnits = this.inPcs * quantity;
         }
     }
 
