@@ -123,6 +123,8 @@ public class ZolDailySalesPerBranch {
     private String dman;
 
     @CsvBindByName(column = "FINDSC")
+    private String findscInString;
+
     private BigDecimal findsc;
 
     @CsvBindByName(column = "FRTAMT")
@@ -448,6 +450,14 @@ public class ZolDailySalesPerBranch {
         this.dman = dman;
     }
 
+    public String getFindscInString() {
+        return findscInString;
+    }
+
+    public void setFindscInString(String findscInString) {
+        this.findscInString = findscInString;
+    }
+
     public BigDecimal getFindsc() {
         return findsc;
     }
@@ -547,19 +557,32 @@ public class ZolDailySalesPerBranch {
     public void convertStringValuesToCorrectTypes() {
         convertNetValueInStringToBigDecimal();
         convertFinalNetVatInStringToBigDecimal();
+        convertFindscInStringToBigDecimal();
     }
 
     private void convertNetValueInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(netValueInString)
                 && !netValueInString.contains("#")) {
-            netValue = new BigDecimal(netValueInString.replaceAll(",", "").trim());
+            String netValueInString1 = org.apache.commons.lang3.StringUtils.trim(netValueInString);
+            String netValueInString2 = org.apache.commons.lang3.StringUtils.stripEnd(netValueInString1, "-");
+            netValue = new BigDecimal(
+                    netValueInString2.replaceAll(",", "").trim());
         }
     }
 
     private void convertFinalNetVatInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(finalNetVatInString)
-                && !netValueInString.contains("#")) {
-            finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", "").trim());
+                && !finalNetVatInString.contains("#")) {
+            String finalNetVatInString1 = org.apache.commons.lang3.StringUtils.trim(finalNetVatInString);
+            String finalNetVatInString2 = org.apache.commons.lang3.StringUtils.stripEnd(finalNetVatInString1, "-");
+            finalNetVat = new BigDecimal(finalNetVatInString2.replaceAll(",", "").trim());
+        }
+    }
+
+    private void convertFindscInStringToBigDecimal() {
+        if (!StringUtils.isTrimmedValueNullOrEmpty(findscInString)) {
+            findscInString = org.apache.commons.lang3.StringUtils.stripEnd(findscInString, "-");
+            findsc = new BigDecimal(findscInString.replaceAll(",", "").trim());
         }
     }
 

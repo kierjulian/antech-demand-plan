@@ -18,11 +18,11 @@ public class CsvToObjectConverter {
 
     public static List<CustomerItemSalesPerPeriod> convertCsvToListOfCustomerItemSalesPerPeriod(
             InputStream inputStream) throws IOException {
-        try (Reader reader = new InputStreamReader(inputStream)) {
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1)) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerItemSalesPerPeriod.class)
                     .withIgnoreLeadingWhiteSpace(true)
-                    .withSkipLines(3)
+                    .withSkipLines(0)
                     .build();
             return csvToBean.parse();
         } catch (Exception e) {

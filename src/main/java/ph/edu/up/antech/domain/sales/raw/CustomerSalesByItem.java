@@ -366,13 +366,14 @@ public class CustomerSalesByItem {
 
     private void convertDateInStringToLocalDate() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(dateInString)) {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/d/yy");
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M/d/yy");
             date = LocalDate.parse(dateInString, dateTimeFormatter);
         }
     }
 
     private void convertQuantitySoldInStringToInteger() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(quantitySoldInString)) {
+            quantitySoldInString = quantitySoldInString.replaceAll(",", "").trim();
             Double quantitySoldInDouble = Double.parseDouble(quantitySoldInString);
             quantitySold = quantitySoldInDouble.intValue();
         }

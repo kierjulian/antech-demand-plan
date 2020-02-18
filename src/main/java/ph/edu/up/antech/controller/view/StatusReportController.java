@@ -186,7 +186,7 @@ public class StatusReportController {
 
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation =
                     zolPerDoorsGeneralInformationList.stream()
-                            .filter(generalInformation -> generalInformation.getItemCode().equals(zolPerDoors.getItemCode()))
+                            .filter(generalInformation -> generalInformation.getZpcItemCode().equals(zolPerDoors.getItemCode()))
                             .findFirst()
                             .orElse(null);
             zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);

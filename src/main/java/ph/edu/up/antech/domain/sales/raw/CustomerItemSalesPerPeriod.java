@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.raw;
 
+import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.util.StringUtils;
@@ -12,32 +13,32 @@ public class CustomerItemSalesPerPeriod {
 
     private LocalDate date;
 
-    @CsvBindByPosition(position = 0)
+    @CsvBindByName(column = "Row No.")
     private Integer row;
 
-    @CsvBindByPosition(position = 1)
+    @CsvBindByName(column = "Sold To Customer Code")
     private String customerCode;
 
-    @CsvBindByPosition(position = 2)
+    @CsvBindByName(column = "Sold To Customer Name")
     private String customerName;
 
-    @CsvBindByPosition(position = 3)
+    @CsvBindByName(column = "Material Code")
     private String materialCode;
 
-    @CsvBindByPosition(position = 4)
+    @CsvBindByName(column = "Material Desc")
     private String materialDescription;
 
-    @CsvBindByPosition(position = 5)
+    @CsvBindByName(column = "Quantity - Transaction")
     private String quantityInString;
 
     private Integer quantity;
 
-    @CsvBindByPosition(position = 6)
+    @CsvBindByName(column = "Qty Bonus")
     private String quantityBonusInString;
 
     private Integer quantityBonus;
 
-    @CsvBindByPosition(position = 7)
+    @CsvBindByName(column = "Sales Amount")
     private String salesAmountInString;
 
     private BigDecimal salesAmount;
@@ -145,16 +146,20 @@ public class CustomerItemSalesPerPeriod {
     }
 
     private void convertQuantityInStringToInteger() {
-        quantity = Integer.parseInt(quantityInString.replace(",", ""));
+        if (quantityInString != null) {
+            quantity = Integer.parseInt(quantityInString.replace(",", "").trim());
+        }
     }
 
     private void convertQuantityBonusInStringToInteger() {
-        quantityBonus = Integer.parseInt(quantityBonusInString.replace(",", ""));
+        if (quantityBonusInString != null) {
+            quantityBonus = Integer.parseInt(quantityBonusInString.replace(",", "").trim());
+        }
     }
 
     private void convertSalesAmountFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesAmountInString)) {
-            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""))
+            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", "").trim())
                     .divide(new BigDecimal("1.12"), 2, RoundingMode.HALF_EVEN);
         }
     }
