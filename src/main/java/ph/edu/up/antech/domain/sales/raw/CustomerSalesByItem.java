@@ -4,7 +4,6 @@ import com.opencsv.bean.CsvBindByName;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -358,10 +357,203 @@ public class CustomerSalesByItem {
     }
 
     public void convertAllStringFieldsToProperType() {
+        trimAllStringEntries();
         convertSalesPriceInStringToBigDecimal();
         convertDateInStringToLocalDate();
         convertQuantitySoldInStringToInteger();
         convertNetAmountInStringToBigDecimal();
+    }
+
+    private void trimAllStringEntries() {
+        trimItem();
+        trimType();
+        trimCustomerName();
+        trimCategory();
+        trimDateInString();
+        trimNum();
+        trimSalesInvoice();
+        trimDescription();
+        trimQuantitySoldInString();
+        trimSalesPriceInString();
+        trimNetPriceInString();
+        trimPriceLevel();
+        trimCreditedToTerritorialManager();
+        trimSalesRepName();
+        trimCustomerJobAcquisitionCsrCreditedTo();
+        trimCustomerJobRetentionCsrCreditedTo();
+        trimOrderTakenBy();
+        trimAddressZipCode();
+        trimSalesRoleName();
+        trimAddressShippingAddressCity();
+        trimAddressBillingAddress1();
+        trimAddressBillingAddress2();
+        trimCustomerJobHospital1();
+        trimCustomerJobDoctor1();
+        trimCustomerJobReferredBy();
+        trimMobileNo();
+        trimPoNumber();
+    }
+
+    private void trimItem() {
+        if (item != null) {
+            item = item.trim();
+        }
+    }
+
+    private void trimType() {
+        if (type != null) {
+            type = type.trim();
+        }
+    }
+
+    private void trimCustomerName() {
+        if (customerName != null) {
+            customerName = customerName.trim();
+        }
+    }
+
+    private void trimCategory() {
+        if (category != null) {
+            category = category.trim();
+        }
+    }
+
+    private void trimDateInString() {
+        if (dateInString != null) {
+            dateInString = dateInString.trim();
+        }
+    }
+
+    private void trimNum() {
+        if (num != null) {
+            num = num.trim();
+        }
+    }
+
+    private void trimSalesInvoice() {
+        if (salesInvoice != null) {
+            salesInvoice = salesInvoice.trim();
+        }
+    }
+
+    private void trimDescription() {
+        if (description != null) {
+            description = description.trim();
+        }
+    }
+
+    private void trimQuantitySoldInString() {
+        if (quantitySoldInString != null) {
+            quantitySoldInString = quantitySoldInString.trim();
+        }
+    }
+
+    private void trimSalesPriceInString() {
+        if (salesPriceInString != null) {
+            salesPriceInString = salesPriceInString.trim();
+        }
+    }
+
+    private void trimNetPriceInString() {
+        if (netAmountInString != null) {
+            netAmountInString = netAmountInString.trim();
+        }
+    }
+
+    private void trimPriceLevel() {
+        if (priceLevel != null) {
+            priceLevel = priceLevel.trim();
+        }
+    }
+
+    private void trimCreditedToTerritorialManager() {
+        if (creditedToTerritorialManager != null) {
+            creditedToTerritorialManager = creditedToTerritorialManager.trim();
+        }
+    }
+
+    private void trimSalesRepName() {
+        if (salesRepName != null) {
+            salesRepName = salesRepName.trim();
+        }
+    }
+
+    private void trimCustomerJobAcquisitionCsrCreditedTo() {
+        if (customerJobAcquisitionCsrCreditedTo != null) {
+            customerJobAcquisitionCsrCreditedTo = customerJobAcquisitionCsrCreditedTo.trim();
+        }
+    }
+
+    private void trimCustomerJobRetentionCsrCreditedTo() {
+        if (customerJobRetentionCsrCreditedTo != null) {
+            customerJobRetentionCsrCreditedTo = customerJobRetentionCsrCreditedTo.trim();
+        }
+    }
+
+    private void trimOrderTakenBy() {
+        if (orderTakenBy != null) {
+            orderTakenBy = orderTakenBy.trim();
+        }
+    }
+
+    private void trimAddressZipCode() {
+        if (addressZipCode != null) {
+            addressZipCode = addressZipCode.trim();
+        }
+    }
+
+    private void trimSalesRoleName() {
+        if (salesRoleName != null) {
+            salesRoleName = salesRoleName.trim();
+        }
+    }
+
+    private void trimAddressShippingAddressCity() {
+        if (addressShippingAddressCity != null) {
+            addressShippingAddressCity = addressShippingAddressCity.trim();
+        }
+    }
+
+    private void trimAddressBillingAddress1() {
+        if (addressBillingAddress1 != null) {
+            addressBillingAddress1 = addressBillingAddress1.trim();
+        }
+    }
+
+    private void trimAddressBillingAddress2() {
+        if (addressBillingAddress2 != null) {
+            addressBillingAddress2 = addressBillingAddress2.trim();
+        }
+    }
+
+    private void trimCustomerJobHospital1() {
+        if (customerJobHospital1 != null) {
+            customerJobHospital1 = customerJobHospital1.trim();
+        }
+    }
+
+    private void trimCustomerJobDoctor1() {
+        if (customerJobDoctor1 != null) {
+            customerJobDoctor1 = customerJobDoctor1.trim();
+        }
+    }
+
+    private void trimCustomerJobReferredBy() {
+        if (customerJobReferredBy != null) {
+            customerJobReferredBy = customerJobReferredBy.trim();
+        }
+    }
+
+    private void trimPoNumber() {
+        if (poNumber != null) {
+            poNumber = poNumber.trim();
+        }
+    }
+
+    private void trimMobileNo() {
+        if (mobileNo != null) {
+            mobileNo = mobileNo.trim();
+        }
     }
 
     private void convertDateInStringToLocalDate() {
