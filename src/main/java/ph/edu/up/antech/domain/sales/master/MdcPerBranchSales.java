@@ -267,7 +267,11 @@ public class MdcPerBranchSales {
         this.referenceNo = zolMdcRaw.getRefno();
         this.xreferenceNo = zolMdcRaw.getXrefno();
         this.reasn = zolMdcRaw.getReasn();
-        this.prodcd = zolMdcRaw.getProdcd();
+
+        if (zolMdcRaw.getProdcd() != null) {
+            this.prodcd = zolMdcRaw.getProdcd().replaceAll(",", "").trim();
+        }
+
         this.quantityOr = zolMdcRaw.getQtyor();
         this.quantitySh = zolMdcRaw.getQtysh();
         this.um = zolMdcRaw.getUm();
