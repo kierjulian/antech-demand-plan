@@ -1,7 +1,6 @@
 package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvBindByPosition;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.util.StringUtils;
 
@@ -140,26 +139,79 @@ public class CustomerItemSalesPerPeriod {
     }
 
     public void convertAllStringValuesToProperType() {
+        trimAllStringEntries();
         convertSalesAmountFromStringToBigDecimal();
         convertQuantityBonusInStringToInteger();
         convertQuantityInStringToInteger();
     }
 
+    private void trimAllStringEntries() {
+        trimCustomerCode();
+        trimCustomerName();
+        trimMaterialCode();
+        trimMaterialDescription();
+        trimQuantityInString();
+        trimQuantityBonusInString();
+        trimSalesAmountInString();
+    }
+
+    private void trimCustomerCode() {
+        if (customerCode != null) {
+            customerCode = customerCode.trim();
+        }
+    }
+
+    private void trimCustomerName() {
+        if (customerName != null) {
+            customerName = customerName.trim();
+        }
+    }
+
+    private void trimMaterialCode() {
+        if (materialCode != null) {
+            materialCode = materialCode.trim();
+        }
+    }
+
+    private void trimMaterialDescription() {
+        if (materialDescription != null) {
+            materialDescription = materialDescription.trim();
+        }
+    }
+
+    private void trimQuantityInString() {
+        if (quantityInString != null) {
+            quantityInString = quantityInString.trim();
+        }
+    }
+
+    private void trimQuantityBonusInString() {
+        if (quantityBonusInString != null) {
+            quantityBonusInString = quantityInString.trim();
+        }
+    }
+
+    private void trimSalesAmountInString() {
+        if (salesAmountInString != null) {
+            salesAmountInString = salesAmountInString.trim();
+        }
+    }
+
     private void convertQuantityInStringToInteger() {
         if (quantityInString != null) {
-            quantity = Integer.parseInt(quantityInString.replace(",", "").trim());
+            quantity = Integer.parseInt(quantityInString.replace(",", ""));
         }
     }
 
     private void convertQuantityBonusInStringToInteger() {
         if (quantityBonusInString != null) {
-            quantityBonus = Integer.parseInt(quantityBonusInString.replace(",", "").trim());
+            quantityBonus = Integer.parseInt(quantityBonusInString.replace(",", ""));
         }
     }
 
     private void convertSalesAmountFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesAmountInString)) {
-            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", "").trim())
+            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""))
                     .divide(new BigDecimal("1.12"), 2, RoundingMode.HALF_EVEN);
         }
     }
@@ -168,6 +220,12 @@ public class CustomerItemSalesPerPeriod {
         if (customer != null) {
             customerCode = customer.getZolCustomerCode();
             customerName = customer.getZolCustomerName();
+        }
+    }
+
+    public void updateMaterialCodeBasedOnCustomer(Customer customer) {
+        if (customer != null) {
+            materialCode = customer.getZolMaterialCode();
         }
     }
 

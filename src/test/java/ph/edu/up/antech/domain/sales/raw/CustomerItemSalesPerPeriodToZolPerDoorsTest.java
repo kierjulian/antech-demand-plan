@@ -1,4 +1,4 @@
-package ph.edu.up.antech.util.converter;
+package ph.edu.up.antech.domain.sales.raw;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -13,30 +13,27 @@ import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
-import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.CustomerService;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
-import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.service.impl.CustomerServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsPerAcctServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsServiceImpl;
 
-import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {ZolPerDoorsGeneralInformationServiceImpl.class,
         ZolPerDoorsPerAcctServiceImpl.class, ZolPerDoorsServiceImpl.class, CustomerServiceImpl.class})
-public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
+public class CustomerItemSalesPerPeriodToZolPerDoorsTest {
 
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
@@ -47,70 +44,55 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private ZolPerDoorsService zolPerDoorsService;
-
     @Test
-    public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
-        Long startTime = System.nanoTime();
-        try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerItemSalesPerPeriod.csv"))) {
+    public void readCustomerItemSalesPerPeriod_andConvertToZolPerDoors_shouldBeSuccesful() {
+        try (Reader reader = Files.newBufferedReader(
+                Paths.get("src/test/resources/Actual_CustomerItemSalesPerPeriod.csv"),
+                StandardCharsets.UTF_8)) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerItemSalesPerPeriod.class)
-                    .withSkipLines(1)
+                    .withSkipLines(0)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
-            List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = csvToBean.parse();
+            List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList =
+                    csvToBean.parse();
 
             List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
                     .findAllZolPerDoorsGeneralInformation();
             List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
             List<Customer> customerList = customerService.findAllCustomers();
 
-            List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();
-            for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
-                customerItemSalesPerPeriod.convertAllStringValuesToProperType();
+            customerItemSalesPerPeriodList.forEach(customerItemSalesPerPeriod -> {
                 customerItemSalesPerPeriod.setDate(LocalDate.now());
+                customerItemSalesPerPeriod.convertAllStringValuesToProperType();
 
-                // Update customer code and name
                 Customer customer = customerList.stream()
                         .filter(cust -> cust.getCustomerCode().equals(customerItemSalesPerPeriod.getCustomerCode()))
                         .findFirst()
                         .orElse(null);
                 customerItemSalesPerPeriod.updateValuesBasedOnCustomer(customer);
 
-                // Update material code
                 Customer otherCustomer = customerList.stream()
                         .filter(cust -> cust.getZolMaterialCode().equals(customerItemSalesPerPeriod.getMaterialCode()))
                         .findFirst()
                         .orElse(null);
-
-                if (otherCustomer != null) {
-                    String materialCode = otherCustomer.getZolMaterialCode();
-                    customerItemSalesPerPeriod.setMaterialCode(materialCode);
-                }
+                customerItemSalesPerPeriod.updateMaterialCodeBasedOnCustomer(otherCustomer);
 
                 ZolPerDoors zolPerDoors = new ZolPerDoors(customerItemSalesPerPeriod);
-                // Find ZolPerDoorsGeneralInformation where itemCode = itemCode
-                // Populate ZolPerDoors
+
                 ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation =
                         zolPerDoorsGeneralInformationList.stream()
-                                .filter(generalInformation -> generalInformation.getItemCode().equals(zolPerDoors.getItemCode()))
+                                .filter(generalInformation -> generalInformation.getZpcItemCode().equals(zolPerDoors.getItemCode()))
                                 .findFirst()
                                 .orElse(null);
                 zolPerDoors.generateValuesBasedOnZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
 
-                // Find ZolPerDoorsPerAcct where zol == customerCode
-                // Populate ZolPerDoors
                 ZolPerDoorsPerAcct zolPerDoorsPerAcct =
                         zolPerDoorsPerAcctList.stream()
                                 .filter(perAcct -> perAcct.getZol().equals(zolPerDoors.getCustomerCode()))
                                 .findFirst()
                                 .orElse(null);
                 zolPerDoors.generateValuesBasedOnZolPerDoorsPerAcct(zolPerDoorsPerAcct);
-
-                if (zolPerDoors == null || zolPerDoorsPerAcct == null) {
-                    continue;
-                }
 
                 System.out.println("Date: " + zolPerDoors.getDate());
                 System.out.println("Customer Code: " + zolPerDoors.getCustomerCode());
@@ -138,17 +120,8 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
                 System.out.println("Amount Times 1000: " + zolPerDoors.getAmountTimesOneThousand());
                 System.out.println("A: " + zolPerDoors.getA());
                 System.out.println();
-
-                zolPerDoorsList.add(zolPerDoors);
-            }
-
-            //zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
-            //zolPerDoorsService.removeZolPerDoorsByLocalDate(LocalDate.now());
-
-            Long endTime = System.nanoTime();
-            System.out.println(zolPerDoorsList.size());
-            System.out.println(endTime - startTime);
-        } catch (IOException e) {
+            });
+        } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
         }

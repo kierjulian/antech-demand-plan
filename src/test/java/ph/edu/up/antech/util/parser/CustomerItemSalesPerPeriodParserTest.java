@@ -38,7 +38,10 @@ public class CustomerItemSalesPerPeriodParserTest {
     public void convertCSVToCustomerItemSalesPerPeriodObject_andPrintContents_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerItemSalesPerPeriod.csv"))) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
-                    .withType(CustomerItemSalesPerPeriod.class).withSkipLines(3).build();
+                    .withType(CustomerItemSalesPerPeriod.class)
+                    .withSkipLines(1)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = csvToBean.parse();
             for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
                 customerItemSalesPerPeriod.convertAllStringValuesToProperType();
@@ -64,7 +67,10 @@ public class CustomerItemSalesPerPeriodParserTest {
     public void convertCSVToCustomerItemSalesPerPeriodObject_realData_andPrintContents_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerItemSalesPerPeriod_December19.csv"))) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
-                    .withType(CustomerItemSalesPerPeriod.class).withSkipLines(3).build();
+                    .withType(CustomerItemSalesPerPeriod.class)
+                    .withSkipLines(1)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList = csvToBean.parse();
             for (CustomerItemSalesPerPeriod customerItemSalesPerPeriod : customerItemSalesPerPeriodList) {
                 customerItemSalesPerPeriod.convertAllStringValuesToProperType();
