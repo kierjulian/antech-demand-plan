@@ -16,7 +16,7 @@ public class DispensingDistributorTest {
     @Test
     public void readDispensingDistributor_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/Actual_DispensingDistributor.csv"),
-                StandardCharsets.UTF_8)) {
+                StandardCharsets.ISO_8859_1)) {
             CsvToBean<DispensingDistributor> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(DispensingDistributor.class)
                     .withSkipLines(0)

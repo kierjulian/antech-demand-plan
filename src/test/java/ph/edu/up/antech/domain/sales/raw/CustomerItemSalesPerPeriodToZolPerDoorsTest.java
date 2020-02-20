@@ -48,7 +48,7 @@ public class CustomerItemSalesPerPeriodToZolPerDoorsTest {
     public void readCustomerItemSalesPerPeriod_andConvertToZolPerDoors_shouldBeSuccesful() {
         try (Reader reader = Files.newBufferedReader(
                 Paths.get("src/test/resources/Actual_CustomerItemSalesPerPeriod.csv"),
-                StandardCharsets.UTF_8)) {
+                StandardCharsets.ISO_8859_1)) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerItemSalesPerPeriod.class)
                     .withSkipLines(0)

@@ -16,7 +16,7 @@ public class ZolDailySalesPerBranchTest {
     @Test
     public void readZolDailySalesPerBranch_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/Actual_ZolDailySalesPerBranch.csv"),
-                StandardCharsets.UTF_8)) {
+                StandardCharsets.ISO_8859_1)) {
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
                     .withSkipLines(0)

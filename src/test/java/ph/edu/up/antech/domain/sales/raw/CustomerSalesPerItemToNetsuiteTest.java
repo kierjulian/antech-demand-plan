@@ -56,7 +56,7 @@ public class CustomerSalesPerItemToNetsuiteTest {
     @Test
     public void readCustomerSalesPerItem_andConvertToNetsuite_shouldBeSuccesful() {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/Actual_CustomerSalesPerItem.csv"),
-                StandardCharsets.UTF_8)) {
+                StandardCharsets.ISO_8859_1)) {
             CsvToBean<CustomerSalesByItem> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerSalesByItem.class)
                     .withSkipLines(6)

@@ -1,4 +1,4 @@
-﻿Month,Accounts,DSM_NAME,Doctors Name,NA_NAME,Item Key,Item Description,Category,Ref #, Price ,Units, Total Amount , Final Amt ('000') 
+Month,Accounts,DSM_NAME,Doctors Name,NA_NAME,Item Key,Item Description,Category,Ref #, Price ,Units, Total Amount , Final Amt ('000') 
 Jan-17,Blocs,Adam,VIDAL REDULLA,402 Vacant Cebu North,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",2," 2,585.74 ", 2.59 
 Jan-17,Blocs,Adam,Cleo Pasco,401 Vacant Cebu South,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",3," 3,878.61 ", 3.88 
 Jan-17,Blocs,Adam,Cleo Pasco,401 Vacant Cebu South,S2 900,HiPP MILK SUPPLEMENT (6-12 MONTHS) 900g,Hipp Milk,," 1,200.78 ",3," 3,602.34 ", 3.60 
@@ -1151,7 +1151,7 @@ May-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,S3 400,HiPP MILK SUPPLEME
 May-18,Vaximax,Gerry,Jeuel Loot,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,6," 5,474.60 ", 5.47 
 May-18,Vaximax,Gerry,Dr. Marxwin Diente,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,3," 2,737.30 ", 2.74 
 May-18,Vaximax,Gerry,Carmencita Sarrosa,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,2," 1,824.87 ", 1.82 
-May-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.84 ",1," 1,292.84 ", 1.29 
+May-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.84 ",1," 1,292.84 ", 1.29 
 May-18,Vaximax,Gerry,Dr. Marxwin Diente,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,6," 5,474.60 ", 5.47 
 May-18,ZRN BIOCORE CEBU,Adam,Leonard Cimafranca,401 Vacant Cebu South,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,6," 5,474.60 ", 5.47 
 May-18,ZRN BIOCORE CEBU,Adam,Leonard Cimafranca,401 Vacant Cebu South,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,3," 2,737.30 ", 2.74 
@@ -1313,8 +1313,8 @@ Jun-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEME
 Jun-18,Vaximax,Gerry,Imelda Nepomuceno,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,18," 16,423.79 ", 16.42 
 Jun-18,Vaximax,Gerry,Imelda Nepomuceno,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,6," 5,474.60 ", 5.47 
 Jun-18,Vaximax,Gerry,Carmencita Sarrosa,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,2," 1,824.87 ", 1.82 
-Jun-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.84 ",2," 2,585.68 ", 2.59 
-Jun-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,26," 23,723.25 ", 23.72 
+Jun-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.84 ",2," 2,585.68 ", 2.59 
+Jun-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 912.43 ,26," 23,723.25 ", 23.72 
 Jun-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,Jar Apple,HiPP Jar -Organic Apple & Pear Pudding 125gx1's,Hipp Jars,, 75.89 ,15," 1,138.35 ", 1.14 
 Jun-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,Jar Squash,HiPP Jar -Organic Sweet Squash & Chicken 125gx1's,Hipp Jars,, 75.89 ,12, 910.68 , 0.91 
 Jun-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,Jar Squash,HiPP Jar -Organic Sweet Squash & Chicken 125gx1's,Hipp Jars,, 75.89 ,3, 227.67 , 0.23 
@@ -1367,12 +1367,12 @@ Jul-18,Vaximax,Gerry,Jan Kirstin Diego,403 Gerry Nolasco,S4 800,HIPP KINDERMILK 
 Jul-18,Vaximax,Gerry,Noel Guintivano,403 Gerry Nolasco,Jar Squash,HiPP Jar -Organic Sweet Squash & Chicken 125gx1's,Hipp Jars,, 75.89 ,5, 379.45 , 0.38 
 Jul-18,Vaximax,Gerry,Noel Guintivano,403 Gerry Nolasco,Jar Apple,HiPP Jar -Organic Apple & Pear Pudding 125gx1's,Hipp Jars,, 75.89 ,5, 379.45 , 0.38 
 Jul-18,Vaximax,Gerry,Rochelle Molina,403 Gerry Nolasco,CS 800,HIPP ORGANIC CS FORMULA (0-6 MONTHS) 800g,Hipp Milk,," 1,358.30 ",6," 8,149.82 ", 8.15 
-Jul-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Jul-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Jul-18,Vaximax,Gerry,Carmencita Sarrosa,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 992.04 ,2," 1,984.08 ", 1.98 
-Jul-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Jul-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Jul-18,Vaximax,Gerry,Mae Frances Vedra,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Jul-18,Vaximax,Gerry,Mae Frances Vedra,403 Gerry Nolasco,S3 400,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 400g,Hipp Milk,, 464.70 ,2, 929.40 , 0.93 
-Jul-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Jul-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Jul-18,Vaximax,Gerry,Carmencita Sarrosa,403 Gerry Nolasco,S3 400,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 400g,Hipp Milk,, 464.70 ,4," 1,858.80 ", 1.86 
 Jul-18,ZRN BIOCORE CEBU,Gerry,JOHN COLACION,403 Gerry Nolasco,CS 800,HIPP ORGANIC CS FORMULA (0-6 MONTHS) 800g,Hipp Milk,," 1,358.30 ",12," 16,299.64 ", 16.30 
 Jul-18,ZRN BIOCORE CEBU,Adam,Monina Cabral,401 Vacant Cebu South,S2 900,HiPP MILK SUPPLEMENT (6-12 MONTHS) 900g,Hipp Milk,," 1,236.80 ",3," 3,710.41 ", 3.71 
@@ -1453,13 +1453,13 @@ Aug-18,Blocs,Adam,EDGARDO SERAFICA,401 Vacant Cebu South,S4 800,HIPP KINDERMILK 
 Aug-18,Blocs,Adam,Rhodora Diaz,402 Vacant Cebu North,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 992.04 ,6," 5,952.25 ", 5.95 
 Aug-18,Blocs,Adam,Jose Quiteves,402 Vacant Cebu North,S2 900,HiPP MILK SUPPLEMENT (6-12 MONTHS) 900g,Hipp Milk,," 1,236.80 ",6," 7,420.82 ", 7.42 
 Aug-18,Blocs,Adam,Rhodora Diaz,402 Vacant Cebu North,S4 800,HIPP KINDERMILK 800G,Hipp Milk,, 753.02 ,3," 2,259.05 ", 2.26 
-Aug-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
-Aug-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
-Aug-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Aug-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Aug-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Aug-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Aug-18,Vaximax,Gerry,"ESPOSO, MILDRED/ PATIENT",403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 992.04 ,5," 4,960.21 ", 4.96 
 Aug-18,Vaximax,Gerry,Imelda Nepomuceno,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 992.04 ,12," 11,904.50 ", 11.90 
 Aug-18,Vaximax,Gerry,Mae Frances Vedra,403 Gerry Nolasco,S3 900,HiPP MILK SUPPLEMENT (1-3 YEARS OLD) 900g,Hipp Milk,, 992.04 ,2," 1,984.08 ", 1.98 
-Aug-18,Vaximax,Gerry,Ma. Socorro Mariño,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
+Aug-18,Vaximax,Gerry,Ma. Socorro Mari�o,403 Gerry Nolasco,S1 900,HiPP INFANT FORMULA (0-6 MONTHS) 900g,Hipp Milk,," 1,292.87 ",1," 1,292.87 ", 1.29 
 Aug-18,Vaximax,Gerry,Nanili Ureta,403 Gerry Nolasco,S2 900,HiPP MILK SUPPLEMENT (6-12 MONTHS) 900g,Hipp Milk,," 1,236.80 ",1," 1,236.80 ", 1.24 
 Aug-18,Vaximax,Gerry,Nanili Ureta,403 Gerry Nolasco,S2 900,HiPP MILK SUPPLEMENT (6-12 MONTHS) 900g,Hipp Milk,," 1,236.80 ",2," 2,473.61 ", 2.47 
 Aug-18,Vaximax,Gerry,Mary Bloom Beup,403 Gerry Nolasco,Jar Squash,HiPP Jar -Organic Sweet Squash & Chicken 125gx1's,Hipp Jars,, 75.89 ,10, 758.90 , 0.76 
