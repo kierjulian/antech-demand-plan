@@ -20,7 +20,7 @@ public class DispensingDistrubutorParserTest {
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/DispensingDistributor.csv"),
                 StandardCharsets.ISO_8859_1)) {
             CsvToBean<DispensingDistributor> csvToBean = new CsvToBeanBuilder(reader)
-                    .withSkipLines(1)
+                    .withSkipLines(0)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withType(DispensingDistributor.class).build();
             List<DispensingDistributor> dispensingDistributorList = csvToBean.parse();

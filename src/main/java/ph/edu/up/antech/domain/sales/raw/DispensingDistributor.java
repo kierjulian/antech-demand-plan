@@ -238,16 +238,96 @@ public class DispensingDistributor implements Serializable {
     }
 
     public void convertAllStringTypeToProperType() {
+        trimAllStringEntries();
         convertFinalAmountFromStringToBigDecimal();
         convertTotalAmountFromStringToBigDecimal();
         convertPriceFromStringToBigDecimal();
     }
 
+    private void trimAllStringEntries() {
+        trimMonth();
+        trimAccounts();
+        trimDsmName();
+        trimNaName();
+        trimItemKey();
+        trimItemDescription();
+        trimCategory();
+        trimReferenceNo();
+        trimPriceInString();
+        trimTotalAmountInString();
+        trimFinalAmountInString();
+    }
+
+    private void trimMonth() {
+        if (month != null) {
+            month = month.trim();
+        }
+    }
+
+    private void trimAccounts() {
+        if (accounts != null) {
+            accounts = accounts.trim();
+        }
+    }
+
+    private void trimDsmName() {
+        if (dsmName != null) {
+            dsmName = dsmName.trim();
+        }
+    }
+
+    private void trimNaName() {
+        if (naName != null) {
+            naName = naName.trim();
+        }
+    }
+
+    private void trimItemKey() {
+        if (itemKey != null) {
+            itemKey = itemKey.trim();
+        }
+    }
+
+    private void trimItemDescription() {
+        if (itemDescription != null) {
+            itemDescription = itemDescription.trim();
+        }
+    }
+
+    private void trimCategory() {
+        if (category != null) {
+            category = category.trim();
+        }
+    }
+
+    private void trimReferenceNo() {
+        if (referenceNo != null) {
+            referenceNo = referenceNo.trim();
+        }
+    }
+
+    private void trimPriceInString() {
+        if (priceInString != null) {
+            priceInString = priceInString.trim();
+        }
+    }
+
+    private void trimTotalAmountInString() {
+        if (totalAmountInString != null) {
+            totalAmountInString = totalAmountInString.trim();
+        }
+    }
+
+    private void trimFinalAmountInString() {
+        if (finalAmountInString != null) {
+            finalAmountInString = finalAmountInString.trim();
+        }
+    }
+
     private void convertPriceFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(priceInString)
                 && !this.priceInString.startsWith("#")) {
-            this.price = new BigDecimal(priceInString.trim()
-                    .replaceAll(",", "")
+            this.price = new BigDecimal(priceInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
         }
@@ -256,8 +336,7 @@ public class DispensingDistributor implements Serializable {
     private void convertTotalAmountFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(totalAmountInString)
                 && !this.totalAmountInString.startsWith("#")) {
-            this.totalAmount = new BigDecimal(totalAmountInString.trim()
-                    .replaceAll(",", "")
+            this.totalAmount = new BigDecimal(totalAmountInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
         }
@@ -266,8 +345,7 @@ public class DispensingDistributor implements Serializable {
     private void convertFinalAmountFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(finalAmountInString)
                 && !this.finalAmountInString.startsWith("#")) {
-            this.finalAmount = new BigDecimal(finalAmountInString.trim()
-                    .replaceAll(",", "")
+            this.finalAmount = new BigDecimal(finalAmountInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
         }
