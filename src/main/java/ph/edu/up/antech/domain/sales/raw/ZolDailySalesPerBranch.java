@@ -555,9 +555,258 @@ public class ZolDailySalesPerBranch {
     }
 
     public void convertStringValuesToCorrectTypes() {
+        trimAllStringEntries();
         convertNetValueInStringToBigDecimal();
         convertFinalNetVatInStringToBigDecimal();
         convertFindscInStringToBigDecimal();
+    }
+
+    private void trimAllStringEntries() {
+        trimCono();
+        trimRec();
+        trimBran();
+        trimSatbrn();
+        trimCusno();
+        trimShpcn();
+        trimCustnm();
+        trimCadd1();
+        trimCadd2();
+        trimClazz();
+        trimZipcd();
+        trimSman();
+        trimPrin();
+        trimSubpr();
+        trimNetValueInString();
+        trimFinalNetVatInString();
+        trimRefdt();
+        trimRefNo();
+        trimXrefno();
+        trimReasn();
+        trimProdcd();
+        trimZapCode();
+        trimItemDescription();
+        trimUm();
+        trimExpDate();
+        trimLotno();
+        trimBarcode();
+        trimPdcode();
+        trimDman();
+        trimFindscInString();
+        trimFrtamt();
+        trimAppnum();
+        trimPonum();
+        trimGuartran();
+        trimDebtorCode();
+    }
+
+    private void trimCono() {
+        if (cono != null) {
+            cono = cono.trim();
+        }
+    }
+
+    private void trimRec() {
+        if (rec != null) {
+            rec = rec.trim();
+        }
+    }
+
+    private void trimBran() {
+        if (bran != null) {
+            bran = bran.trim();
+        }
+    }
+
+    private void trimSatbrn() {
+        if (satbrn != null) {
+            satbrn = satbrn.trim();
+        }
+    }
+
+    private void trimCusno() {
+        if (cusno != null) {
+            cusno = cusno.trim();
+        }
+    }
+
+    private void trimShpcn() {
+        if (shpcn != null) {
+            shpcn = shpcn.trim();
+        }
+    }
+
+    private void trimCustnm() {
+        if (custnm != null) {
+            custnm = custnm.trim();
+        }
+    }
+
+    private void trimCadd1() {
+        if (cadd1 != null) {
+            cadd1 = cadd1.trim();
+        }
+    }
+
+    private void trimCadd2() {
+        if (cadd2 != null) {
+            cadd2 = cadd2.trim();
+        }
+    }
+
+    private void trimClazz() {
+        if (clazz != null) {
+            clazz = clazz.trim();
+        }
+    }
+
+    private void trimZipcd() {
+        if (zipcd != null) {
+            zipcd = zipcd.trim();
+        }
+    }
+
+    private void trimSman() {
+        if (sman != null) {
+            sman = sman.trim();
+        }
+    }
+
+    private void trimPrin() {
+        if (prin != null) {
+            prin = prin.trim();
+        }
+    }
+
+    private void trimSubpr() {
+        if (subpr != null) {
+            subpr = subpr.trim();
+        }
+    }
+
+    private void trimNetValueInString() {
+        if (netValueInString != null) {
+            netValueInString = netValueInString.trim();
+        }
+    }
+
+    private void trimFinalNetVatInString() {
+        if (finalNetVatInString != null) {
+            finalNetVatInString = finalNetVatInString.trim();
+        }
+    }
+
+    private void trimRefdt() {
+        if (refdt != null) {
+            refdt = refdt.trim();
+        }
+    }
+
+    private void trimRefNo() {
+        if (refno != null) {
+            refno = refno.trim();
+        }
+    }
+
+    private void trimXrefno() {
+        if (xrefno != null) {
+            xrefno = xrefno.trim();
+        }
+    }
+
+    private void trimReasn() {
+        if (reasn != null) {
+            reasn = reasn.trim();
+        }
+    }
+
+    private void trimProdcd() {
+        if (prodcd != null) {
+            prodcd = prodcd.trim();
+        }
+    }
+
+    private void trimZapCode() {
+        if (zapCode != null) {
+            zapCode = zapCode.trim();
+        }
+    }
+
+    private void trimItemDescription() {
+        if (itemDescription != null) {
+            itemDescription = itemDescription.trim();
+        }
+    }
+
+    private void trimUm() {
+        if (um != null) {
+            um = um.trim();
+        }
+    }
+
+    private void trimExpDate() {
+        if (expdte != null) {
+            expdte = expdte.trim();
+        }
+    }
+
+    private void trimLotno() {
+        if (lotno != null) {
+            lotno = lotno.trim();
+        }
+    }
+
+    private void trimBarcode() {
+        if (barcode != null) {
+            barcode = barcode.trim();
+        }
+    }
+
+    private void trimPdcode() {
+        if (pdcode != null) {
+            pdcode = pdcode.trim();
+        }
+    }
+
+    private void trimDman() {
+        if (dman != null) {
+            dman = dman.trim();
+        }
+    }
+
+    private void trimFindscInString() {
+        if (findscInString != null) {
+            findscInString = findscInString.trim();
+        }
+    }
+
+    private void trimFrtamt() {
+        if (frtamt != null) {
+            frtamt = frtamt.trim();
+        }
+    }
+
+    private void trimAppnum() {
+        if (appnum != null) {
+            appnum = appnum.trim();
+        }
+    }
+
+    private void trimPonum() {
+        if (ponum != null) {
+            ponum = ponum.trim();
+        }
+    }
+
+    private void trimGuartran() {
+        if (guartran != null) {
+            guartran = guartran.trim();
+        }
+    }
+
+    private void trimDebtorCode() {
+        if (debtorCode != null) {
+            debtorCode = debtorCode.trim();
+        }
     }
 
     private void convertNetValueInStringToBigDecimal() {
@@ -573,16 +822,15 @@ public class ZolDailySalesPerBranch {
     private void convertFinalNetVatInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(finalNetVatInString)
                 && !finalNetVatInString.contains("#")) {
-            String finalNetVatInString1 = org.apache.commons.lang3.StringUtils.trim(finalNetVatInString);
-            String finalNetVatInString2 = org.apache.commons.lang3.StringUtils.stripEnd(finalNetVatInString1, "-");
-            finalNetVat = new BigDecimal(finalNetVatInString2.replaceAll(",", "").trim());
+            finalNetVatInString = org.apache.commons.lang3.StringUtils.stripEnd(finalNetVatInString, "-");
+            finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", ""));
         }
     }
 
     private void convertFindscInStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(findscInString)) {
             findscInString = org.apache.commons.lang3.StringUtils.stripEnd(findscInString, "-");
-            findsc = new BigDecimal(findscInString.replaceAll(",", "").trim());
+            findsc = new BigDecimal(findscInString.replaceAll(",", ""));
         }
     }
 
