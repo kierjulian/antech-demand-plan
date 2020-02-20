@@ -63,7 +63,7 @@ public class CsvToObjectConverter {
 
     public static List<ZolDailySalesPerBranch> convertCsvToListOfZolDailySalesPerBranch(InputStream inputStream)
             throws IOException {
-        try (Reader reader = new InputStreamReader(inputStream)) {
+        try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1)) {
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
                     .withIgnoreLeadingWhiteSpace(true)
