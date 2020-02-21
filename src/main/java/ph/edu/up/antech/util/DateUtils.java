@@ -7,6 +7,9 @@ import java.util.List;
 
 public class DateUtils {
 
+    private DateUtils() {
+    }
+
     public static List<YearMonth> generateListOfYearMonthBetweenTwoYearMonths(YearMonth startYearMonth,
                                                                               YearMonth endYearMonth) {
         LocalDate startDate = LocalDate.from(startYearMonth.atDay(1));

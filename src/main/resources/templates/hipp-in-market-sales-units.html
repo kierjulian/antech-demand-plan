@@ -15,21 +15,262 @@
                             </a>
                         </div>
                         <div class="col-sm-8 text-center font-weight-bold
-                                                    d-flex align-items-center justify-content-center">
+                                d-flex align-items-center justify-content-center">
                             <h1 class="display-4 text-monospace">HiPP In Market Sales Units</h1>
                         </div>
                     </div>
                 </div>
                 <div class="card-body bg-light">
+                    <form class="form-inline" method="get">
+                        <input type="month" class="form-control" name="startDate" required>&nbsp;&nbsp;
+                        <input type="month" class="form-control" name="endDate" required>&nbsp;&nbsp;
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search">&nbsp; Search</i></button>
+                        </div>&nbsp;
+                    </form>
                     <br>
-                    <table id="HippInMarketSalesUnitsTableSummary" class="table table-striped table-bordered table-hover table-sm">
+                    <table id="hippInMarketSalesUnitsTableSummary" class="table table-striped table-bordered table-hover table-sm">
                         <thead class="thead-light">
-                            <tr>
-                            </tr>
+                        <tr>
+                            <th scope="col">Channel</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            </tr>
+                        <tr th:each="channel : ${channels}">
+                            <td th:text="${channel}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsSkuSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">SKU</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsMdcSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">MDC</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsZpcGmaSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ZPC GMA</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitZpcVisSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ZPC VIS</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsZpcMinSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ZPC MIN</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">DISP</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsBbjSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">BBJ</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsDirectAcctsSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">DIRECT ACCTS</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="hippInMarketSalesUnitsLazadaSummary" class="table table-striped table-bordered table-hover table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">LAZADA</th>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <th th:text="${yearMonth}"></th>
+                            </th:block>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.code}"></td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                <td></td>
+                            </th:block>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
