@@ -3,6 +3,7 @@ package ph.edu.up.antech.util;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
 import java.util.List;
+import java.util.Objects;
 
 public class NetsuiteTableInventoryCalculator {
 
@@ -14,10 +15,11 @@ public class NetsuiteTableInventoryCalculator {
 
     public Integer calculateTotalAmountPerKamReferenceNamePerBrand(String kamReferenceName, String brand) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1() != null
-                        && netsuite.getBrand() != null)
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().equals(brand))
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
@@ -28,6 +30,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("S") || netsuite.getBrand().startsWith("CS"))
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
@@ -38,16 +41,18 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
     public Integer calculateTotalUnitsPerKamReferenceNamePerBrand(String kamReferenceName, String brand) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1() != null
-                        && netsuite.getBrand() != null)
+                .filter(netsuite -> netsuite.getKamRefName1() != null)
+                .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().equals(brand))
+                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
@@ -58,6 +63,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
@@ -68,6 +74,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }

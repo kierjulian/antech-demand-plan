@@ -71,12 +71,14 @@ public class NetsuiteCombination {
 
     public Integer getTotalAmount() {
         return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
                 .sum();
     }
 
     public Integer getTotalSalesUnit() {
         return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }

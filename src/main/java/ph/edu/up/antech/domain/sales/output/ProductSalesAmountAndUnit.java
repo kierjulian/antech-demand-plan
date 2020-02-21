@@ -39,11 +39,15 @@ public class ProductSalesAmountAndUnit {
     }
 
     public void addAmount(Integer amount) {
-        this.amount += amount;
+        if (this.amount != null) {
+            this.amount += amount;
+        }
     }
 
     public void addSalesUnit(Integer salesUnit) {
-        this.salesUnit += salesUnit;
+        if (this.salesUnit != null && salesUnit != null) {
+            this.salesUnit += salesUnit;
+        }
     }
 
     @Override
