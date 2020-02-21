@@ -18,7 +18,7 @@ import java.util.Objects;
 })
 @Table(name = "product")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-public class Product implements Serializable {
+public class Product implements Serializable, Comparable<Product> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -538,6 +538,11 @@ public class Product implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return this.code.compareTo(o.code);
     }
 
 }
