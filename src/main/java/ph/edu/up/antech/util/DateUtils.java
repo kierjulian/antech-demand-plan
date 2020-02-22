@@ -24,4 +24,12 @@ public class DateUtils {
         return yearMonthList;
     }
 
+    public static LocalDate generateStartLocalDateFromYearMonth(YearMonth yearMonth) {
+        return LocalDate.from(yearMonth.atDay(1));
+    }
+
+    public static LocalDate generateEndLocalDateFromYearMonth(YearMonth yearMonth) {
+        return LocalDate.from(yearMonth.atEndOfMonth());
+    }
+
 }
