@@ -17,4 +17,6 @@ public interface ZolMdcPerBranchService {
 
     public void saveZolMdcPerBranchByBatch(List<ZolMdcPerBranch> zolMdcPerBranchList);
 
+    public List<ZolMdcPerBranch> findZolMdcPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

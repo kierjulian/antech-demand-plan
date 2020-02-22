@@ -1,7 +1,6 @@
 package ph.edu.up.antech.dao;
 
 import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
-import ph.edu.up.antech.domain.sales.master.ZolMtPerBranch;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,5 +16,7 @@ public interface ZolMdcPerBranchDAO {
     public void removeZolMdcPerBranchByLocalDate(LocalDate localDate);
 
     public void saveZolMdcPerBranchByBatch(List<ZolMdcPerBranch> zolMdcPerBranchList);
+
+    public List<ZolMdcPerBranch> findZolMdcPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
 }

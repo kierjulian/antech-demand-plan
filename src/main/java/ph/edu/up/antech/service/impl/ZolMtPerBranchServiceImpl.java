@@ -42,4 +42,9 @@ public class ZolMtPerBranchServiceImpl implements ZolMtPerBranchService {
         zolMtPerBranchDAO.saveZolMtPerBranchByBatch(zolMtPerBranchList);
     }
 
+    @Override
+    public List<ZolMtPerBranch> findZolMtPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return zolMtPerBranchDAO.findZolMtPerBranchBetweenTwoDates(startDate, endDate);
+    }
+
 }

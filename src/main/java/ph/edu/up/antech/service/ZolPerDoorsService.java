@@ -26,4 +26,6 @@ public interface ZolPerDoorsService {
 
     public void saveZolPerDoorsByBatch(List<ZolPerDoors> zolPerDoorsList);
 
+    public List<ZolPerDoors> findZolPerDoorsBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

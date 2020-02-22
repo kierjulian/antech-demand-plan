@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -56,6 +55,14 @@ public class ZolMdcPerBranchDAOImpl implements ZolMdcPerBranchDAO {
 
             em.persist(zolMdcPerBranchList.get(i));
         }
+    }
+
+    @Override
+    public List<ZolMdcPerBranch> findZolMdcPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        TypedQuery<ZolMdcPerBranch> query = em.createNamedQuery("findZolMdcPerBranchBetweenTwoDates", ZolMdcPerBranch.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
     }
 
 }

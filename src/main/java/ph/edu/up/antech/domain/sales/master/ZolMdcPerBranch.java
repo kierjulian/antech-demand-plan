@@ -16,7 +16,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "findZolMdcPerBranchByLocalDate",
                 query = "select o from ZolMdcPerBranch o where o.date = :localDate"),
         @NamedQuery(name = "deleteZolMdcPerBranchByLocalDate",
-                query = "delete from ZolMdcPerBranch o where o.date = :localDate")
+                query = "delete from ZolMdcPerBranch o where o.date = :localDate"),
+        @NamedQuery(name = "findZolMdcPerBranchBetweenTwoDates",
+                query = "select o from ZolMdcPerBranch o where o.date between :startDate and :endDate")
 })
 public class ZolMdcPerBranch {
 

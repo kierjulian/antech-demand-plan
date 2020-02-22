@@ -42,4 +42,9 @@ public class ZolMdcPerBranchServiceImpl implements ZolMdcPerBranchService {
         zolMdcPerBranchDAO.saveZolMdcPerBranchByBatch(zolMdcPerBranchList);
     }
 
+    @Override
+    public List<ZolMdcPerBranch> findZolMdcPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return zolMdcPerBranchDAO.findZolMdcPerBranchBetweenTwoDates(startDate, endDate);
+    }
+
 }

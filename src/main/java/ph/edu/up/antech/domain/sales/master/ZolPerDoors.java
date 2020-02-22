@@ -26,7 +26,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "findDistinctZolPerDoorsAccountByLocalDate",
                 query = "select distinct(o.account) from ZolPerDoors o where o.date = :localDate"),
         @NamedQuery(name = "deleteZolPerDoorsByLocalDate",
-                query = "delete from ZolPerDoors o where o.date = :localDate")
+                query = "delete from ZolPerDoors o where o.date = :localDate"),
+        @NamedQuery(name = "findZolPerDoorsBetweenTwoDate",
+                query = "select o from ZolPerDoors o where o.date between :startDate and :endDate")
 })
 public class ZolPerDoors implements Serializable {
 

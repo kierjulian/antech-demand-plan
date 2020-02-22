@@ -64,4 +64,9 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
         zolPerDoorsDAO.saveZolPerDoorsByBatch(zolPerDoorsList);
     }
 
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return zolPerDoorsDAO.findZolPerDoorsBetweenTwoDates(startDate, endDate);
+    }
+
 }

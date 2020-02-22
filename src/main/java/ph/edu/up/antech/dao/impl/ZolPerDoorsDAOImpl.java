@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -90,6 +89,15 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
             entityManager.persist(zolPerDoorsList.get(i));
         }
+    }
+
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findZolPerDoorsBetweenTwoDate",
+                ZolPerDoors.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
     }
 
 }

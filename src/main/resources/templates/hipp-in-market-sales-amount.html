@@ -87,13 +87,13 @@
                             <tr th:each="product : ${products}">
                                 <td th:text="${product.code}"></td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolMdcPerBranchCalculator.getTotalFinalAmountPerYearMonthPerProduct(yearMonth, product.code)}"></td>
                                 </th:block>
                             </tr>
                             <tr>
                                 <td>Total</td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolMdcPerBranchCalculator.getTotalFinalAmountPerYearMonth(yearMonth)}"></td>
                                 </th:block>
                             </tr>
                         </tbody>
@@ -137,13 +137,13 @@
                             <tr th:each="product : ${products}">
                                 <td th:text="${product.code}"></td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolMtPerBranchCalculator.getTotalFinalAmountByYearMonthAndProduct(yearMonth, product.code)}"></td>
                                 </th:block>
                             </tr>
                             <tr>
                                 <td>Total</td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolMtPerBranchCalculator.getTotalFinalAmountByYearMonth(yearMonth)}"></td>
                                 </th:block>
                             </tr>
                         </tbody>
@@ -162,13 +162,13 @@
                             <tr th:each="product : ${products}">
                                 <td th:text="${product.code}"></td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolPerDoorsCalculator.getTotalFinalAmountByYearMonthAndProduct(yearMonth, product.code)}"></td>
                                 </th:block>
                             </tr>
                             <tr>
                                 <td>Total</td>
                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                    <td></td>
+                                    <td th:text="${zolPerDoorsCalculator.getTotalFinalAmountByYearMonth(yearMonth)}"></td>
                                 </th:block>
                             </tr>
                         </tbody>
