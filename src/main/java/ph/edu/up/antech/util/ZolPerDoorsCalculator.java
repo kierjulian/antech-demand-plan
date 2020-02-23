@@ -34,4 +34,22 @@ public class ZolPerDoorsCalculator {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public Integer getTotalUnitsByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+        return zolPerDoorsList.stream()
+                .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
+                .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription() != null)
+                .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(productCode))
+                .mapToInt(ZolPerDoors::getSalesUnit)
+                .sum();
+    }
+
+    public Integer getTotalUnitsByYearMonth(YearMonth yearMonth) {
+        return zolPerDoorsList.stream()
+                .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
+                .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription() != null)
+                .filter(zolPerDoors -> products.contains(zolPerDoors.getAntechProductDescription()))
+                .mapToInt(ZolPerDoors::getSalesUnit)
+                .sum();
+    }
+
 }

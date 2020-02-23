@@ -34,4 +34,22 @@ public class DispensingDistributorCalculator {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public Integer getTotalUnitsByYearMonthByProduct(YearMonth yearMonth, String product) {
+        return dispensingDistributorList.stream()
+                .filter(dispensingDistributor -> YearMonth.from(dispensingDistributor.getDate()).equals(yearMonth))
+                .filter(dispensingDistributor -> dispensingDistributor.getItemKey().equals(product))
+                .filter(dispensingDistributor -> dispensingDistributor.getUnits() != null)
+                .mapToInt(DispensingDistributor::getUnits)
+                .sum();
+    }
+
+    public Integer getTotalUnitsByYearMonth(YearMonth yearMonth) {
+        return dispensingDistributorList.stream()
+                .filter(dispensingDistributor -> YearMonth.from(dispensingDistributor.getDate()).equals(yearMonth))
+                .filter(dispensingDistributor -> productList.contains(dispensingDistributor.getItemKey()))
+                .filter((dispensingDistributor -> dispensingDistributor.getUnits() != null))
+                .mapToInt(DispensingDistributor::getUnits)
+                .sum();
+    }
+
 }

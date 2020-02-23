@@ -22,8 +22,8 @@
                 </div>
                 <div class="card-body bg-light">
                     <form class="form-inline" method="get">
-                        <input type="month" class="form-control" name="startDate" required>&nbsp;&nbsp;
-                        <input type="month" class="form-control" name="endDate" required>&nbsp;&nbsp;
+                        <input type="month" class="form-control" name="startDate" th:value="${yearMonthStart}" required>&nbsp;&nbsp;
+                        <input type="month" class="form-control" name="endDate" th:value="${yearMonthEnd}" required>&nbsp;&nbsp;
                         <div class="btn-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-search">&nbsp; Search</i></button>
@@ -76,26 +76,26 @@
                     <br>
                     <table id="hippInMarketSalesUnitsMdcSummary" class="table table-striped table-bordered table-hover table-sm">
                         <thead class="thead-light">
-                        <tr>
-                            <th scope="col">MDC</th>
-                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                <th th:text="${yearMonth}"></th>
-                            </th:block>
-                        </tr>
+                            <tr>
+                                <th scope="col">MDC</th>
+                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                    <th th:text="${yearMonth}"></th>
+                                </th:block>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="product : ${products}">
-                            <td th:text="${product.code}"></td>
-                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
-                            </th:block>
-                        </tr>
-                        <tr>
-                            <td>Total</td>
-                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
-                            </th:block>
-                        </tr>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.code}"></td>
+                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                    <td th:text="${zolMdcPerBranchCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                </th:block>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                    <td th:text="${zolMdcPerBranchCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                </th:block>
+                            </tr>
                         </tbody>
                     </table>
                     <br>
@@ -137,13 +137,13 @@
                         <tr th:each="product : ${products}">
                             <td th:text="${product.code}"></td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${zolMtPerBranchCalculator.getTotalUnitsByYearMonthAndProductCode(yearMonth, product.code)}"></td>
                             </th:block>
                         </tr>
                         <tr>
                             <td>Total</td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${zolMtPerBranchCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                             </th:block>
                         </tr>
                         </tbody>
@@ -162,13 +162,13 @@
                         <tr th:each="product : ${products}">
                             <td th:text="${product.code}"></td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${zolPerDoorsCalculator.getTotalUnitsByYearMonthAndProductCode(yearMonth, product.code)}"></td>
                             </th:block>
                         </tr>
                         <tr>
                             <td>Total</td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${zolPerDoorsCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                             </th:block>
                         </tr>
                         </tbody>
@@ -187,13 +187,13 @@
                         <tr th:each="product : ${products}">
                             <td th:text="${product.code}"></td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${dispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                             </th:block>
                         </tr>
                         <tr>
                             <td>Total</td>
                             <th:block th:each="yearMonth : ${yearMonthList}">
-                                <td></td>
+                                <td th:text="${dispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                             </th:block>
                         </tr>
                         </tbody>

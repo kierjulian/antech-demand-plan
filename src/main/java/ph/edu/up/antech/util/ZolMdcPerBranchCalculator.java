@@ -37,4 +37,24 @@ public class ZolMdcPerBranchCalculator {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public Integer getTotalUnitsByYearMonthByProduct(YearMonth yearMonth, String productCode) {
+        return zolMdcPerBranchList.stream()
+                .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription() != null)
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription().equals(productCode))
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getSalesUnit() != null)
+                .mapToInt(ZolMdcPerBranch::getSalesUnit)
+                .sum();
+    }
+
+    public Integer getTotalUnitsByYearMonth(YearMonth yearMonth) {
+        return zolMdcPerBranchList.stream()
+                .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription() != null)
+                .filter(zolMdcPerBranch -> productList.contains(zolMdcPerBranch.getAntechProductDescription()))
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getSalesUnit() != null)
+                .mapToInt(ZolMdcPerBranch::getSalesUnit)
+                .sum();
+    }
+
 }
