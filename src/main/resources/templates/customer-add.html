@@ -21,13 +21,13 @@
                         <br>
                         <div class="card">
                             <div class="card-body bg-light">
-                                <form th:action="@{/customers/create}" th:object="${customer}" method="post">
+                                <form th:action="@{/general/customers/create}" th:object="${customer}" method="post">
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-save">&nbsp; Save</i></button>
                                     </div>&nbsp;
                                     <div class="btn-group">
-                                        <a class="btn btn-warning" th:href="@{/customers}">
+                                        <a class="btn btn-warning" th:href="@{/general/customers}">
                                             <i class="fas fa-ban">&nbsp; Cancel</i></a>
                                     </div>&nbsp;
                                     <hr>

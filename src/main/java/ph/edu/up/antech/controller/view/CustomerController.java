@@ -14,7 +14,7 @@ import ph.edu.up.antech.util.StringUtils;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customers")
+@RequestMapping("/general/customers")
 public class CustomerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
@@ -58,7 +58,7 @@ public class CustomerController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/customers/view/" + customer.getId();
+        return "redirect:/general/customers/view/" + customer.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class CustomerController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/customers/view/" + customer.getId();
+        return "redirect:/general/customers/view/" + customer.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -92,7 +92,7 @@ public class CustomerController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/customers";
+        return "redirect:/general/customers";
     }
 
 }
