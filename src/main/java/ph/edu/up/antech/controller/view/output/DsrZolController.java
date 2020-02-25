@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
@@ -21,6 +22,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/output/dsr-zol")
 public class DsrZolController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DsrZolController.class);
@@ -28,7 +30,7 @@ public class DsrZolController {
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
 
-    @GetMapping("/output/dsr-zol")
+    @GetMapping("")
     public String loadDsrZolPage(Model model, @RequestParam(required = false) String date) {
         LocalDate localDate = !StringUtils.isNullOrEmpty(date)
                 ? LocalDate.parse(date) : LocalDate.now();

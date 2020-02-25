@@ -57,6 +57,9 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" th:href="@{/output/dsr-zol}">Output</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Demand</a>
                         </li>
                     </ul>
@@ -82,6 +85,15 @@
                 <a th:href="@{/master/mdc-branch}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales</a>
                 <a th:href="@{/master/netsuite}" class="list-group-item list-group-item-action bg-light">Netsuite</a>
                 <a th:href="@{/master/dispensing-distributor}" class="list-group-item list-group-item-action bg-light">Dispensing Distributor</a>
+            </div>
+        </div>
+
+        <div th:fragment="output-sidebar">
+            <div class="sidebar-heading">Output</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/output/dsr-zol}" class="list-group-item list-group-item-action bg-light">DSR ZOL</a>
+                <a th:href="@{/output/netsuite/summary}" class="list-group-item list-group-item-action bg-light">Netsuite Summary</a>
+                <a th:href="@{/output/netsuite/table-inv}" class="list-group-item list-group-item-action bg-light">Netsuite Table Inventory</a>
             </div>
         </div>
 
