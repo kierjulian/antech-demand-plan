@@ -38,10 +38,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">General</a>
+                            <a class="nav-link" th:href="@{/general/products}">General</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Master Files</a>
+                            <a class="nav-link" th:href="@{/master/zol-per-doors}">Master Files</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,6 +70,18 @@
                 <a th:href="@{/general/products}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a th:href="@{/general/customers}" class="list-group-item list-group-item-action bg-light">Customers</a>
                 <a th:href="@{/general/reports}" class="list-group-item list-group-item-action bg-light">Status Reports</a>
+            </div>
+        </div>
+
+        <div th:fragment="master-sidebar">
+            <div class="sidebar-heading">Antech</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/master/zol-per-doors}" class="list-group-item list-group-item-action bg-light">Zol Per Doors</a>
+                <a th:href="@{/master/zol-mdc}" class="list-group-item list-group-item-action bg-light">Zol Mdc Per Branch</a>
+                <a th:href="@{/master/zol-mt}" class="list-group-item list-group-item-action bg-light">Zol Mt Per Branch</a>
+                <a th:href="@{/master/mdc-branch}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales</a>
+                <a th:href="@{/master/netsuite}" class="list-group-item list-group-item-action bg-light">Netsuite</a>
+                <a th:href="@{/master/dispensing-distributor}" class="list-group-item list-group-item-action bg-light">Dispensing Distributor</a>
             </div>
         </div>
 

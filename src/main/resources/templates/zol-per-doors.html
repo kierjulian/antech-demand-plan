@@ -6,95 +6,97 @@
         <script th:src="@{/js/zol-per-doors.js}"></script>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: master-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Zol Per Doors
+                            </div>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                                    d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">ZOL Per Doors</h1>
+                        <div class="card">
+                            <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
+                                <form class="form-inline" method="get" th:action="@{/master/zol-per-doors}">
+                                    <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
+                                </form>
+                                <br>
+                                <table id="ZOLPerDoorsTable" class="table-sm table-striped table-bordered table-hover table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Row</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Customer Code</th>
+                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Item Code</th>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Sales Unit</th>
+                                            <th scope="col">Sales Value</th>
+                                            <th scope="col">Antech Product Description</th>
+                                            <th scope="col">Antech Price</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Account</th>
+                                            <th scope="col">Kam</th>
+                                            <th scope="col">Kam Reference Name</th>
+                                            <th scope="col">Stage</th>
+                                            <th scope="col">Amount Converted</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">CM</th>
+                                            <th scope="col">Less 0.00375</th>
+                                            <th scope="col">V1</th>
+                                            <th scope="col">Less 0.0853</th>
+                                            <th scope="col">V2</th>
+                                            <th scope="col">Final Amount</th>
+                                            <th scope="col">Amount * 1000</th>
+                                            <th scope="col">A</th>
+                                            <th scope="col">CM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="zolPerDoors, row : ${zolPerDoorsList}">
+                                            <td class="align-middle" th:text="${row.count}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.date}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.customerCode}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.customerName}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.itemCode}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.itemName}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.salesUnit}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.salesValue}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.antechProductDescription}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.antechPrice}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.amount}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.account}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.kam}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.kamReferenceName}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.stage}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.amountConverted}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.type}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.location}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.cm}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.less00375Percent}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.v1}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.less0853Percent}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.v2}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.finalAmount}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.amountTimesOneThousand}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.a}"></td>
+                                            <td class="align-middle" th:text="${zolPerDoors.date}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form class="form-inline" method="get" th:action="@{/master/zol-per-doors}">
-                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-search">&nbsp; Search</i></button>
-                        </div>&nbsp;
-                    </form>
-                    <br>
-                    <table id="ZOLPerDoorsTable" class="table-sm table-striped table-bordered table-hover table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Row</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Customer Code</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Item Code</th>
-                                <th scope="col">Item Name</th>
-                                <th scope="col">Sales Unit</th>
-                                <th scope="col">Sales Value</th>
-                                <th scope="col">Antech Product Description</th>
-                                <th scope="col">Antech Price</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Account</th>
-                                <th scope="col">Kam</th>
-                                <th scope="col">Kam Reference Name</th>
-                                <th scope="col">Stage</th>
-                                <th scope="col">Amount Converted</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">CM</th>
-                                <th scope="col">Less 0.00375</th>
-                                <th scope="col">V1</th>
-                                <th scope="col">Less 0.0853</th>
-                                <th scope="col">V2</th>
-                                <th scope="col">Final Amount</th>
-                                <th scope="col">Amount * 1000</th>
-                                <th scope="col">A</th>
-                                <th scope="col">CM</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="zolPerDoors, row : ${zolPerDoorsList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.date}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.customerCode}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.customerName}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.itemCode}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.itemName}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.salesUnit}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.salesValue}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.antechProductDescription}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.antechPrice}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.amount}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.account}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.kam}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.kamReferenceName}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.stage}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.amountConverted}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.type}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.location}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.cm}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.less00375Percent}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.v1}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.less0853Percent}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.v2}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.finalAmount}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.amountTimesOneThousand}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.a}"></td>
-                                <td class="align-middle" th:text="${zolPerDoors.date}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </main>
             </div>
         </div>
 

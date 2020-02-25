@@ -6,97 +6,99 @@
         <script th:src="@{/js/zol-mdc.js}"></script>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: master-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Zol Mdc Per Branch
+                            </div>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                                    d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">ZOL MDC Per Branch</h1>
+                        <div class="card">
+                            <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
+                                <form class="form-inline" method="get" th:action="@{/master/zol-mdc}">
+                                    <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
+                                </form>
+                                <br>
+                                <table id="zolMdcTable" class="table table-striped table-bordered table-hover table-sm">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Row</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Customer Code</th>
+                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Item Code</th>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Sales Unit</th>
+                                            <th scope="col">Sales Value</th>
+                                            <th scope="col">Antech Product Description</th>
+                                            <th scope="col">Antech Price</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Account</th>
+                                            <th scope="col">Kam</th>
+                                            <th scope="col">Kam Reference Name</th>
+                                            <th scope="col">Stage</th>
+                                            <th scope="col">Amount Converted</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">CM</th>
+                                            <th scope="col">Less 0.00375</th>
+                                            <th scope="col">V1</th>
+                                            <th scope="col">Less 0.0853</th>
+                                            <th scope="col">V2</th>
+                                            <th scope="col">Final Amount</th>
+                                            <th scope="col">Amount * 1000</th>
+                                            <th scope="col">A</th>
+                                            <th scope="col">CM IND</th>
+                                            <th scope="col">DSM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="zolMdcPerBranch, row : ${zolMdcPerBranchList}">
+                                            <td class="align-middle" th:text="${row.count}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.date}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.customerCode}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.customerName}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.itemCode}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.itemName}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.salesUnit}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.salesValue}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.antechProductDescription}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.antechPrice}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.amount}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.account}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.kam}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.kamRefName}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.stage}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.amountConverted}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.type}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.loc}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.cm}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.lessThan00375}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.v1}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.lessThan0853}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.v2}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.finalAmount}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.amountTimes1000}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.a}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.dsm}"></td>
+                                            <td class="align-middle" th:text="${zolMdcPerBranch.date}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form class="form-inline" method="get" th:action="@{/master/zol-mdc}">
-                        <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-search">&nbsp; Search</i></button>
-                        </div>&nbsp;
-                    </form>
-                    <br>
-                    <table id="zolMdcTable" class="table table-striped table-bordered table-hover table-sm">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Row</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Customer Code</th>
-                                <th scope="col">Customer Name</th>
-                                <th scope="col">Item Code</th>
-                                <th scope="col">Item Name</th>
-                                <th scope="col">Sales Unit</th>
-                                <th scope="col">Sales Value</th>
-                                <th scope="col">Antech Product Description</th>
-                                <th scope="col">Antech Price</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Account</th>
-                                <th scope="col">Kam</th>
-                                <th scope="col">Kam Reference Name</th>
-                                <th scope="col">Stage</th>
-                                <th scope="col">Amount Converted</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">CM</th>
-                                <th scope="col">Less 0.00375</th>
-                                <th scope="col">V1</th>
-                                <th scope="col">Less 0.0853</th>
-                                <th scope="col">V2</th>
-                                <th scope="col">Final Amount</th>
-                                <th scope="col">Amount * 1000</th>
-                                <th scope="col">A</th>
-                                <th scope="col">CM IND</th>
-                                <th scope="col">DSM</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="zolMdcPerBranch, row : ${zolMdcPerBranchList}">
-                                <td class="align-middle" th:text="${row.count}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.date}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.customerCode}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.customerName}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.itemCode}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.itemName}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.salesUnit}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.salesValue}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.antechProductDescription}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.antechPrice}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.amount}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.account}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.kam}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.kamRefName}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.stage}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.amountConverted}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.type}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.loc}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.cm}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.lessThan00375}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.v1}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.lessThan0853}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.v2}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.finalAmount}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.amountTimes1000}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.a}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.dsm}"></td>
-                                <td class="align-middle" th:text="${zolMdcPerBranch.date}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </main>
             </div>
         </div>
 
