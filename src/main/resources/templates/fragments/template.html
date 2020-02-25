@@ -48,7 +48,7 @@
                                 Master Files Configuration
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Zol Per Doors</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-doors/config/gen-info}">Zol Per Doors</a>
                                 <a class="dropdown-item" href="#">Zol Mdc Per Branch</a>
                                 <a class="dropdown-item" href="#">Zol Mt Per Branch</a>
                                 <a class="dropdown-item" href="#">Mdc Per Branch Sales</a>
@@ -89,11 +89,27 @@
         </div>
 
         <div th:fragment="output-sidebar">
-            <div class="sidebar-heading">Output</div>
+            <div class="sidebar-heading">Antech</div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/output/dsr-zol}" class="list-group-item list-group-item-action bg-light">DSR ZOL</a>
                 <a th:href="@{/output/netsuite/summary}" class="list-group-item list-group-item-action bg-light">Netsuite Summary</a>
                 <a th:href="@{/output/netsuite/table-inv}" class="list-group-item list-group-item-action bg-light">Netsuite Table Inventory</a>
+            </div>
+        </div>
+
+        <div th:fragment="zol-per-doors-sidebar">
+            <div class="sidebar-heading">Antech</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/master/zol-doors/config/gen-info}" class="list-group-item list-group-item-action bg-light">Zol Per Doors General Info</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Zol Per Doors Per Acct</a>
+            </div>
+        </div>
+
+        <div th:fragment="zol-mdc-per-branch-sidebar">
+            <div class="sidebar-heading">Antech</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/master/zol-mdc/config/gen-info}" class="list-group-item list-group-item-action bg-light">Zol Per Doors General Info</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Zol Per Doors Per Acct</a>
             </div>
         </div>
 

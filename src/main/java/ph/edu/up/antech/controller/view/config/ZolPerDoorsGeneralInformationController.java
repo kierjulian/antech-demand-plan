@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/zol-gen-info")
+@RequestMapping("/master/zol-doors/config/gen-info")
 public class ZolPerDoorsGeneralInformationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ZolPerDoorsGeneralInformationController.class);
@@ -57,7 +57,7 @@ public class ZolPerDoorsGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-gen-info/view/" + zolPerDoorsGeneralInformation.getId();
+        return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class ZolPerDoorsGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-gen-info/view/" + zolPerDoorsGeneralInformation.getId();
+        return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -93,7 +93,7 @@ public class ZolPerDoorsGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-gen-info";
+        return "redirect:/master/zol-doors/config/gen-info";
     }
 
 }
