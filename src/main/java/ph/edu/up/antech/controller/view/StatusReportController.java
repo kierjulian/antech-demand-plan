@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/reports")
+@RequestMapping("/general/reports")
 public class StatusReportController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StatusReportController.class);
@@ -142,7 +142,7 @@ public class StatusReportController {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
 
-        return "redirect:/reports";
+        return "redirect:/general/reports";
     }
 
     private void handleCustomerItemSalesPerPeriodToZolPerDoors(List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate localDate) {

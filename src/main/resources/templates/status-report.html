@@ -12,228 +12,231 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-warning alert-dismissible fade show"
-                 th:if="${warningMessage != null}">
-                <div th:text="${warningMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: general-sidebar"></div>
             </div>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}"/>
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="alert alert-warning alert-dismissible fade show"
+                             th:if="${warningMessage != null}">
+                            <div th:text="${warningMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                                    d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Status Report</h1>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-deck">
-                        <div class="card">
-                            <form method="post" enctype="multipart/form-data" th:action="@{/reports/upload}">
-                                <div class="card-header text-center font-weight-bold">
-                                    New Daily Report
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            Date:
-                                            <input type="date" name="date" class="form-control" required>&nbsp;&nbsp;
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            Customer Item Sales Per Period:
-                                            <input type="file" name="customerItemSalesPerPeriodFile" class="form-control" required/>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            Customer Sales By Item:
-                                            <input type="file" name="customerSalesByItemFile" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            Zol Daily Sales Per Branch:
-                                            <input type="file" name="zolDailySalesPerBranchFile" class="form-control" required/>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            Dispensing Distributor:
-                                            <input type="file" name="dispensingDistributorFile" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#warningModal">
-                                        <i class="fas fa-plus">&nbsp; Add</i></button>
-                                </div>
-                                <div id="warningModal" class="modal fade" role="dialog"
-                                     aria-labelledby="warningModel" aria-hidden="true" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Confirm Adding of New Master Files</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>If some master files exist with the same date as the inputted date,
-                                                    the previous master files will be overridden. Are you sure you want to proceed?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-warning" role="button">Proceed</button>
-                                                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
                         <div class="card">
-                            <div class="card-header text-center font-weight-bold">
-                                Master Files
+                            <div class="card-body">
+                                Daily Reports and Master Files
                             </div>
-                            <div class="card-body text-center">
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-body">
                                 <div class="card-deck">
                                     <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-door-open fa-2x text-center"></i>
-                                        <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/zol-per-doors}" target="_blank">ZOL Per Doors</a>
-                                            </p>
-                                        </div>
+                                        <form method="post" enctype="multipart/form-data" th:action="@{/general/reports/upload}">
+                                            <div class="card-header text-center font-weight-bold">
+                                                New Daily Report
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        Date:
+                                                        <input type="date" name="date" class="form-control" required>&nbsp;&nbsp;
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        Customer Item Sales Per Period:
+                                                        <input type="file" name="customerItemSalesPerPeriodFile" class="form-control" required/>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        Customer Sales By Item:
+                                                        <input type="file" name="customerSalesByItemFile" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        Zol Daily Sales Per Branch:
+                                                        <input type="file" name="zolDailySalesPerBranchFile" class="form-control" required/>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        Dispensing Distributor:
+                                                        <input type="file" name="dispensingDistributorFile" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target="#warningModal">
+                                                    <i class="fas fa-plus">&nbsp; Add</i></button>
+                                            </div>
+                                            <div id="warningModal" class="modal fade" role="dialog"
+                                                 aria-labelledby="warningModel" aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Confirm Adding of New Master Files</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>If some master files exist with the same date as the inputted date,
+                                                                the previous master files will be overridden. Are you sure you want to proceed?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-warning" role="button">Proceed</button>
+                                                            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-code-branch fa-2x text-center"></i>
-                                        <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/zol-mdc}" target="_blank">ZOL MDC</a>
-                                            </p>
+                                        <div class="card-header text-center font-weight-bold">
+                                            Master Files
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-tags fa-2x text-center"></i>
                                         <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/zol-mt}" target="_blank">ZOL MT</a>
-                                            </p>
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-door-open fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/zol-per-doors}" target="_blank">ZOL Per Doors</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-code-branch fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/zol-mdc}" target="_blank">ZOL MDC</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-tags fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/zol-mt}" target="_blank">ZOL MT</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-cart-arrow-down fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/mdc-branch}" target="_blank">MDC Per Branch Sales</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-network-wired fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/netsuite}" target="_blank">Netsuite</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <br>
+                                                    <br>
+                                                    <i class="fas fa-briefcase fa-2x text-center"></i>
+                                                    <div class="card-body text-center">
+                                                        <p class="card-text lead font-weight-bold">
+                                                            <a class="stretched-link" th:href="@{/master/dispensing-distributor}" target="_blank">Dispensing Distributor</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card-deck">
-                                    <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-cart-arrow-down fa-2x text-center"></i>
-                                        <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/mdc-branch}" target="_blank">MDC Per Branch Sales</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-network-wired fa-2x text-center"></i>
-                                        <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/netsuite}" target="_blank">Netsuite</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <br>
-                                        <br>
-                                        <i class="fas fa-briefcase fa-2x text-center"></i>
-                                        <div class="card-body text-center">
-                                            <p class="card-text lead font-weight-bold">
-                                                <a class="stretched-link" th:href="@{/master/dispensing-distributor}" target="_blank">Dispensing Distributor</a>
-                                            </p>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header text-center font-weight-bold">
+                                                Output
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <div class="card-deck">
+                                                    <div class="card">
+                                                        <br>
+                                                        <br>
+                                                        <i class="fas fa-briefcase fa-2x text-center"></i>
+                                                        <div class="card-body text-center">
+                                                            <p class="card-text lead font-weight-bold">
+                                                                <a class="stretched-link" th:href="@{/output/dsr-zol}" target="_blank">DSR ZOL</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <br>
+                                                        <br>
+                                                        <i class="fas fa-align-justify fa-2x text-center"></i>
+                                                        <div class="card-body text-center">
+                                                            <p class="card-text lead font-weight-bold">
+                                                                <a class="stretched-link" th:href="@{/output/netsuite/summary}" target="_blank">Netsuite Summary</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <br>
+                                                        <br>
+                                                        <i class="fas fa-table fa-2x text-center"></i>
+                                                        <div class="card-body text-center">
+                                                            <p class="card-text lead font-weight-bold">
+                                                                <a class="stretched-link" th:href="@{/output/netsuite/table-inv}" target="_blank">Netsuite Table Inventory</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card border-0">
+
+                                                    </div>
+                                                    <div class="card border-0">
+
+                                                    </div>
+
+                                                    <div class="card border-0">
+
+                                                    </div>
+                                                    <div class="card border-0">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header text-center font-weight-bold">
-                                    Output
-                                </div>
-                                <div class="card-body text-center">
-                                    <div class="card-deck">
-                                        <div class="card">
-                                            <br>
-                                            <br>
-                                            <i class="fas fa-briefcase fa-2x text-center"></i>
-                                            <div class="card-body text-center">
-                                                <p class="card-text lead font-weight-bold">
-                                                    <a class="stretched-link" th:href="@{/output/dsr-zol}" target="_blank">DSR ZOL</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <br>
-                                            <br>
-                                            <i class="fas fa-align-justify fa-2x text-center"></i>
-                                            <div class="card-body text-center">
-                                                <p class="card-text lead font-weight-bold">
-                                                    <a class="stretched-link" th:href="@{/output/netsuite/summary}" target="_blank">Netsuite Summary</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <br>
-                                            <br>
-                                            <i class="fas fa-table fa-2x text-center"></i>
-                                            <div class="card-body text-center">
-                                                <p class="card-text lead font-weight-bold">
-                                                    <a class="stretched-link" th:href="@{/output/netsuite/table-inv}" target="_blank">Netsuite Table Inventory</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="card border-0">
-
-                                        </div>
-                                        <div class="card border-0">
-
-                                        </div>
-
-                                        <div class="card border-0">
-
-                                        </div>
-                                        <div class="card border-0">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </main>
             </div>
         </div>
 
