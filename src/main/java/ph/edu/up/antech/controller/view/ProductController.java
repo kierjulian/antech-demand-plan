@@ -17,7 +17,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/general/products")
 public class ProductController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
@@ -85,7 +85,7 @@ public class ProductController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/products/view/" + product.getId();
+        return "redirect:/general/products/view/" + product.getId();
     }
 
     @GetMapping("/add")
@@ -111,7 +111,7 @@ public class ProductController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/products/view/" + product.getId();
+        return "redirect:/general/products/view/" + product.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -124,7 +124,7 @@ public class ProductController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/products";
+        return "redirect:/general/products";
     }
 
 }
