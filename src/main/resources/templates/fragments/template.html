@@ -49,11 +49,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" th:href="@{/master/zol-doors/config/gen-info}">Zol Per Doors</a>
-                                <a class="dropdown-item" href="#">Zol Mdc Per Branch</a>
-                                <a class="dropdown-item" href="#">Zol Mt Per Branch</a>
-                                <a class="dropdown-item" href="#">Mdc Per Branch Sales</a>
-                                <a class="dropdown-item" href="#">Netsuite</a>
-                                <a class="dropdown-item" href="#">Dispensing Distributor</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-mdc/config/accounts}">Zol Mdc Per Branch</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-mt/config/accounts}">Zol Mt Per Branch</a>
+                                <a class="dropdown-item" th:href="@{/master/mdc-branch/config/gen-info}">Mdc Per Branch Sales</a>
+                                <a class="dropdown-item" th:href="@{/master/netsuite/config/gen-info}">Netsuite</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -108,8 +107,14 @@
         <div th:fragment="zol-mdc-per-branch-sidebar">
             <div class="sidebar-heading">Antech</div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/zol-mdc/config/gen-info}" class="list-group-item list-group-item-action bg-light">Zol Per Doors General Info</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Zol Per Doors Per Acct</a>
+                <a th:href="@{/master/zol-mdc/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mdc Account</a>
+            </div>
+        </div>
+
+        <div th:fragment="zol-mt-per-branch-sidebar">
+            <div class="sidebar-heading">Antech</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/master/zol-mt/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mt Account</a>
             </div>
         </div>
 
