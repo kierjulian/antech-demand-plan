@@ -67,7 +67,11 @@
         </div>
 
         <div th:fragment="general-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/general/products}" class="list-group-item list-group-item-action bg-light">Products</a>
                 <a th:href="@{/general/customers}" class="list-group-item list-group-item-action bg-light">Customers</a>
@@ -76,7 +80,11 @@
         </div>
 
         <div th:fragment="master-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-doors}" class="list-group-item list-group-item-action bg-light">Zol Per Doors</a>
                 <a th:href="@{/master/zol-mdc}" class="list-group-item list-group-item-action bg-light">Zol Mdc Per Branch</a>
@@ -88,7 +96,11 @@
         </div>
 
         <div th:fragment="output-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/output/dsr-zol}" class="list-group-item list-group-item-action bg-light">DSR ZOL</a>
                 <a th:href="@{/output/netsuite/summary}" class="list-group-item list-group-item-action bg-light">Netsuite Summary</a>
@@ -97,7 +109,11 @@
         </div>
 
         <div th:fragment="zol-per-doors-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-doors/config/gen-info}" class="list-group-item list-group-item-action bg-light">Zol Per Doors General Info</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Zol Per Doors Per Acct</a>
@@ -105,21 +121,33 @@
         </div>
 
         <div th:fragment="zol-mdc-per-branch-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-mdc/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mdc Account</a>
             </div>
         </div>
 
         <div th:fragment="zol-mt-per-branch-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-mt/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mt Account</a>
             </div>
         </div>
 
         <div th:fragment="mdc-per-branch-sales-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/mdc-branch/config/accounts}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Account</a>
                 <a th:href="@{/master/mdc-branch/config/brn}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales BRN</a>
@@ -130,7 +158,11 @@
         </div>
 
         <div th:fragment="netsuite-sidebar">
-            <div class="sidebar-heading">Antech</div>
+            <div class="sidebar-heading">
+                <a th:href="@{/}">
+                    <img class="img-fluid" width="200" th:src="@{/images/antech-top.png}" />
+                </a>
+            </div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/netsuite/config/bbj}" class="list-group-item list-group-item-action bg-light">Netsuite BBJ Tagging</a>
                 <a th:href="@{/master/netsuite/config/general-info}" class="list-group-item list-group-item-action bg-light">Netsuite General Information</a>
