@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.ZolMtAccountService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/zol-mt-accounts")
+@RequestMapping("/master/zol-mt/config/accounts")
 public class ZolMtAccountController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ZolMtAccountController.class);
@@ -53,7 +53,7 @@ public class ZolMtAccountController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-mt-accounts/view/" + zolMtAccount.getId();
+        return "redirect:/master/zol-mt/config/accounts/view/" + zolMtAccount.getId();
     }
 
     @GetMapping("/add")
@@ -74,7 +74,7 @@ public class ZolMtAccountController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-mt-accounts/view/" + zolMtAccount.getId();
+        return "redirect:/master/zol-mt/config/accounts/view/" + zolMtAccount.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -87,7 +87,7 @@ public class ZolMtAccountController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/zol-mt-accounts";
+        return "redirect:/master/zol-mt/config/accounts";
     }
 
 }
