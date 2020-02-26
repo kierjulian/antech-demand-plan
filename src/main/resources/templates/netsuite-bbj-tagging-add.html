@@ -5,70 +5,63 @@
         <div th:replace="fragments/template :: header(title = 'Add Netsuite BBJ Tagging')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: netsuite-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Add Netsuite BBJ Tagging
+                            </div>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Add Netsuite BBJ Tagging</h1>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/netsuite/config/bbj/create}" th:object="${netsuiteBbjTagging}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/netsuite/config/bbj}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>
+                                    <hr>
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerName}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Address</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{address}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">New CSR</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{newCsr}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">New Tagging of CSR</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{newTaggingOfCsr}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Zone</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{zone}">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form th:action="@{/config/netsuite-bbj/create}" th:object="${netsuiteBbjTagging}" method="post">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save">&nbsp; Save</i></button>
-                        </div>&nbsp;
-                        <div class="btn-group">
-                            <a class="btn btn-warning" th:href="@{/config/netsuite-bbj}">
-                                <i class="fas fa-ban">&nbsp; Cancel</i></a>
-                        </div>
-                        <hr>
-                        <input type="hidden" th:field="*{id}">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Customer Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{customerName}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">Address</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{address}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">New CSR</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{newCsr}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">New Tagging of CSR</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{newTaggingOfCsr}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Zone</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{zone}">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </main>
             </div>
         </div>
 

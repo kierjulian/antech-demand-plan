@@ -52,7 +52,7 @@
                                 <a class="dropdown-item" th:href="@{/master/zol-mdc/config/accounts}">Zol Mdc Per Branch</a>
                                 <a class="dropdown-item" th:href="@{/master/zol-mt/config/accounts}">Zol Mt Per Branch</a>
                                 <a class="dropdown-item" th:href="@{/master/mdc-branch/config/accounts}">Mdc Per Branch Sales</a>
-                                <a class="dropdown-item" href="#">Netsuite</a>
+                                <a class="dropdown-item" th:href="@{/master/netsuite/config/bbj}">Netsuite</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -126,6 +126,18 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Code</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Coverage</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales NA</a>
+            </div>
+        </div>
+
+        <div th:fragment="netsuite-sidebar">
+            <div class="sidebar-heading">Antech</div>
+            <div class="list-group list-group-flush">
+                <a th:href="@{/master/netsuite/config/bbj}" class="list-group-item list-group-item-action bg-light">Netsuite BBJ Tagging</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Netsuite General Information</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Netsuite Other Information</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Netsuite Product List Source</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Netsuite Product List DE</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Netsuite Transfers Cat</a>
             </div>
         </div>
 

@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/netsuite-bbj")
+@RequestMapping("/master/netsuite/config/bbj")
 public class NetsuiteBbjTaggingController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteBbjTaggingController.class);
@@ -56,7 +56,7 @@ public class NetsuiteBbjTaggingController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-bbj/view/" + netsuiteBbjTagging.getId();
+        return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();
     }
 
     @GetMapping("/add")
@@ -78,7 +78,7 @@ public class NetsuiteBbjTaggingController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-bbj/view/" + netsuiteBbjTagging.getId();
+        return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -92,7 +92,7 @@ public class NetsuiteBbjTaggingController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-bbj";
+        return "redirect:/master/netsuite/config/bbj";
     }
 
 }
