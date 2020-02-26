@@ -7,25 +7,24 @@ import ph.edu.up.antech.domain.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	private EntityManager em;
 
 	@Override
 	public List<Product> findAllProducts() {
-		TypedQuery<Product> query = entityManager.createNamedQuery("findAllProducts",
+		TypedQuery<Product> query = em.createNamedQuery("findAllProducts",
 				Product.class);
 		return query.getResultList();
 	}
 
 	@Override
 	public Product findProductById(Integer id) {
-		TypedQuery<Product> query = entityManager.createNamedQuery("findProductById",
+		TypedQuery<Product> query = em.createNamedQuery("findProductById",
 				Product.class);
 		query.setParameter("id", id);
 		return query.getSingleResult();
@@ -33,25 +32,25 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product createProduct(Product product) {
-		entityManager.persist(product);
-		entityManager.flush();
+		em.persist(product);
+		em.flush();
 		return product;
 	}
 
 	@Override
 	public Product updateProduct(Product product) {
-		return entityManager.merge(product);
+		return em.merge(product);
 	}
 
 	@Override
 	public void deleteProduct(Integer id) {
-		Product product = entityManager.find(Product.class, id);
-		entityManager.remove(product);
+		Product product = em.find(Product.class, id);
+		em.remove(product);
 	}
 
 	@Override
 	public List<Product> findProductsByCode(String code) {
-		TypedQuery<Product> query = entityManager.createNamedQuery("findProductByCode",
+		TypedQuery<Product> query = em.createNamedQuery("findProductByCode",
 				Product.class);
 		query.setParameter("code", code);
 		return query.getResultList();

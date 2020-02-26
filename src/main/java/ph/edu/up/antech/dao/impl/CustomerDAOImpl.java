@@ -7,25 +7,24 @@ import ph.edu.up.antech.domain.Customer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public Customer createCustomer(Customer customer) {
-        entityManager.persist(customer);
-        entityManager.flush();
+        em.persist(customer);
+        em.flush();
         return customer;
     }
 
     @Override
     public Customer findCustomerByCustomerCodeAndMaterialCode(String customerCode, String materialCode) {
-        TypedQuery<Customer> query = entityManager.createNamedQuery("findCustomerByCustomerCodeAndMaterialCode",
+        TypedQuery<Customer> query = em.createNamedQuery("findCustomerByCustomerCodeAndMaterialCode",
                 Customer.class);
         query.setParameter("customerCode", customerCode);
         query.setParameter("materialCode", materialCode);
@@ -40,7 +39,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer findCustomerByCustomerCode(String customerCode) {
-        TypedQuery<Customer> query = entityManager.createNamedQuery("findCustomerByCustomerCode",
+        TypedQuery<Customer> query = em.createNamedQuery("findCustomerByCustomerCode",
                 Customer.class);
         query.setParameter("customerCode", customerCode);
 
@@ -54,7 +53,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public String findCustomerZolMaterialCodeByMaterialCode(String materialCode) {
-        TypedQuery<String> query = entityManager.createNamedQuery("findZolMaterialCodeByMaterialCode",
+        TypedQuery<String> query = em.createNamedQuery("findZolMaterialCodeByMaterialCode",
                 String.class);
         query.setParameter("materialCode", materialCode);
 
@@ -68,33 +67,33 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public List<Customer> findAllCustomers() {
-        TypedQuery<Customer> query = entityManager.createNamedQuery("findAllCustomers", Customer.class);
+        TypedQuery<Customer> query = em.createNamedQuery("findAllCustomers", Customer.class);
         return query.getResultList();
     }
 
     @Override
     public List<Customer> findAllCustomerByCustomerCode(String customerCode) {
-        TypedQuery<Customer> query = entityManager.createNamedQuery("findAllCustomersByCustomerCode", Customer.class);
+        TypedQuery<Customer> query = em.createNamedQuery("findAllCustomersByCustomerCode", Customer.class);
         query.setParameter("customerCode", customerCode);
         return query.getResultList();
     }
 
     @Override
     public Customer findCustomerById(Integer id) {
-        TypedQuery<Customer> query = entityManager.createNamedQuery("findCustomerById", Customer.class);
+        TypedQuery<Customer> query = em.createNamedQuery("findCustomerById", Customer.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
     @Override
     public Customer updateCustomer(Customer customer) {
-        return entityManager.merge(customer);
+        return em.merge(customer);
     }
 
     @Override
     public void deleteCustomer(Integer id) {
-        Customer customer = entityManager.find(Customer.class, id);
-        entityManager.remove(customer);
+        Customer customer = em.find(Customer.class, id);
+        em.remove(customer);
     }
 
 }

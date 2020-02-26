@@ -7,25 +7,24 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
-        entityManager.persist(zolPerDoorsPerAcct);
-        entityManager.flush();
+        em.persist(zolPerDoorsPerAcct);
+        em.flush();
         return zolPerDoorsPerAcct;
     }
 
     @Override
     public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String zol) {
-        TypedQuery<ZolPerDoorsPerAcct> query = entityManager
+        TypedQuery<ZolPerDoorsPerAcct> query = em
                 .createNamedQuery("findZolPerDoorsPerAcctByZol", ZolPerDoorsPerAcct.class);
         query.setParameter("zol", zol);
 
@@ -39,7 +38,7 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
 
     @Override
     public List<ZolPerDoorsPerAcct> findAllZolPerDoors() {
-        TypedQuery<ZolPerDoorsPerAcct> query = entityManager
+        TypedQuery<ZolPerDoorsPerAcct> query = em
                 .createNamedQuery("findAllZolPerDoorsPerAcct", ZolPerDoorsPerAcct.class);
         return query.getResultList();
     }

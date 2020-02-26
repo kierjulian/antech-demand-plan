@@ -15,31 +15,31 @@ import java.util.List;
 public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors) {
-        entityManager.persist(zolPerDoors);
-        entityManager.flush();
+        em.persist(zolPerDoors);
+        em.flush();
         return zolPerDoors;
     }
 
     @Override
     public List<ZolPerDoors> findZolPerDoorsByDate(LocalDate date) {
-        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findZolPerDoorsByDate", ZolPerDoors.class);
+        TypedQuery<ZolPerDoors> query = em.createNamedQuery("findZolPerDoorsByDate", ZolPerDoors.class);
         query.setParameter("date", date);
         return query.getResultList();
     }
 
     @Override
     public void removeZolPerDoors(Integer id) {
-        ZolPerDoors zolPerDoors = entityManager.find(ZolPerDoors.class, id);
-        entityManager.remove(zolPerDoors);
+        ZolPerDoors zolPerDoors = em.find(ZolPerDoors.class, id);
+        em.remove(zolPerDoors);
     }
 
     @Override
     public List<String> findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate localDate) {
-        TypedQuery<String> query = entityManager.createNamedQuery(
+        TypedQuery<String> query = em.createNamedQuery(
                 "findDistinctZolPerDoorsKamReferenceNameByLocalDate", String.class);
         query.setParameter("localDate", localDate);
         return query.getResultList();
@@ -47,7 +47,7 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @Override
     public List<String> findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate localDate) {
-        TypedQuery<String> query = entityManager.createNamedQuery(
+        TypedQuery<String> query = em.createNamedQuery(
                 "findDistinctZolPerDoorsAntechProductDescriptionByLocalDate", String.class);
         query.setParameter("localDate", localDate);
         return query.getResultList();
@@ -56,7 +56,7 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
     @Override
     public List<ZolPerDoors> findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(
             LocalDate localDate, String kamReferenceName, String antechProductDescription) {
-        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findZolPerDoorsByKamReferenceNameAndProductDescriptionAndLocalDate",
+        TypedQuery<ZolPerDoors> query = em.createNamedQuery("findZolPerDoorsByKamReferenceNameAndProductDescriptionAndLocalDate",
                 ZolPerDoors.class);
         query.setParameter("localDate", localDate);
         query.setParameter("kamReferenceName", kamReferenceName);
@@ -66,7 +66,7 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @Override
     public List<String> findDistinctZolPerDoorsAccountByLocalDate(LocalDate localDate) {
-        TypedQuery<String> query = entityManager.createNamedQuery("findDistinctZolPerDoorsAccountByLocalDate",
+        TypedQuery<String> query = em.createNamedQuery("findDistinctZolPerDoorsAccountByLocalDate",
                 String.class);
         query.setParameter("localDate", localDate);
         return query.getResultList();
@@ -74,7 +74,7 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
 
     @Override
     public void removeZolPerDoorsByLocalDate(LocalDate localDate) {
-        Query query = entityManager.createNamedQuery("deleteZolPerDoorsByLocalDate");
+        Query query = em.createNamedQuery("deleteZolPerDoorsByLocalDate");
         query.setParameter("localDate", localDate);
         query.executeUpdate();
     }
@@ -83,17 +83,17 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
     public void saveZolPerDoorsByBatch(List<ZolPerDoors> zolPerDoorsList) {
         for (int i = 0; i < zolPerDoorsList.size(); i++) {
             if (i % 50 == 0) {
-                entityManager.flush();
-                entityManager.clear();
+                em.flush();
+                em.clear();
             }
 
-            entityManager.persist(zolPerDoorsList.get(i));
+            em.persist(zolPerDoorsList.get(i));
         }
     }
 
     @Override
     public List<ZolPerDoors> findZolPerDoorsBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
-        TypedQuery<ZolPerDoors> query = entityManager.createNamedQuery("findZolPerDoorsBetweenTwoDate",
+        TypedQuery<ZolPerDoors> query = em.createNamedQuery("findZolPerDoorsBetweenTwoDate",
                 ZolPerDoors.class);
         query.setParameter("startDate", startDate);
         query.setParameter("endDate", endDate);

@@ -7,25 +7,24 @@ import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformat
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralInformationDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
-        entityManager.persist(zolPerDoorsGeneralInformation);
-        entityManager.flush();
+        em.persist(zolPerDoorsGeneralInformation);
+        em.flush();
         return zolPerDoorsGeneralInformation;
     }
 
     @Override
     public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByItemCode(String itemCode) {
-        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager.createNamedQuery(
+        TypedQuery<ZolPerDoorsGeneralInformation> query = em.createNamedQuery(
                 "findZolPerDoorsGeneralInformationByItemCode", ZolPerDoorsGeneralInformation.class);
         query.setParameter("itemCode", itemCode);
         List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = query.getResultList();
@@ -39,7 +38,7 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
 
     @Override
     public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByZpcItemCode(String zpcItemCode) {
-        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager.createNamedQuery(
+        TypedQuery<ZolPerDoorsGeneralInformation> query = em.createNamedQuery(
                 "findZolPerDoorsGeneralInformationByZpcItemCode", ZolPerDoorsGeneralInformation.class);
         query.setParameter("zpcItemCode", zpcItemCode);
         List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = query.getResultList();
@@ -53,12 +52,12 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
 
     @Override
     public List<ZolPerDoorsGeneralInformation> findAllZolPerDoorsGeneralInformation() {
-        return entityManager.createNamedQuery("findAllZolPerDoorsGeneralInformation").getResultList();
+        return em.createNamedQuery("findAllZolPerDoorsGeneralInformation").getResultList();
     }
 
     @Override
     public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationById(Integer id) {
-        TypedQuery<ZolPerDoorsGeneralInformation> query = entityManager
+        TypedQuery<ZolPerDoorsGeneralInformation> query = em
                 .createNamedQuery("findZolPerDoorsGeneralInformationById", ZolPerDoorsGeneralInformation.class);
         query.setParameter("id", id);
         return query.getSingleResult();
@@ -66,14 +65,14 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
 
     @Override
     public ZolPerDoorsGeneralInformation updateZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
-        return entityManager.merge(zolPerDoorsGeneralInformation);
+        return em.merge(zolPerDoorsGeneralInformation);
     }
 
     @Override
     public void removeZolPerDoorsGeneralInformation(Integer id) {
-        ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = entityManager.find(
+        ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = em.find(
                 ZolPerDoorsGeneralInformation.class, id);
-        entityManager.remove(zolPerDoorsGeneralInformation);
+        em.remove(zolPerDoorsGeneralInformation);
     }
 
 }
