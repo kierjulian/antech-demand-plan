@@ -5,59 +5,62 @@
         <div th:replace="fragments/template :: header(title = 'View Netsuite Other Information')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: netsuite-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">View Netsuite Other Information</h1>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                View Netsuite Other Information
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/master/netsuite/config/other-info}" role="button">
+                                            <i class="fas fa-list">&nbsp; Netsuite Other Information List</i></a>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-success" th:href="@{/master/netsuite/config/other-info/edit/{id}(id=${netsuiteOtherInformation.id})}">
+                                            <i class="fas fa-edit">&nbsp; Edit</i></a>
+                                    </div>&nbsp;
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Type</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${netsuiteOtherInformation.type}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Description</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${netsuiteOtherInformation.description}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Other Description</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${netsuiteOtherInformation.otherDescription}" disabled>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form>
-                        <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/config/netsuite-other-info}" role="button">
-                                <i class="fas fa-list">&nbsp; Netsuite Other Information List</i></a>
-                        </div>&nbsp;
-                        <div class="btn-group">
-                            <a class="btn btn-success" th:href="@{/config/netsuite-other-info/edit/{id}(id=${netsuiteOtherInformation.id})}">
-                                <i class="fas fa-edit">&nbsp; Edit</i></a>
-                        </div>&nbsp;
-                        <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Type</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${netsuiteOtherInformation.type}" disabled>
-                            </div>
-                            <label class="col-sm-2 col-form-label">Description</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${netsuiteOtherInformation.description}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Other Description</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${netsuiteOtherInformation.otherDescription}" disabled>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </main>
             </div>
         </div>
 
