@@ -26,7 +26,6 @@ public class CustomerSalesByItemParserTest {
             List<CustomerSalesByItem> customerSalesByItemList = csvToBean.parse();
             for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
                 customerSalesByItem.convertAllStringFieldsToProperType();
-
                 System.out.println("Item: " + customerSalesByItem.getItem());
                 System.out.println("Type: " + customerSalesByItem.getType());
                 System.out.println("Customer Name: " + customerSalesByItem.getCustomerName());
@@ -54,7 +53,6 @@ public class CustomerSalesByItemParserTest {
                 System.out.println("Referred By: " + customerSalesByItem.getCustomerJobReferredBy());
                 System.out.println("PO Number: " + customerSalesByItem.getPoNumber());
                 System.out.println("Mobile Number: " + customerSalesByItem.getMobileNo());
-
                 System.out.println();
             }
 

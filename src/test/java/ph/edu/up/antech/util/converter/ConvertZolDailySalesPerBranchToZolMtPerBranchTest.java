@@ -54,7 +54,6 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
     public void convertZolDailySalesPerBranch_toZolMtPerBranch_shouldBeSuccessful() {
         try (Reader reader = Files.newBufferedReader(
                 Paths.get("src/test/resources/ZolDailySalesPerBranch.csv"))) {
-            Long startTime = System.nanoTime();
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
                     .withIgnoreLeadingWhiteSpace(true)
@@ -151,9 +150,6 @@ public class ConvertZolDailySalesPerBranchToZolMtPerBranchTest {
 
             //zolMtPerBranchService.saveZolMtPerBranchByBatch(zolMtPerBranchList);
             //zolMtPerBranchService.removeZolMtPerBranchByLocalDate(LocalDate.now());
-
-            Long endTime = System.nanoTime();
-            System.out.println(endTime - startTime);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

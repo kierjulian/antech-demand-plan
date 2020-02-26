@@ -51,8 +51,6 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
 
     @Test
     public void convertZolDailySalesPerBranch_toZolMdcPerBranch_shouldBeSuccessful() {
-        Long startTime = System.nanoTime();
-
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/ZolDailySalesPerBranchTest.csv"))) {
             CsvToBean<ZolDailySalesPerBranch> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(ZolDailySalesPerBranch.class)
@@ -209,9 +207,6 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
             e.printStackTrace();
             Assert.fail();
         }
-
-        Long endTime = System.nanoTime();
-        System.out.println(endTime - startTime);
     }
 
 }

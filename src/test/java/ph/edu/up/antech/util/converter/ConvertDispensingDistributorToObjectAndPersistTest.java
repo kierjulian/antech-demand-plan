@@ -34,7 +34,6 @@ public class ConvertDispensingDistributorToObjectAndPersistTest {
 
     @Test
     public void convertDispensingDistributor_fromCsvToObject_shouldPrintCorrectDetails() {
-        Long startTime = System.nanoTime();
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/DispensingDistributor.csv"))) {
             CsvToBean<DispensingDistributor> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(DispensingDistributor.class)
@@ -62,9 +61,6 @@ public class ConvertDispensingDistributorToObjectAndPersistTest {
 
             //dispensingDistributorService.saveDispensingDistributorByBatch(dispensingDistributorList);
             //dispensingDistributorService.removeDispensingDistributorByLocalDate(LocalDate.now());
-
-            Long endTime = System.nanoTime();
-            System.out.println(endTime - startTime);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

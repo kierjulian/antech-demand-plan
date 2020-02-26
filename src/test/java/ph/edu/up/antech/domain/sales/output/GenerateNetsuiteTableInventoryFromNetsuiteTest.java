@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.output;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,7 @@ public class GenerateNetsuiteTableInventoryFromNetsuiteTest {
                 .distinct()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        uniqueProductNameList.forEach(productName -> {
-            System.out.println(productName);
-        });
+        Assert.assertNotNull(uniqueProductNameList);
     }
 
     @Test
@@ -50,9 +49,7 @@ public class GenerateNetsuiteTableInventoryFromNetsuiteTest {
                 .filter(productName -> productName.startsWith("Jar"))
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
-        uniqueProductNameList.forEach(productName -> {
-            System.out.println(productName);
-        });
+        Assert.assertNotNull(uniqueProductNameList);
     }
 
     @Test
@@ -64,9 +61,7 @@ public class GenerateNetsuiteTableInventoryFromNetsuiteTest {
                 .filter(Objects::nonNull)
                 .filter(productName -> productName.startsWith("CS") || productName.startsWith("S"))
                 .collect(Collectors.toList());
-        uniqueProductNameList.forEach(productName -> {
-            System.out.println(productName);
-        });
+        Assert.assertNotNull(uniqueProductNameList);
     }
 
     @Test
@@ -78,9 +73,7 @@ public class GenerateNetsuiteTableInventoryFromNetsuiteTest {
                 .filter(Objects::nonNull)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
-        uniqueKamReferenceName.forEach(kamReferenceName -> {
-            System.out.println(kamReferenceName);
-        });
+        Assert.assertNotNull(uniqueKamReferenceName);
     }
 
 }

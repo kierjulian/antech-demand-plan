@@ -52,7 +52,6 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
 
     @Test
     public void convertCustomerItemSalesPerPeriodToZolPerDoors_andPrintContentsOfMasterFile_shouldBeSuccessful() {
-        Long startTime = System.nanoTime();
         try (Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/CustomerItemSalesPerPeriod.csv"))) {
             CsvToBean<CustomerItemSalesPerPeriod> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(CustomerItemSalesPerPeriod.class)
@@ -144,10 +143,6 @@ public class ConvertCustomerItemSalesPerPeriodToZolPerDoorsTest {
 
             //zolPerDoorsService.saveZolPerDoorsByBatch(zolPerDoorsList);
             //zolPerDoorsService.removeZolPerDoorsByLocalDate(LocalDate.now());
-
-            Long endTime = System.nanoTime();
-            System.out.println(zolPerDoorsList.size());
-            System.out.println(endTime - startTime);
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();

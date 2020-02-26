@@ -1,5 +1,6 @@
 package ph.edu.up.antech.dao.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,8 @@ public class ZolMtAccountServiceTest {
 
     @Test
     public void findAllZolMtAccount_shouldBeSuccessful() {
-        List<ZolMtAccount> ZolMtAccountList = zolMtAccountService.findAllZolMtAccount();
-        ZolMtAccountList.forEach(zolMtAccount -> {
-            System.out.println(zolMtAccount.getId());
-            System.out.println(zolMtAccount.getShpcn());
-            System.out.println(zolMtAccount.getBranchName());
-            System.out.println(zolMtAccount.getCustomerName());
-            System.out.println(zolMtAccount.getCadd1());
-            System.out.println(zolMtAccount.getCadd2());
-            System.out.println(zolMtAccount.getNa());
-            System.out.println();
-        });
+        List<ZolMtAccount> zolMtAccountList = zolMtAccountService.findAllZolMtAccount();
+        Assert.assertNotNull(zolMtAccountList);
     }
 
 }

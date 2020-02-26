@@ -1,5 +1,6 @@
 package ph.edu.up.antech.dao.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,7 @@ public class NetsuiteBbjTaggingServiceTest {
     @Test
     public void queryFindAllNetsuiteBbjTagging_shouldBeSuccessful() {
         List<NetsuiteBbjTagging> netsuiteBbjTaggingList = netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
-        netsuiteBbjTaggingList.forEach(netsuiteBbjTagging -> {
-            System.out.println(netsuiteBbjTagging.getId());
-        });
+        Assert.assertNotNull(netsuiteBbjTaggingList);
     }
 
 }

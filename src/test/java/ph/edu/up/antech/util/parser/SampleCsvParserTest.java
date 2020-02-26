@@ -20,7 +20,6 @@ public class SampleCsvParserTest {
                 System.out.println(record[1]);
                 System.out.println(record[2]);
                 System.out.println(record[3]);
-
                 System.out.println();
             }
         } catch (Exception e) {

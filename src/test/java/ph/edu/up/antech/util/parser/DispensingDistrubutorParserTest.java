@@ -26,7 +26,6 @@ public class DispensingDistrubutorParserTest {
             List<DispensingDistributor> dispensingDistributorList = csvToBean.parse();
             for (DispensingDistributor dispensingDistributor : dispensingDistributorList) {
                 dispensingDistributor.convertAllStringTypeToProperType();
-
                 System.out.println("MONTH: " + dispensingDistributor.getMonth());
                 System.out.println("ACCOUNTS: " + dispensingDistributor.getAccounts());
                 System.out.println("DSMNAME: " + dispensingDistributor.getDsmName());
@@ -40,7 +39,6 @@ public class DispensingDistrubutorParserTest {
                 System.out.println("UNITS: " + dispensingDistributor.getUnits());
                 System.out.println("TOTAL AMOUNT: " + dispensingDistributor.getTotalAmount());
                 System.out.println("Final Amount: " + dispensingDistributor.getFinalAmount());
-
                 System.out.println();
             }
         } catch (IOException e) {

@@ -32,18 +32,14 @@ public class GenerateDsrZolFromZolPerDoorsTest {
     public void queryDistinctZolPerDoorsKamRefName_andPrintContents_shouldBeSuccessful() {
         List<String> kamReferenceNameList = zolPerDoorsService
                 .findDistinctZolPerDoorsKamReferenceNameByLocalDate(LocalDate.of(2019, 12, 7));
-        kamReferenceNameList.forEach(kamReferenceName -> {
-            System.out.println(kamReferenceName);
-        });
+        Assert.assertNotNull(kamReferenceNameList);
     }
 
     @Test
     public void queryDistinctZolPerDoorsAntechProductDescription_andPrintContents_shouldBeSuccessful() {
         List<String> antechProductDescriptionList = zolPerDoorsService
                 .findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate.of(2019, 12, 7));
-        antechProductDescriptionList.forEach(antechProductDescription -> {
-            System.out.println(antechProductDescription);
-        });
+        Assert.assertNotNull(antechProductDescriptionList);
     }
 
     @Test
@@ -51,9 +47,7 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
                 .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(LocalDate.of(2019, 12, 7),
                         "A. Errol Ramirez", "S2 800 BIB");
-        zolPerDoorsList.forEach(zolPerDoors -> {
-            System.out.println(zolPerDoors.getItemCode());
-        });
+        Assert.assertNotNull(zolPerDoorsList);
     }
 
     @Test
@@ -64,17 +58,17 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         List<String> antechProductDescriptionList = zolPerDoorsService
                 .findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate.of(2019, 12, 7));
 
-        for (String kamReferenceName : kamReferenceNameList) {
-            for (String antechProductDescription : antechProductDescriptionList) {
+        kamReferenceNameList.forEach(kamReferenceName -> {
+            antechProductDescriptionList.forEach(antechProductDescription -> {
                 List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
                         .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(LocalDate.of(2019, 12, 7),
                                 kamReferenceName, antechProductDescription);
-                for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+                zolPerDoorsList.forEach(zolPerDoors -> {
                     DsrZol dsrZol = new DsrZol(zolPerDoors);
                     dsrZolList.add(dsrZol);
-                }
-            }
-        }
+                });
+            });
+        });
 
         dsrZolList.forEach(dsrZol -> {
             if (dsrZol.getAntechProductDescription().equals("S4 1600 BIB")) {
@@ -100,17 +94,17 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         List<String> antechProductDescriptionList = zolPerDoorsService
                 .findDistinctZolPerDoorsAntechProductDescriptionByLocalDate(LocalDate.of(2019, 12, 7));
 
-        for (String kamReferenceName : kamReferenceNameList) {
-            for (String antechProductDescription : antechProductDescriptionList) {
+        kamReferenceNameList.forEach(kamReferenceName -> {
+            antechProductDescriptionList.forEach(antechProductDescription -> {
                 List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService
                         .findZolPerDoorsByAccountsByProductDescriptionAndLocalDate(LocalDate.of(2019, 12, 7),
                                 kamReferenceName, antechProductDescription);
-                for (ZolPerDoors zolPerDoors : zolPerDoorsList) {
+                zolPerDoorsList.forEach(zolPerDoors -> {
                     DsrZol dsrZol = new DsrZol(zolPerDoors);
                     dsrZolList.add(dsrZol);
-                }
-            }
-        }
+                });
+            });
+        });
 
         List<DsrZol> dsrZolListFiltered = dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getKamReferenceName().equals("A. Errol Ramirez"))
@@ -118,10 +112,6 @@ public class GenerateDsrZolFromZolPerDoorsTest {
                 .collect(Collectors.toList());
 
         DsrZolCombination dsrZolCombination = new DsrZolCombination(dsrZolListFiltered);
-        System.out.println(dsrZolCombination.getKamReferenceName());
-        System.out.println(dsrZolCombination.getAccount());
-        System.out.println();
-
         dsrZolCombination.getProductSalesAmountAndUnitList().forEach(productSalesAmountAndUnit -> {
             System.out.println(productSalesAmountAndUnit.getProduct());
             System.out.println(productSalesAmountAndUnit.getAmount());

@@ -18,7 +18,6 @@ public class DateUtilsTest {
 
         List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYearMonths(
                 start, end);
-        System.out.println(yearMonthList);
         Assert.assertEquals(4, yearMonthList.size());
     }
 
@@ -32,7 +31,6 @@ public class DateUtilsTest {
 
         List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYearMonths(
                 start, end);
-        System.out.println(yearMonthList);
         Assert.assertEquals(16, yearMonthList.size());
     }
 

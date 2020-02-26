@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.output;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class GenerateNetsuiteSummaryFromNetsuiteTest {
                 .distinct()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        System.out.println(uniqueProductList);
+        Assert.assertNotNull(uniqueProductList);
     }
 
 }
