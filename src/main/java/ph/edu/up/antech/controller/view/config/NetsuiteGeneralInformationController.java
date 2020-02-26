@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/netsuite-general-info")
+@RequestMapping("/master/netsuite/config/general-info")
 public class NetsuiteGeneralInformationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteGeneralInformationController.class);
@@ -58,7 +58,7 @@ public class NetsuiteGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-general-info/view/" + netsuiteGeneralInformation.getId();
+        return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();
     }
 
     @GetMapping("/add")
@@ -80,7 +80,7 @@ public class NetsuiteGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-general-info/view/" + netsuiteGeneralInformation.getId();
+        return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -94,7 +94,7 @@ public class NetsuiteGeneralInformationController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-general-info";
+        return "redirect:/master/netsuite/config/general-info";
     }
 
 }

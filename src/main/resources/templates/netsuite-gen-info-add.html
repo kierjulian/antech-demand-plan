@@ -5,74 +5,77 @@
         <div th:replace="fragments/template :: header(title = 'Add Netsuite General Information')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: netsuite-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Add Netsuite General Information</h1>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                Add Netsuite General Information
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/netsuite/config/general-info/create}" th:object="${netsuiteGeneralInformation}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/netsuite/config/general-info}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>
+                                    <hr>
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer / Job</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerJob}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Account</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{account}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{name}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">NA Number</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{naNumber}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">KAM Reference Number</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{kamReferenceName}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Location</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{location}">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form th:action="@{/config/netsuite-general-info/create}" th:object="${netsuiteGeneralInformation}" method="post">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save">&nbsp; Save</i></button>
-                        </div>&nbsp;
-                        <div class="btn-group">
-                            <a class="btn btn-warning" th:href="@{/config/netsuite-general-info}">
-                                <i class="fas fa-ban">&nbsp; Cancel</i></a>
-                        </div>
-                        <hr>
-                        <input type="hidden" th:field="*{id}">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Customer / Job</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{customerJob}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">Account</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{account}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{name}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">NA Number</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{naNumber}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">KAM Reference Number</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{kamReferenceName}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">Location</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{location}">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </main>
             </div>
         </div>
 
