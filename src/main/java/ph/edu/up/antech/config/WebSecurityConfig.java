@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,16 +43,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    @Override
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin")
-                .roles("USER")
-                .build();
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        List<UserDetails> userDetailsList = new ArrayList<>();
+        userDetailsList.add(
+                User.withDefaultPasswordEncoder()
+                        .username("employee")
+                        .password(("antech-employee"))
+                        .roles("EMPLOYEE", "USER")
+                        .build());
+        userDetailsList.add(
+                User.withDefaultPasswordEncoder()
+                        .username("admin")
+                        .password(("antech-admin8585!"))
+                        .roles("ADMIN", "USER")
+                        .build());
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(userDetailsList);
     }
 
 
