@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.MdcPerBranchSalesBrnService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/mdc-branch-brn")
+@RequestMapping("/master/mdc-branch/config/brn")
 public class MdcPerBranchSalesBrnController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MdcPerBranchSalesBrnController.class);
@@ -56,7 +56,7 @@ public class MdcPerBranchSalesBrnController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-brn/view/" + mdcPerBranchSalesBrn.getId();
+        return "redirect:/master/mdc-branch/config/brn/view/" + mdcPerBranchSalesBrn.getId();
     }
 
     @GetMapping("/add")
@@ -78,7 +78,7 @@ public class MdcPerBranchSalesBrnController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-brn/view/" + mdcPerBranchSalesBrn.getId();
+        return "redirect:/master/mdc-branch/config/brn/view/" + mdcPerBranchSalesBrn.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -92,7 +92,7 @@ public class MdcPerBranchSalesBrnController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-brn";
+        return "redirect:/master/mdc-branch/config/brn";
     }
 
 }
