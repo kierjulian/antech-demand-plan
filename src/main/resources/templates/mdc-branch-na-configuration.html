@@ -6,87 +6,89 @@
         <script th:src="@{/js/mdc-branch-na.js}"></script>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: mdc-per-branch-sales-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                                        d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">MDC Per Branch Sales Na Configuration</h1>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                MDC Per Branch Sales NA Configuration
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light pre-scrollable" style="max-height: 90vh;">
+                                <form class="form-inline">
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/master/mdc-branch/config/na/add}" role="button">
+                                            <i class="fas fa-plus">&nbsp; Add MDC Per Branch Sales NA Configuration</i></a>
+                                    </div>
+                                </form>
+                                <br>
+                                <table id="mdcPerBranchSalesNaConfigurationTable" class="table table-striped table-bordered table-hover table-sm
+                                    table-responsive">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Row</th>
+                                            <th scope="col">NA Name</th>
+                                            <th scope="col">DSM</th>
+                                            <th scope="col">Region</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="mdcPerBranchSalesNaConfiguration, row : ${mdcPerBranchSalesNaConfigurationList}">
+                                            <td class="align-middle">
+                                                <a th:text="${row.count}"
+                                                   th:href="@{/master/mdc-branch/config/na/view/{id}(id=${mdcPerBranchSalesNaConfiguration.id})}"></a>
+                                            </td>
+                                            <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.naName}"></td>
+                                            <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.dsm}"></td>
+                                            <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.region}"></td>
+                                            <td class="align-middle">
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   th:attr="data-target='#deleteMdcPerBranchSalesNaConfigurationModal' + ${mdcPerBranchSalesNaConfiguration.id}"
+                                                   role="button"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <div th:id="'deleteMdcPerBranchSalesNaConfigurationModal' + ${mdcPerBranchSalesNaConfiguration.id}" class="modal fade" role="dialog"
+                                                 aria-labelledby="deleteMdcPerBranchSalesNaConfigurationModalLabel" aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Delete MDC Per Branch Sales NA Configuration</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this entry?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-danger"
+                                                               th:href="@{/master/mdc-branch/config/na/delete/{id}(id=${mdcPerBranchSalesNaConfiguration.id})}"
+                                                               role="button">Delete</a>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form class="form-inline">
-                        <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/config/mdc-branch-na/add}" role="button">
-                                <i class="fas fa-plus">&nbsp; Add MDC Per Branch Sales NA Configuration</i></a>
-                        </div>
-                    </form>
-                    <br>
-                    <table id="mdcPerBranchSalesNaConfigurationTable" class="table table-striped table-bordered table-hover table-sm
-                                table-responsive">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Row</th>
-                                <th scope="col">NA Name</th>
-                                <th scope="col">DSM</th>
-                                <th scope="col">Region</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="mdcPerBranchSalesNaConfiguration, row : ${mdcPerBranchSalesNaConfigurationList}">
-                                <td class="align-middle">
-                                    <a th:text="${row.count}"
-                                       th:href="@{/config/mdc-branch-na/view/{id}(id=${mdcPerBranchSalesNaConfiguration.id})}"></a>
-                                </td>
-                                <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.naName}"></td>
-                                <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.dsm}"></td>
-                                <td class="align-middle" th:text="${mdcPerBranchSalesNaConfiguration.region}"></td>
-                                <td class="align-middle">
-                                    <a class="btn btn-outline-danger" data-toggle="modal"
-                                       th:attr="data-target='#deleteMdcPerBranchSalesNaConfigurationModal' + ${mdcPerBranchSalesNaConfiguration.id}"
-                                       role="button"><i class="fas fa-trash-alt"></i></a>
-                                </td>
-                                <div th:id="'deleteMdcPerBranchSalesNaConfigurationModal' + ${mdcPerBranchSalesNaConfiguration.id}" class="modal fade" role="dialog"
-                                     aria-labelledby="deleteMdcPerBranchSalesNaConfigurationModalLabel" aria-hidden="true" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Delete MDC Per Branch Sales NA Configuration</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete this entry?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a class="btn btn-danger"
-                                                   th:href="@{/config/mdc-branch-na/delete/{id}(id=${mdcPerBranchSalesNaConfiguration.id})}"
-                                                   role="button">Delete</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </main>
             </div>
         </div>
 
