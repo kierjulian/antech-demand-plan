@@ -5,54 +5,47 @@
         <div th:replace="fragments/template :: header(title = 'Add MDC Per Branch Sales Code')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: mdc-per-branch-sales-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Add MDC Per Branch Sales Code
+                            </div>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Add MDC Per Branch Sales Code</h1>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/mdc-branch/config/code/create}" th:object="${mdcPerBranchSalesCode}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/mdc-branch/config/code}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>
+                                    <hr>
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{code}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Description</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{description}">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form th:action="@{/config/mdc-branch-code/create}" th:object="${mdcPerBranchSalesCode}" method="post">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save">&nbsp; Save</i></button>
-                        </div>&nbsp;
-                        <div class="btn-group">
-                            <a class="btn btn-warning" th:href="@{/config/mdc-branch-code}">
-                                <i class="fas fa-ban">&nbsp; Cancel</i></a>
-                        </div>
-                        <hr>
-                        <input type="hidden" th:field="*{id}">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Code</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{code}">
-                            </div>
-                            <label class="col-sm-2 col-form-label">Description</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:field="*{description}">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </main>
             </div>
         </div>
 
