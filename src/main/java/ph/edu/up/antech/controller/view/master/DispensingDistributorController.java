@@ -1,7 +1,6 @@
 package ph.edu.up.antech.controller.view.master;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,7 @@ import java.util.List;
 @RequestMapping("/master/dispensing-distributor")
 public class DispensingDistributorController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DispensingDistributorController.class);
+    private static final Logger LOGGER = Logger.getLogger(DispensingDistributorController.class);
 
     @Autowired
     private DispensingDistributorService dispensingDistributorService;
