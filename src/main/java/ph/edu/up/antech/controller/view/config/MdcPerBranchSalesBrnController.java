@@ -51,11 +51,11 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrnService.updateMdcPerBranchSalesBrn(mdcPerBranchSalesBrn);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/master/mdc-branch/config/brn/view/" + mdcPerBranchSalesBrn.getId();
+        return "redirect:/master/mdc-branch/config/brn/view/" + "An error occurred: " + mdcPerBranchSalesBrn.getId();
     }
 
     @GetMapping("/add")
@@ -73,7 +73,7 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrn = mdcPerBranchSalesBrnService.saveMdcPerBranchSalesBrn(mdcPerBranchSalesBrn);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -87,7 +87,7 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrnService.removeMdcPerBranchSalesBrn(id);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 

@@ -65,7 +65,7 @@ public class ProductController {
                     product.setCertificateFile(imageBytes);
                 }
             } catch (IOException e) {
-                redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+                redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
                 LOGGER.error(e.getMessage());
             }
         } else {
@@ -80,7 +80,7 @@ public class ProductController {
             productService.updateProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -106,7 +106,7 @@ public class ProductController {
             product = productService.createProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -119,7 +119,7 @@ public class ProductController {
             productService.deleteProduct(id);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred during deletion of product.");
+            redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 

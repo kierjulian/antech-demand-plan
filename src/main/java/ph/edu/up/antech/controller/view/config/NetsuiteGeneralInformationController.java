@@ -52,7 +52,7 @@ public class NetsuiteGeneralInformationController {
             netsuiteGeneralInformationService.updateNetsuiteGeneralInformation(netsuiteGeneralInformation);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -74,7 +74,7 @@ public class NetsuiteGeneralInformationController {
             netsuiteGeneralInformation = netsuiteGeneralInformationService.saveNetsuiteGeneralInformation(netsuiteGeneralInformation);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -88,7 +88,7 @@ public class NetsuiteGeneralInformationController {
             netsuiteGeneralInformationService.removeNetsuiteGeneralInformation(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 

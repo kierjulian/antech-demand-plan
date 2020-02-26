@@ -52,7 +52,7 @@ public class NetsuiteTransfersCatController {
             netsuiteTransferCatService.updateNetsuiteTransferCat(netsuiteTransferCat);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -74,7 +74,7 @@ public class NetsuiteTransfersCatController {
             netsuiteTransferCat = netsuiteTransferCatService.saveNetsuiteTransferCat(netsuiteTransferCat);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
@@ -88,7 +88,7 @@ public class NetsuiteTransfersCatController {
             netsuiteTransferCatService.removeNetsuiteTransferCat(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
