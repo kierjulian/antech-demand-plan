@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.MdcPerBranchSalesCoverageService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/mdc-branch-coverage")
+@RequestMapping("/master/mdc-branch/config/coverage")
 public class MdcPerBranchSalesCoverageController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MdcPerBranchSalesCoverageController.class);
@@ -57,7 +57,7 @@ public class MdcPerBranchSalesCoverageController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-coverage/view/" + mdcPerBranchSalesCoverage.getId();
+        return "redirect:/master/mdc-branch/config/coverage/view/" + mdcPerBranchSalesCoverage.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class MdcPerBranchSalesCoverageController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-coverage/view/" + mdcPerBranchSalesCoverage.getId();
+        return "redirect:/master/mdc-branch/config/coverage/view/" + mdcPerBranchSalesCoverage.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -93,7 +93,7 @@ public class MdcPerBranchSalesCoverageController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/mdc-branch-coverage";
+        return "redirect:/master/mdc-branch/config/coverage";
     }
 
 }
