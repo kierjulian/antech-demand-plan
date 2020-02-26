@@ -5,90 +5,92 @@
         <div th:replace="fragments/template :: header(title = 'View MDC Per Branch Sales Account')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="alert alert-success alert-dismissible fade show"
-                 th:if="${successMessage != null}">
-                <div th:text="${successMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: mdc-per-branch-sales-sidebar"></div>
             </div>
-            <div class="alert alert-danger alert-dismissible fade show"
-                 th:if="${errorMessage != null}">
-                <div th:text="${errorMessage}"></div>
-                <a class="close" data-dismiss="alert">&times;</a>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                                                            d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">View MDC Per Branch Sales Account</h1>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                View Mdc Per Branch Sales Account
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/master/mdc-branch/config/accounts}" role="button">
+                                            <i class="fas fa-list">&nbsp; MDC Per Branch Sales Account List</i></a>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-success" th:href="@{/master/mdc-branch/config/accounts/edit/{id}(id=${mdcPerBranchSalesAccount.id})}">
+                                            <i class="fas fa-edit">&nbsp; Edit</i></a>
+                                    </div>&nbsp;
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">SHPCN</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.shpcn}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">NA</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.na}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Branch Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.branchName}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Customer Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.customerName}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Cadd 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.cadd1}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Cadd 2</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.cadd2}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">DSM</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.dsm}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Str Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.strCode}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Coverage</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.coverage}" disabled>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form>
-                        <div class="btn-group">
-                            <a class="btn btn-primary" th:href="@{/config/mdc-branch-accounts}" role="button">
-                                <i class="fas fa-list">&nbsp; MDC Per Branch Sales Account List</i></a>
-                        </div>&nbsp;
-                        <div class="btn-group">
-                            <a class="btn btn-success" th:href="@{/config/mdc-branch-accounts/edit/{id}(id=${mdcPerBranchSalesAccount.id})}">
-                                <i class="fas fa-edit">&nbsp; Edit</i></a>
-                        </div>&nbsp;
-                        <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">SHPCN</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.shpcn}" disabled>
-                            </div>
-                            <label class="col-sm-2 col-form-label">NA</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.na}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Branch Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.branchName}" disabled>
-                            </div>
-                            <label class="col-sm-2 col-form-label">Customer Name</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.customerName}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Cadd 1</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.cadd1}" disabled>
-                            </div>
-                            <label class="col-sm-2 col-form-label">Cadd 2</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.cadd2}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">DSM</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.dsm}" disabled>
-                            </div>
-                            <label class="col-sm-2 col-form-label">Str Code</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.strCode}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Coverage</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" th:value="${mdcPerBranchSalesAccount.coverage}" disabled>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </main>
             </div>
         </div>
 
