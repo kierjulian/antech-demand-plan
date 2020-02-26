@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.NetsuiteProductListDeService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/netsuite-product-list-de")
+@RequestMapping("/master/netsuite/config/product-list/de")
 public class NetsuiteProductListDeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteProductListDeController.class);
@@ -57,7 +57,7 @@ public class NetsuiteProductListDeController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-product-list-de/view/" + netsuiteProductListDe.getId();
+        return "redirect:/master/netsuite/config/product-list/de/view/" + netsuiteProductListDe.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class NetsuiteProductListDeController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-product-list-de/view/" + netsuiteProductListDe.getId();
+        return "redirect:/master/netsuite/config/product-list/de/view/" + netsuiteProductListDe.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -93,7 +93,7 @@ public class NetsuiteProductListDeController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-product-list-de";
+        return "redirect:/master/netsuite/config/product-list/de";
     }
 
 }

@@ -13,7 +13,7 @@ import ph.edu.up.antech.service.NetsuiteTransferCatService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/config/netsuite-transfers-cat")
+@RequestMapping("/master/netsuite/config/transfers-cat")
 public class NetsuiteTransfersCatController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NetsuiteTransfersCatController.class);
@@ -57,7 +57,7 @@ public class NetsuiteTransfersCatController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-transfers-cat/view/" + netsuiteTransferCat.getId();
+        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class NetsuiteTransfersCatController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-transfers-cat/view/" + netsuiteTransferCat.getId();
+        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -93,7 +93,7 @@ public class NetsuiteTransfersCatController {
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/config/netsuite-transfers-cat";
+        return "redirect:/master/netsuite/config/transfers-cat";
     }
 
 }
