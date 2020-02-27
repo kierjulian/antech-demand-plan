@@ -19,4 +19,8 @@ public interface ZolMdcPerBranchService {
 
     public List<ZolMdcPerBranch> findZolMdcPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
+    public ZolMdcPerBranch findZolMdcPerBranch(Integer id);
+
+    public ZolMdcPerBranch updateZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch);
+
 }

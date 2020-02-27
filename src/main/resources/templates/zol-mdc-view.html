@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <div th:replace="fragments/template :: header(title = 'View ZOL Per Doors')"></div>
+        <div th:replace="fragments/template :: header(title = 'View ZOL MDC Per Branch')"></div>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -25,147 +25,157 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                View Zol Per Doors
+                                View ZOL MDC Per Branch
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
                                 <form>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" th:href="@{/master/zol-doors}" role="button">
-                                            <i class="fas fa-list">&nbsp; ZOL Per Doors List</i></a>
+                                        <a class="btn btn-primary" th:href="@{/master/zol-mdc}" role="button">
+                                            <i class="fas fa-list">&nbsp; ZOL MDC Per Branch List</i></a>
                                     </div>&nbsp;
                                     <div class="btn-group">
-                                        <a class="btn btn-success" th:href="@{/master/zol-doors/edit/{id}(id=${zolPerDoors.id})}">
+                                        <a class="btn btn-success" th:href="@{/master/zol-mdc/edit/{id}(id=${zolMdcPerBranch.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit</i></a>
                                     </div>&nbsp;
                                     <hr>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Date</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.date}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.date}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Customer Code</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.customerCode}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.customerCode}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Customer Name</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.customerName}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.customerName}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Item Code</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.itemCode}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.itemCode}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Item Name</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.itemName}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.itemName}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Sales Unit</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.salesUnit}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.salesUnit}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Sales Value</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.salesValue}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.salesValue}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Antech Product Description</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.antechProductDescription}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.antechProductDescription}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Antech Price</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.antechPrice}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.antechPrice}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Amount</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.amount}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.amount}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Account</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.account}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.account}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Kam</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.kam}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.kam}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Kam Reference Name</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.kamReferenceName}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.kamRefName}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Stage</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.stage}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.stage}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Amount Converted</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.amountConverted}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.amountConverted}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Type</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.type}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.type}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Location</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.location}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.loc}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">CM</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.cm}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.cm}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">0.00375 Percent</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.less00375Percent}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.lessThan00375}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">V1</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.v1}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.v1}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">0.0853 Percent</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.less0853Percent}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.lessThan0853}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">V2</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.v2}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.v2}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Final Amount</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.finalAmount}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.finalAmount}" disabled>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Amount * 1000</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.amountTimesOneThousand}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.amountTimes1000}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">A</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:value="${zolPerDoors.a}" disabled>
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.a}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">DSM</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.dsm}" disabled>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">CM Ind</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:value="${zolMdcPerBranch.cmInd}" disabled>
                                         </div>
                                     </div>
                                 </form>

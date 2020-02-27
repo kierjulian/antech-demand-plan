@@ -65,4 +65,16 @@ public class ZolMdcPerBranchDAOImpl implements ZolMdcPerBranchDAO {
         return query.getResultList();
     }
 
+    @Override
+    public ZolMdcPerBranch findZolMdcPerBranch(Integer id) {
+        TypedQuery<ZolMdcPerBranch> query = em.createNamedQuery("findZolMdcPerBranchById", ZolMdcPerBranch.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public ZolMdcPerBranch updateZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch) {
+        return em.merge(zolMdcPerBranch);
+    }
+
 }
