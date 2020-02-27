@@ -5,100 +5,102 @@
         <div th:replace="fragments/template :: header(title = 'Demand Plan')"></div>
     </head>
     <body>
-        <div class="container-fluid"><br>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a th:href="@{/}">
-                                <img class="img-fluid" th:src="@{/images/antech-top.png}" />
-                            </a>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: demand-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Demand Plan
+                            </div>
                         </div>
-                        <div class="col-sm-8 text-center font-weight-bold
-                            d-flex align-items-center justify-content-center">
-                            <h1 class="display-4 text-monospace">Demand Plan</h1>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form class="form-inline" method="get" action="#">
+                                    <input type="text" class="form-control" name="productName" placeholder="Product"
+                                           size="8" required>&nbsp;&nbsp;
+                                    <input type="number" class="form-control" name="year" placeholder="Year"
+                                           size="8" required>&nbsp;&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">Search</button>
+                                    </div>&nbsp;
+                                </form>
+                                <br>
+                                <table class="table table-striped table-bordered table-hover table-sm table-responsive">
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Month</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Plan</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>In-Market</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ave In-Market Sales</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Off Take</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Production</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Goods Available</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Loading</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>HiPP Ending Inventory</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>HiPP Days on Hand</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Antech Beginning Inventory</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shipments Received At Antech</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Available for Sale in the Philippines</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Actual / LBE Sales</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ending Inventory Antech</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Days on Hand - Antech</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Beginning Inventory (Trade)</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total Ending Inventory at Trade</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Days on Hand - Trade</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body bg-light">
-                    <form class="form-inline" method="get" action="#">
-                        <input type="text" class="form-control" name="productName" placeholder="Product"
-                               size="8" required>&nbsp;&nbsp;
-                        <input type="number" class="form-control" name="year" placeholder="Year"
-                               size="8" required>&nbsp;&nbsp;
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success">Search</button>
-                        </div>&nbsp;
-                    </form>
-                    <br>
-                    <table class="table table-striped table-bordered table-hover table-sm table-responsive">
-                        <tr>
-                            <td>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Month</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Plan</th>
-                                        </tr>
-                                        <tr>
-                                            <th>In-Market</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Ave In-Market Sales</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Off Take</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Production</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Total Goods Available</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Loading</th>
-                                        </tr>
-                                        <tr>
-                                            <th>HiPP Ending Inventory</th>
-                                        </tr>
-                                        <tr>
-                                            <th>HiPP Days on Hand</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Antech Beginning Inventory</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Shipments Received At Antech</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Total Available for Sale in the Philippines</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Actual / LBE Sales</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Ending Inventory Antech</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Days on Hand - Antech</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Beginning Inventory (Trade)</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Total Ending Inventory at Trade</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Days on Hand - Trade</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                </main>
             </div>
         </div>
 
