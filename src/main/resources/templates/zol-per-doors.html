@@ -14,6 +14,16 @@
                 <div th:replace="fragments/template :: navbar"></div>
                 <main>
                     <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 Zol Per Doors
@@ -22,11 +32,16 @@
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
                                 <form class="form-inline" method="get" th:action="@{/master/zol-doors}">
-                                    <input type="date" class="form-control" name="date" th:value="${searchedDate}">&nbsp;&nbsp;
+                                    <input type="date" class="form-control" name="startDate" th:value="${searchedStartDate}">
+                                    <input type="date" class="form-control" name="endDate" th:value="${searchedEndDate}">&nbsp;&nbsp;
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-search">&nbsp; Search</i></button>
                                     </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/master/zol-doors/add}" role="button">
+                                            <i class="fas fa-plus">&nbsp; Add ZOL Per Doors</i></a>
+                                    </div>
                                 </form>
                                 <br>
                                 <table id="ZOLPerDoorsTable" class="table-sm table-striped table-bordered table-hover table">
@@ -59,11 +74,15 @@
                                             <th scope="col">Amount * 1000</th>
                                             <th scope="col">A</th>
                                             <th scope="col">CM</th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="zolPerDoors, row : ${zolPerDoorsList}">
-                                            <td class="align-middle" th:text="${row.count}"></td>
+                                            <td class="align-middle">
+                                                <a th:text="${row.count}"
+                                                   th:href="@{/master/zol-doors/view/{id}(id=${zolPerDoors.id})}"></a>
+                                            </td>
                                             <td class="align-middle" th:text="${zolPerDoors.date}"></td>
                                             <td class="align-middle" th:text="${zolPerDoors.customerCode}"></td>
                                             <td class="align-middle" th:text="${zolPerDoors.customerName}"></td>
@@ -90,6 +109,30 @@
                                             <td class="align-middle" th:text="${zolPerDoors.amountTimesOneThousand}"></td>
                                             <td class="align-middle" th:text="${zolPerDoors.a}"></td>
                                             <td class="align-middle" th:text="${zolPerDoors.date}"></td>
+                                            <td class="align-middle">
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   th:attr="data-target='#deleteZolPerDoorsModal' + ${zolPerDoors.id}"
+                                                   role="button"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <div th:id="'deleteZolPerDoorsModal' + ${zolPerDoors.id}" class="modal fade" role="dialog"
+                                                 aria-labelledby="deleteZolPerDoorsModalLabel" aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Delete Zol Per Doors</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this entry?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-danger"
+                                                               th:href="@{/master/zol-doors/delete/{id}(id=${zolPerDoors.id})}"
+                                                               role="button">Delete</a>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -28,4 +28,8 @@ public interface ZolPerDoorsDAO {
 
     public List<ZolPerDoors> findZolPerDoorsBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
+    public ZolPerDoors findZolPerDoorsById(Integer id);
+
+    public ZolPerDoors updateZolPerDoors(ZolPerDoors zolPerDoors);
+
 }

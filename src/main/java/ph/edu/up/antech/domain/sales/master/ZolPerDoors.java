@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
@@ -28,7 +29,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "deleteZolPerDoorsByLocalDate",
                 query = "delete from ZolPerDoors o where o.date = :localDate"),
         @NamedQuery(name = "findZolPerDoorsBetweenTwoDate",
-                query = "select o from ZolPerDoors o where o.date between :startDate and :endDate")
+                query = "select o from ZolPerDoors o where o.date between :startDate and :endDate"),
+        @NamedQuery(name = "findZolPerDoorsById",
+                query = "select o from ZolPerDoors o where o.id = :id")
 })
 public class ZolPerDoors implements Serializable {
 
@@ -37,6 +40,7 @@ public class ZolPerDoors implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 

@@ -69,4 +69,14 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
         return zolPerDoorsDAO.findZolPerDoorsBetweenTwoDates(startDate, endDate);
     }
 
+    @Override
+    public ZolPerDoors findZolPerDoorsById(Integer id) {
+        return zolPerDoorsDAO.findZolPerDoorsById(id);
+    }
+
+    @Override
+    public ZolPerDoors updateZolPerDoors(ZolPerDoors zolPerDoors) {
+        return zolPerDoorsDAO.updateZolPerDoors(zolPerDoors);
+    }
+
 }

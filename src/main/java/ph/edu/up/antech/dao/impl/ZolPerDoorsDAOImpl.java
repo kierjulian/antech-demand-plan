@@ -100,4 +100,16 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
         return query.getResultList();
     }
 
+    @Override
+    public ZolPerDoors findZolPerDoorsById(Integer id) {
+        TypedQuery<ZolPerDoors> query = em.createNamedQuery("findZolPerDoorsById", ZolPerDoors.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public ZolPerDoors updateZolPerDoors(ZolPerDoors zolPerDoors) {
+        return em.merge(zolPerDoors);
+    }
+
 }
