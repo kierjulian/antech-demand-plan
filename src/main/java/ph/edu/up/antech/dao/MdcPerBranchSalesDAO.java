@@ -13,4 +13,14 @@ public interface MdcPerBranchSalesDAO {
 
     public List<MdcPerBranchSales> findMdcPerBranchSalesByDate(LocalDate date);
 
+    public MdcPerBranchSales findMdcPerBranchSalesById(Integer id);
+
+    public MdcPerBranchSales saveMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales);
+
+    public MdcPerBranchSales updateMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales);
+
+    public void removeMdcPerBranchSales(Integer id);
+
+    public List<MdcPerBranchSales> findMdcPerBranchSalesBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

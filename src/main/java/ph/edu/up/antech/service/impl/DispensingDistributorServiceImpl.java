@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class DispensingDistributorServiceImpl implements DispensingDistributorService {
 
     @Autowired

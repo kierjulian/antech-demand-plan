@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class MdcPerBranchSalesDAOImpl implements MdcPerBranchSalesDAO {
 
     @PersistenceContext
     private EntityManager em;
-
 
     @Override
     public void saveMdcPerBranchSalesByBatch(List<MdcPerBranchSales> mdcPerBranchSalesList) {
@@ -43,6 +41,41 @@ public class MdcPerBranchSalesDAOImpl implements MdcPerBranchSalesDAO {
         TypedQuery<MdcPerBranchSales> query = em.createNamedQuery("findMdcPerBranchSalesByDate",
                 MdcPerBranchSales.class);
         query.setParameter("date", date);
+        return query.getResultList();
+    }
+
+    @Override
+    public MdcPerBranchSales findMdcPerBranchSalesById(Integer id) {
+        TypedQuery<MdcPerBranchSales> query = em.createNamedQuery("findMdcPerBranchSalesById",
+                MdcPerBranchSales.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public MdcPerBranchSales saveMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales) {
+        em.persist(mdcPerBranchSales);
+        em.flush();
+        return mdcPerBranchSales;
+    }
+
+    @Override
+    public MdcPerBranchSales updateMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales) {
+        return em.merge(mdcPerBranchSales);
+    }
+
+    @Override
+    public void removeMdcPerBranchSales(Integer id) {
+        MdcPerBranchSales mdcPerBranchSales = em.find(MdcPerBranchSales.class, id);
+        em.remove(mdcPerBranchSales);
+    }
+
+    @Override
+    public List<MdcPerBranchSales> findMdcPerBranchSalesBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        TypedQuery<MdcPerBranchSales> query = em.createNamedQuery("findMdcPerBranchSalesBetweenTwoDates",
+                MdcPerBranchSales.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
         return query.getResultList();
     }
 

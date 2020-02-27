@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Add MDC Per Branch Sales')"></div>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: master-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Add MDC Per Branch Sales
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/mdc-branch/create}" th:object="${mdcPerBranchSales}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/mdc-branch}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>
+                                    <hr>
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Date</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" th:field="*{date}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Cono</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{cono}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Rec</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{rec}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Bran</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{bran}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Satbrn</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{satbrn}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Shpn</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{shpcn}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Class</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{clazz}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Custno</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerNo}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Custnm</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerName}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Cadd1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{cadd1}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Cadd2</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{cadd2}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Zipcd</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{zipcd}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Sman</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{sman}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Prin</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{prin}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Subpr</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{subpr}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Ref CD</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{refcd}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Ref CD1</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{refcd1}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Net Quantity</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{netQuantity}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Net Value</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{netValue}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Net Value 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{netValue2}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">SKU</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{sku}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Category</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{category}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Gross Value</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{grossValue}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Ref Dt</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" th:field="*{referenceDate}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Reasn</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{reasn}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Reference No</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{referenceNo}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">X Reference No</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{xreferenceNo}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Prod CD</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{prodcd}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Um</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{um}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Qty Or</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{quantityOr}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Qty SH</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{quantitySh}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">VL Amount</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{vlamt}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Sell Pr</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{sellpr}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">PDS</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{pds}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Expiration Date</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" th:field="*{expirationDate}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Lot No</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{lotNo}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Bar Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{barcode}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">PD Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{pdcode}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Dman</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{dman}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Find SC</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{findsc}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">FR Amount</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{framt}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Sls Year</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{slsyr}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Sls Month</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{slsmo}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Sls Week</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{slswk}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">App Num</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{appNum}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">PO Num</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{poNum}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Guartran</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{guartran}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Net Sales</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{netSales}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Debtor Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{debtorCode}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Str Code</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{strCode}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Coverage</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{coverage}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Reason</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{reason}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Branch Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{branchName}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">NA Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{naName}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">DSM Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{dsmName}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Coordinator</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{coordinator}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Region</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{region}" required>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>

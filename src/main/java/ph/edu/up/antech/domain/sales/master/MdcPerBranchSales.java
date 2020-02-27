@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.util.StringUtils;
 
@@ -17,7 +18,11 @@ import java.time.format.DateTimeFormatter;
         @NamedQuery(name = "findMdcPerBranchSalesByDate",
                 query = "select o from MdcPerBranchSales o where o.date = :date"),
         @NamedQuery(name = "deleteMdcPerBranchSalesByDate",
-                query = "delete from MdcPerBranchSales o where o.date = :date")
+                query = "delete from MdcPerBranchSales o where o.date = :date"),
+        @NamedQuery(name = "findMdcPerBranchSalesById",
+                query = "select o from MdcPerBranchSales o where o.id = :id"),
+        @NamedQuery(name = "findMdcPerBranchSalesBetweenTwoDates",
+                query = "select o from MdcPerBranchSales o where o.date between :startDate and :endDate")
 })
 public class MdcPerBranchSales {
 
@@ -26,6 +31,7 @@ public class MdcPerBranchSales {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 
@@ -101,6 +107,7 @@ public class MdcPerBranchSales {
     @Transient
     private Year year;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "ref_dt")
     private LocalDate referenceDate;
 
@@ -134,6 +141,7 @@ public class MdcPerBranchSales {
     @Column(name = "pds")
     private BigDecimal pds;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "exp_dt")
     private LocalDate expirationDate;
 

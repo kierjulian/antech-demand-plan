@@ -32,4 +32,29 @@ public class MdcPerBranchSalesServiceImpl implements MdcPerBranchSalesService {
         return mdcPerBranchSalesDAO.findMdcPerBranchSalesByDate(date);
     }
 
+    @Override
+    public MdcPerBranchSales findMdcPerBranchSalesById(Integer id) {
+        return mdcPerBranchSalesDAO.findMdcPerBranchSalesById(id);
+    }
+
+    @Override
+    public MdcPerBranchSales saveMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales) {
+        return mdcPerBranchSalesDAO.saveMdcPerBranchSales(mdcPerBranchSales);
+    }
+
+    @Override
+    public MdcPerBranchSales updateMdcPerBranchSales(MdcPerBranchSales mdcPerBranchSales) {
+        return mdcPerBranchSalesDAO.updateMdcPerBranchSales(mdcPerBranchSales);
+    }
+
+    @Override
+    public void removeMdcPerBranchSales(Integer id) {
+        mdcPerBranchSalesDAO.removeMdcPerBranchSales(id);
+    }
+
+    @Override
+    public List<MdcPerBranchSales> findMdcPerBranchSalesBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return mdcPerBranchSalesDAO.findMdcPerBranchSalesBetweenTwoDates(startDate, endDate);
+    }
+
 }
