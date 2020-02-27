@@ -19,4 +19,8 @@ public interface ZolMtPerBranchDAO {
 
     public List<ZolMtPerBranch> findZolMtPerBranchBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
+    public ZolMtPerBranch findZolMtPerBranchById(Integer id);
+
+    public ZolMtPerBranch updateZolMtPerBranch(ZolMtPerBranch zolMtPerBranch);
+
 }

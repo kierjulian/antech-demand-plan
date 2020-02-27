@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesNaConfiguration;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMtAccount;
@@ -19,7 +20,9 @@ import java.time.LocalDate;
         @NamedQuery(name = "deleteZolMtPerBranchByLocalDate",
                 query = "delete from ZolMtPerBranch o where o.date = :localDate"),
         @NamedQuery(name = "findZolMtPerBranchBetweenTwoDates",
-                query = "select o from ZolMtPerBranch o where o.date between :startDate and :endDate")
+                query = "select o from ZolMtPerBranch o where o.date between :startDate and :endDate"),
+        @NamedQuery(name = "findZolMtPerBranchById",
+                query = "select o from ZolMtPerBranch o where o.id = :id")
 })
 public class ZolMtPerBranch {
 
@@ -28,6 +31,7 @@ public class ZolMtPerBranch {
     @Column(name = "id")
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 
@@ -103,6 +107,7 @@ public class ZolMtPerBranch {
     @Column(name = "a")
     private Integer a;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "cm_ind")
     private LocalDate cmInd;
 
