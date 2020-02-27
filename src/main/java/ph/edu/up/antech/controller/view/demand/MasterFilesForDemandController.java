@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view.demand.master;
+package ph.edu.up.antech.controller.view.demand;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

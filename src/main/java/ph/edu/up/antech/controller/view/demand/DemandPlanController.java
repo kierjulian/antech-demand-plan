@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view;
+package ph.edu.up.antech.controller.view.demand;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

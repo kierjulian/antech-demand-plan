@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view.demand.master;
+package ph.edu.up.antech.controller.view.demand;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/demand/master")
-public class HippToMarketSalesUnitsController {
+public class HippToMarketSalesAmountController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/hipp/to-market/units")
+    @GetMapping("/hipp/to-market/amount")
     public String loadHippInMarketSalesUnitsPage(Model model,
                                                  @RequestParam(required = false) String startDate,
                                                  @RequestParam(required = false) String endDate) {
@@ -40,7 +40,7 @@ public class HippToMarketSalesUnitsController {
         model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("products", productList);
         model.addAttribute("channels", ChannelUtils.getChannels());
-        return "hipp-to-market-sales-units";
+        return "hipp-to-market-sales-amount";
     }
 
 }

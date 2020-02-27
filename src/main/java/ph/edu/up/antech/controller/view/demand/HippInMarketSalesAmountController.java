@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view.demand.master;
+package ph.edu.up.antech.controller.view.demand;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/demand/master")
-public class HippInMarketSalesUnitsController {
+public class HippInMarketSalesAmountController {
 
     @Autowired
     private ProductService productService;
@@ -40,10 +40,10 @@ public class HippInMarketSalesUnitsController {
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
 
-    @GetMapping("/hipp/in-market/units")
-    public String loadHippInMarketSalesUnitsPage(Model model,
-                                                 @RequestParam(required = false) String startDate,
-                                                 @RequestParam(required = false) String endDate) {
+    @GetMapping("/hipp/in-market/amount")
+    public String loadHippInMarketSalesAmountPage(Model model,
+                                                  @RequestParam(required = false) String startDate,
+                                                  @RequestParam(required = false) String endDate) {
         YearMonth yearMonthStart = !StringUtils.isNullOrEmpty(startDate)
                 ? YearMonth.parse(startDate) : YearMonth.of(Year.now().getValue(), 1);
         YearMonth yearMonthEnd = !StringUtils.isNullOrEmpty(endDate)
@@ -54,7 +54,7 @@ public class HippInMarketSalesUnitsController {
         Collections.sort(productList);
 
         LocalDate start = DateUtils.generateStartLocalDateFromYearMonth(yearMonthStart);
-        LocalDate end = DateUtils.generateStartLocalDateFromYearMonth(yearMonthEnd);
+        LocalDate end = DateUtils.generateEndLocalDateFromYearMonth(yearMonthEnd);
 
         List<DispensingDistributor> dispensingDistributorList =
                 dispensingDistributorService.findDispensingDistributorBetweenTwoDates(start, end);
@@ -83,7 +83,8 @@ public class HippInMarketSalesUnitsController {
         model.addAttribute("zolMdcPerBranchCalculator", zolMdcPerBranchCalculator);
         model.addAttribute("zolMtPerBranchCalculator", zolMtPerBranchCalculator);
         model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
-        return "hipp-in-market-sales-units";
+
+        return "hipp-in-market-sales-amount";
     }
 
     private DispensingDistributorCalculator generateDispensingDistributorCalculator(
