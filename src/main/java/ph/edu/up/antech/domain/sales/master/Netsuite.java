@@ -1,5 +1,6 @@
 package ph.edu.up.antech.domain.sales.master;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import ph.edu.up.antech.domain.sales.master.converter.*;
 import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
 
@@ -14,7 +15,11 @@ import java.time.LocalDate;
         @NamedQuery(name = "findNetsuiteByItemDate",
                 query = "select o from Netsuite o where o.itemDate = :itemDate"),
         @NamedQuery(name = "removeNetsuiteByDate",
-                query = "delete from Netsuite o where o.itemDate = :itemDate")
+                query = "delete from Netsuite o where o.itemDate = :itemDate"),
+        @NamedQuery(name = "findNetsuiteBetweenTwoDates",
+                query = "select o from Netsuite o where o.itemDate between :startDate and :endDate"),
+        @NamedQuery(name = "findNetsuiteById",
+                query = "select o from Netsuite o where o.id = :id")
 })
 public class Netsuite implements Serializable {
 
@@ -24,6 +29,7 @@ public class Netsuite implements Serializable {
     private Integer id;
 
     @Column(name = "item_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate itemDate;
 
     @Column(name = "type")
@@ -35,6 +41,7 @@ public class Netsuite implements Serializable {
     @Column(name = "category")
     private String category;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 

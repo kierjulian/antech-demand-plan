@@ -17,4 +17,10 @@ public interface NetsuiteService {
 
     public void saveNetsuiteByBatch(List<Netsuite> netsuiteList);
 
+    public Netsuite findNetsuiteById(Integer id);
+
+    public Netsuite updateNetsuite(Netsuite netsuite);
+
+    public List<Netsuite> findNetsuiteBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

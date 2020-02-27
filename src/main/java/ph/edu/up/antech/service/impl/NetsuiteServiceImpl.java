@@ -42,4 +42,19 @@ public class NetsuiteServiceImpl implements NetsuiteService {
         netsuiteDAO.saveNetsuiteByBatch(netsuiteList);
     }
 
+    @Override
+    public Netsuite findNetsuiteById(Integer id) {
+        return netsuiteDAO.findNetsuiteById(id);
+    }
+
+    @Override
+    public Netsuite updateNetsuite(Netsuite netsuite) {
+        return netsuiteDAO.updateNetsuite(netsuite);
+    }
+
+    @Override
+    public List<Netsuite> findNetsuiteBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return netsuiteDAO.findNetsuiteBetweenTwoDates(startDate, endDate);
+    }
+
 }

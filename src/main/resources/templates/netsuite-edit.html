@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Edit Netsuite')"></div>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: master-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Edit Netsuite
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/netsuite/update}" th:object="${netsuite}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/netsuite/view/{id}(id=${netsuite.id})}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>&nbsp;
+                                    <hr>
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Item Date</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" th:field="*{itemDate}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Type</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{type}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customer}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Category</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{category}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Date</label>
+                                        <div class="col-sm-4">
+                                            <input type="date" class="form-control" th:field="*{date}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Num</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{num}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Created From</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{createdFrom}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Description</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{description}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Quantity</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{quantity}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Sales Price</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{salesPrice}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Revenue</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{revenue}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Price Level</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{priceLevel}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Credited To Territorial Manager</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{creditedToTerritorialManager}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Sales Rep</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{salesRep}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Acquisition CSR Credited To</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{acquisitionCsrCreditedTo}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Retention CSR Credited To</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{retentionCsrCreditedTo}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Order Taken By</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{orderTakenBy}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Awareness</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{awareness}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer Since</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerSince}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Zone</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{zone}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer Job Zone</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerJobZone}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Pickup</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{pickup}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Billing Address Line 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{billingAddressLine1}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Billing Address Line 2</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{billingAddressLine2}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer Job Hospital 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{customerJobHospital1}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">X</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{x}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">A</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{a}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Stage</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{stage}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Formula</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{formula}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Brand</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{brand}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Transfers Cat</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{transfersCat}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Transfers Cat Recode</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{transfersCatRecode}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">In PCS</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{inPcs}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Conv Units</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" th:field="*{convUnits}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Desc</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{desc}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Kam Reference Name 1</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{kamRefName1}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Region</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{region}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Revenue Converted</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" step=".01" class="form-control" th:field="*{revenueConverted}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">NA Left</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{naLeft}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Trim</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{trim}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Kam Reference Name 2</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{kamRefName2}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Mgmt</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{mgmt}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">CSR Tagging</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{csrTagging}" required>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">ASM</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{asm}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Product Category</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{productCategory}" required>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>
