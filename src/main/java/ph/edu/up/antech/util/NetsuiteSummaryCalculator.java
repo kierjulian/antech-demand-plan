@@ -23,6 +23,7 @@ public class NetsuiteSummaryCalculator {
 
     public Integer calculateTotalAmount() {
         return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
@@ -48,6 +49,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }

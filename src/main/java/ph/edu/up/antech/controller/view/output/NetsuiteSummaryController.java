@@ -26,10 +26,15 @@ public class NetsuiteSummaryController {
     private NetsuiteService netsuiteService;
 
     @GetMapping("")
-    public String loadNetsuiteSummaryPage(Model model, @RequestParam(required = false) String date) {
-        LocalDate localDate = !StringUtils.isNullOrEmpty(date)
-                ? LocalDate.parse(date) : LocalDate.now();
-        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteByItemDate(localDate);
+    public String loadNetsuiteSummaryPage(Model model,
+                                          @RequestParam(required = false) String startDate,
+                                          @RequestParam(required = false) String endDate) {
+        LocalDate start = !StringUtils.isNullOrEmpty(startDate)
+                ? LocalDate.parse(startDate) : LocalDate.now();
+        LocalDate end = !StringUtils.isNullOrEmpty(endDate)
+                ? LocalDate.parse(endDate) : LocalDate.now();
+        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
+
         List<String> productList = generateListOfUniqueProductBrandFromNetsuiteList(netsuiteList);
         List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         List<String> transfersCatRecodeList = generateListOfUniqueTransfersCatRecordFromNetsuiteList(netsuiteList);
@@ -37,7 +42,8 @@ public class NetsuiteSummaryController {
                 generateNetsuiteCombination(netsuiteList, kamReferenceNameList, transfersCatRecodeList);
         NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList);
 
-        model.addAttribute("searchedDate", localDate);
+        model.addAttribute("searchedStartDate", start);
+        model.addAttribute("searchedEndDate", end);
         model.addAttribute("netsuiteList", netsuiteList);
         model.addAttribute("productList", productList);
         model.addAttribute("transfersCatRecodeList", transfersCatRecodeList);
@@ -71,21 +77,23 @@ public class NetsuiteSummaryController {
     }
 
     private List<NetsuiteCombination> generateNetsuiteCombination(
-            List<Netsuite> netsuiteList, List<String> kamReferenceNameList, List<String> transfersCatRecordList) {
+            List<Netsuite> netsuiteList, List<String> kamReferenceNameList, List<String> transfersCatRecodeList) {
         List<NetsuiteCombination> netsuiteCombinationList = new ArrayList<>();
-        for (String kamReferenceName : kamReferenceNameList) {
-            for (String transferCatRecode : transfersCatRecordList) {
+
+        kamReferenceNameList.forEach(kamReferenceName -> {
+            transfersCatRecodeList.forEach(transfersCatRecode -> {
                 List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
                         .filter(netsuite -> netsuite.getKamRefName1() != null)
                         .filter(netsuite -> netsuite.getBrand() != null)
+                        .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
                         .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
-                        .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transferCatRecode))
+                        .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transfersCatRecode))
                         .collect(Collectors.toList());
                 if (!netsuiteFilteredList.isEmpty()) {
                     netsuiteCombinationList.add(new NetsuiteCombination(netsuiteFilteredList));
                 }
-            }
-        }
+            });
+        });
 
         return netsuiteCombinationList;
     }
