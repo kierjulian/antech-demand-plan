@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Edit ZOL Per Doors Per Acct')"></div>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: master-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-header">
+                                Edit ZOL Per Doors Per Acct
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form th:action="@{/master/zol-doors/config/accounts/update}" th:object="${zolPerDoorsPerAcct}" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/master/zol-doors/config/accounts/view/{id}(id=${zolPerDoorsPerAcct.accountId})}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>&nbsp;
+                                    <hr>
+                                    <input type="hidden" th:field="*{accountId}">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Location</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{location}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">ID</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{id}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Sap</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{sap}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">ZOL</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{zol}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Branch</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{branch}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Account</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{account}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Kam</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{kam}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">TM</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{tm}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Share</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{share}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Kam Reference Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{kamReferenceName}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Location 2</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{location2}">
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Na Name</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" th:field="*{naName}">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>

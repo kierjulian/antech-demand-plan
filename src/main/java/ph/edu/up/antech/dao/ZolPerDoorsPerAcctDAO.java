@@ -12,4 +12,10 @@ public interface ZolPerDoorsPerAcctDAO {
 
     public List<ZolPerDoorsPerAcct> findAllZolPerDoorsPerAcct();
 
+    public ZolPerDoorsPerAcct findZolPerDoorsPerAcctById(Integer id);
+
+    public ZolPerDoorsPerAcct updateZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct);
+
+    public void removeZolPerDoorsPerAcct(Integer id);
+
 }

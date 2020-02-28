@@ -43,4 +43,23 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
         return query.getResultList();
     }
 
+    @Override
+    public ZolPerDoorsPerAcct findZolPerDoorsPerAcctById(Integer id) {
+        TypedQuery<ZolPerDoorsPerAcct> query = em.createNamedQuery("findZolPerDoorsPerAcctById",
+                ZolPerDoorsPerAcct.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public ZolPerDoorsPerAcct updateZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
+        return em.merge(zolPerDoorsPerAcct);
+    }
+
+    @Override
+    public void removeZolPerDoorsPerAcct(Integer id) {
+        ZolPerDoorsPerAcct zolPerDoorsPerAcct = em.find(ZolPerDoorsPerAcct.class, id);
+        em.remove(zolPerDoorsPerAcct);
+    }
+
 }

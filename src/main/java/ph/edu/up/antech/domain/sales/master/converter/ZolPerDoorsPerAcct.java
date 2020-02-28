@@ -11,7 +11,9 @@ import java.io.Serializable;
         @NamedQuery(name = "findZolPerDoorsPerAcctByZol",
                 query = "select o from ZolPerDoorsPerAcct o where o.zol = :zol"),
         @NamedQuery(name = "findAllZolPerDoorsPerAcct",
-                query = "select o from ZolPerDoorsPerAcct o")
+                query = "select o from ZolPerDoorsPerAcct o"),
+        @NamedQuery(name = "findZolPerDoorsPerAcctById",
+                query = "select o from ZolPerDoorsPerAcct o where o.accountId = :id")
 })
 public class ZolPerDoorsPerAcct implements Serializable {
 
