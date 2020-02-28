@@ -18,7 +18,7 @@ public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService 
 
     @Override
     public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
-        return zolPerDoorsPerAcctDAO.createZolPerDoorsPerAcct(zolPerDoorsPerAcct);
+        return zolPerDoorsPerAcctDAO.saveZolPerDoorsPerAcct(zolPerDoorsPerAcct);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class ZolPerDoorsPerAcctServiceImpl implements ZolPerDoorsPerAcctService 
     }
 
     @Override
-    public List<ZolPerDoorsPerAcct> findAllZolPerDoors() {
-        return zolPerDoorsPerAcctDAO.findAllZolPerDoors();
+    public List<ZolPerDoorsPerAcct> findAllZolPerDoorsPerAcct() {
+        return zolPerDoorsPerAcctDAO.findAllZolPerDoorsPerAcct();
     }
 
 }

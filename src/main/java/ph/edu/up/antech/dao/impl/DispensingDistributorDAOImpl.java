@@ -19,7 +19,7 @@ public class DispensingDistributorDAOImpl implements DispensingDistributorDAO {
     private EntityManager em;
 
     @Override
-    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor) {
+    public DispensingDistributor saveDispensingDistributor(DispensingDistributor dispensingDistributor) {
         em.persist(dispensingDistributor);
         em.flush();
         return dispensingDistributor;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ZolMdcAccountService {
 
-    public ZolMdcAccount createZolMdcAccount(ZolMdcAccount zolMdcAccount);
+    public ZolMdcAccount saveZolMdcAccount(ZolMdcAccount zolMdcAccount);
 
     public ZolMdcAccount findZolMdcAccountByShpcn(String shpcn);
 

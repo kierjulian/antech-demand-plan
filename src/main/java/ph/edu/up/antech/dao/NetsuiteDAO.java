@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NetsuiteDAO {
 
-    public Netsuite createNetsuite(Netsuite netsuite);
+    public Netsuite saveNetsuite(Netsuite netsuite);
 
     public List<Netsuite> findNetsuiteByItemDate(LocalDate localDate);
 

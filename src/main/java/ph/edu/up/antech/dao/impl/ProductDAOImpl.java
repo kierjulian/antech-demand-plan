@@ -31,7 +31,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public Product createProduct(Product product) {
+	public Product saveProduct(Product product) {
 		em.persist(product);
 		em.flush();
 		return product;
@@ -43,7 +43,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public void deleteProduct(Integer id) {
+	public void removeProduct(Integer id) {
 		Product product = em.find(Product.class, id);
 		em.remove(product);
 	}

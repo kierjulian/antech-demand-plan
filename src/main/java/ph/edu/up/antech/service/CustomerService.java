@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    public Customer createCustomer(Customer customer);
+    public Customer saveCustomer(Customer customer);
 
     public Customer findCustomerByCustomerCodeAndMaterialCode(String customerCode, String materialCode);
 
@@ -22,6 +22,6 @@ public interface CustomerService {
 
     public Customer updateCustomer(Customer customer);
 
-    public void deleteCustomer(Integer id);
+    public void removeCustomer(Integer id);
 
 }

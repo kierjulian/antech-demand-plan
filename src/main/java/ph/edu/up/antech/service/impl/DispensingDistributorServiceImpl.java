@@ -18,8 +18,8 @@ public class DispensingDistributorServiceImpl implements DispensingDistributorSe
     private DispensingDistributorDAO dispensingDistributorDAO;
 
     @Override
-    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor) {
-        return dispensingDistributorDAO.createDispensingDistributor(dispensingDistributor);
+    public DispensingDistributor saveDispensingDistributor(DispensingDistributor dispensingDistributor) {
+        return dispensingDistributorDAO.saveDispensingDistributor(dispensingDistributor);
     }
 
     @Override

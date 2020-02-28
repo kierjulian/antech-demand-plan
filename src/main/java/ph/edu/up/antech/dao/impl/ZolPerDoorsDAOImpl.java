@@ -18,7 +18,7 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
     private EntityManager em;
 
     @Override
-    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors) {
+    public ZolPerDoors saveZolPerDoors(ZolPerDoors zolPerDoors) {
         em.persist(zolPerDoors);
         em.flush();
         return zolPerDoors;

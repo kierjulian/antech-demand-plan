@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NetsuiteBbjTaggingDAO {
 
-    public NetsuiteBbjTagging createNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging);
+    public NetsuiteBbjTagging saveNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging);
 
     public List<NetsuiteBbjTagging> findAllNetsuiteBbjTagging();
 

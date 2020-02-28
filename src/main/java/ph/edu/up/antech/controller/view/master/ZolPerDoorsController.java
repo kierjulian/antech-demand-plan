@@ -54,7 +54,7 @@ public class ZolPerDoorsController {
                                     @ModelAttribute(value = "zolPerDoors") ZolPerDoors zolPerDoors) {
         try {
             zolPerDoorsService.updateZolPerDoors(zolPerDoors);
-            redirectAttributes.addFlashAttribute("successMessage", "Zol Per Doors was successfully updated.");
+            redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
@@ -74,7 +74,7 @@ public class ZolPerDoorsController {
     public String createZolPerDoors(RedirectAttributes redirectAttributes,
                                     @ModelAttribute(value = "zolPerDoors") ZolPerDoors zolPerDoors) {
         try {
-            zolPerDoors = zolPerDoorsService.createZolPerDoors(zolPerDoors);
+            zolPerDoors = zolPerDoorsService.saveZolPerDoors(zolPerDoors);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

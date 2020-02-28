@@ -59,7 +59,7 @@ public class CustomerItemSalesPerPeriodToZolPerDoorsTest {
 
             List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
                     .findAllZolPerDoorsGeneralInformation();
-            List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
+            List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoorsPerAcct();
             List<Customer> customerList = customerService.findAllCustomers();
 
             customerItemSalesPerPeriodList.forEach(customerItemSalesPerPeriod -> {

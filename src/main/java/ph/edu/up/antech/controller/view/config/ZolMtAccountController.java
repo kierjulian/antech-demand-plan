@@ -66,7 +66,7 @@ public class ZolMtAccountController {
     public String createZolMdcAccount(RedirectAttributes redirectAttributes,
                                       @ModelAttribute(value = "zolMtAccount") ZolMtAccount zolMtAccount) {
         try {
-            zolMtAccount = zolMtAccountService.createZolMtAccount(zolMtAccount);
+            zolMtAccount = zolMtAccountService.saveZolMtAccount(zolMtAccount);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Account was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

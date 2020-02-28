@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product createProduct(Product product) {
-		return productDAO.createProduct(product);
+	public Product saveProduct(Product product) {
+		return productDAO.saveProduct(product);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void deleteProduct(Integer id) {
-		productDAO.deleteProduct(id);
+	public void removeProduct(Integer id) {
+		productDAO.removeProduct(id);
 	}
 
 	@Override

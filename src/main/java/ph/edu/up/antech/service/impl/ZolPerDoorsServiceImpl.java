@@ -18,8 +18,8 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
     private ZolPerDoorsDAO zolPerDoorsDAO;
 
     @Override
-    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors) {
-        return zolPerDoorsDAO.createZolPerDoors(zolPerDoors);
+    public ZolPerDoors saveZolPerDoors(ZolPerDoors zolPerDoors) {
+        return zolPerDoorsDAO.saveZolPerDoors(zolPerDoors);
     }
 
     @Override

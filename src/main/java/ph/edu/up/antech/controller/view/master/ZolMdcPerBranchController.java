@@ -54,7 +54,7 @@ public class ZolMdcPerBranchController {
                                         @ModelAttribute(value = "zolMdcPerBranch") ZolMdcPerBranch zolMdcPerBranch) {
         try {
             zolMdcPerBranchService.updateZolMdcPerBranch(zolMdcPerBranch);
-            redirectAttributes.addFlashAttribute("successMessage", "Zol MDC Per Branch was successfully updated.");
+            redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Per Branch was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
@@ -74,8 +74,8 @@ public class ZolMdcPerBranchController {
     public String createZolMdcPerBranch(RedirectAttributes redirectAttributes,
                                         @ModelAttribute(value = "zolMdcPerBranch") ZolMdcPerBranch zolMdcPerBranch) {
         try {
-            zolMdcPerBranch = zolMdcPerBranchService.createZolMdcPerBranch(zolMdcPerBranch);
-            redirectAttributes.addFlashAttribute("successMessage", "ZOL Mdc Per Branch was successfully created.");
+            zolMdcPerBranch = zolMdcPerBranchService.saveZolMdcPerBranch(zolMdcPerBranch);
+            redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Per Branch was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());

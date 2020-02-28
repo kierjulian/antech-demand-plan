@@ -59,7 +59,7 @@ public class ZolPerDoorsGeneralInformationSetup {
 
                 System.out.println();
 
-                zolPerDoorsGeneralInformationService.createZolPerDoorsGeneralInformation(
+                zolPerDoorsGeneralInformationService.saveZolPerDoorsGeneralInformation(
                         zolPerDoorsGeneralInformation);
             }
         } catch (IOException e) {

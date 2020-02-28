@@ -43,7 +43,7 @@ public class ZolMdcAccountsSetup {
                     .build();
             List<ZolMdcAccount> zolMdcAccountList = csvToBean.parse();
             zolMdcAccountList.forEach(zolMdcAccount -> {
-                zolMdcAccountService.createZolMdcAccount(zolMdcAccount);
+                zolMdcAccountService.saveZolMdcAccount(zolMdcAccount);
                 System.out.println(zolMdcAccount.getShpcn());
                 System.out.println(zolMdcAccount.getCustomerName());
                 System.out.println(zolMdcAccount.getBranchName());

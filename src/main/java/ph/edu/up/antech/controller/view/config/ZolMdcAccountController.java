@@ -66,7 +66,7 @@ public class ZolMdcAccountController {
     public String createZolMdcAccount(RedirectAttributes redirectAttributes,
                                       @ModelAttribute(value = "zolMdcAccount") ZolMdcAccount zolMdcAccount) {
         try {
-            zolMdcAccount = zolMdcAccountService.createZolMdcAccount(zolMdcAccount);
+            zolMdcAccount = zolMdcAccountService.saveZolMdcAccount(zolMdcAccount);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Account was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

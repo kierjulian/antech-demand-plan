@@ -17,7 +17,7 @@ public class NetsuiteBbjTaggingDAOImpl implements NetsuiteBbjTaggingDAO {
     private EntityManager em;
 
     @Override
-    public NetsuiteBbjTagging createNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
+    public NetsuiteBbjTagging saveNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
         em.persist(netsuiteBbjTagging);
         em.flush();
         return netsuiteBbjTagging;

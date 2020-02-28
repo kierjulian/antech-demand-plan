@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ZolMdcPerBranchService {
 
-    public ZolMdcPerBranch createZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch);
+    public ZolMdcPerBranch saveZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch);
 
     public List<ZolMdcPerBranch> findZolMdcPerBranchByLocalDate(LocalDate localDate);
 

@@ -49,7 +49,7 @@ public class NetsuiteBbjTaggingSetup {
                 System.out.println("New Tagging of CSR: " + netsuiteBjjTagging.getNewTaggingOfCsr());
                 System.out.println();
 
-                netsuiteBbjTaggingService.createNetsuiteBjjTagging(netsuiteBjjTagging);
+                netsuiteBbjTaggingService.saveNetsuiteBbjTagging(netsuiteBjjTagging);
             });
         } catch (IOException e) {
             e.printStackTrace();

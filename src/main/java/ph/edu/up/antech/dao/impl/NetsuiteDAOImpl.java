@@ -18,7 +18,7 @@ public class NetsuiteDAOImpl implements NetsuiteDAO {
     private EntityManager em;
 
     @Override
-    public Netsuite createNetsuite(Netsuite netsuite) {
+    public Netsuite saveNetsuite(Netsuite netsuite) {
         em.persist(netsuite);
         em.merge(netsuite);
         return netsuite;

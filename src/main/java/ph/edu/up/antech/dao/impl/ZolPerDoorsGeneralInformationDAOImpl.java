@@ -16,7 +16,7 @@ public class ZolPerDoorsGeneralInformationDAOImpl implements ZolPerDoorsGeneralI
     private EntityManager em;
 
     @Override
-    public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+    public ZolPerDoorsGeneralInformation saveZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
         em.persist(zolPerDoorsGeneralInformation);
         em.flush();
         return zolPerDoorsGeneralInformation;

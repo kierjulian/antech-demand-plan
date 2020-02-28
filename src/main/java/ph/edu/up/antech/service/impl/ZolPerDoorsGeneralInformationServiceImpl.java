@@ -17,8 +17,8 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
     private ZolPerDoorsGeneralInformationDAO zolPerDoorsGeneralInformationDAO;
 
     @Override
-    public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
-        return zolPerDoorsGeneralInformationDAO.createZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
+    public ZolPerDoorsGeneralInformation saveZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
+        return zolPerDoorsGeneralInformationDAO.saveZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
     }
 
     @Override

@@ -77,7 +77,7 @@ public class DispensingDistributorController {
     public String createDispensingDistributor(RedirectAttributes redirectAttributes,
                                               @ModelAttribute(value = "dispensingDistributor") DispensingDistributor dispensingDistributor) {
         try {
-            dispensingDistributor = dispensingDistributorService.createDispensingDistributor(dispensingDistributor);
+            dispensingDistributor = dispensingDistributorService.saveDispensingDistributor(dispensingDistributor);
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

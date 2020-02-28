@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DispensingDistributorService {
 
-    public DispensingDistributor createDispensingDistributor(DispensingDistributor dispensingDistributor);
+    public DispensingDistributor saveDispensingDistributor(DispensingDistributor dispensingDistributor);
 
     public List<DispensingDistributor> findDispensingDistributorByDate(LocalDate localDate);
 

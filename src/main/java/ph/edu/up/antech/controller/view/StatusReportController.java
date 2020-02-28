@@ -156,7 +156,7 @@ public class StatusReportController {
             List<CustomerItemSalesPerPeriod> customerItemSalesPerPeriodList, LocalDate date) {
         List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList = zolPerDoorsGeneralInformationService
                 .findAllZolPerDoorsGeneralInformation();
-        List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoors();
+        List<ZolPerDoorsPerAcct> zolPerDoorsPerAcctList = zolPerDoorsPerAcctService.findAllZolPerDoorsPerAcct();
         List<Customer> customerList = customerService.findAllCustomers();
 
         List<ZolPerDoors> zolPerDoorsList = new ArrayList<>();

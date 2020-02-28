@@ -103,7 +103,7 @@ public class ProductController {
             if (imageBytes != null) {
                 product.setCertificateFile(imageBytes);
             }
-            product = productService.createProduct(product);
+            product = productService.saveProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
@@ -116,7 +116,7 @@ public class ProductController {
     @GetMapping("/delete/{id}")
     public String deleteProduct(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
-            productService.deleteProduct(id);
+            productService.removeProduct(id);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred: " + e.getMessage());

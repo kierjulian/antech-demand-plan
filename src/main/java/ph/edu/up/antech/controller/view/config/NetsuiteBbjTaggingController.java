@@ -70,7 +70,7 @@ public class NetsuiteBbjTaggingController {
                                            @ModelAttribute(value = "netsuiteBbjTagging")
                                                    NetsuiteBbjTagging netsuiteBbjTagging) {
         try {
-            netsuiteBbjTagging = netsuiteBbjTaggingService.createNetsuiteBjjTagging(netsuiteBbjTagging);
+            netsuiteBbjTagging = netsuiteBbjTaggingService.saveNetsuiteBbjTagging(netsuiteBbjTagging);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

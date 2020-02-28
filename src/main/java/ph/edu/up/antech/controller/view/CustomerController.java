@@ -71,7 +71,7 @@ public class CustomerController {
     public String createCustomer(RedirectAttributes redirectAttributes,
                                  @ModelAttribute(value = "customer") Customer customer) {
         try {
-            customer = customerService.createCustomer(customer);
+            customer = customerService.saveCustomer(customer);
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
@@ -84,7 +84,7 @@ public class CustomerController {
     @GetMapping("/delete/{id}")
     public String deleteCustomer(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
-            customerService.deleteCustomer(id);
+            customerService.removeCustomer(id);
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

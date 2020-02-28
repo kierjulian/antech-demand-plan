@@ -17,8 +17,8 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
     private ZolMdcAccountDAO zolMdcAccountDAO;
 
     @Override
-    public ZolMdcAccount createZolMdcAccount(ZolMdcAccount zolMdcAccount) {
-        return zolMdcAccountDAO.createZolMdcAccount(zolMdcAccount);
+    public ZolMdcAccount saveZolMdcAccount(ZolMdcAccount zolMdcAccount) {
+        return zolMdcAccountDAO.saveZolMdcAccount(zolMdcAccount);
     }
 
     @Override

@@ -18,8 +18,8 @@ public class ZolMdcPerBranchServiceImpl implements ZolMdcPerBranchService {
     private ZolMdcPerBranchDAO zolMdcPerBranchDAO;
 
     @Override
-    public ZolMdcPerBranch createZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch) {
-        return zolMdcPerBranchDAO.createZolMdcPerBranch(zolMdcPerBranch);
+    public ZolMdcPerBranch saveZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch) {
+        return zolMdcPerBranchDAO.saveZolMdcPerBranch(zolMdcPerBranch);
     }
 
     @Override

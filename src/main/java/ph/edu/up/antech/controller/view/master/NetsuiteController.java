@@ -74,7 +74,7 @@ public class NetsuiteController {
     public String createNetsuite(RedirectAttributes redirectAttributes,
                                  @ModelAttribute(value = "netsuite") Netsuite netsuite) {
         try {
-            netsuite = netsuiteService.createNetsuite(netsuite);
+            netsuite = netsuiteService.saveNetsuite(netsuite);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

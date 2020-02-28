@@ -17,8 +17,8 @@ public class NetsuiteBbjTaggingServiceImpl implements NetsuiteBbjTaggingService 
     private NetsuiteBbjTaggingDAO netsuiteBbjTaggingDAO;
 
     @Override
-    public NetsuiteBbjTagging createNetsuiteBjjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
-        return netsuiteBbjTaggingDAO.createNetsuiteBbjTagging(netsuiteBbjTagging);
+    public NetsuiteBbjTagging saveNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
+        return netsuiteBbjTaggingDAO.saveNetsuiteBbjTagging(netsuiteBbjTagging);
     }
 
     @Override

@@ -10,11 +10,11 @@ public interface ProductDAO {
 
 	public Product findProductById(Integer id);
 
-	public Product createProduct(Product product);
+	public Product saveProduct(Product product);
 
 	public Product updateProduct(Product product);
 
-	public void deleteProduct(Integer id);
+	public void removeProduct(Integer id);
 
 	public List<Product> findProductsByCode(String code);
 

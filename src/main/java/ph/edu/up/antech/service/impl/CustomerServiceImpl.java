@@ -17,8 +17,8 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDAO customerDAO;
 
     @Override
-    public Customer createCustomer(Customer customer) {
-        return customerDAO.createCustomer(customer);
+    public Customer saveCustomer(Customer customer) {
+        return customerDAO.saveCustomer(customer);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
-        customerDAO.deleteCustomer(id);
+    public void removeCustomer(Integer id) {
+        customerDAO.removeCustomer(id);
     }
 
 }

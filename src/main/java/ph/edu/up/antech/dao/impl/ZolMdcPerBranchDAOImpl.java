@@ -18,7 +18,7 @@ public class ZolMdcPerBranchDAOImpl implements ZolMdcPerBranchDAO {
     private EntityManager em;
 
     @Override
-    public ZolMdcPerBranch createZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch) {
+    public ZolMdcPerBranch saveZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch) {
         em.persist(zolMdcPerBranch);
         em.merge(zolMdcPerBranch);
         return zolMdcPerBranch;

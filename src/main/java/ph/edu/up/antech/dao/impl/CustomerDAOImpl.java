@@ -16,7 +16,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     private EntityManager em;
 
     @Override
-    public Customer createCustomer(Customer customer) {
+    public Customer saveCustomer(Customer customer) {
         em.persist(customer);
         em.flush();
         return customer;
@@ -91,7 +91,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
+    public void removeCustomer(Integer id) {
         Customer customer = em.find(Customer.class, id);
         em.remove(customer);
     }

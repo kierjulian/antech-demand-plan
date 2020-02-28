@@ -18,7 +18,7 @@ public class ZolMtAccountDAOImpl implements ZolMtAccountDAO {
     private EntityManager em;
 
     @Override
-    public ZolMtAccount createZolMdcAccount(ZolMtAccount zolMtAccount) {
+    public ZolMtAccount saveZolMtAccount(ZolMtAccount zolMtAccount) {
         em.persist(zolMtAccount);
         em.merge(zolMtAccount);
         return zolMtAccount;

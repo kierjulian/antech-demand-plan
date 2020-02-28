@@ -10,6 +10,6 @@ public interface ZolPerDoorsPerAcctService {
 
     public ZolPerDoorsPerAcct findZolPerDoorsPerAcctByZol(String zol);
 
-    public List<ZolPerDoorsPerAcct> findAllZolPerDoors();
+    public List<ZolPerDoorsPerAcct> findAllZolPerDoorsPerAcct();
 
 }

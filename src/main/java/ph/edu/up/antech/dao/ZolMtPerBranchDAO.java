@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ZolMtPerBranchDAO {
 
-    public ZolMtPerBranch createZolMtPerBranch(ZolMtPerBranch zolMtPerBranch);
+    public ZolMtPerBranch saveZolMtPerBranch(ZolMtPerBranch zolMtPerBranch);
 
     public List<ZolMtPerBranch> findZolMtPerBranchByLocalDate(LocalDate localDate);
 

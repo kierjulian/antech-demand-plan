@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ZolPerDoorsGeneralInformationDAO {
 
-    public ZolPerDoorsGeneralInformation createZolPerDoorsGeneralInformation(
+    public ZolPerDoorsGeneralInformation saveZolPerDoorsGeneralInformation(
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
 
     public ZolPerDoorsGeneralInformation findZolPerDoorsGeneralInformationByItemCode(String itemCode);

@@ -18,8 +18,8 @@ public class NetsuiteServiceImpl implements NetsuiteService {
     private NetsuiteDAO netsuiteDAO;
 
     @Override
-    public Netsuite createNetsuite(Netsuite netsuite) {
-        return netsuiteDAO.createNetsuite(netsuite);
+    public Netsuite saveNetsuite(Netsuite netsuite) {
+        return netsuiteDAO.saveNetsuite(netsuite);
     }
 
     @Override

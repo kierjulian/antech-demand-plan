@@ -16,6 +16,9 @@ import java.util.List;
 
 public class CsvToObjectConverter {
 
+    private CsvToObjectConverter() {
+    }
+
     public static List<CustomerItemSalesPerPeriod> convertCsvToListOfCustomerItemSalesPerPeriod(
             InputStream inputStream) throws IOException {
         try (Reader reader = new InputStreamReader(inputStream, StandardCharsets.ISO_8859_1)) {

@@ -19,9 +19,9 @@ public class ZolMdcPerBranchCalculator {
 
     public BigDecimal getTotalFinalAmountPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
         return zolMdcPerBranchList.stream()
-                .filter(mdcPerBranchSales -> YearMonth.from(mdcPerBranchSales.getDate()).equals(yearMonth))
+                .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription() != null)
-                .filter(mdcPerBranchSales -> mdcPerBranchSales.getAntechProductDescription().equals(productCode))
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription().equals(productCode))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)
                 .map(ZolMdcPerBranch::getFinalAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -29,7 +29,7 @@ public class ZolMdcPerBranchCalculator {
 
     public BigDecimal getTotalFinalAmountPerYearMonth(YearMonth yearMonth) {
         return zolMdcPerBranchList.stream()
-                .filter(mdcPerBranchSales -> YearMonth.from(mdcPerBranchSales.getDate()).equals(yearMonth))
+                .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription() != null)
                 .filter(zolMdcPerBranch -> productList.contains(zolMdcPerBranch.getAntechProductDescription()))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)

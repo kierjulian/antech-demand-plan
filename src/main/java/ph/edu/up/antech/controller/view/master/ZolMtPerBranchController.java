@@ -74,7 +74,7 @@ public class ZolMtPerBranchController {
     public String createZolMtPerBranch(RedirectAttributes redirectAttributes,
                                        @ModelAttribute(value = "zolMtPerBranch") ZolMtPerBranch zolMtPerBranch) {
         try {
-            zolMtPerBranch = zolMtPerBranchService.createZolMtPerBranch(zolMtPerBranch);
+            zolMtPerBranch = zolMtPerBranchService.saveZolMtPerBranch(zolMtPerBranch);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

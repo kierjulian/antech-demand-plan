@@ -48,7 +48,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
-                .mapToInt(dsrZol -> dsrZol.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
@@ -59,23 +59,23 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getQuantity() != null)
-                .mapToInt(dsrZol -> dsrZol.getQuantity())
+                .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
     public Integer calculateTotalAmountPerTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
-                .filter(dsrZol -> transfersCatRecode.equals(dsrZol.getTransfersCatRecode()))
-                .filter(dsrZol -> dsrZol.getRevenueConverted() != null)
-                .mapToInt(dsrZol -> dsrZol.getRevenueConverted().intValue())
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> netsuite.getRevenueConverted() != null)
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
     public Integer calculateTotalUnitsPerTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
-                .filter(dsrZol -> transfersCatRecode.equals(dsrZol.getTransfersCatRecode()))
-                .filter(dsrZor -> dsrZor.getQuantity() != null)
-                .mapToInt(dsrZol -> dsrZol.getQuantity())
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> netsuite.getQuantity() != null)
+                .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 

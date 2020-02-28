@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ZolPerDoorsDAO {
 
-    public ZolPerDoors createZolPerDoors(ZolPerDoors zolPerDoors);
+    public ZolPerDoors saveZolPerDoors(ZolPerDoors zolPerDoors);
 
     public List<ZolPerDoors> findZolPerDoorsByDate(LocalDate date);
 

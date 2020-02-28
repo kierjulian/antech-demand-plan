@@ -71,7 +71,7 @@ public class ZolPerDoorsGeneralInformationController {
                                                       @ModelAttribute(value = "zolPerDoorsGeneralInformation")
                                                               ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
         try {
-            zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService.createZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
+            zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService.saveZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());

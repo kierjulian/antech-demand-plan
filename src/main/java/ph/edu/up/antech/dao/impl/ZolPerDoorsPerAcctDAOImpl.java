@@ -16,7 +16,7 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
     private EntityManager em;
 
     @Override
-    public ZolPerDoorsPerAcct createZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
+    public ZolPerDoorsPerAcct saveZolPerDoorsPerAcct(ZolPerDoorsPerAcct zolPerDoorsPerAcct) {
         em.persist(zolPerDoorsPerAcct);
         em.flush();
         return zolPerDoorsPerAcct;
@@ -37,7 +37,7 @@ public class ZolPerDoorsPerAcctDAOImpl implements ZolPerDoorsPerAcctDAO {
     }
 
     @Override
-    public List<ZolPerDoorsPerAcct> findAllZolPerDoors() {
+    public List<ZolPerDoorsPerAcct> findAllZolPerDoorsPerAcct() {
         TypedQuery<ZolPerDoorsPerAcct> query = em
                 .createNamedQuery("findAllZolPerDoorsPerAcct", ZolPerDoorsPerAcct.class);
         return query.getResultList();
