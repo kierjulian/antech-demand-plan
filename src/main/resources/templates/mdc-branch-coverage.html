@@ -56,7 +56,7 @@
                                         <tr th:each="mdcPerBranchSalesCoverage, row : ${mdcPerBranchSalesCoverageList}">
                                             <td class="align-middle">
                                                 <a th:text="${row.count}"
-                                                   th:href="@{/config/mdc-branch-coverage/view/{id}(id=${mdcPerBranchSalesCoverage.id})}"></a>
+                                                   th:href="@{/master/mdc-branch/config/coverage/view/{id}(id=${mdcPerBranchSalesCoverage.id})}"></a>
                                             </td>
                                             <td class="align-middle" th:text="${mdcPerBranchSalesCoverage.branchCode}"></td>
                                             <td class="align-middle" th:text="${mdcPerBranchSalesCoverage.branchName}"></td>

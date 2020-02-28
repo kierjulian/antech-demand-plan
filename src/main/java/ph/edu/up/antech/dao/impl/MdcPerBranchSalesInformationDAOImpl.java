@@ -7,7 +7,6 @@ import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesInformati
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,6 +27,25 @@ public class MdcPerBranchSalesInformationDAOImpl implements MdcPerBranchSalesInf
         TypedQuery<MdcPerBranchSalesInformation> query = em.createNamedQuery(
                 "findAllMdcPerBranchSalesInformation", MdcPerBranchSalesInformation.class);
         return query.getResultList();
+    }
+
+    @Override
+    public MdcPerBranchSalesInformation findMdcPerBranchSalesInformation(Integer id) {
+        TypedQuery<MdcPerBranchSalesInformation> query = em.createNamedQuery("findMdcPerBranchSalesInformationById",
+                MdcPerBranchSalesInformation.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public MdcPerBranchSalesInformation updateMdcPerBranchSalesInformation(MdcPerBranchSalesInformation mdcPerBranchSalesInformation) {
+        return em.merge(mdcPerBranchSalesInformation);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesInformation(Integer id) {
+        MdcPerBranchSalesInformation mdcPerBranchSalesInformation = em.find(MdcPerBranchSalesInformation.class, id);
+        em.remove(mdcPerBranchSalesInformation);
     }
 
 }

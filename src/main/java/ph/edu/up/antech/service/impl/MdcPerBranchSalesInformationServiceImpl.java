@@ -26,4 +26,19 @@ public class MdcPerBranchSalesInformationServiceImpl implements MdcPerBranchSale
         return mdcPerBranchSalesInformationDAO.findAllMdcPerBranchSalesInformation();
     }
 
+    @Override
+    public MdcPerBranchSalesInformation findMdcPerBranchSalesInformation(Integer id) {
+        return mdcPerBranchSalesInformationDAO.findMdcPerBranchSalesInformation(id);
+    }
+
+    @Override
+    public MdcPerBranchSalesInformation updateMdcPerBranchSalesInformation(MdcPerBranchSalesInformation mdcPerBranchSalesInformation) {
+        return mdcPerBranchSalesInformationDAO.updateMdcPerBranchSalesInformation(mdcPerBranchSalesInformation);
+    }
+
+    @Override
+    public void removeMdcPerBranchSalesInformation(Integer id) {
+        mdcPerBranchSalesInformationDAO.removeMdcPerBranchSalesInformation(id);
+    }
+
 }

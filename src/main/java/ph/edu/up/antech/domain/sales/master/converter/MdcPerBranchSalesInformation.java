@@ -10,7 +10,9 @@ import java.math.BigDecimal;
 @Table(name = "mdc_per_branch_sales_info")
 @NamedQueries({
         @NamedQuery(name = "findAllMdcPerBranchSalesInformation",
-                query = "select o from MdcPerBranchSalesInformation o")
+                query = "select o from MdcPerBranchSalesInformation o"),
+        @NamedQuery(name = "findMdcPerBranchSalesInformationById",
+                query = "select o from MdcPerBranchSalesInformation o where o.id = :id")
 })
 public class MdcPerBranchSalesInformation {
 
