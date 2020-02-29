@@ -1,6 +1,7 @@
 package ph.edu.up.antech.util;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,19 @@ public class DateUtils {
                                                                               YearMonth endYearMonth) {
         LocalDate startDate = LocalDate.from(startYearMonth.atDay(1));
         LocalDate endDate = LocalDate.from(endYearMonth.atEndOfMonth());
+
+        List<YearMonth> yearMonthList = new ArrayList<>();
+        while (startDate.isBefore(endDate)) {
+            yearMonthList.add(YearMonth.from(startDate));
+            startDate = startDate.plusMonths(1);
+        }
+
+        return yearMonthList;
+    }
+
+    public static List<YearMonth> generateListOfYearMonthBetweenTwoYears(Year startYear, Year endYear) {
+        LocalDate startDate = LocalDate.ofYearDay(startYear.getValue(), 1);
+        LocalDate endDate = LocalDate.ofYearDay(endYear.getValue(), 365);
 
         List<YearMonth> yearMonthList = new ArrayList<>();
         while (startDate.isBefore(endDate)) {

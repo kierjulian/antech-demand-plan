@@ -58,7 +58,7 @@
                                             <tr>
                                                 <th scope="col">Channel</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -83,7 +83,7 @@
                                             <tr>
                                                 <th scope="col">SKU</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -127,7 +127,7 @@
                                             <tr>
                                                 <th scope="col">ZPC GMA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -152,7 +152,7 @@
                                             <tr>
                                                 <th scope="col">ZPC VIS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -177,7 +177,7 @@
                                             <tr>
                                                 <th scope="col">ZPC MIN</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -202,7 +202,7 @@
                                             <tr>
                                                 <th scope="col">DISP</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -227,7 +227,7 @@
                                             <tr>
                                                 <th scope="col">BBJ</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -252,7 +252,7 @@
                                             <tr>
                                                 <th scope="col">DIRECT ACCTS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -277,7 +277,7 @@
                                             <tr>
                                                 <th scope="col">LAZADA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -303,7 +303,7 @@
                                             <tr>
                                                 <th scope="col">Channel</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -328,7 +328,7 @@
                                             <tr>
                                                 <th scope="col">SKU</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -347,7 +347,7 @@
                                             <tr>
                                                 <th scope="col">MDC</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -372,7 +372,7 @@
                                             <tr>
                                                 <th scope="col">ZPC GMA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -397,7 +397,7 @@
                                             <tr>
                                                 <th scope="col">ZPC VIS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -422,7 +422,7 @@
                                             <tr>
                                                 <th scope="col">ZPC MIN</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -447,7 +447,7 @@
                                             <tr>
                                                 <th scope="col">DISP</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -472,7 +472,7 @@
                                             <tr>
                                                 <th scope="col">BBJ</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -497,7 +497,7 @@
                                             <tr>
                                                 <th scope="col">DIRECT ACCTS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -522,7 +522,7 @@
                                             <tr>
                                                 <th scope="col">LAZADA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -548,7 +548,7 @@
                                             <tr>
                                                 <th scope="col">Channel</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -573,7 +573,7 @@
                                             <tr>
                                                 <th scope="col">SKU</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -592,7 +592,7 @@
                                             <tr>
                                                 <th scope="col">ZPC Direct</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -617,7 +617,7 @@
                                             <tr>
                                                 <th scope="col">DISP</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -642,7 +642,7 @@
                                             <tr>
                                                 <th scope="col">BBJ</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -667,7 +667,7 @@
                                             <tr>
                                                 <th scope="col">DIRECT ACCTS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -692,7 +692,7 @@
                                             <tr>
                                                 <th scope="col">LAZADA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -717,7 +717,7 @@
                                             <tr>
                                                 <th scope="col">LAZADA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -743,7 +743,7 @@
                                             <tr>
                                                 <th scope="col">Channel</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -768,7 +768,7 @@
                                             <tr>
                                                 <th scope="col">SKU</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -787,7 +787,7 @@
                                             <tr>
                                                 <th scope="col">ZPC Direct</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -812,7 +812,7 @@
                                             <tr>
                                                 <th scope="col">DISP</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -837,7 +837,7 @@
                                             <tr>
                                                 <th scope="col">BBJ</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -862,7 +862,7 @@
                                             <tr>
                                                 <th scope="col">DIRECT ACCTS</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -887,7 +887,7 @@
                                             <tr>
                                                 <th scope="col">LAZADA</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
@@ -912,7 +912,7 @@
                                             <tr>
                                                 <th scope="col">Others</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${yearMonth}"></th>
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                 </th:block>
                                             </tr>
                                             </thead>
