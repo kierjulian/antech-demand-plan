@@ -1,18 +1,36 @@
 package ph.edu.up.antech.domain;
 
 import ph.edu.up.antech.util.DateUtils;
+import ph.edu.up.antech.util.YearIntegerAttributeConverter;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "demand_plan")
+@NamedQueries({
+
+})
 public class DemandPlan implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
+
+    @Convert(converter = YearIntegerAttributeConverter.class)
+    @Column(name = "year")
     private Year year;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "demandPlan", cascade = CascadeType.ALL)
     private List<DemandPlanDetail> demandPlanDetailList;
 
     public Integer getId() {

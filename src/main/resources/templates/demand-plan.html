@@ -96,7 +96,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.production}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceProduction}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -106,7 +106,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.totalGoodsAvailable}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceTotalGoodsAvailable}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -116,7 +116,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.loading}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceLoading}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -126,7 +126,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.hippEndingInventory}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceHippEndingInventory}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -136,7 +136,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.hippDaysOnHand}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceHippDaysOnHand}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -156,7 +156,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.shipmentsReceivedAtAntech}"></td>
+                                                        <td th:text="${demandPlanDetail.antechShipmentsReceived}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -166,7 +166,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.totalAvailableForSalePhils}"></td>
+                                                        <td th:text="${demandPlanDetail.antechTotalAvailableForSalePhils}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -176,7 +176,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.actualSales}"></td>
+                                                        <td th:text="${demandPlanDetail.antechActualSales}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -186,7 +186,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.hippEndingInventory}"></td>
+                                                        <td th:text="${demandPlanDetail.sourceHippEndingInventory}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -196,7 +196,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.daysOnHand}"></td>
+                                                        <td th:text="${demandPlanDetail.antechDaysOnHand}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -206,7 +206,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.beginningInventoryTrade}"></td>
+                                                        <td th:text="${demandPlanDetail.tradeBeginningInventory}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -216,7 +216,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.totalEndingInventoryTrade}"></td>
+                                                        <td th:text="${demandPlanDetail.tradeTotalEndingInventory}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -226,7 +226,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.daysOnHandTrade}"></td>
+                                                        <td th:text="${demandPlanDetail.tradeDaysOnHand}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>

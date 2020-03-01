@@ -1,35 +1,79 @@
 package ph.edu.up.antech.domain;
 
+import ph.edu.up.antech.util.YearMonthDateAttributeConverter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.YearMonth;
 
+@Entity
+@Table(name = "demand_plan_detail")
 public class DemandPlanDetail implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "detail_id")
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "demand_plan_id")
     private DemandPlan demandPlan;
+
+    @Convert(converter = YearMonthDateAttributeConverter.class)
+    @Column(name = "year_month_demand")
     private YearMonth yearMonth;
 
+    @Column(name = "plan")
     private BigDecimal plan = BigDecimal.ZERO;
+
+    @Column(name = "in_market")
     private BigDecimal inMarket = BigDecimal.ZERO;
+
+    @Column(name = "average_in_market")
     private BigDecimal averageInMarketSales = BigDecimal.ZERO;
+
+    @Column(name = "total_off_take")
     private BigDecimal totalOffTake = BigDecimal.ZERO;
 
-    private BigDecimal production = BigDecimal.ZERO;
-    private BigDecimal totalGoodsAvailable = BigDecimal.ZERO;
-    private BigDecimal loading = BigDecimal.ZERO;
-    private BigDecimal hippEndingInventory = BigDecimal.ZERO;
-    private BigDecimal hippDaysOnHand = BigDecimal.ZERO;
+    @Column(name = "source_production")
+    private BigDecimal sourceProduction = BigDecimal.ZERO;
 
+    @Column(name = "source_total_goods_available")
+    private BigDecimal sourceTotalGoodsAvailable = BigDecimal.ZERO;
+
+    @Column(name = "source_loading")
+    private BigDecimal sourceLoading = BigDecimal.ZERO;
+
+    @Column(name = "source_hipp_ending_inventory")
+    private BigDecimal sourceHippEndingInventory = BigDecimal.ZERO;
+
+    @Column(name = "source_hipp_days_on_hand")
+    private BigDecimal sourceHippDaysOnHand = BigDecimal.ZERO;
+
+    @Column(name = "antech_beginning_inventory")
     private BigDecimal antechBeginningInventory = BigDecimal.ZERO;
-    private BigDecimal shipmentsReceivedAtAntech = BigDecimal.ZERO;
-    private BigDecimal totalAvailableForSalePhils = BigDecimal.ZERO;
-    private BigDecimal actualSales = BigDecimal.ZERO;
-    private BigDecimal daysOnHand = BigDecimal.ZERO;
 
-    private BigDecimal beginningInventoryTrade = BigDecimal.ZERO;
-    private BigDecimal totalEndingInventoryTrade = BigDecimal.ZERO;
-    private BigDecimal daysOnHandTrade = BigDecimal.ZERO;
+    @Column(name = "antech_shipments_received")
+    private BigDecimal antechShipmentsReceived = BigDecimal.ZERO;
+
+    @Column(name = "antech_total_available_sales_ph")
+    private BigDecimal antechTotalAvailableForSalePhils = BigDecimal.ZERO;
+
+    @Column(name = "antech_actual_sales")
+    private BigDecimal antechActualSales = BigDecimal.ZERO;
+
+    @Column(name = "antech_days_on_hand")
+    private BigDecimal antechDaysOnHand = BigDecimal.ZERO;
+
+    @Column(name = "trade_beginning_inventory")
+    private BigDecimal tradeBeginningInventory = BigDecimal.ZERO;
+
+    @Column(name = "trade_total_ending_inventory")
+    private BigDecimal tradeTotalEndingInventory = BigDecimal.ZERO;
+
+    @Column(name = "trade_days_on_hand")
+    private BigDecimal tradeDaysOnHand = BigDecimal.ZERO;
 
     public Integer getId() {
         return id;
@@ -87,44 +131,44 @@ public class DemandPlanDetail implements Serializable {
         this.totalOffTake = totalOffTake;
     }
 
-    public BigDecimal getProduction() {
-        return production;
+    public BigDecimal getSourceProduction() {
+        return sourceProduction;
     }
 
-    public void setProduction(BigDecimal production) {
-        this.production = production;
+    public void setSourceProduction(BigDecimal sourceProduction) {
+        this.sourceProduction = sourceProduction;
     }
 
-    public BigDecimal getTotalGoodsAvailable() {
-        return totalGoodsAvailable;
+    public BigDecimal getSourceTotalGoodsAvailable() {
+        return sourceTotalGoodsAvailable;
     }
 
-    public void setTotalGoodsAvailable(BigDecimal totalGoodsAvailable) {
-        this.totalGoodsAvailable = totalGoodsAvailable;
+    public void setSourceTotalGoodsAvailable(BigDecimal sourceTotalGoodsAvailable) {
+        this.sourceTotalGoodsAvailable = sourceTotalGoodsAvailable;
     }
 
-    public BigDecimal getLoading() {
-        return loading;
+    public BigDecimal getSourceLoading() {
+        return sourceLoading;
     }
 
-    public void setLoading(BigDecimal loading) {
-        this.loading = loading;
+    public void setSourceLoading(BigDecimal sourceLoading) {
+        this.sourceLoading = sourceLoading;
     }
 
-    public BigDecimal getHippEndingInventory() {
-        return hippEndingInventory;
+    public BigDecimal getSourceHippEndingInventory() {
+        return sourceHippEndingInventory;
     }
 
-    public void setHippEndingInventory(BigDecimal hippEndingInventory) {
-        this.hippEndingInventory = hippEndingInventory;
+    public void setSourceHippEndingInventory(BigDecimal sourceHippEndingInventory) {
+        this.sourceHippEndingInventory = sourceHippEndingInventory;
     }
 
-    public BigDecimal getHippDaysOnHand() {
-        return hippDaysOnHand;
+    public BigDecimal getSourceHippDaysOnHand() {
+        return sourceHippDaysOnHand;
     }
 
-    public void setHippDaysOnHand(BigDecimal hippDaysOnHand) {
-        this.hippDaysOnHand = hippDaysOnHand;
+    public void setSourceHippDaysOnHand(BigDecimal sourceHippDaysOnHand) {
+        this.sourceHippDaysOnHand = sourceHippDaysOnHand;
     }
 
     public BigDecimal getAntechBeginningInventory() {
@@ -135,60 +179,60 @@ public class DemandPlanDetail implements Serializable {
         this.antechBeginningInventory = antechBeginningInventory;
     }
 
-    public BigDecimal getShipmentsReceivedAtAntech() {
-        return shipmentsReceivedAtAntech;
+    public BigDecimal getAntechShipmentsReceived() {
+        return antechShipmentsReceived;
     }
 
-    public void setShipmentsReceivedAtAntech(BigDecimal shipmentsReceivedAtAntech) {
-        this.shipmentsReceivedAtAntech = shipmentsReceivedAtAntech;
+    public void setAntechShipmentsReceived(BigDecimal antechShipmentsReceived) {
+        this.antechShipmentsReceived = antechShipmentsReceived;
     }
 
-    public BigDecimal getTotalAvailableForSalePhils() {
-        return totalAvailableForSalePhils;
+    public BigDecimal getAntechTotalAvailableForSalePhils() {
+        return antechTotalAvailableForSalePhils;
     }
 
-    public void setTotalAvailableForSalePhils(BigDecimal totalAvailableForSalePhils) {
-        this.totalAvailableForSalePhils = totalAvailableForSalePhils;
+    public void setAntechTotalAvailableForSalePhils(BigDecimal antechTotalAvailableForSalePhils) {
+        this.antechTotalAvailableForSalePhils = antechTotalAvailableForSalePhils;
     }
 
-    public BigDecimal getActualSales() {
-        return actualSales;
+    public BigDecimal getAntechActualSales() {
+        return antechActualSales;
     }
 
-    public void setActualSales(BigDecimal actualSales) {
-        this.actualSales = actualSales;
+    public void setAntechActualSales(BigDecimal antechActualSales) {
+        this.antechActualSales = antechActualSales;
     }
 
-    public BigDecimal getDaysOnHand() {
-        return daysOnHand;
+    public BigDecimal getAntechDaysOnHand() {
+        return antechDaysOnHand;
     }
 
-    public void setDaysOnHand(BigDecimal daysOnHand) {
-        this.daysOnHand = daysOnHand;
+    public void setAntechDaysOnHand(BigDecimal antechDaysOnHand) {
+        this.antechDaysOnHand = antechDaysOnHand;
     }
 
-    public BigDecimal getBeginningInventoryTrade() {
-        return beginningInventoryTrade;
+    public BigDecimal getTradeBeginningInventory() {
+        return tradeBeginningInventory;
     }
 
-    public void setBeginningInventoryTrade(BigDecimal beginningInventoryTrade) {
-        this.beginningInventoryTrade = beginningInventoryTrade;
+    public void setTradeBeginningInventory(BigDecimal tradeBeginningInventory) {
+        this.tradeBeginningInventory = tradeBeginningInventory;
     }
 
-    public BigDecimal getTotalEndingInventoryTrade() {
-        return totalEndingInventoryTrade;
+    public BigDecimal getTradeTotalEndingInventory() {
+        return tradeTotalEndingInventory;
     }
 
-    public void setTotalEndingInventoryTrade(BigDecimal totalEndingInventoryTrade) {
-        this.totalEndingInventoryTrade = totalEndingInventoryTrade;
+    public void setTradeTotalEndingInventory(BigDecimal tradeTotalEndingInventory) {
+        this.tradeTotalEndingInventory = tradeTotalEndingInventory;
     }
 
-    public BigDecimal getDaysOnHandTrade() {
-        return daysOnHandTrade;
+    public BigDecimal getTradeDaysOnHand() {
+        return tradeDaysOnHand;
     }
 
-    public void setDaysOnHandTrade(BigDecimal daysOnHandTrade) {
-        this.daysOnHandTrade = daysOnHandTrade;
+    public void setTradeDaysOnHand(BigDecimal tradeDaysOnHand) {
+        this.tradeDaysOnHand = tradeDaysOnHand;
     }
 
 }
