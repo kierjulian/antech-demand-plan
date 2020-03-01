@@ -21,9 +21,9 @@
                         <br>
                         <div class="card">
                             <div class="card-body bg-light">
-                                <form action="" method="post">
+                                <form th:action="@{/demand/plan/create}" th:object="${demandPlan}" method="post">
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-success" disabled>
+                                        <button type="submit" class="btn btn-success">
                                             <i class="fas fa-save">&nbsp; Save</i></button>
                                     </div>&nbsp;
                                     <div class="btn-group">
@@ -34,15 +34,17 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Product</label>
                                         <div class="col-sm-4">
-                                            <select id="selectProduct" name="product" class="form-control">
+                                            <select th:field="*{product.id}" id="selectProduct" name="product" class="form-control" required>
                                                 <option th:each="product : ${productList}"
-                                                        th:value="${product}"
+                                                        th:value="${product.id}"
                                                         th:text="${product.code}"></option>
                                             </select>&nbsp;
                                         </div>
-                                        <label class="col-sm-2 col-form-label">Year Month</label>
-                                        <div class="col-sm-4">
-                                            <input type="month" class="form-control" >
+                                        <label class="col-sm-1 col-form-label">Year</label>
+                                        <div class="col-sm-2">
+                                            <input type="number" placeholder="Year"
+                                                   min="2015" max="2030" step="1" class="form-control"
+                                                   style="width:100px" th:field="*{year}" required>
                                         </div>
                                     </div>
                                 </form>

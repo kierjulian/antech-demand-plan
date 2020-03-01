@@ -14,6 +14,7 @@ import ph.edu.up.antech.util.StringUtils;
 
 import java.time.Year;
 import java.time.YearMonth;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -34,15 +35,21 @@ public class DemandPlanController {
                 ? Year.parse(startYear) : Year.now();
         Year end = !StringUtils.isNullOrEmpty(endYear)
                 ? Year.parse(endYear) : Year.now();
+        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(start, end);
         Product selectedProduct = !StringUtils.isNullOrEmpty(product) ?
                 productService.findProductById(Integer.parseInt(product)) : getAllProducts().get(0);
 
-        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(start, end);
-        model.addAttribute("yearMonthList", yearMonthList);
+        DemandPlan demandPlan = new DemandPlan();
+        demandPlan.setYear(Year.now());
+        demandPlan.generateDemandPlanDetails();
+
+        model.addAttribute("productList", getAllProducts());
         model.addAttribute("start", start);
         model.addAttribute("end", end);
-        model.addAttribute("productList", getAllProducts());
+        model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("selectedProduct", selectedProduct);
+        model.addAttribute("demandPlan", demandPlan);
+
         return "demand-plan";
     }
 
@@ -81,17 +88,23 @@ public class DemandPlanController {
     public String createDemandPlan(RedirectAttributes redirectAttributes,
                                    @ModelAttribute(value = "demandPlan") DemandPlan demandPlan) {
         try {
+            Product product = productService.findProductById(demandPlan.getProduct().getId());
+            demandPlan.setProduct(product);
+            demandPlan.generateDemandPlanDetails();
+
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
         }
 
-        return "redirect:/demand/plan/view/";
+        return "redirect:/demand/plan";
     }
 
     private List<Product> getAllProducts() {
-        return productService.findAllProducts();
+        List<Product> productList = productService.findAllProducts();
+        Collections.sort(productList);
+        return productList;
     }
 
 }

@@ -21,7 +21,7 @@
                         <div class="card">
                             <div class="card-body bg-light">
                                 <form class="form-inline" method="get" th:action="@{/demand/plan}">
-                                    <select id="selectProduct" name="product" class="form-control">
+                                    <select id="selectProduct" name="product" class="form-control" style="width:200px">
                                         <option th:each="product : ${productList}"
                                                 th:value="${product.id}"
                                                 th:text="${product.code}"
@@ -53,57 +53,183 @@
                                     <tbody>
                                         <tr>
                                             <th>Plan</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.plan}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>In-Market</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.inMarket}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Ave In-Market Sales</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.averageInMarketSales}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Off Take</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.totalOffTake}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Production</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.production}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Total Goods Available</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.totalGoodsAvailable}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Loading</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.loading}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>HiPP Ending Inventory</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.hippEndingInventory}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>HiPP Days on Hand</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.hippDaysOnHand}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Antech Beginning Inventory</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.antechBeginningInventory}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Shipments Received At Antech</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.shipmentsReceivedAtAntech}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Total Available for Sale in the Philippines</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.totalAvailableForSalePhils}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Actual / LBE Sales</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.actualSales}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Ending Inventory Antech</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.hippEndingInventory}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Days on Hand - Antech</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.daysOnHand}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Beginning Inventory (Trade)</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.beginningInventoryTrade}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Total Ending Inventory at Trade</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.totalEndingInventoryTrade}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                         <tr>
                                             <th>Days on Hand - Trade</th>
+                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
+                                                    <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
+                                                        <td th:text="${demandPlanDetail.daysOnHandTrade}"></td>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
                                         </tr>
                                     </tbody>
                                 </table>
