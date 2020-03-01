@@ -21,7 +21,12 @@
                         <div class="card">
                             <div class="card-body bg-light">
                                 <form class="form-inline" method="get" th:action="@{/demand/plan}">
-                                    <input type="text" class="form-control" name="productName" placeholder="Product">&nbsp;
+                                    <select id="selectProduct" name="product" class="form-control">
+                                        <option th:each="product : ${productList}"
+                                                th:value="${product.id}"
+                                                th:text="${product.code}"
+                                                th:selected="${selectedProduct.equals(product)}"></option>
+                                    </select>&nbsp;
                                     <input type="number" class="form-control" name="startYear" placeholder="Year"
                                            min="2015" max="2030" step="1" th:value="${start}" style="width:100px"
                                            required>&nbsp;
@@ -30,6 +35,10 @@
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">Search</button>
                                     </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/demand/plan/add}" role="button">
+                                            <i class="fas fa-plus">&nbsp; Create Demand Plan</i></a>
+                                    </div>
                                 </form>
                                 <br>
                                 <table class="table table-striped table-bordered table-hover table-sm table-responsive">
