@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <div th:replace="fragments/template :: header(title = 'Add Demand Plan')"></div>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div th:replace="fragments/template :: demand-sidebar"></div>
+            </div>
+            <div id="page-content-wrapper">
+                <div th:replace="fragments/template :: navbar"></div>
+                <main>
+                    <div class="container-fluid"><br>
+                        <div class="card">
+                            <div class="card-body">
+                                Add Demand Plan
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-body bg-light">
+                                <form action="" method="post">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success" disabled>
+                                            <i class="fas fa-save">&nbsp; Save</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" th:href="@{/demand/plan}">
+                                            <i class="fas fa-ban">&nbsp; Cancel</i></a>
+                                    </div>&nbsp;
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Product</label>
+                                        <div class="col-sm-4">
+                                            <select id="selectProduct" name="product" class="form-control">
+                                                <option th:each="product : ${productList}"
+                                                        th:value="${product}"
+                                                        th:text="${product.code}"></option>
+                                            </select>&nbsp;
+                                        </div>
+                                        <label class="col-sm-2 col-form-label">Year Month</label>
+                                        <div class="col-sm-4">
+                                            <input type="month" class="form-control" >
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div th:replace="fragments/template :: footer"></div>
+    </body>
+</html>

@@ -71,6 +71,9 @@ public class DemandPlanController {
 
     @GetMapping("/add")
     public String addDemandPlan(Model model) {
+        DemandPlan demandPlan = new DemandPlan();
+        model.addAttribute("demandPlan", demandPlan);
+        model.addAttribute("productList", getAllProducts());
         return "demand-plan-add";
     }
 
