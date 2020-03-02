@@ -64,6 +64,11 @@ public class DemandPlanController {
 
     @GetMapping("/edit/{id}")
     public String editDemandPlan(Model model, @PathVariable Integer id) {
+        DemandPlan demandPlan = demandPlanService.findDemandPlanById(id);
+        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(demandPlan.getYear(), demandPlan.getYear());
+
+        model.addAttribute("demandPlan", demandPlan);
+        model.addAttribute("yearMonthList", yearMonthList);
         return "demand-plan-edit";
     }
 
@@ -71,13 +76,15 @@ public class DemandPlanController {
     public String updateDemandPlan(RedirectAttributes redirectAttributes,
                                    @ModelAttribute(value = "demandPlan") DemandPlan demandPlan) {
         try {
+            demandPlanService.updateDemandPlan(demandPlan);
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage());
+            e.printStackTrace();
         }
 
-        return "redirect:/demand/plan/view/";
+        return "redirect:/demand/plan";
     }
 
     @GetMapping("/add")

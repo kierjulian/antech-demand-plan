@@ -12,4 +12,6 @@ public interface DemandPlanDAO {
 
     public DemandPlan findDemandPlanByProductIdAndYear(Integer productId, Year year);
 
+    public DemandPlan findDemandPlanById(Integer id);
+
 }

@@ -48,7 +48,7 @@
                                             <i class="fas fa-plus">&nbsp; Create Demand Plan</i></a>
                                     </div>&nbsp;
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" role="button">
+                                        <a class="btn btn-primary" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit Demand Plan</i></a>
                                     </div>
                                 </form>

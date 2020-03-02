@@ -14,7 +14,9 @@ import java.util.List;
 @Table(name = "demand_plan")
 @NamedQueries({
         @NamedQuery(name = "findDemandPlanByProductIdAndYear",
-                query = "select o from DemandPlan o where o.product.id = :productId and o.year = :year")
+                query = "select o from DemandPlan o where o.product.id = :productId and o.year = :year"),
+        @NamedQuery(name = "findDemandPlanById",
+                query = "select o from DemandPlan o where o.id = :id")
 })
 public class DemandPlan implements Serializable {
 

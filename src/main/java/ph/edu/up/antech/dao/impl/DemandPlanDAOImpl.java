@@ -42,4 +42,11 @@ public class DemandPlanDAOImpl implements DemandPlanDAO {
         }
     }
 
+    @Override
+    public DemandPlan findDemandPlanById(Integer id) {
+        TypedQuery<DemandPlan> query = em.createNamedQuery("findDemandPlanById", DemandPlan.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
 }

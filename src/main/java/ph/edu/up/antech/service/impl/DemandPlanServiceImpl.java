@@ -31,4 +31,9 @@ public class DemandPlanServiceImpl implements DemandPlanService {
         return demandPlanDAO.findDemandPlanByProductIdAndYear(productId, year);
     }
 
+    @Override
+    public DemandPlan findDemandPlanById(Integer id) {
+        return demandPlanDAO.findDemandPlanById(id);
+    }
+
 }
