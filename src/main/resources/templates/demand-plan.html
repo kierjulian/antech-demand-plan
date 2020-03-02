@@ -13,6 +13,16 @@
                 <div th:replace="fragments/template :: navbar"></div>
                 <main>
                     <div class="container-fluid"><br>
+                        <div class="alert alert-success alert-dismissible fade show"
+                             th:if="${successMessage != null}">
+                            <div th:text="${successMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
+                        <div class="alert alert-danger alert-dismissible fade show"
+                             th:if="${errorMessage != null}">
+                            <div th:text="${errorMessage}"></div>
+                            <a class="close" data-dismiss="alert">&times;</a>
+                        </div>
                         <div class="card">
                             <div class="card-header">
                                 Demand Plan
@@ -30,14 +40,16 @@
                                     <input type="number" class="form-control" name="startYear" placeholder="Year"
                                            min="2015" max="2030" step="1" th:value="${start}" style="width:100px"
                                            required>&nbsp;
-                                    <input type="number" class="form-control" name="endYear" placeholder="Year"
-                                           min="2015" max="2030" step="1" th:value="${end}" style="width:100px" required>&nbsp;
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">Search</button>
                                     </div>&nbsp;
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/demand/plan/add}" role="button">
                                             <i class="fas fa-plus">&nbsp; Create Demand Plan</i></a>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" role="button">
+                                            <i class="fas fa-edit">&nbsp; Edit Demand Plan</i></a>
                                     </div>
                                 </form>
                                 <br>

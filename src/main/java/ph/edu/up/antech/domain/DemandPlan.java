@@ -13,7 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "demand_plan")
 @NamedQueries({
-
+        @NamedQuery(name = "findDemandPlanByProductIdAndYear",
+                query = "select o from DemandPlan o where o.product.id = :productId and o.year = :year")
 })
 public class DemandPlan implements Serializable {
 

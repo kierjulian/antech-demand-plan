@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.DemandPlan;
 import ph.edu.up.antech.domain.Product;
+import ph.edu.up.antech.service.DemandPlanService;
 import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.DateUtils;
 import ph.edu.up.antech.util.StringUtils;
@@ -26,26 +27,29 @@ public class DemandPlanController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private DemandPlanService demandPlanService;
+
     @GetMapping("")
-    public String loadDemandPlanPage(Model model,
+    public String loadDemandPlanPage(Model model, RedirectAttributes redirectAttributes,
                                      @RequestParam(required = false) String startYear,
-                                     @RequestParam(required = false) String endYear,
                                      @RequestParam(required = false) String product) {
         Year start = !StringUtils.isNullOrEmpty(startYear)
                 ? Year.parse(startYear) : Year.now();
-        Year end = !StringUtils.isNullOrEmpty(endYear)
-                ? Year.parse(endYear) : Year.now();
-        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(start, end);
+
+        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(start, start);
         Product selectedProduct = !StringUtils.isNullOrEmpty(product) ?
                 productService.findProductById(Integer.parseInt(product)) : getAllProducts().get(0);
 
-        DemandPlan demandPlan = new DemandPlan();
-        demandPlan.setYear(Year.now());
-        demandPlan.generateDemandPlanDetails();
+        DemandPlan demandPlan = demandPlanService.findDemandPlanByProductIdAndYear(selectedProduct.getId(),
+                start);
+        if (demandPlan == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "The selected Demand Plan is not yet created.");
+            return "redirect:/demand/plan";
+        }
 
         model.addAttribute("productList", getAllProducts());
         model.addAttribute("start", start);
-        model.addAttribute("end", end);
         model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("selectedProduct", selectedProduct);
         model.addAttribute("demandPlan", demandPlan);
@@ -88,9 +92,16 @@ public class DemandPlanController {
     public String createDemandPlan(RedirectAttributes redirectAttributes,
                                    @ModelAttribute(value = "demandPlan") DemandPlan demandPlan) {
         try {
+            DemandPlan savedDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(demandPlan.getProduct().getId(),
+                    demandPlan.getYear());
+            if (savedDemandPlan != null) {
+                throw new RuntimeException("Demand plan for chosen product and year already exists.");
+            }
+
             Product product = productService.findProductById(demandPlan.getProduct().getId());
             demandPlan.setProduct(product);
             demandPlan.generateDemandPlanDetails();
+            demandPlanService.saveDemandPlan(demandPlan);
 
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
         } catch (Exception e) {

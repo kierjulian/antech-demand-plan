@@ -5,7 +5,9 @@ import ph.edu.up.antech.dao.DemandPlanDAO;
 import ph.edu.up.antech.domain.DemandPlan;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.time.Year;
 
 @Repository
@@ -23,12 +25,21 @@ public class DemandPlanDAOImpl implements DemandPlanDAO {
 
     @Override
     public DemandPlan updateDemandPlan(DemandPlan demandPlan) {
-        return null;
+        return em.merge(demandPlan);
     }
 
     @Override
     public DemandPlan findDemandPlanByProductIdAndYear(Integer productId, Year year) {
-        return null;
+        TypedQuery<DemandPlan> query = em.createNamedQuery("findDemandPlanByProductIdAndYear",
+                DemandPlan.class);
+        query.setParameter("productId", productId);
+        query.setParameter("year", year);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 }

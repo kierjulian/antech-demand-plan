@@ -1,5 +1,6 @@
 package ph.edu.up.antech.dao.impl;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class DemandPlanServiceTest {
         demandPlan.setProduct(productService.findProductById(16));
         demandPlan.generateDemandPlanDetails();
         //demandPlanService.saveDemandPlan(demandPlan);
+    }
+
+    @Test
+    public void retrievePersistedDemandPlan_shouldBeSuccessful() {
+        DemandPlan demandPlan = demandPlanService.findDemandPlanByProductIdAndYear(14, Year.of(2020));
+        Assert.assertNotNull(demandPlan);
     }
 
 }
