@@ -164,6 +164,10 @@ public class Product implements Serializable, Comparable<Product> {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate completionDate;
 
+    @Column(name = "product_type")
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
+
     public Product() {
     }
 
@@ -525,6 +529,14 @@ public class Product implements Serializable, Comparable<Product> {
 
     public void setLayersPerPallet(Integer layersPerPallet) {
         this.layersPerPallet = layersPerPallet;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 
     @Override

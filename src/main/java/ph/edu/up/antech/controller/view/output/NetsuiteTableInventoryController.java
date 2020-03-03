@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
+import ph.edu.up.antech.domain.ProductType;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.service.ProductService;
@@ -30,6 +31,8 @@ public class NetsuiteTableInventoryController {
     @Autowired
     private ProductService productService;
 
+    private List<Product> productList;
+
     @GetMapping("")
     public String loadNetsuiteTableInventoryPage(Model model,
                                                  @RequestParam(required = false) String startDate,
@@ -40,10 +43,18 @@ public class NetsuiteTableInventoryController {
                 ? LocalDate.parse(endDate) : LocalDate.now();
 
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
-        List<String> hippProductList = productService.findAllProducts().stream()
+        List<String> hippProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.MILK))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> jarProductList = new ArrayList<>();
+        List<String> jarProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.JAR))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> waterProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.JAR))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         NetsuiteTableInventoryCalculator netsuiteTableInventoryCalculator =
                 new NetsuiteTableInventoryCalculator(netsuiteList);
@@ -52,29 +63,10 @@ public class NetsuiteTableInventoryController {
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("hippProductList", hippProductList);
         model.addAttribute("jarProductList", jarProductList);
+        model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("netsuiteTableInventoryCalculator", netsuiteTableInventoryCalculator);
         return "netsuite-table-inv";
-    }
-
-    private List<String> generateUniqueHippProductNameFromNetsuiteList(List<Netsuite> netsuiteList) {
-        return netsuiteList.stream()
-                .map(Netsuite::getBrand)
-                .filter(Objects::nonNull)
-                .distinct()
-                .filter(productName -> productName.startsWith("CS") || productName.startsWith("S"))
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
-    }
-
-    private List<String> generateUniqueJarProductNameFromNetsuiteList(List<Netsuite> netsuiteList) {
-        return netsuiteList.stream()
-                .map(Netsuite::getBrand)
-                .filter(Objects::nonNull)
-                .distinct()
-                .filter(productName -> productName.startsWith("Jar"))
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
     }
 
     private List<String> generateUniqueKamReferenceNameFromNetsuiteList(List<Netsuite> netsuiteList) {
@@ -83,6 +75,14 @@ public class NetsuiteTableInventoryController {
                 .filter(Objects::nonNull)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private List<Product> getAllProducts() {
+        if (productList == null) {
+            productList = productService.findAllProducts();
+        }
+
+        return productList;
     }
 
 }
