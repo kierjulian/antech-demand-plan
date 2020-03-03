@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
+import ph.edu.up.antech.domain.ProductType;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
 import ph.edu.up.antech.domain.sales.output.DsrZolCombination;
@@ -31,6 +32,8 @@ public class DsrZolController {
     @Autowired
     private ProductService productService;
 
+    private List<Product> productList;
+
     @GetMapping("")
     public String loadDsrZolPage(Model model,
                                  @RequestParam(required = false) String startDate,
@@ -49,14 +52,24 @@ public class DsrZolController {
                         accountList);
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
 
-        List<String> productList = productService.findAllProducts().stream()
+        List<String> milkProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.MILK))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> jarProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.JAR))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> waterProductList = getAllProducts().stream()
+                .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
 
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("dsrZolList", dsrZolList);
-        model.addAttribute("productList", productList);
+        model.addAttribute("milkProductList", milkProductList);
+        model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("dsrZolCalculator", dsrZolCalculator);
         model.addAttribute("dsrZolCombinationList", dsrZolCombinationList);
@@ -129,6 +142,14 @@ public class DsrZolController {
         });
 
         return dsrZolCombinationList;
+    }
+
+    private List<Product> getAllProducts() {
+        if (productList == null) {
+            productList = productService.findAllProducts();
+        }
+
+        return productList;
     }
 
 }
