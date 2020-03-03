@@ -37,13 +37,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/general') ? 'active':''}">
                             <a class="nav-link" th:href="@{/general/products}">General</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master')
+                                && !#httpServletRequest.getRequestURI().contains('config') ? 'active':''}">
                             <a class="nav-link" th:href="@{/master/zol-doors}">Master Files</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master')
+                                && #httpServletRequest.getRequestURI().contains('config') ? 'active':''}">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Master Files Configuration
                             </a>
@@ -55,10 +57,10 @@
                                 <a class="dropdown-item" th:href="@{/master/netsuite/config/bbj}">Netsuite</a>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/output') ? 'active':''}">
                             <a class="nav-link" th:href="@{/output/dsr-zol}">Output</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand') ? 'active':''}">
                             <a class="nav-link" th:href="@{/demand/plan}">Demand</a>
                         </li>
                         <li class="nav-item">
@@ -80,85 +82,116 @@
         <div th:fragment="general-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/general/products}" class="list-group-item list-group-item-action bg-light">Products</a>
-                <a th:href="@{/general/customers}" class="list-group-item list-group-item-action bg-light">Customers</a>
-                <a th:href="@{/general/reports}" class="list-group-item list-group-item-action bg-light">Status Reports</a>
+                <a th:href="@{/general/products}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/general/products') ? 'active':''}">Products</a>
+                <a th:href="@{/general/customers}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/general/customer') ? 'active':''}">Customers</a>
+                <a th:href="@{/general/reports}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/general/reports') ? 'active':''}">Status Reports</a>
             </div>
         </div>
 
         <div th:fragment="master-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/zol-doors}" class="list-group-item list-group-item-action bg-light">Zol Per Doors</a>
-                <a th:href="@{/master/zol-mdc}" class="list-group-item list-group-item-action bg-light">Zol Mdc Per Branch</a>
-                <a th:href="@{/master/zol-mt}" class="list-group-item list-group-item-action bg-light">Zol Mt Per Branch</a>
-                <a th:href="@{/master/mdc-branch}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales</a>
-                <a th:href="@{/master/netsuite}" class="list-group-item list-group-item-action bg-light">Netsuite</a>
-                <a th:href="@{/master/dispensing-distributor}" class="list-group-item list-group-item-action bg-light">Dispensing Distributor</a>
+                <a th:href="@{/master/zol-doors}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors') ? 'active':''}">Zol Per Doors</a>
+                <a th:href="@{/master/zol-mdc}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc') ? 'active':''}">Zol Mdc Per Branch</a>
+                <a th:href="@{/master/zol-mt}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt') ? 'active':''}">Zol Mt Per Branch</a>
+                <a th:href="@{/master/mdc-branch}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch') ? 'active':''}">Mdc Per Branch Sales</a>
+                <a th:href="@{/master/netsuite}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite') ? 'active':''}">Netsuite</a>
+                <a th:href="@{/master/dispensing-distributor}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/dispensing-distributor') ? 'active':''}">Dispensing Distributor</a>
             </div>
         </div>
 
         <div th:fragment="output-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/output/dsr-zol}" class="list-group-item list-group-item-action bg-light">DSR ZOL</a>
-                <a th:href="@{/output/netsuite/summary}" class="list-group-item list-group-item-action bg-light">Netsuite Summary</a>
-                <a th:href="@{/output/netsuite/table-inv}" class="list-group-item list-group-item-action bg-light">Netsuite Table Inventory</a>
+                <a th:href="@{/output/dsr-zol}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/output/dsr-zol') ? 'active':''}">DSR ZOL</a>
+                <a th:href="@{/output/netsuite/summary}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/output/netsuite/summary') ? 'active':''}">Netsuite Summary</a>
+                <a th:href="@{/output/netsuite/table-inv}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/output/netsuite/table-inv') ? 'active':''}">Netsuite Table Inventory</a>
             </div>
         </div>
 
         <div th:fragment="demand-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/demand/plan}" class="list-group-item list-group-item-action bg-light">Demand Plan</a>
-                <a th:href="@{/demand/hipp/sales}" class="list-group-item list-group-item-action bg-light">HiPP Market Sales</a>
-                <a th:href="@{/demand/master}" class="list-group-item list-group-item-action bg-light">Master Files for Demand</a>
+                <a th:href="@{/demand/plan}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/plan') ? 'active':''}">Demand Plan</a>
+                <a th:href="@{/demand/hipp/sales}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/hipp/sales') ? 'active':''}">HiPP Market Sales</a>
+                <a th:href="@{/demand/master}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/master') ? 'active':''}">Master Files for Demand</a>
             </div>
         </div>
 
         <div th:fragment="zol-per-doors-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/zol-doors/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Per Doors Per Acct</a>
-                <a th:href="@{/master/zol-doors/config/gen-info}" class="list-group-item list-group-item-action bg-light">Zol Per Doors General Info</a>
+                <a th:href="@{/master/zol-doors/config/accounts}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/accounts') ? 'active':''}">Zol Per Doors Per Acct</a>
+                <a th:href="@{/master/zol-doors/config/gen-info}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/gen-info') ? 'active':''}">Zol Per Doors General Info</a>
             </div>
         </div>
 
         <div th:fragment="zol-mdc-per-branch-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/zol-mdc/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mdc Account</a>
+                <a th:href="@{/master/zol-mdc/config/accounts}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc/config/accounts') ? 'active':''}">Zol Mdc Account</a>
             </div>
         </div>
 
         <div th:fragment="zol-mt-per-branch-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/zol-mt/config/accounts}" class="list-group-item list-group-item-action bg-light">Zol Mt Account</a>
+                <a th:href="@{/master/zol-mt/config/accounts}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt/config/accounts') ? 'active':''}">Zol Mt Account</a>
             </div>
         </div>
 
         <div th:fragment="mdc-per-branch-sales-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/mdc-branch/config/info}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Information</a>
-                <a th:href="@{/master/mdc-branch/config/accounts}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Account</a>
-                <a th:href="@{/master/mdc-branch/config/brn}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales BRN</a>
-                <a th:href="@{/master/mdc-branch/config/code}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Code</a>
-                <a th:href="@{/master/mdc-branch/config/coverage}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales Coverage</a>
-                <a th:href="@{/master/mdc-branch/config/na}" class="list-group-item list-group-item-action bg-light">Mdc Per Branch Sales NA</a>
+                <a th:href="@{/master/mdc-branch/config/accounts}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/accounts') ? 'active':''}">Mdc Per Branch Sales Account</a>
+                <a th:href="@{/master/mdc-branch/config/info}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/info') ? 'active':''}">Mdc Per Branch Sales Information</a>
+                <a th:href="@{/master/mdc-branch/config/brn}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/brn') ? 'active':''}">Mdc Per Branch Sales BRN</a>
+                <a th:href="@{/master/mdc-branch/config/code}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/code') ? 'active':''}">Mdc Per Branch Sales Code</a>
+                <a th:href="@{/master/mdc-branch/config/coverage}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/coverage') ? 'active':''}">Mdc Per Branch Sales Coverage</a>
+                <a th:href="@{/master/mdc-branch/config/na}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/na') ? 'active':''}">Mdc Per Branch Sales NA</a>
             </div>
         </div>
 
         <div th:fragment="netsuite-sidebar">
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/master/netsuite/config/bbj}" class="list-group-item list-group-item-action bg-light">Netsuite BBJ Tagging</a>
-                <a th:href="@{/master/netsuite/config/general-info}" class="list-group-item list-group-item-action bg-light">Netsuite General Information</a>
-                <a th:href="@{/master/netsuite/config/other-info}" class="list-group-item list-group-item-action bg-light">Netsuite Other Information</a>
-                <a th:href="@{/master/netsuite/config/product-list/source}" class="list-group-item list-group-item-action bg-light">Netsuite Product List Source</a>
-                <a th:href="@{/master/netsuite/config/product-list/de}" class="list-group-item list-group-item-action bg-light">Netsuite Product List DE</a>
-                <a th:href="@{/master/netsuite/config/transfers-cat}" class="list-group-item list-group-item-action bg-light">Netsuite Transfers Cat</a>
+                <a th:href="@{/master/netsuite/config/bbj}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/bbj') ? 'active':''}">Netsuite BBJ Tagging</a>
+                <a th:href="@{/master/netsuite/config/general-info}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/general-info') ? 'active':''}">Netsuite General Information</a>
+                <a th:href="@{/master/netsuite/config/other-info}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/other-info') ? 'active':''}">Netsuite Other Information</a>
+                <a th:href="@{/master/netsuite/config/product-list/source}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/product-list/source') ? 'active':''}">Netsuite Product List Source</a>
+                <a th:href="@{/master/netsuite/config/product-list/de}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/product-list/de') ? 'active':''}">Netsuite Product List DE</a>
+                <a th:href="@{/master/netsuite/config/transfers-cat}" class="list-group-item list-group-item-action"
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite/config/transfers-cat') ? 'active':''}">Netsuite Transfers Cat</a>
             </div>
         </div>
 
