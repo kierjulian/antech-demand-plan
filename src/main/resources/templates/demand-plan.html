@@ -41,14 +41,16 @@
                                            min="2015" max="2030" step="1" th:value="${start}" style="width:100px"
                                            required>&nbsp;
                                     <div class="btn-group">
-                                        <button type="submit" class="btn btn-success">Search</button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i>
+                                        </button>
                                     </div>&nbsp;
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/demand/plan/add}" role="button">
                                             <i class="fas fa-plus">&nbsp; Create Demand Plan</i></a>
                                     </div>&nbsp;
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
+                                        <a class="btn btn-secondary" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit Demand Plan</i></a>
                                     </div>
                                 </form>

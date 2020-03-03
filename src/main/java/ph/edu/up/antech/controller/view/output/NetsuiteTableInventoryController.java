@@ -6,12 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.service.NetsuiteService;
+import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.NetsuiteTableInventoryCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +27,9 @@ public class NetsuiteTableInventoryController {
     @Autowired
     private NetsuiteService netsuiteService;
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("")
     public String loadNetsuiteTableInventoryPage(Model model,
                                                  @RequestParam(required = false) String startDate,
@@ -34,8 +40,10 @@ public class NetsuiteTableInventoryController {
                 ? LocalDate.parse(endDate) : LocalDate.now();
 
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
-        List<String> hippProductList = generateUniqueHippProductNameFromNetsuiteList(netsuiteList);
-        List<String> jarProductList = generateUniqueJarProductNameFromNetsuiteList(netsuiteList);
+        List<String> hippProductList = productService.findAllProducts().stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> jarProductList = new ArrayList<>();
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         NetsuiteTableInventoryCalculator netsuiteTableInventoryCalculator =
                 new NetsuiteTableInventoryCalculator(netsuiteList);

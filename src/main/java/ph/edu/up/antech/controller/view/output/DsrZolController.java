@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.output.DsrZol;
 import ph.edu.up.antech.domain.sales.output.DsrZolCombination;
+import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.util.DsrZolCalculator;
 import ph.edu.up.antech.util.StringUtils;
@@ -25,6 +27,9 @@ public class DsrZolController {
 
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("")
     public String loadDsrZolPage(Model model,
@@ -44,12 +49,14 @@ public class DsrZolController {
                         accountList);
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
 
-        List<String> antechProductDescriptionList = findDistinctAntechProductDescriptionInZolPerDoorsList(zolPerDoorsList);
+        List<String> productList = productService.findAllProducts().stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
 
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("dsrZolList", dsrZolList);
-        model.addAttribute("productList", antechProductDescriptionList);
+        model.addAttribute("productList", productList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("dsrZolCalculator", dsrZolCalculator);
         model.addAttribute("dsrZolCombinationList", dsrZolCombinationList);

@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.output.NetsuiteCombination;
 import ph.edu.up.antech.service.NetsuiteService;
+import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.NetsuiteSummaryCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
@@ -25,6 +27,9 @@ public class NetsuiteSummaryController {
     @Autowired
     private NetsuiteService netsuiteService;
 
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("")
     public String loadNetsuiteSummaryPage(Model model,
                                           @RequestParam(required = false) String startDate,
@@ -35,7 +40,9 @@ public class NetsuiteSummaryController {
                 ? LocalDate.parse(endDate) : LocalDate.now();
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
 
-        List<String> productList = generateListOfUniqueProductBrandFromNetsuiteList(netsuiteList);
+        List<String> productList = productService.findAllProducts().stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
         List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         List<String> transfersCatRecodeList = generateListOfUniqueTransfersCatRecordFromNetsuiteList(netsuiteList);
         List<NetsuiteCombination> netsuiteCombinationList =
