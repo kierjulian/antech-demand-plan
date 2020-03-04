@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.runner.Application;
+import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.service.ZolPerDoorsService;
+import ph.edu.up.antech.service.impl.ProductServiceImpl;
 import ph.edu.up.antech.service.impl.ZolPerDoorsServiceImpl;
 import ph.edu.up.antech.util.DsrZolCalculator;
 
@@ -21,12 +24,15 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration(classes = {
-        ZolPerDoorsServiceImpl.class
+        ZolPerDoorsServiceImpl.class, ProductServiceImpl.class
 })
 public class GenerateDsrZolFromZolPerDoorsTest {
 
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
+
+    @Autowired
+    private ProductService productService;
 
     @Test
     public void queryDistinctZolPerDoorsKamRefName_andPrintContents_shouldBeSuccessful() {
@@ -81,7 +87,9 @@ public class GenerateDsrZolFromZolPerDoorsTest {
             }
         });
 
-        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
+        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList, productService.findAllProducts().stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList()));
         Assert.assertEquals(Integer.valueOf(185), dsrZolCalculator.calculateTotalAmountPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
         Assert.assertEquals(Integer.valueOf(205), dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
     }

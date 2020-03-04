@@ -72,24 +72,24 @@
                                                     <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, milkProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
+                                                <td th:text="${dsrZolCalculator.calculateTotalMilkAmountPerAccount(kamRefName)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
                                                     <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, waterProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td>0</td>
+                                                <td th:text="${dsrZolCalculator.calculateTotalWaterAmountPerAccount(kamRefName)}"></td>
                                                 <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
                                                 <td class="bg-dark"></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
                                                     <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, milkProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
+                                                <td th:text="${dsrZolCalculator.calculateTotalMilkUnitsPerAccount(kamRefName)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
                                                     <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, waterProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td>0</td>
+                                                <td th:text="${dsrZolCalculator.calculateTotalWaterUnitsPerAccount(kamRefName)}"></td>
                                                 <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
                                             </tr>
                                             <th:block th:each="dsrZolCombination, row : ${dsrZolCombinationList}">
@@ -107,7 +107,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td th:text="${dsrZolCombination.getTotalAmount()}"></td>
+                                                    <td th:text="${dsrZolCombination.getTotalMilkAmount()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
@@ -120,7 +120,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td>0</td>
+                                                    <td th:text="${dsrZolCombination.getTotalWaterAmount()}"></td>
                                                     <td th:text="${dsrZolCombination.getTotalAmount()}"></td>
                                                     <td class="bg-dark"></td>
                                                     <th:block th:each="milkProduct : ${milkProductList}">
@@ -135,7 +135,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td th:text="${dsrZolCombination.getTotalSalesUnit()}"></td>
+                                                    <td th:text="${dsrZolCombination.getTotalMilkSalesUnit()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
@@ -148,7 +148,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td>0</td>
+                                                    <td th:text="${dsrZolCombination.getTotalWaterSalesUnit()}"></td>
                                                     <td th:text="${dsrZolCombination.getTotalSalesUnit()}"></td>
                                                 </tr>
                                             </th:block>
@@ -159,24 +159,24 @@
                                                 <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(milkProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateTotalMilkAmount()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
                                                 <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(waterProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td>0</td>
+                                            <td th:text="${dsrZolCalculator.calculateTotalWaterAmount()}"></td>
                                             <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
                                             <td class="bg-dark"></td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
                                                 <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(milkProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateTotalMilkUnits()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
                                                 <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(waterProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td>0</td>
+                                            <td th:text="${dsrZolCalculator.calculateTotalWaterUnits()}"></td>
                                             <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
                                         </tr>
                                     </tbody>

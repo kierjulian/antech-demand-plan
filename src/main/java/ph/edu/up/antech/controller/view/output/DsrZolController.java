@@ -41,28 +41,29 @@ public class DsrZolController {
         LocalDate end = !StringUtils.isNullOrEmpty(endDate)
                 ? LocalDate.parse(endDate) : LocalDate.now();
 
+        List<Product> productList = productService.findAllProducts();
+        List<String> productCodeList = productList.stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+
         List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsBetweenTwoDates(start, end);
-        List<DsrZol> dsrZolList = generateDsrZolFromZolPerDoorsList(zolPerDoorsList);
+        List<DsrZol> dsrZolList = generateDsrZolFromZolPerDoorsList(zolPerDoorsList, productCodeList);
         List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
         List<String> accountList = findDistinctAccountInZolPerDoorsList(zolPerDoorsList);
         List<DsrZolCombination> dsrZolCombinationList =
                 generateDsrZolCombinationByLocalDateAndKamReferenceNameAndAccount(dsrZolList, kamReferenceNameList,
                         accountList);
-        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
 
-        List<Product> productList = productService.findAllProducts();
         List<String> milkProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.MILK))
-                .map(Product::getCode)
-                .collect(Collectors.toList());
-        List<String> jarProductList = productList.stream()
-                .filter(product -> product.getProductType().equals(ProductType.JAR))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> waterProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
+
+        DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList, productCodeList);
 
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
@@ -91,28 +92,18 @@ public class DsrZolController {
                 .collect(Collectors.toList());
     }
 
-    private List<String> findDistinctAntechProductDescriptionInZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
-        return zolPerDoorsList.stream()
-                .map(ZolPerDoors::getAntechProductDescription)
-                .distinct()
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
-    private List<DsrZol> generateDsrZolFromZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {
+    private List<DsrZol> generateDsrZolFromZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList, List<String> productCodeList) {
         List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
-        List<String> antechProductDescriptionList =
-                findDistinctAntechProductDescriptionInZolPerDoorsList(zolPerDoorsList);
 
         List<DsrZol> dsrZolList = new ArrayList<>();
 
         kamReferenceNameList.forEach(kamReferenceName -> {
-            antechProductDescriptionList.forEach(antechProductDescription -> {
+            productCodeList.forEach(productCode -> {
                 List<ZolPerDoors> filteredZolPerDoorsList = zolPerDoorsList.stream()
                         .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getKamReferenceName()))
                         .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getAntechProductDescription()))
                         .filter(zolPerDoors -> zolPerDoors.getKamReferenceName().equals(kamReferenceName))
-                        .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(antechProductDescription))
+                        .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(productCode))
                         .collect(Collectors.toList());
                 filteredZolPerDoorsList.forEach(zolPerDoors -> {
                     DsrZol dsrZol = new DsrZol(zolPerDoors);

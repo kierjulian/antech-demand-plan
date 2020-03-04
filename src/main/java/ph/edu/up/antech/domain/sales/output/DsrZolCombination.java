@@ -67,9 +67,39 @@ public class DsrZolCombination {
                 .anyMatch(productName -> productName.equals(product));
     }
 
+    public Integer getTotalMilkAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("C")
+                        || productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
+    public Integer getTotalWaterAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
     public Integer getTotalAmount() {
         return productSalesAmountAndUnitList.stream()
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
+    public Integer getTotalMilkSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("C")
+                        || productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
+                .sum();
+    }
+
+    public Integer getTotalWaterSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
