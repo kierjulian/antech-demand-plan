@@ -15,8 +15,6 @@ import ph.edu.up.antech.util.NetsuiteTableInventoryCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -31,8 +29,6 @@ public class NetsuiteTableInventoryController {
     @Autowired
     private ProductService productService;
 
-    private List<Product> productList;
-
     @GetMapping("")
     public String loadNetsuiteTableInventoryPage(Model model,
                                                  @RequestParam(required = false) String startDate,
@@ -41,17 +37,18 @@ public class NetsuiteTableInventoryController {
                 ? LocalDate.parse(startDate) : LocalDate.now();
         LocalDate end = !StringUtils.isNullOrEmpty(endDate)
                 ? LocalDate.parse(endDate) : LocalDate.now();
-
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
-        List<String> hippProductList = getAllProducts().stream()
+
+        List<Product> productList = productService.findAllProducts();
+        List<String> hippProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.MILK))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> jarProductList = getAllProducts().stream()
+        List<String> jarProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.JAR))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> waterProductList = getAllProducts().stream()
+        List<String> waterProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.JAR))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
@@ -75,14 +72,6 @@ public class NetsuiteTableInventoryController {
                 .filter(Objects::nonNull)
                 .distinct()
                 .collect(Collectors.toList());
-    }
-
-    private List<Product> getAllProducts() {
-        if (productList == null) {
-            productList = productService.findAllProducts();
-        }
-
-        return productList;
     }
 
 }

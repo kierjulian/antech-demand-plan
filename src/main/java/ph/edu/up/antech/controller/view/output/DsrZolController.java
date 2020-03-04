@@ -32,8 +32,6 @@ public class DsrZolController {
     @Autowired
     private ProductService productService;
 
-    private List<Product> productList;
-
     @GetMapping("")
     public String loadDsrZolPage(Model model,
                                  @RequestParam(required = false) String startDate,
@@ -52,15 +50,16 @@ public class DsrZolController {
                         accountList);
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList);
 
-        List<String> milkProductList = getAllProducts().stream()
+        List<Product> productList = productService.findAllProducts();
+        List<String> milkProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.MILK))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> jarProductList = getAllProducts().stream()
+        List<String> jarProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.JAR))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> waterProductList = getAllProducts().stream()
+        List<String> waterProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
@@ -142,14 +141,6 @@ public class DsrZolController {
         });
 
         return dsrZolCombinationList;
-    }
-
-    private List<Product> getAllProducts() {
-        if (productList == null) {
-            productList = productService.findAllProducts();
-        }
-
-        return productList;
     }
 
 }
