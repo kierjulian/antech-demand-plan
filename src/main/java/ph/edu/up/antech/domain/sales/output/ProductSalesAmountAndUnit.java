@@ -10,8 +10,8 @@ public class ProductSalesAmountAndUnit {
 
     public ProductSalesAmountAndUnit(String product, Integer amount, Integer salesUnit) {
         this.product = product;
-        this.amount = amount;
-        this.salesUnit = salesUnit;
+        this.amount = amount != null ? amount : 0;
+        this.salesUnit = salesUnit != null ? salesUnit : 0;
     }
 
     public String getProduct() {

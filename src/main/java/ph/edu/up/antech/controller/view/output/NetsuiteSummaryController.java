@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
+import ph.edu.up.antech.domain.ProductType;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.output.NetsuiteCombination;
 import ph.edu.up.antech.service.NetsuiteService;
@@ -40,19 +41,29 @@ public class NetsuiteSummaryController {
                 ? LocalDate.parse(endDate) : LocalDate.now();
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
 
-        List<String> productList = productService.findAllProducts().stream()
+        List<Product> productList = productService.findAllProducts();
+        List<String> productCodeList = productList.stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> milkProductList = productList.stream()
+                .filter(product -> product.getProductType().equals(ProductType.MILK))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> waterProductList = productList.stream()
+                .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         List<String> transfersCatRecodeList = generateListOfUniqueTransfersCatRecordFromNetsuiteList(netsuiteList);
         List<NetsuiteCombination> netsuiteCombinationList =
-                generateNetsuiteCombination(netsuiteList, kamReferenceNameList, transfersCatRecodeList);
-        NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList);
+                generateNetsuiteCombination(netsuiteList, kamReferenceNameList, transfersCatRecodeList, productCodeList);
+        NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList, productCodeList);
 
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("netsuiteList", netsuiteList);
-        model.addAttribute("productList", productList);
+        model.addAttribute("milkProductList", milkProductList);
+        model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("transfersCatRecodeList", transfersCatRecodeList);
         model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
         model.addAttribute("netsuiteSummaryCalculator", netsuiteSummaryCalculator);
@@ -84,15 +95,18 @@ public class NetsuiteSummaryController {
     }
 
     private List<NetsuiteCombination> generateNetsuiteCombination(
-            List<Netsuite> netsuiteList, List<String> kamReferenceNameList, List<String> transfersCatRecodeList) {
+            List<Netsuite> netsuiteList, List<String> kamReferenceNameList, List<String> transfersCatRecodeList,
+            List<String> productListCode) {
         List<NetsuiteCombination> netsuiteCombinationList = new ArrayList<>();
 
         kamReferenceNameList.forEach(kamReferenceName -> {
             transfersCatRecodeList.forEach(transfersCatRecode -> {
                 List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
+                        .filter(netsuite -> productListCode.contains(netsuite.getBrand()))
                         .filter(netsuite -> netsuite.getKamRefName1() != null)
                         .filter(netsuite -> netsuite.getBrand() != null)
                         .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
+                        .filter(netsuite -> netsuite.getRevenueConverted() != null)
                         .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                         .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transfersCatRecode))
                         .collect(Collectors.toList());

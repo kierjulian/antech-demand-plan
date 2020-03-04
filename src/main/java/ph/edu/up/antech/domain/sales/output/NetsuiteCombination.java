@@ -69,10 +69,44 @@ public class NetsuiteCombination {
                 .anyMatch(productName -> productName.equals(product));
     }
 
+    public Integer getTotalMilkAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("CS") ||
+                        productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
+    public Integer getTotalWaterAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
     public Integer getTotalAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
+    public Integer getTotalMilkSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("CS") ||
+                        productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
+                .sum();
+    }
+
+    public Integer getTotalWaterSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
