@@ -40,7 +40,10 @@ public class NetsuiteTableInventoryController {
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
 
         List<Product> productList = productService.findAllProducts();
-        List<String> hippProductList = productList.stream()
+        List<String> productCodeList = productList.stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        List<String> milkProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.MILK))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
@@ -54,11 +57,11 @@ public class NetsuiteTableInventoryController {
                 .collect(Collectors.toList());
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         NetsuiteTableInventoryCalculator netsuiteTableInventoryCalculator =
-                new NetsuiteTableInventoryCalculator(netsuiteList);
+                new NetsuiteTableInventoryCalculator(netsuiteList, productCodeList);
 
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
-        model.addAttribute("hippProductList", hippProductList);
+        model.addAttribute("milkProductList", milkProductList);
         model.addAttribute("jarProductList", jarProductList);
         model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);

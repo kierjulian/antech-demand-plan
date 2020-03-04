@@ -3,14 +3,15 @@ package ph.edu.up.antech.util;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
 import java.util.List;
-import java.util.Objects;
 
 public class NetsuiteTableInventoryCalculator {
 
     private List<Netsuite> netsuiteList;
+    private List<String> productList;
 
-    public NetsuiteTableInventoryCalculator(List<Netsuite> netsuiteList) {
+    public NetsuiteTableInventoryCalculator(List<Netsuite> netsuiteList, List<String> productList) {
         this.netsuiteList = netsuiteList;
+        this.productList = productList;
     }
 
     public Integer calculateTotalAmountPerKamReferenceNamePerBrand(String kamReferenceName, String brand) {
@@ -29,6 +30,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("S") || netsuite.getBrand().startsWith("CS"))
                 .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
@@ -40,6 +42,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
@@ -51,6 +54,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
                 .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
@@ -73,6 +77,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
                 .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
@@ -84,6 +89,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
@@ -95,6 +101,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
                 .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
