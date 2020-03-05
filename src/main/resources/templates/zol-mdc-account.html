@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'ZOL MDC Account List')"></div>
-        <script th:src="@{/js/zol-mdc-account.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -41,7 +40,6 @@
                                 <table id="zolMdcAccountTable" class="table table-striped table-bordered table-hover table-sm">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">Row</th>
                                             <th scope="col">Shpcn</th>
                                             <th scope="col">Branch Name</th>
                                             <th scope="col">Customer Name</th>
@@ -52,12 +50,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="zolMdcAccount, row : ${zolMdcAccountList}">
+                                        <tr th:each="zolMdcAccount, row : ${page.content}">
                                             <td class="align-middle">
-                                                <a th:text="${row.count}"
+                                                <a th:text="${zolMdcAccount.shpcn}"
                                                    th:href="@{/master/zol-mdc/config/accounts/view/{id}(id=${zolMdcAccount.id})}"></a>
                                             </td>
-                                            <td class="align-middle" th:text="${zolMdcAccount.shpcn}"></td>
                                             <td class="align-middle" th:text="${zolMdcAccount.branchName}"></td>
                                             <td class="align-middle" th:text="${zolMdcAccount.customerName}"></td>
                                             <td class="align-middle" th:text="${zolMdcAccount.cadd1}"></td>
@@ -90,6 +87,34 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
+                                <div class="pagination-buttons">
+                                    <ul class="pagination">
+                                        <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled' : ''">
+                                            <a class="page-link" th:if="${not page.first}" th:href="@{${'/master/zol-mdc/config/accounts'}(page=${page.number-1},size=${page.size})}">Previous</a>
+                                            <a class="page-link" th:if="${page.first}" href="javascript:void(0);">Previous</a>
+                                        </li>
+                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}">
+                                            <a class="page-link" th:if="${page.number - 1 eq pageNo - 1}">
+                                                <span th:text="${pageNo}"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:classappend="${page.number eq pageNo}? 'active' : ''">
+                                            <a class="page-link" th:if="${page.number eq pageNo}" href="javascript:void(0);">
+                                                <span th:text="${pageNo + 1}"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}">
+                                            <a class="page-link" th:if="${page.number + 1 eq pageNo + 1}">
+                                                <span th:text="${pageNo + 2}"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:classappend="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
+                                            <a class="page-link" th:if="${not page.last}" th:href="@{${'/master/zol-mdc/config/accounts'}(page=${page.number+1},size=${page.size})}">Next</a>
+                                            <a class="page-link" th:if="${page.last}" href="javascript:void(0);">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
