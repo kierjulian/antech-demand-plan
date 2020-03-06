@@ -78,6 +78,14 @@ public class NetsuiteCombination {
                 .sum();
     }
 
+    public Integer getTotalJarAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
     public Integer getTotalWaterAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
@@ -97,6 +105,14 @@ public class NetsuiteCombination {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("CS") ||
                         productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
+                .sum();
+    }
+
+    public Integer getTotalJarSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();

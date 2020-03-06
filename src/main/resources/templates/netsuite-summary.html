@@ -36,10 +36,10 @@
                                         <tr>
                                             <th></th>
                                             <th class="align-middle font-weight-bold" style="text-align: center;"
-                                                th:attr="colspan=${#lists.size(milkProductList) + #lists.size(waterProductList) + 3}">Amount</th>
+                                                th:attr="colspan=${#lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 4}">Amount</th>
                                             <th class="bg-dark"></th>
                                             <th class="align-middle font-weight-bold" style="text-align: center;"
-                                                th:attr="colspan=${#lists.size(milkProductList) + #lists.size(waterProductList) + 3}">Units</th>
+                                                th:attr="colspan=${#lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 4}">Units</th>
                                         </tr>
                                     <tr>
                                         <th class="sticky-top">Row Labels</th>
@@ -47,6 +47,10 @@
                                             <th scope="col" class="sticky-top" th:text="${milkProduct}"></th>
                                         </th:block>
                                         <th scope="col" class="sticky-top">Total Milk</th>
+                                        <th:block th:each="jarProductList : ${jarProductList}">
+                                            <th scope="col" class="sticky-top" th:text="${jarProductList}"></th>
+                                        </th:block>
+                                        <th scope="col" class="sticky-top">Total Jar</th>
                                         <th:block th:each="waterProduct : ${waterProductList}">
                                             <th scope="col" class="sticky-top" th:text="${waterProduct}"></th>
                                         </th:block>
@@ -57,6 +61,10 @@
                                             <th scope="col" class="sticky-top" th:text="${milkProduct}"></th>
                                         </th:block>
                                         <th scope="col" class="sticky-top">Total Milk</th>
+                                        <th:block th:each="jarProduct : ${jarProductList}">
+                                            <th scope="col" class="sticky-top" th:text="${jarProduct}"></th>
+                                        </th:block>
+                                        <th scope="col" class="sticky-top">Total Jar</th>
                                         <th:block th:each="waterProduct : ${waterProductList}">
                                             <th scope="col" class="sticky-top" th:text="${waterProduct}"></th>
                                         </th:block>
@@ -73,6 +81,11 @@
                                                     </td>
                                                 </th:block>
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalMilkAmountPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <th:block th:each="jarProduct : ${jarProductList}">
+                                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerTransferCatRecodePerProduct(transfersCatRecode, jarProduct)}">
+                                                    </td>
+                                                </th:block>
+                                                <td th:text="${netsuiteSummaryCalculator.calculateTotalJarAmountPerTransfersCatRecode(transfersCatRecode)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
                                                     <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerTransferCatRecodePerProduct(transfersCatRecode, waterProduct)}">
                                                     </td>
@@ -85,6 +98,11 @@
                                                     </td>
                                                 </th:block>
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalMilkUnitsPerTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <th:block th:each="jarProduct : ${jarProductList}">
+                                                    <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitsPerTransfersCatRecodePerProduct(transfersCatRecode, jarProduct)}">
+                                                    </td>
+                                                </th:block>
+                                                <td th:text="${netsuiteSummaryCalculator.calculateTotalJarUnitsPerTransfersCatRecode(transfersCatRecode)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
                                                     <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitsPerTransfersCatRecodePerProduct(transfersCatRecode, waterProduct)}">
                                                     </td>
@@ -108,6 +126,19 @@
                                                         </th:block>
                                                     </th:block>
                                                     <td th:text="${netsuiteCombination.getTotalMilkAmount()}"></td>
+                                                    <th:block th:each="jarProduct : ${jarProductList}">
+                                                        <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                            <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
+                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                </td>
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                            <td>-</td>
+                                                        </th:block>
+                                                    </th:block>
+                                                    <td th:text="${netsuiteCombination.getTotalJarAmount()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
@@ -136,6 +167,19 @@
                                                         </th:block>
                                                     </th:block>
                                                     <td th:text="${netsuiteCombination.getTotalMilkSalesUnit()}"></td>
+                                                    <th:block th:each="jarProduct : ${jarProductList}">
+                                                        <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                            <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
+                                                                    th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                                </td>
+                                                            </th:block>
+                                                        </th:block>
+                                                        <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                            <td>-</td>
+                                                        </th:block>
+                                                    </th:block>
+                                                    <td th:text="${netsuiteCombination.getTotalJarSalesUnit()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
@@ -159,6 +203,10 @@
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerProduct(milkProduct)}"></td>
                                             </th:block>
                                             <td th:text="${netsuiteSummaryCalculator.calculateTotalMilkAmount()}"></td>
+                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerProduct(jarProduct)}"></td>
+                                            </th:block>
+                                            <td th:text="${netsuiteSummaryCalculator.calculateTotalJarAmount()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalAmountPerProduct(waterProduct)}"></td>
                                             </th:block>
@@ -169,6 +217,10 @@
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitPerProduct(milkProduct)}"></td>
                                             </th:block>
                                             <td th:text="${netsuiteSummaryCalculator.calculateTotalMilkUnit()}"></td>
+                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitPerProduct(jarProduct)}"></td>
+                                            </th:block>
+                                            <td th:text="${netsuiteSummaryCalculator.calculateTotalJarUnit()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
                                                 <td th:text="${netsuiteSummaryCalculator.calculateTotalUnitPerProduct(waterProduct)}"></td>
                                             </th:block>

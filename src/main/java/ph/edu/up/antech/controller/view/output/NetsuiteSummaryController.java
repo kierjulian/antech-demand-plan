@@ -49,6 +49,10 @@ public class NetsuiteSummaryController {
                 .filter(product -> product.getProductType().equals(ProductType.MILK))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
+        List<String> jarProductList = productList.stream()
+                .filter(product -> product.getProductType().equals(ProductType.JAR))
+                .map(Product::getCode)
+                .collect(Collectors.toList());
         List<String> waterProductList = productList.stream()
                 .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
@@ -63,6 +67,7 @@ public class NetsuiteSummaryController {
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("netsuiteList", netsuiteList);
         model.addAttribute("milkProductList", milkProductList);
+        model.addAttribute("jarProductList", jarProductList);
         model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("transfersCatRecodeList", transfersCatRecodeList);
         model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
