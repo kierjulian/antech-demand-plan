@@ -52,7 +52,7 @@ public class NetsuiteTableInventoryController {
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> waterProductList = productList.stream()
-                .filter(product -> product.getProductType().equals(ProductType.JAR))
+                .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);

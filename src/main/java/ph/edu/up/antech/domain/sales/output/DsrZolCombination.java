@@ -75,6 +75,13 @@ public class DsrZolCombination {
                 .sum();
     }
 
+    public Integer getTotalJarAmount() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .sum();
+    }
+
     public Integer getTotalWaterAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
@@ -92,6 +99,13 @@ public class DsrZolCombination {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("C")
                         || productSalesAmountAndUnit.getProduct().startsWith("S"))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
+                .sum();
+    }
+
+    public Integer getTotalJarSalesUnit() {
+        return productSalesAmountAndUnitList.stream()
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
