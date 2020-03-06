@@ -7,43 +7,46 @@ import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.service.ProductService;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-	@Autowired
-	private ProductDAO productDAO;
+    @Autowired
+    private ProductDAO productDAO;
 
-	@Override
-	public List<Product> findAllProducts() {
-		return productDAO.findAllProducts();
-	}
+    @Override
+    public List<Product> findAllProducts() {
+        List<Product> productList = productDAO.findAllProducts();
+        Collections.sort(productList);
+        return productList;
+    }
 
-	@Override
-	public Product findProductById(Integer id) {
-		return productDAO.findProductById(id);
-	}
+    @Override
+    public Product findProductById(Integer id) {
+        return productDAO.findProductById(id);
+    }
 
-	@Override
-	public Product saveProduct(Product product) {
-		return productDAO.saveProduct(product);
-	}
+    @Override
+    public Product saveProduct(Product product) {
+        return productDAO.saveProduct(product);
+    }
 
-	@Override
-	public Product updateProduct(Product product) {
-		return productDAO.updateProduct(product);
-	}
+    @Override
+    public Product updateProduct(Product product) {
+        return productDAO.updateProduct(product);
+    }
 
-	@Override
-	public void removeProduct(Integer id) {
-		productDAO.removeProduct(id);
-	}
+    @Override
+    public void removeProduct(Integer id) {
+        productDAO.removeProduct(id);
+    }
 
-	@Override
-	public List<Product> findProductsByCode(String code) {
-		return productDAO.findProductsByCode(code);
-	}
+    @Override
+    public List<Product> findProductsByCode(String code) {
+        return productDAO.findProductsByCode(code);
+    }
 
 }
