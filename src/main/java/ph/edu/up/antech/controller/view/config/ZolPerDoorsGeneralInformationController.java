@@ -2,14 +2,17 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.ZolPerDoorsGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/zol-doors/config/gen-info")
@@ -20,11 +23,22 @@ public class ZolPerDoorsGeneralInformationController {
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
 
+    @Autowired
+    private ZolPerDoorsGeneralInformationPaginationDAO zolPerDoorsGeneralInformationPaginationDAO;
+
     @GetMapping("")
-    public String loadZolPerDoorsGeneralInformation(Model model) {
-        List<ZolPerDoorsGeneralInformation> zolPerDoorsGeneralInformationList =
-                zolPerDoorsGeneralInformationService.findAllZolPerDoorsGeneralInformation();
-        model.addAttribute("zolPerDoorsGeneralInformationList", zolPerDoorsGeneralInformationList);
+    public String loadZolPerDoorsGeneralInformation(Model model, @PageableDefault(size = 10) Pageable pageable,
+                                                    @RequestParam(required = false) String filter) {
+        try {
+            Page<ZolPerDoorsGeneralInformation> page = StringUtils.isNullOrEmpty(filter)
+                    ? zolPerDoorsGeneralInformationPaginationDAO.findAll(pageable)
+                    : zolPerDoorsGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+            model.addAttribute("page", page);
+            model.addAttribute("filter", filter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "zol-gen-info";
     }
 
