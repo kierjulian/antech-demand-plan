@@ -235,13 +235,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteBbjCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteBbjCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -480,13 +480,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -530,13 +530,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>

@@ -48,6 +48,7 @@ public class HippMarketSalesController {
     public String loadHippInMarketSalesAmountPage(Model model,
                                                   @RequestParam(required = false) String startDate,
                                                   @RequestParam(required = false) String endDate) {
+        long timeStart = System.nanoTime();
         YearMonth yearMonthStart = !StringUtils.isNullOrEmpty(startDate)
                 ? YearMonth.parse(startDate) : YearMonth.of(Year.now().getValue(), 1);
         YearMonth yearMonthEnd = !StringUtils.isNullOrEmpty(endDate)
@@ -81,6 +82,8 @@ public class HippMarketSalesController {
                 generateZolPerDoorsCalculator(zolPerDoorsList, productList);
         NetsuiteCalculator netsuiteLazadaCalculator =
                 generateNetsuiteLazadaCalculator(netsuiteList, productList, "Lazada");
+        NetsuiteCalculator netsuiteBbjCalculator =
+                generateNetsuiteLazadaCalculator(netsuiteList, productList, "BBJ");
 
         model.addAttribute("yearMonthStart", yearMonthStart);
         model.addAttribute("yearMonthEnd", yearMonthEnd);
@@ -92,6 +95,9 @@ public class HippMarketSalesController {
         model.addAttribute("zolMtPerBranchCalculator", zolMtPerBranchCalculator);
         model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
         model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
+        model.addAttribute("netsuiteBbjCalculator", netsuiteBbjCalculator);
+        long endTime = System.nanoTime();
+        System.out.println(endTime - timeStart);
 
         return "hipp-market-sales-summary";
     }

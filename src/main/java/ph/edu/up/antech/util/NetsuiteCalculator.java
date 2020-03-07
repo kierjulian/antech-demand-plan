@@ -39,4 +39,19 @@ public class NetsuiteCalculator {
                 .sum();
     }
 
+    public Integer getTotalUnitsByYearMonthByProduct(YearMonth yearMonth, String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
+                .filter(netsuite -> netsuite.getBrand().equals(productCode))
+                .mapToInt(netsuiteList -> netsuiteList.getQuantity())
+                .sum();
+    }
+
+    public Integer getTotalUnitsByYearMonth(YearMonth yearMonth) {
+        return netsuiteList.stream()
+                .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
+                .mapToInt(netsuiteList -> netsuiteList.getQuantity())
+                .sum();
+    }
+
 }
