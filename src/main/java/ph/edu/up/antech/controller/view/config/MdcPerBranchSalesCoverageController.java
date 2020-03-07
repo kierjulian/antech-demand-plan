@@ -2,14 +2,17 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesCoveragePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCoverage;
 import ph.edu.up.antech.service.MdcPerBranchSalesCoverageService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/mdc-branch/config/coverage")
@@ -20,11 +23,17 @@ public class MdcPerBranchSalesCoverageController {
     @Autowired
     private MdcPerBranchSalesCoverageService mdcPerBranchSalesCoverageService;
 
+    @Autowired
+    private MdcPerBranchSalesCoveragePaginationDAO mdcPerBranchSalesCoveragePaginationDAO;
+
     @GetMapping("")
-    public String loadMdcPerBranchSalesCoveragePage(Model model) {
-        List<MdcPerBranchSalesCoverage> mdcPerBranchSalesCoverageList =
-                mdcPerBranchSalesCoverageService.findAllMdcPerBranchSalesCoverage();
-        model.addAttribute("mdcPerBranchSalesCoverageList", mdcPerBranchSalesCoverageList);
+    public String loadMdcPerBranchSalesCoveragePage(Model model, @PageableDefault Pageable pageable,
+                                                    @RequestParam(required = false) String filter) {
+        Page<MdcPerBranchSalesCoverage> page = StringUtils.isNullOrEmpty(filter)
+                ? mdcPerBranchSalesCoveragePaginationDAO.findAll(pageable)
+                : mdcPerBranchSalesCoveragePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "mdc-branch-coverage";
     }
 
