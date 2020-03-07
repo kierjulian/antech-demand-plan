@@ -285,13 +285,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteLazadaCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
+                                                    <td th:text="${netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>

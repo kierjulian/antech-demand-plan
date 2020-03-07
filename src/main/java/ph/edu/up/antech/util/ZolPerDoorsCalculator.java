@@ -17,19 +17,19 @@ public class ZolPerDoorsCalculator {
                 .collect(Collectors.toList());
     }
 
-    public BigDecimal getTotalFinalAmountByYearMonthAndProduct(YearMonth yearMonth, String product) {
+    public Integer getTotalFinalAmountByYearMonthAndProduct(YearMonth yearMonth, String product) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
                 .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(product))
-                .map(ZolPerDoors::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolPerDoors::getAmount)
+                .sum();
     }
 
-    public BigDecimal getTotalFinalAmountByYearMonth(YearMonth yearMonth) {
+    public Integer getTotalFinalAmountByYearMonth(YearMonth yearMonth) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
-                .map(ZolPerDoors::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolPerDoors::getAmount)
+                .sum();
     }
 
     public Integer getTotalUnitsByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {

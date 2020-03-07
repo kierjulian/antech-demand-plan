@@ -17,19 +17,19 @@ public class ZolMtPerBranchCalculator {
                 .collect(Collectors.toList());
     }
 
-    public BigDecimal getTotalFinalAmountByYearMonthAndProduct(YearMonth yearMonth, String productCode) {
+    public Integer getTotalFinalAmountByYearMonthAndProduct(YearMonth yearMonth, String productCode) {
         return zolMtPerBranchList.stream()
                 .filter(zolMtPerBranch -> YearMonth.from(zolMtPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMtPerBranch -> zolMtPerBranch.getAntechProductDescription().equals(productCode))
-                .map(ZolMtPerBranch::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolMtPerBranch::getA)
+                .sum();
     }
 
-    public BigDecimal getTotalFinalAmountByYearMonth(YearMonth yearMonth) {
+    public Integer getTotalFinalAmountByYearMonth(YearMonth yearMonth) {
         return zolMtPerBranchList.stream()
                 .filter(zolMtPerBranch -> YearMonth.from(zolMtPerBranch.getDate()).equals(yearMonth))
-                .map(ZolMtPerBranch::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolMtPerBranch::getA)
+                .sum();
     }
 
     public Integer getTotalUnitsByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {

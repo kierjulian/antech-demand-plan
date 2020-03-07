@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
+import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
 import ph.edu.up.antech.domain.sales.master.ZolMtPerBranch;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
@@ -40,6 +41,9 @@ public class HippMarketSalesController {
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
 
+    @Autowired
+    private NetsuiteService netsuiteService;
+
     @GetMapping("")
     public String loadHippInMarketSalesAmountPage(Model model,
                                                   @RequestParam(required = false) String startDate,
@@ -64,6 +68,8 @@ public class HippMarketSalesController {
                 zolMtPerBranchService.findZolMtPerBranchBetweenTwoDates(start, end);
         List<ZolPerDoors> zolPerDoorsList =
                 zolPerDoorsService.findZolPerDoorsBetweenTwoDates(start, end);
+        List<Netsuite> netsuiteList =
+                netsuiteService.findNetsuiteBetweenTwoDates(start, end);
 
         DispensingDistributorCalculator dispensingDistributorCalculator =
                 generateDispensingDistributorCalculator(dispensingDistributorList, productList);
@@ -73,6 +79,8 @@ public class HippMarketSalesController {
                 generateZolMtPerBranchCalculator(zolMtPerBranchList, productList);
         ZolPerDoorsCalculator zolPerDoorsCalculator =
                 generateZolPerDoorsCalculator(zolPerDoorsList, productList);
+        NetsuiteCalculator netsuiteLazadaCalculator =
+                generateNetsuiteLazadaCalculator(netsuiteList, productList, "Lazada");
 
         model.addAttribute("yearMonthStart", yearMonthStart);
         model.addAttribute("yearMonthEnd", yearMonthEnd);
@@ -83,6 +91,7 @@ public class HippMarketSalesController {
         model.addAttribute("zolMdcPerBranchCalculator", zolMdcPerBranchCalculator);
         model.addAttribute("zolMtPerBranchCalculator", zolMtPerBranchCalculator);
         model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
+        model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
 
         return "hipp-market-sales-summary";
     }
@@ -124,6 +133,14 @@ public class HippMarketSalesController {
         ZolPerDoorsCalculator zolPerDoorsCalculator = new ZolPerDoorsCalculator(
                 zolPerDoorsList, products);
         return zolPerDoorsCalculator;
+    }
+
+    private NetsuiteCalculator generateNetsuiteLazadaCalculator(List<Netsuite> netsuiteList,
+                                                                List<Product> productList, String kamReferenceNameFilter) {
+        List<String> products = productList.stream()
+                .map(Product::getCode)
+                .collect(Collectors.toList());
+        return new NetsuiteCalculator(netsuiteList, products, kamReferenceNameFilter);
     }
 
 }

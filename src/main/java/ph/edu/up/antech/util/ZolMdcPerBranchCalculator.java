@@ -18,21 +18,21 @@ public class ZolMdcPerBranchCalculator {
                 .collect(Collectors.toList());
     }
 
-    public BigDecimal getTotalFinalAmountPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
+    public Integer getTotalFinalAmountPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
         return zolMdcPerBranchList.stream()
                 .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription().equals(productCode))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)
-                .map(ZolMdcPerBranch::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolMdcPerBranch::getA)
+                .sum();
     }
 
-    public BigDecimal getTotalFinalAmountPerYearMonth(YearMonth yearMonth) {
+    public Integer getTotalFinalAmountPerYearMonth(YearMonth yearMonth) {
         return zolMdcPerBranchList.stream()
                 .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)
-                .map(ZolMdcPerBranch::getFinalAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .mapToInt(ZolMdcPerBranch::getA)
+                .sum();
     }
 
     public Integer getTotalUnitsByYearMonthByProduct(YearMonth yearMonth, String productCode) {
