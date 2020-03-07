@@ -2,14 +2,17 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesCodePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCode;
 import ph.edu.up.antech.service.MdcPerBranchSalesCodeService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/mdc-branch/config/code")
@@ -20,11 +23,17 @@ public class MdcPerBranchSalesCodeController {
     @Autowired
     private MdcPerBranchSalesCodeService mdcPerBranchSalesCodeService;
 
+    @Autowired
+    private MdcPerBranchSalesCodePaginationDAO mdcPerBranchSalesCodePaginationDAO;
+
     @GetMapping("")
-    public String loadMdcPerBranchSalesCodePage(Model model) {
-        List<MdcPerBranchSalesCode> mdcPerBranchSalesCodeList =
-                mdcPerBranchSalesCodeService.findAllMdcPerBranchSalesCode();
-        model.addAttribute("mdcPerBranchSalesCodeList", mdcPerBranchSalesCodeList);
+    public String loadMdcPerBranchSalesCodePage(Model model, @PageableDefault Pageable pageable,
+                                                @RequestParam(required = false) String filter) {
+        Page<MdcPerBranchSalesCode> page = StringUtils.isNullOrEmpty(filter)
+                ? mdcPerBranchSalesCodePaginationDAO.findAll(pageable)
+                : mdcPerBranchSalesCodePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "mdc-branch-code";
     }
 
