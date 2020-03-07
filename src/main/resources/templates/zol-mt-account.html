@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'ZOL MT Account')"></div>
-        <script th:src="@{/js/zol-mt-account.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -31,65 +30,110 @@
                         </div>
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
-                                <form class="form-inline">
+                                <form class="form-inline" method="get" th:action="@{/master/zol-mt/config/accounts}">
+                                    <input type="text" class="form-control" name="filter" th:value="${filter}" th:placeholder="Filter">&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/master/zol-mt/config/accounts/add}" role="button">
-                                            <i class="fas fa-plus">&nbsp; Add Zol MT Account</i></a>
+                                            <i class="fas fa-plus">&nbsp; Add ZOL MT Account</i></a>
                                     </div>
                                 </form>
                                 <br>
                                 <table id="zolMtAccountTable" class="table table-striped table-bordered table-hover table-sm">
                                     <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Row</th>
-                                        <th scope="col">Shpcn</th>
-                                        <th scope="col">Branch Name</th>
-                                        <th scope="col">Customer Name</th>
-                                        <th scope="col">Cadd 1</th>
-                                        <th scope="col">Cadd 2</th>
-                                        <th scope="col">NA</th>
-                                        <th scope="col"></th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">Shpcn</th>
+                                            <th scope="col">Branch Name</th>
+                                            <th scope="col">Customer Name</th>
+                                            <th scope="col">Cadd 1</th>
+                                            <th scope="col">Cadd 2</th>
+                                            <th scope="col">NA</th>
+                                            <th scope="col"></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="zolMtAccount, row : ${zolMtAccountList}">
-                                        <td class="align-middle">
-                                            <a th:text="${row.count}"
-                                               th:href="@{/master/zol-mt/config/accounts/view/{id}(id=${zolMtAccount.id})}"></a>
-                                        </td>
-                                        <td class="align-middle" th:text="${zolMtAccount.shpcn}"></td>
-                                        <td class="align-middle" th:text="${zolMtAccount.branchName}"></td>
-                                        <td class="align-middle" th:text="${zolMtAccount.customerName}"></td>
-                                        <td class="align-middle" th:text="${zolMtAccount.cadd1}"></td>
-                                        <td class="align-middle" th:text="${zolMtAccount.cadd2}"></td>
-                                        <td class="align-middle" th:text="${zolMtAccount.na}"></td>
-                                        <td class="align-middle">
-                                            <a class="btn btn-outline-danger" data-toggle="modal"
-                                               th:attr="data-target='#deleteZolMtAccountModal' + ${zolMtAccount.id}"
-                                               role="button"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                        <div th:id="'deleteZolMtAccountModal' + ${zolMtAccount.id}" class="modal fade" role="dialog"
-                                             aria-labelledby="deleteZolMtAccountModalLabel" aria-hidden="true" tabindex="-1">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Delete ZOL MT Account</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure you want to delete this account?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a class="btn btn-danger"
-                                                           th:href="@{/master/zol-mt/config/accounts/delete/{id}(id=${zolMtAccount.id})}"
-                                                           role="button">Delete</a>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <tr th:each="zolMtAccount, row : ${page.content}">
+                                            <td class="align-middle">
+                                                <a th:text="${zolMtAccount.shpcn}"
+                                                   th:href="@{/master/zol-mt/config/accounts/view/{id}(id=${zolMtAccount.id})}"></a>
+                                            </td>
+                                            <td class="align-middle" th:text="${zolMtAccount.branchName}"></td>
+                                            <td class="align-middle" th:text="${zolMtAccount.customerName}"></td>
+                                            <td class="align-middle" th:text="${zolMtAccount.cadd1}"></td>
+                                            <td class="align-middle" th:text="${zolMtAccount.cadd2}"></td>
+                                            <td class="align-middle" th:text="${zolMtAccount.na}"></td>
+                                            <td class="align-middle">
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   th:attr="data-target='#deleteZolMtAccountModal' + ${zolMtAccount.id}"
+                                                   role="button"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <div th:id="'deleteZolMtAccountModal' + ${zolMtAccount.id}" class="modal fade" role="dialog"
+                                                 aria-labelledby="deleteZolMtAccountModalLabel" aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Delete ZOL MT Account</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this account?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-danger"
+                                                               th:href="@{/master/zol-mt/config/accounts/delete/{id}(id=${zolMtAccount.id})}"
+                                                               role="button">Delete</a>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </tr>
+                                        </tr>
                                     </tbody>
                                 </table>
+
+                                <div>
+                                    <nav aria-label="Pagination" th:if="${page.totalPages gt 0}">
+                                        <ul class="pagination justify-content-center font-weight-medium">
+                                            <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
+                                                <a class="page-link svg-icon"
+                                                   th:href="@{/master/zol-mt/config/accounts?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
+                                                   aria-label="Previous"
+                                                   title="Previous Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
+                                                        <i class="fas fa-chevron-left"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number - 8 > 0}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/zol-mt/config/accounts?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 10 < page.totalPages}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
+                                                <a class="page-link svg-icon" th:href="@{/master/zol-mt/config/accounts?page={id}&filter={filter}(id=${page.number + 1}, filter=${filter})}"
+                                                   aria-label="Next"
+                                                   title="Next Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
