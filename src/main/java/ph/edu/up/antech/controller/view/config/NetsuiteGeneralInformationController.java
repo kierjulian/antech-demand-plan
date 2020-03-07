@@ -2,14 +2,17 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.NetsuiteGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/netsuite/config/general-info")
@@ -20,11 +23,17 @@ public class NetsuiteGeneralInformationController {
     @Autowired
     private NetsuiteGeneralInformationService netsuiteGeneralInformationService;
 
+    @Autowired
+    private NetsuiteGeneralInformationPaginationDAO netsuiteGeneralInformationPaginationDAO;
+
     @GetMapping("")
-    public String loadNetsuiteGeneralInformationPage(Model model) {
-        List<NetsuiteGeneralInformation> netsuiteGeneralInformationList =
-                netsuiteGeneralInformationService.findAllNetsuiteGeneralInformation();
-        model.addAttribute("netsuiteGeneralInformationList", netsuiteGeneralInformationList);
+    public String loadNetsuiteGeneralInformationPage(Model model, @PageableDefault Pageable pageable,
+                                                     @RequestParam(required = false) String filter) {
+        Page<NetsuiteGeneralInformation> page = StringUtils.isNullOrEmpty(filter)
+                ? netsuiteGeneralInformationPaginationDAO.findAll(pageable)
+                : netsuiteGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "netsuite-gen-info";
     }
 
