@@ -12,11 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.dao.ZolMdcAccountPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/zol-mdc/config/accounts")
@@ -31,9 +27,13 @@ public class ZolMdcAccountController {
     private ZolMdcAccountPaginationDAO zolMdcAccountPaginationDAO;
 
     @GetMapping("")
-    public String loadZolMdcAccountPage(Model model, @PageableDefault(size = 20) Pageable pageable) {
-        Page<ZolMdcAccount> page = zolMdcAccountPaginationDAO.findAll(pageable);
+    public String loadZolMdcAccountPage(Model model, @PageableDefault(size = 10) Pageable pageable,
+                                        @RequestParam(required = false) String filter) {
+        Page<ZolMdcAccount> page = StringUtils.isNullOrEmpty(filter)
+                ? zolMdcAccountPaginationDAO.findAll(pageable)
+                : zolMdcAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "zol-mdc-account";
     }
 

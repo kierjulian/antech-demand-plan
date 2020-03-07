@@ -30,7 +30,12 @@
                         </div>
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
-                                <form class="form-inline">
+                                <form class="form-inline" method="get" th:action="@{/master/zol-mdc/config/accounts}">
+                                    <input type="text" class="form-control" name="filter" th:value="${filter}" th:placeholder="Filter">&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/master/zol-mdc/config/accounts/add}" role="button">
                                             <i class="fas fa-plus">&nbsp; Add ZOL MDC Account</i></a>
@@ -88,32 +93,41 @@
                                     </tbody>
                                 </table>
 
-                                <div class="pagination-buttons">
-                                    <ul class="pagination">
-                                        <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled' : ''">
-                                            <a class="page-link" th:if="${not page.first}" th:href="@{${'/master/zol-mdc/config/accounts'}(page=${page.number-1},size=${page.size})}">Previous</a>
-                                            <a class="page-link" th:if="${page.first}" href="javascript:void(0);">Previous</a>
-                                        </li>
-                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}">
-                                            <a class="page-link" th:if="${page.number - 1 eq pageNo - 1}">
-                                                <span th:text="${pageNo}"></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}" th:classappend="${page.number eq pageNo}? 'active' : ''">
-                                            <a class="page-link" th:if="${page.number eq pageNo}" href="javascript:void(0);">
-                                                <span th:text="${pageNo + 1}"></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}">
-                                            <a class="page-link" th:if="${page.number + 1 eq pageNo + 1}">
-                                                <span th:text="${pageNo + 2}"></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item" th:classappend="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
-                                            <a class="page-link" th:if="${not page.last}" th:href="@{${'/master/zol-mdc/config/accounts'}(page=${page.number+1},size=${page.size})}">Next</a>
-                                            <a class="page-link" th:if="${page.last}" href="javascript:void(0);">Next</a>
-                                        </li>
-                                    </ul>
+                                <div>
+                                    <nav aria-label="Pagination" th:if="${page.totalPages gt 0}">
+                                        <ul class="pagination justify-content-center font-weight-medium">
+                                            <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
+                                                <a class="page-link svg-icon"
+                                                   th:href="@{/master/zol-mdc/config/accounts?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
+                                                   aria-label="Previous"
+                                                   title="Previous Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
+                                                        <i class="fas fa-chevron-left"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence( page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/zol-mdc/config/accounts?page={id}&filter={filter}(id=${i}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 10 < page.totalPages}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
+                                                <a class="page-link svg-icon" th:href="@{/master/zol-mdc/config/accounts?page={id}&filter={filter}(id=${page.number + 1}, filter=${filter})}"
+                                                   aria-label="Next"
+                                                   title="Next Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
