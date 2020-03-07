@@ -1,4 +1,4 @@
-package ph.edu.up.antech.dao;
+package ph.edu.up.antech.dao.pagination;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

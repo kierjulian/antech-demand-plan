@@ -106,9 +106,14 @@
                                                     </span>
                                                 </a>
                                             </li>
+                                            <li class="page-item disabled" th:if="${page.number - 8 > 0}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
                                             <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
-                                                th:each="i : ${#numbers.sequence( page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
-                                                <a class="page-link" th:href="@{/master/zol-mdc/config/accounts?page={id}&filter={filter}(id=${i}, filter=${filter})}" th:text="${i}"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/zol-mdc/config/accounts?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
                                                    th:title="${'Page '+ i}"
                                                    rel="tooltip"></a>
                                             </li>
