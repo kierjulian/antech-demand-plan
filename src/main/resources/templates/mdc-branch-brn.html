@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'MDC Per Branch Sales BRN')"></div>
-        <script th:src="@{/js/mdc-branch-brn.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -31,7 +30,12 @@
                         </div>
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
-                                <form class="form-inline">
+                                <form class="form-inline" method="get" th:action="@{/master/mdc-branch/config/brn}">
+                                    <input type="text" class="form-control" name="filter" th:value="${filter}" th:placeholder="Filter">&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/master/mdc-branch/config/brn/add}" role="button">
                                             <i class="fas fa-plus">&nbsp; Add MDC Per Branch Sales BRN</i></a>
@@ -42,7 +46,6 @@
                                             table-responsive">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">Row</th>
                                             <th scope="col">Shpcn</th>
                                             <th scope="col">Customer Name</th>
                                             <th scope="col">Branch Name</th>
@@ -53,12 +56,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="mdcPerBranchSalesBrn, row : ${mdcPerBranchSalesBrnList}">
+                                        <tr th:each="mdcPerBranchSalesBrn, row : ${page.content}">
                                             <td class="align-middle">
-                                                <a th:text="${row.count}"
+                                                <a th:text="${mdcPerBranchSalesBrn.shpcn}"
                                                    th:href="@{/master/mdc-branch/config/brn/view/{id}(id=${mdcPerBranchSalesBrn.id})}"></a>
                                             </td>
-                                            <td class="align-middle" th:text="${mdcPerBranchSalesBrn.shpcn}"></td>
                                             <td class="align-middle" th:text="${mdcPerBranchSalesBrn.customerName}"></td>
                                             <td class="align-middle" th:text="${mdcPerBranchSalesBrn.branchName}"></td>
                                             <td class="align-middle" th:text="${mdcPerBranchSalesBrn.cadd1}"></td>
@@ -91,6 +93,48 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
+                                <div>
+                                    <nav aria-label="Pagination" th:if="${page.totalPages gt 0}">
+                                        <ul class="pagination justify-content-center font-weight-medium">
+                                            <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
+                                                <a class="page-link svg-icon"
+                                                   th:href="@{/master/mdc-branch/config/brn?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
+                                                   aria-label="Previous"
+                                                   title="Previous Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
+                                                        <i class="fas fa-chevron-left"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number - 8 > 0}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/mdc-branch/config/brn?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 10 < page.totalPages}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
+                                                <a class="page-link svg-icon" th:href="@{/master/mdc-branch/config/brn?page={id}&filter={filter}(id=${page.number + 1}, filter=${filter})}"
+                                                   aria-label="Next"
+                                                   title="Next Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
