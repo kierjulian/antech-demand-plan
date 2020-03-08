@@ -2,14 +2,16 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.NetsuiteProductListSourcePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
 import ph.edu.up.antech.service.NetsuiteProductListSourceService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/netsuite/config/product-list/source")
@@ -20,11 +22,17 @@ public class NetsuiteProductListSourceController {
     @Autowired
     private NetsuiteProductListSourceService netsuiteProductListSourceService;
 
+    @Autowired
+    private NetsuiteProductListSourcePaginationDAO netsuiteProductListSourcePaginationDAO;
+
     @GetMapping("")
-    public String loadNetsuiteProductListSourcePage(Model model) {
-        List<NetsuiteProductListSource> netsuiteProductListSourceList =
-                netsuiteProductListSourceService.findAllNetsuiteProductListSource();
-        model.addAttribute("netsuiteProductListSourceList", netsuiteProductListSourceList);
+    public String loadNetsuiteProductListSourcePage(Model model, Pageable pageable,
+                                                    @RequestParam(required = false) String filter) {
+        Page<NetsuiteProductListSource> page = StringUtils.isNullOrEmpty(filter)
+                ? netsuiteProductListSourcePaginationDAO.findAll(pageable)
+                : netsuiteProductListSourcePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "netsuite-prod-list-source";
     }
 

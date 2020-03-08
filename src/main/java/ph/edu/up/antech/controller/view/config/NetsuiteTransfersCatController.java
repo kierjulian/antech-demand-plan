@@ -2,14 +2,17 @@ package ph.edu.up.antech.controller.view.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ph.edu.up.antech.dao.pagination.NetsuiteTransfersCatPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteTransferCat;
 import ph.edu.up.antech.service.NetsuiteTransferCatService;
-
-import java.util.List;
+import ph.edu.up.antech.util.StringUtils;
 
 @Controller
 @RequestMapping("/master/netsuite/config/transfers-cat")
@@ -20,11 +23,17 @@ public class NetsuiteTransfersCatController {
     @Autowired
     private NetsuiteTransferCatService netsuiteTransferCatService;
 
+    @Autowired
+    private NetsuiteTransfersCatPaginationDAO netsuiteTransfersCatPaginationDAO;
+
     @GetMapping("")
-    public String loadNetsuiteTransferCat(Model model) {
-        List<NetsuiteTransferCat> netsuiteTransferCatList =
-                netsuiteTransferCatService.findAllNetsuiteTransferCat();
-        model.addAttribute("netsuiteTransferCatList", netsuiteTransferCatList);
+    public String loadNetsuiteTransferCat(Model model, @PageableDefault Pageable pageable,
+                                          @RequestParam(required = false) String filter) {
+        Page<NetsuiteTransferCat> page = StringUtils.isNullOrEmpty(filter)
+                ? netsuiteTransfersCatPaginationDAO.findAll(pageable)
+                : netsuiteTransfersCatPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "netsuite-transfers-cat";
     }
 
