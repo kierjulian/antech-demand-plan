@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.ZolMdcAccountPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class ZolMdcAccountController {
     @Autowired
     private ZolMdcAccountService zolMdcAccountService;
 
-    @Autowired
-    private ZolMdcAccountPaginationDAO zolMdcAccountPaginationDAO;
-
     @GetMapping("")
     public String loadZolMdcAccountPage(Model model, @PageableDefault Pageable pageable,
                                         @RequestParam(required = false) String filter) {
         Page<ZolMdcAccount> page = StringUtils.isNullOrEmpty(filter)
-                ? zolMdcAccountPaginationDAO.findAll(pageable)
-                : zolMdcAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? zolMdcAccountService.findAll(pageable)
+                : zolMdcAccountService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/zol-mdc-account";

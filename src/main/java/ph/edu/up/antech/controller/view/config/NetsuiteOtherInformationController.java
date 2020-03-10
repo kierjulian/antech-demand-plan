@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteOtherInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteOtherInformation;
 import ph.edu.up.antech.service.NetsuiteOtherInformationService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteOtherInformationController {
     @Autowired
     private NetsuiteOtherInformationService netsuiteOtherInformationService;
 
-    @Autowired
-    private NetsuiteOtherInformationPaginationDAO netsuiteOtherInformationPaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteOtherInformationPage(Model model, @PageableDefault Pageable pageable,
                                                    @RequestParam(required = false) String filter) {
         Page<NetsuiteOtherInformation> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteOtherInformationPaginationDAO.findAll(pageable)
-                : netsuiteOtherInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteOtherInformationService.findAll(pageable)
+                : netsuiteOtherInformationService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-other-info.html";

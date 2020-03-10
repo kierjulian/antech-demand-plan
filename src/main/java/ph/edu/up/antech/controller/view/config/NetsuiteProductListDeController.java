@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteProductListDePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListDe;
 import ph.edu.up.antech.service.NetsuiteProductListDeService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteProductListDeController {
     @Autowired
     private NetsuiteProductListDeService netsuiteProductListDeService;
 
-    @Autowired
-    private NetsuiteProductListDePaginationDAO netsuiteProductListDePaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteProductListDePage(Model model, @PageableDefault Pageable pageable,
                                                 @RequestParam(required = false) String filter) {
         Page<NetsuiteProductListDe> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteProductListDePaginationDAO.findAll(pageable)
-                : netsuiteProductListDePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteProductListDeService.findAll(pageable)
+                : netsuiteProductListDeService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-prod-list-de";

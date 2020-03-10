@@ -1,5 +1,7 @@
 package ph.edu.up.antech.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 
 import java.util.List;
@@ -19,5 +21,9 @@ public interface ZolMdcAccountService {
     public ZolMdcAccount updateZolMdcAccount(ZolMdcAccount zolMdcAccount);
 
     public void removeZolMdcAccount(Integer id);
+
+    public Page<ZolMdcAccount> findAll(Pageable pageable);
+
+    public Page<ZolMdcAccount> findAllByAnyColumnContaining(String filter, Pageable pageable);
 
 }

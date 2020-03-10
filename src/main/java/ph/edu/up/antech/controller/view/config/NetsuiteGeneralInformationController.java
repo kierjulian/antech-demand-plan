@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteGeneralInformationController {
     @Autowired
     private NetsuiteGeneralInformationService netsuiteGeneralInformationService;
 
-    @Autowired
-    private NetsuiteGeneralInformationPaginationDAO netsuiteGeneralInformationPaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteGeneralInformationPage(Model model, @PageableDefault Pageable pageable,
                                                      @RequestParam(required = false) String filter) {
         Page<NetsuiteGeneralInformation> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteGeneralInformationPaginationDAO.findAll(pageable)
-                : netsuiteGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteGeneralInformationService.findAll(pageable)
+                : netsuiteGeneralInformationService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-gen-info";

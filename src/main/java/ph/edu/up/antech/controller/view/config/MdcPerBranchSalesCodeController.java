@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesCodePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCode;
 import ph.edu.up.antech.service.MdcPerBranchSalesCodeService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class MdcPerBranchSalesCodeController {
     @Autowired
     private MdcPerBranchSalesCodeService mdcPerBranchSalesCodeService;
 
-    @Autowired
-    private MdcPerBranchSalesCodePaginationDAO mdcPerBranchSalesCodePaginationDAO;
-
     @GetMapping("")
     public String loadMdcPerBranchSalesCodePage(Model model, @PageableDefault Pageable pageable,
                                                 @RequestParam(required = false) String filter) {
         Page<MdcPerBranchSalesCode> page = StringUtils.isNullOrEmpty(filter)
-                ? mdcPerBranchSalesCodePaginationDAO.findAll(pageable)
-                : mdcPerBranchSalesCodePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? mdcPerBranchSalesCodeService.findAll(pageable)
+                : mdcPerBranchSalesCodeService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/mdc-branch-code";

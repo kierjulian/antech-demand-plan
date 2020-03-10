@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
+import ph.edu.up.antech.dao.pagination.ZolPerDoorsGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 
@@ -15,6 +18,9 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
 
     @Autowired
     private ZolPerDoorsGeneralInformationDAO zolPerDoorsGeneralInformationDAO;
+
+    @Autowired
+    private ZolPerDoorsGeneralInformationPaginationDAO zolPerDoorsGeneralInformationPaginationDAO;
 
     @Override
     public ZolPerDoorsGeneralInformation saveZolPerDoorsGeneralInformation(ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation) {
@@ -49,6 +55,16 @@ public class ZolPerDoorsGeneralInformationServiceImpl implements ZolPerDoorsGene
     @Override
     public void removeZolPerDoorsGeneralInformation(Integer id) {
         zolPerDoorsGeneralInformationDAO.removeZolPerDoorsGeneralInformation(id);
+    }
+
+    @Override
+    public Page<ZolPerDoorsGeneralInformation> findAll(Pageable pageable) {
+        return zolPerDoorsGeneralInformationPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<ZolPerDoorsGeneralInformation> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return zolPerDoorsGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

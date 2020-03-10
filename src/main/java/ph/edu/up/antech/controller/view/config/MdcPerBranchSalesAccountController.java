@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesAccountPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesAccount;
 import ph.edu.up.antech.service.MdcPerBranchSalesAccountService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class MdcPerBranchSalesAccountController {
     @Autowired
     private MdcPerBranchSalesAccountService mdcPerBranchSalesAccountService;
 
-    @Autowired
-    private MdcPerBranchSalesAccountPaginationDAO mdcPerBranchSalesAccountPaginationDAO;
-
     @GetMapping("")
     public String loadMdcPerBranchSalesAccountPage(Model model, @PageableDefault Pageable pageable,
                                                    @RequestParam(required = false) String filter) {
         Page<MdcPerBranchSalesAccount> page = StringUtils.isNullOrEmpty(filter)
-                ? mdcPerBranchSalesAccountPaginationDAO.findAll(pageable)
-                : mdcPerBranchSalesAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? mdcPerBranchSalesAccountService.findAll(pageable)
+                : mdcPerBranchSalesAccountService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/mdc-branch-account";

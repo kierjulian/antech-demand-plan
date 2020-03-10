@@ -1,5 +1,7 @@
 package ph.edu.up.antech.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 
 import java.util.List;
@@ -21,5 +23,9 @@ public interface ZolPerDoorsGeneralInformationService {
             ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation);
 
     public void removeZolPerDoorsGeneralInformation(Integer id);
+
+    public Page<ZolPerDoorsGeneralInformation> findAll(Pageable pageable);
+
+    public Page<ZolPerDoorsGeneralInformation> findAllByAnyColumnContaining(String filter, Pageable pageable);
 
 }

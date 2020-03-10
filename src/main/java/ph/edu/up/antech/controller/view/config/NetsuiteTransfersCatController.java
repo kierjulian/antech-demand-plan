@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteTransfersCatPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteTransferCat;
 import ph.edu.up.antech.service.NetsuiteTransferCatService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteTransfersCatController {
     @Autowired
     private NetsuiteTransferCatService netsuiteTransferCatService;
 
-    @Autowired
-    private NetsuiteTransfersCatPaginationDAO netsuiteTransfersCatPaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteTransferCat(Model model, @PageableDefault Pageable pageable,
                                           @RequestParam(required = false) String filter) {
         Page<NetsuiteTransferCat> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteTransfersCatPaginationDAO.findAll(pageable)
-                : netsuiteTransfersCatPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteTransferCatService.findAll(pageable)
+                : netsuiteTransferCatService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-transfers-cat";

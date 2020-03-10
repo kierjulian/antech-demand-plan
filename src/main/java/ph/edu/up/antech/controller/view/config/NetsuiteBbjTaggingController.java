@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteBbjTaggingPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
 import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteBbjTaggingController {
     @Autowired
     private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
-    @Autowired
-    private NetsuiteBbjTaggingPaginationDAO netsuiteBbjTaggingPaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteBbjTaggingPage(Model model, @PageableDefault Pageable pageable,
                                              @RequestParam(required = false) String filter) {
         Page<NetsuiteBbjTagging> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteBbjTaggingPaginationDAO.findAll(pageable)
-                : netsuiteBbjTaggingPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteBbjTaggingService.findAll(pageable)
+                : netsuiteBbjTaggingService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-bbj-tagging";

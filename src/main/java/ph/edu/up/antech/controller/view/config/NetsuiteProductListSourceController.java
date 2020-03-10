@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.NetsuiteProductListSourcePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
 import ph.edu.up.antech.service.NetsuiteProductListSourceService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class NetsuiteProductListSourceController {
     @Autowired
     private NetsuiteProductListSourceService netsuiteProductListSourceService;
 
-    @Autowired
-    private NetsuiteProductListSourcePaginationDAO netsuiteProductListSourcePaginationDAO;
-
     @GetMapping("")
     public String loadNetsuiteProductListSourcePage(Model model, @PageableDefault Pageable pageable,
                                                     @RequestParam(required = false) String filter) {
         Page<NetsuiteProductListSource> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteProductListSourcePaginationDAO.findAll(pageable)
-                : netsuiteProductListSourcePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? netsuiteProductListSourceService.findAll(pageable)
+                : netsuiteProductListSourceService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-prod-list-source";

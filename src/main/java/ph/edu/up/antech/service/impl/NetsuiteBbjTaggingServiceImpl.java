@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteBbjTaggingDAO;
+import ph.edu.up.antech.dao.pagination.NetsuiteBbjTaggingPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
 import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 
@@ -15,6 +18,9 @@ public class NetsuiteBbjTaggingServiceImpl implements NetsuiteBbjTaggingService 
 
     @Autowired
     private NetsuiteBbjTaggingDAO netsuiteBbjTaggingDAO;
+
+    @Autowired
+    private NetsuiteBbjTaggingPaginationDAO netsuiteBbjTaggingPaginationDAO;
 
     @Override
     public NetsuiteBbjTagging saveNetsuiteBbjTagging(NetsuiteBbjTagging netsuiteBbjTagging) {
@@ -39,6 +45,16 @@ public class NetsuiteBbjTaggingServiceImpl implements NetsuiteBbjTaggingService 
     @Override
     public void removeNetsuiteBbjTagging(Integer id) {
         netsuiteBbjTaggingDAO.removeNetsuiteBbjTagging(id);
+    }
+
+    @Override
+    public Page<NetsuiteBbjTagging> findAll(Pageable pageable) {
+        return netsuiteBbjTaggingPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<NetsuiteBbjTagging> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return netsuiteBbjTaggingPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

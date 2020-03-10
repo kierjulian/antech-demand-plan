@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolMdcAccountDAO;
+import ph.edu.up.antech.dao.pagination.ZolMdcAccountPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 
@@ -15,6 +18,9 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
 
     @Autowired
     private ZolMdcAccountDAO zolMdcAccountDAO;
+
+    @Autowired
+    private ZolMdcAccountPaginationDAO zolMdcAccountPaginationDAO;
 
     @Override
     public ZolMdcAccount saveZolMdcAccount(ZolMdcAccount zolMdcAccount) {
@@ -49,6 +55,16 @@ public class ZolMdcAccountServiceImpl implements ZolMdcAccountService {
     @Override
     public void removeZolMdcAccount(Integer id) {
         zolMdcAccountDAO.removeZolMdcAccount(id);
+    }
+
+    @Override
+    public Page<ZolMdcAccount> findAll(Pageable pageable) {
+        return zolMdcAccountPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<ZolMdcAccount> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return zolMdcAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

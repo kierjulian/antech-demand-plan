@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.MdcPerBranchSalesBrnDAO;
+import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesBrnPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesBrn;
 import ph.edu.up.antech.service.MdcPerBranchSalesBrnService;
 
@@ -15,6 +18,9 @@ public class MdcPerBranchSalesBrnServiceImpl implements MdcPerBranchSalesBrnServ
 
     @Autowired
     private MdcPerBranchSalesBrnDAO mdcPerBranchSalesBrnDAO;
+
+    @Autowired
+    private MdcPerBranchSalesBrnPaginationDAO mdcPerBranchSalesBrnPaginationDAO;
 
     @Override
     public MdcPerBranchSalesBrn saveMdcPerBranchSalesBrn(MdcPerBranchSalesBrn mdcPerBranchSalesBrn) {
@@ -39,6 +45,16 @@ public class MdcPerBranchSalesBrnServiceImpl implements MdcPerBranchSalesBrnServ
     @Override
     public void removeMdcPerBranchSalesBrn(Integer id) {
         mdcPerBranchSalesBrnDAO.removeMdcPerBranchSalesBrn(id);
+    }
+
+    @Override
+    public Page<MdcPerBranchSalesBrn> findAll(Pageable pageable) {
+        return mdcPerBranchSalesBrnPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<MdcPerBranchSalesBrn> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return mdcPerBranchSalesBrnPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

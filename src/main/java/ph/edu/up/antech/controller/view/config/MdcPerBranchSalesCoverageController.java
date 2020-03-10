@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesCoveragePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCoverage;
 import ph.edu.up.antech.service.MdcPerBranchSalesCoverageService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,15 +22,12 @@ public class MdcPerBranchSalesCoverageController {
     @Autowired
     private MdcPerBranchSalesCoverageService mdcPerBranchSalesCoverageService;
 
-    @Autowired
-    private MdcPerBranchSalesCoveragePaginationDAO mdcPerBranchSalesCoveragePaginationDAO;
-
     @GetMapping("")
     public String loadMdcPerBranchSalesCoveragePage(Model model, @PageableDefault Pageable pageable,
                                                     @RequestParam(required = false) String filter) {
         Page<MdcPerBranchSalesCoverage> page = StringUtils.isNullOrEmpty(filter)
-                ? mdcPerBranchSalesCoveragePaginationDAO.findAll(pageable)
-                : mdcPerBranchSalesCoveragePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
+                ? mdcPerBranchSalesCoverageService.findAll(pageable)
+                : mdcPerBranchSalesCoverageService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/mdc-branch-coverage";

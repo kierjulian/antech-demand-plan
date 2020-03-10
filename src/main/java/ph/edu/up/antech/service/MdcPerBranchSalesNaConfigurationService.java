@@ -1,5 +1,7 @@
 package ph.edu.up.antech.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesNaConfiguration;
 
 import java.util.List;
@@ -17,5 +19,9 @@ public interface MdcPerBranchSalesNaConfigurationService {
             MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration);
 
     public void removeMdcPerBranchSalesNaConfiguration(Integer id);
+
+    public Page<MdcPerBranchSalesNaConfiguration> findAll(Pageable pageable);
+
+    public Page<MdcPerBranchSalesNaConfiguration> findAllByAnyColumnContaining(String filter, Pageable pageable);
 
 }

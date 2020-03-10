@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.MdcPerBranchSalesCodeDAO;
+import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesCodePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCode;
 import ph.edu.up.antech.service.MdcPerBranchSalesCodeService;
 
@@ -15,6 +18,9 @@ public class MdcPerBranchSalesCodeServiceImpl implements MdcPerBranchSalesCodeSe
 
     @Autowired
     private MdcPerBranchSalesCodeDAO mdcPerBranchSalesCodeDAO;
+
+    @Autowired
+    private MdcPerBranchSalesCodePaginationDAO mdcPerBranchSalesCodePaginationDAO;
 
     @Override
     public MdcPerBranchSalesCode saveMdcPerBranchSalesCoverage(MdcPerBranchSalesCode mdcPerBranchSalesCode) {
@@ -39,6 +45,16 @@ public class MdcPerBranchSalesCodeServiceImpl implements MdcPerBranchSalesCodeSe
     @Override
     public void removeMdcPerBranchSalesCode(Integer id) {
         mdcPerBranchSalesCodeDAO.removeMdcPerBranchSalesCode(id);
+    }
+
+    @Override
+    public Page<MdcPerBranchSalesCode> findAll(Pageable pageable) {
+        return mdcPerBranchSalesCodePaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<MdcPerBranchSalesCode> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return mdcPerBranchSalesCodePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

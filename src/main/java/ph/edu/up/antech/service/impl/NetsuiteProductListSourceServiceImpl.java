@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteProductListSourceDAO;
+import ph.edu.up.antech.dao.pagination.NetsuiteProductListSourcePaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
 import ph.edu.up.antech.service.NetsuiteProductListSourceService;
 
@@ -15,6 +18,9 @@ public class NetsuiteProductListSourceServiceImpl implements NetsuiteProductList
 
     @Autowired
     private NetsuiteProductListSourceDAO netsuiteProductListSourceDAO;
+
+    @Autowired
+    private NetsuiteProductListSourcePaginationDAO netsuiteProductListSourcePaginationDAO;
 
     @Override
     public NetsuiteProductListSource saveNetsuiteProductListSource(NetsuiteProductListSource netsuiteProductListSource) {
@@ -39,6 +45,16 @@ public class NetsuiteProductListSourceServiceImpl implements NetsuiteProductList
     @Override
     public void removeNetsuiteProductListSource(Integer id) {
         netsuiteProductListSourceDAO.removeNetsuiteProductListSource(id);
+    }
+
+    @Override
+    public Page<NetsuiteProductListSource> findAll(Pageable pageable) {
+        return netsuiteProductListSourcePaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<NetsuiteProductListSource> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return netsuiteProductListSourcePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

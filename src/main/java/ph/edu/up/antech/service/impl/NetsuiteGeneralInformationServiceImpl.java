@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteGeneralInformationDAO;
+import ph.edu.up.antech.dao.pagination.NetsuiteGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 
@@ -15,6 +18,9 @@ public class NetsuiteGeneralInformationServiceImpl implements NetsuiteGeneralInf
 
     @Autowired
     private NetsuiteGeneralInformationDAO netsuiteGeneralInformationDAO;
+
+    @Autowired
+    private NetsuiteGeneralInformationPaginationDAO netsuiteGeneralInformationPaginationDAO;
 
     @Override
     public NetsuiteGeneralInformation saveNetsuiteGeneralInformation(NetsuiteGeneralInformation netsuiteGeneralInformation) {
@@ -39,6 +45,16 @@ public class NetsuiteGeneralInformationServiceImpl implements NetsuiteGeneralInf
     @Override
     public void removeNetsuiteGeneralInformation(Integer id) {
         netsuiteGeneralInformationDAO.removeNetsuiteGeneralInformation(id);
+    }
+
+    @Override
+    public Page<NetsuiteGeneralInformation> findAll(Pageable pageable) {
+        return netsuiteGeneralInformationPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<NetsuiteGeneralInformation> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return netsuiteGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

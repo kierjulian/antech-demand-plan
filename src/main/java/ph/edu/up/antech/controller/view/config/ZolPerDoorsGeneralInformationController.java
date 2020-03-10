@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.dao.pagination.ZolPerDoorsGeneralInformationPaginationDAO;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.util.StringUtils;
@@ -23,21 +22,14 @@ public class ZolPerDoorsGeneralInformationController {
     @Autowired
     private ZolPerDoorsGeneralInformationService zolPerDoorsGeneralInformationService;
 
-    @Autowired
-    private ZolPerDoorsGeneralInformationPaginationDAO zolPerDoorsGeneralInformationPaginationDAO;
-
     @GetMapping("")
     public String loadZolPerDoorsGeneralInformation(Model model, @PageableDefault Pageable pageable,
                                                     @RequestParam(required = false) String filter) {
-        try {
-            Page<ZolPerDoorsGeneralInformation> page = StringUtils.isNullOrEmpty(filter)
-                    ? zolPerDoorsGeneralInformationPaginationDAO.findAll(pageable)
-                    : zolPerDoorsGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
-            model.addAttribute("page", page);
-            model.addAttribute("filter", filter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Page<ZolPerDoorsGeneralInformation> page = StringUtils.isNullOrEmpty(filter)
+                ? zolPerDoorsGeneralInformationService.findAll(pageable)
+                : zolPerDoorsGeneralInformationService.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
 
         return "master/config/zol-gen-info";
     }
