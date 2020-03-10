@@ -27,7 +27,7 @@ public class ZolPerDoorsGeneralInformationController {
     private ZolPerDoorsGeneralInformationPaginationDAO zolPerDoorsGeneralInformationPaginationDAO;
 
     @GetMapping("")
-    public String loadZolPerDoorsGeneralInformation(Model model, @PageableDefault(size = 10) Pageable pageable,
+    public String loadZolPerDoorsGeneralInformation(Model model, @PageableDefault Pageable pageable,
                                                     @RequestParam(required = false) String filter) {
         try {
             Page<ZolPerDoorsGeneralInformation> page = StringUtils.isNullOrEmpty(filter)

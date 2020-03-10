@@ -27,7 +27,7 @@ public class MdcPerBranchSalesAccountController {
     private MdcPerBranchSalesAccountPaginationDAO mdcPerBranchSalesAccountPaginationDAO;
 
     @GetMapping("")
-    public String loadMdcPerBranchSalesAccountPage(Model model, @PageableDefault(size = 10) Pageable pageable,
+    public String loadMdcPerBranchSalesAccountPage(Model model, @PageableDefault Pageable pageable,
                                                    @RequestParam(required = false) String filter) {
         Page<MdcPerBranchSalesAccount> page = StringUtils.isNullOrEmpty(filter)
                 ? mdcPerBranchSalesAccountPaginationDAO.findAll(pageable)

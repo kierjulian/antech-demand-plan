@@ -27,7 +27,7 @@ public class ZolMtAccountController {
     private ZolMtAccountPaginationDAO zolMtAccountPaginationDAO;
 
     @GetMapping("")
-    public String loadZolMtAccountPage(Model model, @PageableDefault(size = 10) Pageable pageable,
+    public String loadZolMtAccountPage(Model model, @PageableDefault Pageable pageable,
                                        @RequestParam(required = false) String filter) {
         Page<ZolMtAccount> page = StringUtils.isNullOrEmpty(filter)
                 ? zolMtAccountPaginationDAO.findAll(pageable)
