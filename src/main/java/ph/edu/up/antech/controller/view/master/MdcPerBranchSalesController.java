@@ -33,21 +33,21 @@ public class MdcPerBranchSalesController {
         model.addAttribute("mdcPerBranchSalesList", mdcPerBranchSalesList);
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
-        return "mdc-branch";
+        return "master/mdc-branch";
     }
 
     @GetMapping("/view/{id}")
     public String viewMdcPerBranchSales(Model model, @PathVariable Integer id) {
         MdcPerBranchSales mdcPerBranchSales = mdcPerBranchSalesService.findMdcPerBranchSalesById(id);
         model.addAttribute("mdcPerBranchSales", mdcPerBranchSales);
-        return "mdc-branch-view";
+        return "master/mdc-branch-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editMdcPerBranchSales(Model model, @PathVariable Integer id) {
         MdcPerBranchSales mdcPerBranchSales = mdcPerBranchSalesService.findMdcPerBranchSalesById(id);
         model.addAttribute("mdcPerBranchSales", mdcPerBranchSales);
-        return "mdc-branch-edit";
+        return "master/mdc-branch-edit";
     }
 
     @PostMapping("/update")
@@ -68,7 +68,7 @@ public class MdcPerBranchSalesController {
     public String addMdcPerBranchSales(Model model) {
         MdcPerBranchSales mdcPerBranchSales = new MdcPerBranchSales();
         model.addAttribute("mdcPerBranchSales", mdcPerBranchSales);
-        return "mdc-branch-add";
+        return "master/mdc-branch-add";
     }
 
     @PostMapping("/create")

@@ -34,7 +34,7 @@ public class MdcPerBranchSalesBrnController {
                 : mdcPerBranchSalesBrnPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "mdc-branch-brn";
+        return "master/config/mdc-branch-brn";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class MdcPerBranchSalesBrnController {
         MdcPerBranchSalesBrn mdcPerBranchSalesBrn = mdcPerBranchSalesBrnService
                 .findMdcPerBranchSalesBrnById(id);
         model.addAttribute("mdcPerBranchSalesBrn", mdcPerBranchSalesBrn);
-        return "mdc-branch-brn-view";
+        return "master/config/mdc-branch-brn-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class MdcPerBranchSalesBrnController {
         MdcPerBranchSalesBrn mdcPerBranchSalesBrn = mdcPerBranchSalesBrnService
                 .findMdcPerBranchSalesBrnById(id);
         model.addAttribute("mdcPerBranchSalesBrn", mdcPerBranchSalesBrn);
-        return "mdc-branch-brn-edit";
+        return "master/config/mdc-branch-brn-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class MdcPerBranchSalesBrnController {
     public String addMdcPerBranchSalesBrn(Model model) {
         MdcPerBranchSalesBrn mdcPerBranchSalesBrn = new MdcPerBranchSalesBrn();
         model.addAttribute("mdcPerBranchSalesBrn", mdcPerBranchSalesBrn);
-        return "mdc-branch-brn-add";
+        return "master/config/mdc-branch-brn-add";
     }
 
     @PostMapping("/create")

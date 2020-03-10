@@ -34,21 +34,21 @@ public class ZolMdcAccountController {
                 : zolMdcAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "zol-mdc-account";
+        return "master/config/zol-mdc-account";
     }
 
     @GetMapping("/view/{id}")
     public String viewZolMdcAccount(Model model, @PathVariable Integer id) {
         ZolMdcAccount zolMdcAccount = zolMdcAccountService.findZolMdcAccountById(id);
         model.addAttribute("zolMdcAccount", zolMdcAccount);
-        return "zol-mdc-account-view";
+        return "master/config/zol-mdc-account-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editZolMdcAccount(Model model, @PathVariable Integer id) {
         ZolMdcAccount zolMdcAccount = zolMdcAccountService.findZolMdcAccountById(id);
         model.addAttribute("zolMdcAccount", zolMdcAccount);
-        return "zol-mdc-account-edit";
+        return "master/config/zol-mdc-account-edit";
     }
 
     @PostMapping("/update")
@@ -69,7 +69,7 @@ public class ZolMdcAccountController {
     public String addZolMdcAccount(Model model) {
         ZolMdcAccount zolMdcAccount = new ZolMdcAccount();
         model.addAttribute("zolMdcAccount", zolMdcAccount);
-        return "zol-mdc-account-add";
+        return "master/config/zol-mdc-account-add";
     }
 
     @PostMapping("/create")

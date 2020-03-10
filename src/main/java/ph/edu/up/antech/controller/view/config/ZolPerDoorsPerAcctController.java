@@ -10,12 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.dao.pagination.ZolPerDoorsPerAcctPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
 import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
 import ph.edu.up.antech.service.ZolPerDoorsPerAcctService;
 import ph.edu.up.antech.util.StringUtils;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/master/zol-doors/config/accounts")
@@ -37,7 +34,7 @@ public class ZolPerDoorsPerAcctController {
                 : zolPerDoorsPerAcctPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "zol-per-doors-account";
+        return "master/config/zol-per-doors-account";
     }
 
     @GetMapping("/view/{id}")
@@ -45,7 +42,7 @@ public class ZolPerDoorsPerAcctController {
         ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService
                 .findZolPerDoorsPerAcctById(id);
         model.addAttribute("zolPerDoorsPerAcct", zolPerDoorsPerAcct);
-        return "zol-per-doors-account-view";
+        return "master/config/zol-per-doors-account-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -53,7 +50,7 @@ public class ZolPerDoorsPerAcctController {
         ZolPerDoorsPerAcct zolPerDoorsPerAcct = zolPerDoorsPerAcctService
                 .findZolPerDoorsPerAcctById(id);
         model.addAttribute("zolPerDoorsPerAcct", zolPerDoorsPerAcct);
-        return "zol-per-doors-account-edit";
+        return "master/config/zol-per-doors-account-edit";
     }
 
     @PostMapping("/update")
@@ -75,7 +72,7 @@ public class ZolPerDoorsPerAcctController {
     public String addZolPerDoorsPerAcct(Model model) {
         ZolPerDoorsPerAcct zolPerDoorsPerAcct = new ZolPerDoorsPerAcct();
         model.addAttribute("zolPerDoorsPerAcct", zolPerDoorsPerAcct);
-        return "zol-per-doors-account-add";
+        return "master/config/zol-per-doors-account-add";
     }
 
     @PostMapping("/create")

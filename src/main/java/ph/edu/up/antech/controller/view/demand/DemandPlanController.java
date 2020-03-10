@@ -54,7 +54,7 @@ public class DemandPlanController {
         model.addAttribute("selectedProduct", selectedProduct);
         model.addAttribute("demandPlan", demandPlan);
 
-        return "demand-plan";
+        return "demand/demand-plan";
     }
 
     @GetMapping("/view/{id}")
@@ -69,7 +69,7 @@ public class DemandPlanController {
 
         model.addAttribute("demandPlan", demandPlan);
         model.addAttribute("yearMonthList", yearMonthList);
-        return "demand-plan-edit";
+        return "demand/demand-plan-edit";
     }
 
     @PostMapping("/update")
@@ -92,7 +92,7 @@ public class DemandPlanController {
         DemandPlan demandPlan = new DemandPlan();
         model.addAttribute("demandPlan", demandPlan);
         model.addAttribute("productList", getAllProducts());
-        return "demand-plan-add";
+        return "demand/demand-plan-add";
     }
 
     @PostMapping("/create")

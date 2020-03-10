@@ -39,7 +39,7 @@ public class ZolPerDoorsGeneralInformationController {
             e.printStackTrace();
         }
 
-        return "zol-gen-info";
+        return "master/config/zol-gen-info";
     }
 
     @GetMapping("/view/{id}")
@@ -47,7 +47,7 @@ public class ZolPerDoorsGeneralInformationController {
         ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
                 .findZolPerDoorsGeneralInformationById(id);
         model.addAttribute("zolPerDoorsGeneralInformation", zolPerDoorsGeneralInformation);
-        return "zol-gen-info-view";
+        return "master/config/zol-gen-info-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -55,7 +55,7 @@ public class ZolPerDoorsGeneralInformationController {
         ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService
                 .findZolPerDoorsGeneralInformationById(id);
         model.addAttribute("zolPerDoorsGeneralInformation", zolPerDoorsGeneralInformation);
-        return "zol-gen-info-edit";
+        return "master/config/zol-gen-info-edit";
     }
 
     @PostMapping("/update")
@@ -77,7 +77,7 @@ public class ZolPerDoorsGeneralInformationController {
     public String addZolPerDoorsGeneralInformation(Model model) {
         ZolPerDoorsGeneralInformation zolPerDoorsGeneralInformation = new ZolPerDoorsGeneralInformation();
         model.addAttribute("zolPerDoorsGeneralInformation", zolPerDoorsGeneralInformation);
-        return "zol-gen-info-add";
+        return "master/config/zol-gen-info-add";
     }
 
     @PostMapping("/create")

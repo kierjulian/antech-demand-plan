@@ -34,7 +34,7 @@ public class NetsuiteGeneralInformationController {
                 : netsuiteGeneralInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-gen-info";
+        return "master/config/netsuite-gen-info";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class NetsuiteGeneralInformationController {
         NetsuiteGeneralInformation netsuiteGeneralInformation = netsuiteGeneralInformationService
                 .findNetsuiteGeneralInformationById(id);
         model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
-        return "netsuite-gen-info-view";
+        return "master/config/netsuite-gen-info-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class NetsuiteGeneralInformationController {
         NetsuiteGeneralInformation netsuiteGeneralInformation = netsuiteGeneralInformationService
                 .findNetsuiteGeneralInformationById(id);
         model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
-        return "netsuite-gen-info-edit";
+        return "master/config/netsuite-gen-info-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class NetsuiteGeneralInformationController {
     public String addNetsuiteGeneralInformation(Model model) {
         NetsuiteGeneralInformation netsuiteGeneralInformation = new NetsuiteGeneralInformation();
         model.addAttribute("netsuiteGeneralInformation", netsuiteGeneralInformation);
-        return "netsuite-gen-info-add";
+        return "master/config/netsuite-gen-info-add";
     }
 
     @PostMapping("/create")

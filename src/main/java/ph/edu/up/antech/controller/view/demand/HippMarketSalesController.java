@@ -99,7 +99,7 @@ public class HippMarketSalesController {
         long endTime = System.nanoTime();
         System.out.println(endTime - timeStart);
 
-        return "hipp-market-sales-summary";
+        return "demand/hipp-market-sales-summary";
     }
 
     private DispensingDistributorCalculator generateDispensingDistributorCalculator(

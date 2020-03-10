@@ -34,7 +34,7 @@ public class NetsuiteBbjTaggingController {
                 : netsuiteBbjTaggingPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-bbj-tagging";
+        return "master/config/netsuite-bbj-tagging";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class NetsuiteBbjTaggingController {
         NetsuiteBbjTagging netsuiteBbjTagging = netsuiteBbjTaggingService
                 .findNetsuiteBbjTaggingById(id);
         model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
-        return "netsuite-bbj-tagging-view";
+        return "master/config/netsuite-bbj-tagging-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -72,7 +72,7 @@ public class NetsuiteBbjTaggingController {
     public String addNetsuiteBbjTagging(Model model) {
         NetsuiteBbjTagging netsuiteBbjTagging = new NetsuiteBbjTagging();
         model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
-        return "netsuite-bbj-tagging-add";
+        return "master/config/netsuite-bbj-tagging-add";
     }
 
     @PostMapping("/create")

@@ -32,21 +32,21 @@ public class NetsuiteController {
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("netsuiteList", netsuiteList);
-        return "netsuite";
+        return "master/netsuite";
     }
 
     @GetMapping("/view/{id}")
     public String viewNetsuite(Model model, @PathVariable Integer id) {
         Netsuite netsuite = netsuiteService.findNetsuiteById(id);
         model.addAttribute("netsuite", netsuite);
-        return "netsuite-view";
+        return "master/netsuite-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editNetsuite(Model model, @PathVariable Integer id) {
         Netsuite netsuite = netsuiteService.findNetsuiteById(id);
         model.addAttribute("netsuite", netsuite);
-        return "netsuite-edit";
+        return "master/netsuite-edit";
     }
 
     @PostMapping("/update")
@@ -67,7 +67,7 @@ public class NetsuiteController {
     public String addNetsuite(Model model) {
         Netsuite netsuite = new Netsuite();
         model.addAttribute("netsuite", netsuite);
-        return "netsuite-add";
+        return "master/netsuite-add";
     }
 
     @PostMapping("/create")

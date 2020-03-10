@@ -34,7 +34,7 @@ public class NetsuiteProductListDeController {
                 : netsuiteProductListDePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-prod-list-de";
+        return "master/config/netsuite-prod-list-de";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class NetsuiteProductListDeController {
         NetsuiteProductListDe netsuiteProductListDe = netsuiteProductListDeService
                 .findNetsuiteProductListDeById(id);
         model.addAttribute("netsuiteProductListDe", netsuiteProductListDe);
-        return "netsuite-prod-list-de-view";
+        return "master/config/netsuite-prod-list-de-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class NetsuiteProductListDeController {
         NetsuiteProductListDe netsuiteProductListDe = netsuiteProductListDeService
                 .findNetsuiteProductListDeById(id);
         model.addAttribute("netsuiteProductListDe", netsuiteProductListDe);
-        return "netsuite-prod-list-de-edit";
+        return "master/config/netsuite-prod-list-de-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class NetsuiteProductListDeController {
     public String addNetsuiteProductListDe(Model model) {
         NetsuiteProductListDe netsuiteProductListDe = new NetsuiteProductListDe();
         model.addAttribute("netsuiteProductListDe", netsuiteProductListDe);
-        return "netsuite-prod-list-de-add";
+        return "master/config/netsuite-prod-list-de-add";
     }
 
     @PostMapping("/create")

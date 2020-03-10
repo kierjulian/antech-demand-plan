@@ -32,21 +32,21 @@ public class ZolMtPerBranchController {
         model.addAttribute("zolMtPerBranchList", zolMtPerBranchList);
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
-        return "zol-mt";
+        return "master/zol-mt";
     }
 
     @GetMapping("/view/{id}")
     public String viewZolMtPerBranch(Model model, @PathVariable Integer id) {
         ZolMtPerBranch zolMtPerBranch = zolMtPerBranchService.findZolMtPerBranchById(id);
         model.addAttribute("zolMtPerBranch", zolMtPerBranch);
-        return "zol-mt-view";
+        return "master/zol-mt-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editZolMtPerBranch(Model model, @PathVariable Integer id) {
         ZolMtPerBranch zolMtPerBranch = zolMtPerBranchService.findZolMtPerBranchById(id);
         model.addAttribute("zolMtPerBranch", zolMtPerBranch);
-        return "zol-mt-edit";
+        return "master/zol-mt-edit";
     }
 
     @PostMapping("/update")
@@ -67,7 +67,7 @@ public class ZolMtPerBranchController {
     public String addZolMdcPerBranch(Model model) {
         ZolMtPerBranch zolMtPerBranch = new ZolMtPerBranch();
         model.addAttribute("zolMtPerBranch", zolMtPerBranch);
-        return "zol-mt-add";
+        return "master/zol-mt-add";
     }
 
     @PostMapping("/create")

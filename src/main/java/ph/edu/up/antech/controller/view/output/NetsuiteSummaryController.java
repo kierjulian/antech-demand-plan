@@ -72,7 +72,7 @@ public class NetsuiteSummaryController {
         model.addAttribute("transfersCatRecodeList", transfersCatRecodeList);
         model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
         model.addAttribute("netsuiteSummaryCalculator", netsuiteSummaryCalculator);
-        return "netsuite-summary";
+        return "output/netsuite-summary";
     }
 
     private List<String> generateListOfUniqueProductBrandFromNetsuiteList(List<Netsuite> netsuiteList) {

@@ -78,7 +78,7 @@ public class DsrZolController {
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("dsrZolCalculator", dsrZolCalculator);
         model.addAttribute("dsrZolCombinationList", dsrZolCombinationList);
-        return "dsr-zol";
+        return "output/dsr-zol";
     }
 
     private List<String> findDistinctKamReferenceNameInZolPerDoorsList(List<ZolPerDoors> zolPerDoorsList) {

@@ -34,7 +34,7 @@ public class MdcPerBranchSalesCoverageController {
                 : mdcPerBranchSalesCoveragePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "mdc-branch-coverage";
+        return "master/config/mdc-branch-coverage";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class MdcPerBranchSalesCoverageController {
         MdcPerBranchSalesCoverage mdcPerBranchSalesCoverage = mdcPerBranchSalesCoverageService
                 .findMdcPerBranchSalesCoverageById(id);
         model.addAttribute("mdcPerBranchSalesCoverage", mdcPerBranchSalesCoverage);
-        return "mdc-branch-coverage-view";
+        return "master/config/mdc-branch-coverage-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class MdcPerBranchSalesCoverageController {
         MdcPerBranchSalesCoverage mdcPerBranchSalesCoverage = mdcPerBranchSalesCoverageService
                 .findMdcPerBranchSalesCoverageById(id);
         model.addAttribute("mdcPerBranchSalesCoverage", mdcPerBranchSalesCoverage);
-        return "mdc-branch-coverage-edit";
+        return "master/config/mdc-branch-coverage-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class MdcPerBranchSalesCoverageController {
     public String addMdcPerBranchSalesCoverage(Model model) {
         MdcPerBranchSalesCoverage mdcPerBranchSalesCoverage = new MdcPerBranchSalesCoverage();
         model.addAttribute("mdcPerBranchSalesCoverage", mdcPerBranchSalesCoverage);
-        return "mdc-branch-coverage-add";
+        return "master/config/mdc-branch-coverage-add";
     }
 
     @PostMapping("/create")

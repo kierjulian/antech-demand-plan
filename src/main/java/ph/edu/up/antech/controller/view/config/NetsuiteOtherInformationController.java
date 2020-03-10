@@ -34,7 +34,7 @@ public class NetsuiteOtherInformationController {
                 : netsuiteOtherInformationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-other-info.html";
+        return "master/config/netsuite-other-info.html";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class NetsuiteOtherInformationController {
         NetsuiteOtherInformation netsuiteOtherInformation = netsuiteOtherInformationService
                 .findNetsuiteOtherInformationById(id);
         model.addAttribute("netsuiteOtherInformation", netsuiteOtherInformation);
-        return "netsuite-other-info-view";
+        return "master/config/netsuite-other-info-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class NetsuiteOtherInformationController {
         NetsuiteOtherInformation netsuiteOtherInformation = netsuiteOtherInformationService
                 .findNetsuiteOtherInformationById(id);
         model.addAttribute("netsuiteOtherInformation", netsuiteOtherInformation);
-        return "netsuite-other-info-edit";
+        return "master/config/netsuite-other-info-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class NetsuiteOtherInformationController {
     public String addNetsuiteOtherInformation(Model model) {
         NetsuiteOtherInformation netsuiteOtherInformation = new NetsuiteOtherInformation();
         model.addAttribute("netsuiteOtherInformation", netsuiteOtherInformation);
-        return "netsuite-other-info-add";
+        return "master/config/netsuite-other-info-add";
     }
 
     @PostMapping("/create")

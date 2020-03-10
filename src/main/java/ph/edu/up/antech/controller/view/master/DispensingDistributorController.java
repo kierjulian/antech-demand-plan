@@ -35,21 +35,21 @@ public class DispensingDistributorController {
         model.addAttribute("searchedStartDate", localStartDate);
         model.addAttribute("searchedEndDate", localEndDate);
         model.addAttribute("dispensingDistributorList", dispensingDistributorList);
-        return "dispensing-distributor";
+        return "master/dispensing-distributor";
     }
 
     @GetMapping("/view/{id}")
     public String viewDispensingDistributor(Model model, @PathVariable Integer id) {
         DispensingDistributor dispensingDistributor = dispensingDistributorService.findDispensingDistributorById(id);
         model.addAttribute("dispensingDistributor", dispensingDistributor);
-        return "dispensing-distributor-view";
+        return "master/dispensing-distributor-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editDispensingDistributor(Model model, @PathVariable Integer id) {
         DispensingDistributor dispensingDistributor = dispensingDistributorService.findDispensingDistributorById(id);
         model.addAttribute("dispensingDistributor", dispensingDistributor);
-        return "dispensing-distributor-edit";
+        return "master/dispensing-distributor-edit";
     }
 
     @PostMapping("/update")
@@ -70,7 +70,7 @@ public class DispensingDistributorController {
     public String addDispensingDistributor(Model model) {
         DispensingDistributor dispensingDistributor = new DispensingDistributor();
         model.addAttribute("dispensingDistributor", dispensingDistributor);
-        return "dispensing-distributor-add";
+        return "master/dispensing-distributor-add";
     }
 
     @PostMapping("/create")

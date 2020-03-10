@@ -32,21 +32,21 @@ public class ZolPerDoorsController {
         model.addAttribute("zolPerDoorsList", zolPerDoorsList);
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
-        return "zol-per-doors";
+        return "master/zol-per-doors";
     }
 
     @GetMapping("/view/{id}")
     public String viewZolPerDoors(Model model, @PathVariable Integer id) {
         ZolPerDoors zolPerDoors = zolPerDoorsService.findZolPerDoorsById(id);
         model.addAttribute("zolPerDoors", zolPerDoors);
-        return "zol-per-doors-view";
+        return "master/zol-per-doors-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editZolPerDoors(Model model, @PathVariable Integer id) {
         ZolPerDoors zolPerDoors = zolPerDoorsService.findZolPerDoorsById(id);
         model.addAttribute("zolPerDoors", zolPerDoors);
-        return "zol-per-doors-edit";
+        return "master/zol-per-doors-edit";
     }
 
     @PostMapping("/update")
@@ -67,7 +67,7 @@ public class ZolPerDoorsController {
     public String addZolPerDoors(Model model) {
         ZolPerDoors zolPerDoors = new ZolPerDoors();
         model.addAttribute("zolPerDoors", zolPerDoors);
-        return "zol-per-doors-add";
+        return "master/zol-per-doors-add";
     }
 
     @PostMapping("/create")

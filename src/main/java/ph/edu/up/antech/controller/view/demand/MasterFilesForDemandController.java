@@ -10,7 +10,7 @@ public class MasterFilesForDemandController {
 
     @GetMapping("")
     public String loadDemandPlanMasterController() {
-        return "master-files-for-demand";
+        return "demand/master-files-for-demand";
     }
 
 }

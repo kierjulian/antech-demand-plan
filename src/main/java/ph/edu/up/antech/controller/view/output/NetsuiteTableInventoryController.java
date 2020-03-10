@@ -66,7 +66,7 @@ public class NetsuiteTableInventoryController {
         model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("netsuiteTableInventoryCalculator", netsuiteTableInventoryCalculator);
-        return "netsuite-table-inv";
+        return "output/netsuite-table-inv";
     }
 
     private List<String> generateUniqueKamReferenceNameFromNetsuiteList(List<Netsuite> netsuiteList) {

@@ -34,7 +34,7 @@ public class NetsuiteTransfersCatController {
                 : netsuiteTransfersCatPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-transfers-cat";
+        return "master/config/netsuite-transfers-cat";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class NetsuiteTransfersCatController {
         NetsuiteTransferCat netsuiteTransferCat = netsuiteTransferCatService
                 .findNetsuiteTransferCatById(id);
         model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
-        return "netsuite-transfers-cat-view";
+        return "master/config/netsuite-transfers-cat-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class NetsuiteTransfersCatController {
         NetsuiteTransferCat netsuiteTransferCat = netsuiteTransferCatService
                 .findNetsuiteTransferCatById(id);
         model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
-        return "netsuite-transfers-cat-edit";
+        return "master/config/netsuite-transfers-cat-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class NetsuiteTransfersCatController {
     public String addNetsuiteTransferCat(Model model) {
         NetsuiteTransferCat netsuiteTransferCat = new NetsuiteTransferCat();
         model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
-        return "netsuite-transfers-cat-add";
+        return "master/config/netsuite-transfers-cat-add";
     }
 
     @PostMapping("/create")

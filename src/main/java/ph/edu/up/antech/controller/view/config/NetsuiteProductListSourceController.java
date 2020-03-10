@@ -33,7 +33,7 @@ public class NetsuiteProductListSourceController {
                 : netsuiteProductListSourcePaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "netsuite-prod-list-source";
+        return "master/config/netsuite-prod-list-source";
     }
 
     @GetMapping("/view/{id}")
@@ -41,7 +41,7 @@ public class NetsuiteProductListSourceController {
         NetsuiteProductListSource netsuiteProductListSource = netsuiteProductListSourceService
                 .findNetsuiteProductListSourceById(id);
         model.addAttribute("netsuiteProductListSource", netsuiteProductListSource);
-        return "netsuite-prod-list-source-view";
+        return "master/config/netsuite-prod-list-source-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -49,7 +49,7 @@ public class NetsuiteProductListSourceController {
         NetsuiteProductListSource netsuiteProductListSource = netsuiteProductListSourceService
                 .findNetsuiteProductListSourceById(id);
         model.addAttribute("netsuiteProductListSource", netsuiteProductListSource);
-        return "netsuite-prod-list-source-edit";
+        return "master/config/netsuite-prod-list-source-edit";
     }
 
     @PostMapping("/update")
@@ -71,7 +71,7 @@ public class NetsuiteProductListSourceController {
     public String addNetsuiteProductListSource(Model model) {
         NetsuiteProductListSource netsuiteProductListSource = new NetsuiteProductListSource();
         model.addAttribute("netsuiteProductListSource", netsuiteProductListSource);
-        return "netsuite-prod-list-source-add";
+        return "master/config/netsuite-prod-list-source-add";
     }
 
     @PostMapping("/create")

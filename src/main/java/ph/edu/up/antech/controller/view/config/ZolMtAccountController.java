@@ -34,21 +34,21 @@ public class ZolMtAccountController {
                 : zolMtAccountPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "zol-mt-account";
+        return "master/config/zol-mt-account";
     }
 
     @GetMapping("/view/{id}")
     public String viewZolMtAccount(Model model, @PathVariable Integer id) {
         ZolMtAccount zolMtAccount = zolMtAccountService.findZolMtAccountById(id);
         model.addAttribute("zolMtAccount", zolMtAccount);
-        return "zol-mt-account-view";
+        return "master/config/zol-mt-account-view";
     }
 
     @GetMapping("/edit/{id}")
     public String editZolMtAccount(Model model, @PathVariable Integer id) {
         ZolMtAccount zolMtAccount = zolMtAccountService.findZolMtAccountById(id);
         model.addAttribute("zolMtAccount", zolMtAccount);
-        return "zol-mt-account-edit";
+        return "master/config/zol-mt-account-edit";
     }
 
     @PostMapping("/update")
@@ -69,7 +69,7 @@ public class ZolMtAccountController {
     public String addZolMtAccount(Model model) {
         ZolMtAccount zolMtAccount = new ZolMtAccount();
         model.addAttribute("zolMtAccount", zolMtAccount);
-        return "zol-mt-account-add";
+        return "master/config/zol-mt-account-add";
     }
 
     @PostMapping("/create")

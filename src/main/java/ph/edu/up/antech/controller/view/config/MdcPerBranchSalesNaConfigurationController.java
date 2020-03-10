@@ -34,7 +34,7 @@ public class MdcPerBranchSalesNaConfigurationController {
                 : mdcPerBranchSalesNaConfigurationPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
-        return "mdc-branch-na-configuration";
+        return "master/config/mdc-branch-na-configuration";
     }
 
     @GetMapping("/view/{id}")
@@ -42,7 +42,7 @@ public class MdcPerBranchSalesNaConfigurationController {
         MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = mdcPerBranchSalesNaConfigurationService
                 .findMdcPerBranchSalesNaConfigurationById(id);
         model.addAttribute("mdcPerBranchSalesNaConfiguration", mdcPerBranchSalesNaConfiguration);
-        return "mdc-branch-na-configuration-view";
+        return "master/config/mdc-branch-na-configuration-view";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class MdcPerBranchSalesNaConfigurationController {
         MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = mdcPerBranchSalesNaConfigurationService
                 .findMdcPerBranchSalesNaConfigurationById(id);
         model.addAttribute("mdcPerBranchSalesNaConfiguration", mdcPerBranchSalesNaConfiguration);
-        return "mdc-branch-na-configuration-edit";
+        return "master/config/mdc-branch-na-configuration-edit";
     }
 
     @PostMapping("/update")
@@ -72,7 +72,7 @@ public class MdcPerBranchSalesNaConfigurationController {
     public String addMdcPerBranchSalesNaConfiguration(Model model) {
         MdcPerBranchSalesNaConfiguration mdcPerBranchSalesNaConfiguration = new MdcPerBranchSalesNaConfiguration();
         model.addAttribute("mdcPerBranchSalesNaConfiguration", mdcPerBranchSalesNaConfiguration);
-        return "mdc-branch-na-configuration-add";
+        return "master/config/mdc-branch-na-configuration-add";
     }
 
     @PostMapping("/create")
