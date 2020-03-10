@@ -100,27 +100,42 @@
                                             <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
                                                 <a class="page-link svg-icon"
                                                    th:href="@{/master/mdc-branch/config/coverage?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
-                                                   aria-label="Previous"
-                                                   title="Previous Page" rel="tooltip">
+                                                   aria-label="Previous" title="Previous Page" rel="tooltip">
                                                     <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
                                                         <i class="fas fa-chevron-left"></i>
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li class="page-item disabled" th:if="${page.number - 8 > 0}">
+                                            <li class="page-item" th:if="${page.number - 2 > 0}">
+                                                <a class="page-link svg-icon" th:href="@{/master/mdc-branch/config/coverage?page=0&filter={filter}(filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20">1</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number - 3 > 0}">
                                                 <a class="page-link svg-icon" href="#">
                                                     <span data-feather="more-horizontal" width="20" height="20">...</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
-                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                            <li class="page-item"
+                                                th:each="i : ${#numbers.sequence(0 < 2 - page.number ? 1 : page.number - 1, page.number, 1)}">
                                                 <a class="page-link" th:href="@{/master/mdc-branch/config/coverage?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
                                                    th:title="${'Page '+ i}"
                                                    rel="tooltip"></a>
                                             </li>
-                                            <li class="page-item disabled" th:if="${page.number + 10 < page.totalPages}">
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 3 + page.number ? page.number + 3 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/mdc-branch/config/coverage?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 4 < page.totalPages}">
                                                 <a class="page-link svg-icon" href="#">
                                                     <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:if="${page.number + 3 < page.totalPages}">
+                                                <a class="page-link svg-icon" th:href="@{/master/mdc-branch/config/coverage?page={id}&filter={filter}(id=${page.totalPages - 1}, filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20" th:text="${page.totalPages}"></span>
                                                 </a>
                                             </li>
                                             <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">

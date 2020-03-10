@@ -44,64 +44,64 @@
                                 <br>
                                 <table id="zolPerDoorsPerAcctTable" class="table table-striped table-bordered table-hover table-sm">
                                     <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">SAP</th>
-                                            <th scope="col">ZOL</th>
-                                            <th scope="col">Branch</th>
-                                            <th scope="col">Account</th>
-                                            <th scope="col">KAM</th>
-                                            <th scope="col">TM</th>
-                                            <th scope="col">Share</th>
-                                            <th scope="col">Kam Reference Name</th>
-                                            <th scope="col">Location 2</th>
-                                            <th scope="col">NA Name</th>
-                                            <th scope="col"></th>
-                                        </tr>
+                                    <tr>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">SAP</th>
+                                        <th scope="col">ZOL</th>
+                                        <th scope="col">Branch</th>
+                                        <th scope="col">Account</th>
+                                        <th scope="col">KAM</th>
+                                        <th scope="col">TM</th>
+                                        <th scope="col">Share</th>
+                                        <th scope="col">Kam Reference Name</th>
+                                        <th scope="col">Location 2</th>
+                                        <th scope="col">NA Name</th>
+                                        <th scope="col"></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="zolPerDoorsPerAcct, row : ${page.content}">
-                                            <td class="align-middle">
-                                                <a th:text="${zolPerDoorsPerAcct.location}"
-                                                   th:href="@{/master/zol-doors/config/accounts/view/{id}(id=${zolPerDoorsPerAcct.accountId})}"></a>
-                                            </td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.id}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.sap}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.zol}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.branch}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.account}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.kam}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.tm}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.share}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.kamReferenceName}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.location2}"></td>
-                                            <td class="align-middle" th:text="${zolPerDoorsPerAcct.naName}"></td>
-                                            <td class="align-middle">
-                                                <a class="btn btn-outline-danger" data-toggle="modal"
-                                                   th:attr="data-target='#deleteZolPerDoorsPerAcctModal' + ${zolPerDoorsPerAcct.accountId}"
-                                                   role="button"><i class="fas fa-trash-alt"></i></a>
-                                            </td>
-                                            <div th:id="'deleteZolPerDoorsPerAcctModal' + ${zolPerDoorsPerAcct.accountId}" class="modal fade" role="dialog"
-                                                 aria-labelledby="deleteZolPerDoorsPerAcctModalLabel" aria-hidden="true" tabindex="-1">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Delete ZOL Per Doors Per Acct</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Are you sure you want to delete this account?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a class="btn btn-danger"
-                                                               th:href="@{/master/zol-doors/config/accounts/delete/{id}(id=${zolPerDoorsPerAcct.accountId})}"
-                                                               role="button">Delete</a>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
+                                    <tr th:each="zolPerDoorsPerAcct, row : ${page.content}">
+                                        <td class="align-middle">
+                                            <a th:text="${zolPerDoorsPerAcct.location}"
+                                               th:href="@{/master/zol-doors/config/accounts/view/{id}(id=${zolPerDoorsPerAcct.accountId})}"></a>
+                                        </td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.id}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.sap}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.zol}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.branch}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.account}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.kam}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.tm}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.share}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.kamReferenceName}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.location2}"></td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.naName}"></td>
+                                        <td class="align-middle">
+                                            <a class="btn btn-outline-danger" data-toggle="modal"
+                                               th:attr="data-target='#deleteZolPerDoorsPerAcctModal' + ${zolPerDoorsPerAcct.accountId}"
+                                               role="button"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                        <div th:id="'deleteZolPerDoorsPerAcctModal' + ${zolPerDoorsPerAcct.accountId}" class="modal fade" role="dialog"
+                                             aria-labelledby="deleteZolPerDoorsPerAcctModalLabel" aria-hidden="true" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Delete ZOL Per Doors Per Acct</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete this account?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-danger"
+                                                           th:href="@{/master/zol-doors/config/accounts/delete/{id}(id=${zolPerDoorsPerAcct.accountId})}"
+                                                           role="button">Delete</a>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </tr>
+                                        </div>
+                                    </tr>
                                     </tbody>
                                 </table>
 
@@ -113,25 +113,41 @@
                                                    th:href="@{/master/zol-doors/config/accounts?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
                                                    aria-label="Previous"
                                                    title="Previous Page" rel="tooltip">
-                                                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
-                                                        <i class="fas fa-chevron-left"></i>
-                                                    </span>
+                                                            <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
+                                                                <i class="fas fa-chevron-left"></i>
+                                                            </span>
                                                 </a>
                                             </li>
-                                            <li class="page-item disabled" th:if="${page.number - 8 > 0}">
+                                            <li class="page-item" th:if="${page.number - 2 > 0}">
+                                                <a class="page-link svg-icon" th:href="@{/master/zol-doors/config/accounts?page=0&filter={filter}(filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20">1</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number - 3 > 0}">
                                                 <a class="page-link svg-icon" href="#">
                                                     <span data-feather="more-horizontal" width="20" height="20">...</span>
                                                 </a>
                                             </li>
-                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
-                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 10 + page.number ? page.number + 10 : page.totalPages, 1)}">
+                                            <li class="page-item"
+                                                th:each="i : ${#numbers.sequence(0 < 2 - page.number ? 1 : page.number - 1, page.number, 1)}">
                                                 <a class="page-link" th:href="@{/master/zol-doors/config/accounts?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
                                                    th:title="${'Page '+ i}"
                                                    rel="tooltip"></a>
                                             </li>
-                                            <li class="page-item disabled" th:if="${page.number + 10 < page.totalPages}">
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 3 + page.number ? page.number + 3 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/master/zol-doors/config/accounts?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 4 < page.totalPages}">
                                                 <a class="page-link svg-icon" href="#">
                                                     <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:if="${page.number + 3 < page.totalPages}">
+                                                <a class="page-link svg-icon" th:href="@{/master/zol-doors/config/accounts?page={id}&filter={filter}(id=${page.totalPages - 1}, filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20" th:text="${page.totalPages}"></span>
                                                 </a>
                                             </li>
                                             <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
