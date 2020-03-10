@@ -1,4 +1,4 @@
-package ph.edu.up.antech.controller.view.config;
+package ph.edu.up.antech.controller.view.master.config;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
