@@ -42,34 +42,34 @@
                                                 th:attr="colspan=${#lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 4}">Units</th>
                                         </tr>
                                     <tr>
-                                        <th class="sticky-top">Row Labels</th>
+                                        <th>Row Labels</th>
                                         <th:block th:each="milkProduct : ${milkProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${milkProduct}"></th>
+                                            <th scope="col" th:text="${milkProduct}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Milk</th>
+                                        <th scope="col" class="bg-dark text-white">Total Milk</th>
                                         <th:block th:each="jarProductList : ${jarProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${jarProductList}"></th>
+                                            <th scope="col" th:text="${jarProductList}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Jar</th>
+                                        <th scope="col" class="bg-dark text-white">Total Jar</th>
                                         <th:block th:each="waterProduct : ${waterProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${waterProduct}"></th>
+                                            <th scope="col" th:text="${waterProduct}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Water</th>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total HiPP Amount</th>
+                                        <th scope="col" class="bg-dark text-white">Total Water</th>
+                                        <th scope="col" class="bg-dark text-white">Total HiPP Amount</th>
                                         <th class="bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th:block th:each="milkProduct : ${milkProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${milkProduct}"></th>
+                                            <th scope="col" th:text="${milkProduct}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Milk</th>
+                                        <th scope="col" class="bg-dark text-white">Total Milk</th>
                                         <th:block th:each="jarProduct : ${jarProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${jarProduct}"></th>
+                                            <th scope="col" th:text="${jarProduct}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Jar</th>
+                                        <th scope="col" class="bg-dark text-white">Total Jar</th>
                                         <th:block th:each="waterProduct : ${waterProductList}">
-                                            <th scope="col" class="sticky-top" th:text="${waterProduct}"></th>
+                                            <th scope="col" th:text="${waterProduct}"></th>
                                         </th:block>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total Water</th>
-                                        <th scope="col" class="sticky-top bg-dark text-white">Total HiPP Units</th>
+                                        <th scope="col" class="bg-dark text-white">Total Water</th>
+                                        <th scope="col" class="bg-dark text-white">Total HiPP Units</th>
                                     </tr>
                                     </thead>
                                     <tbody>

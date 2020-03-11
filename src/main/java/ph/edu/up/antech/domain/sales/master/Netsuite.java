@@ -17,9 +17,31 @@ import java.time.LocalDate;
         @NamedQuery(name = "removeNetsuiteByDate",
                 query = "delete from Netsuite o where o.itemDate = :itemDate"),
         @NamedQuery(name = "findNetsuiteBetweenTwoDates",
-                query = "select o from Netsuite o where o.itemDate between :startDate and :endDate"),
+                query = "select o from Netsuite o where o.itemDate >= :startDate and o.itemDate <= :endDate"),
         @NamedQuery(name = "findNetsuiteById",
                 query = "select o from Netsuite o where o.id = :id")
+})
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "findNetsuiteSalesAmountAndUnitBetweenTwoDates",
+                query = "select o.id, o.item_date, o.kam_ref_name1, o.brand, o.transfers_cat_recode, " +
+                        "o.revenue_converted, o.quantity " +
+                        "from netsuite o where o.item_date >= :startDate and o.item_date <= :endDate",
+                resultSetMapping = "netsuiteSalesAmountAndUnitResult")
+})
+
+@SqlResultSetMapping(name = "netsuiteSalesAmountAndUnitResult", classes = {
+        @ConstructorResult(targetClass = Netsuite.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "item_date", type = LocalDate.class),
+                        @ColumnResult(name = "kam_ref_name1", type = String.class),
+                        @ColumnResult(name = "brand", type = String.class),
+                        @ColumnResult(name = "transfers_cat_recode", type = String.class),
+                        @ColumnResult(name = "revenue_converted", type = BigDecimal.class),
+                        @ColumnResult(name = "quantity", type = Integer.class)
+                })
 })
 public class Netsuite implements Serializable {
 
@@ -166,6 +188,74 @@ public class Netsuite implements Serializable {
     private String productCategory;
 
     public Netsuite() {
+    }
+
+    public Netsuite(Integer id, LocalDate itemDate, String kamRefName1, String brand, String transfersCatRecode,
+                    BigDecimal revenueConverted, Integer quantity) {
+        this.id = id;
+        this.itemDate = itemDate;
+        this.kamRefName1 = kamRefName1;
+        this.brand = brand;
+        this.transfersCatRecode = transfersCatRecode;
+        this.revenueConverted = revenueConverted;
+        this.quantity = quantity;
+    }
+
+    public Netsuite(LocalDate itemDate, String type, String customer, String category, LocalDate date, String num,
+                    String createdFrom, String description, Integer quantity, BigDecimal salesPrice,
+                    BigDecimal revenue, String priceLevel, String creditedToTerritorialManager, String salesRep,
+                    String acquisitionCsrCreditedTo, String retentionCsrCreditedTo, String orderTakenBy,
+                    String awareness, String customerSince, String zone, String customerJobZone, String pickup,
+                    String billingAddressLine1, String billingAddressLine2, String customerJobHospital1, String x,
+                    String a, String formula, String brand, String stage, String transfersCat,
+                    String transfersCatRecode, Integer inPcs, Integer convUnits, String desc, String kamRefName1,
+                    String region, BigDecimal revenueConverted, String naLeft, String trim, String kamRefName2,
+                    String mgmt, String csrTagging, String asm, String productCategory) {
+        this.itemDate = itemDate;
+        this.type = type;
+        this.customer = customer;
+        this.category = category;
+        this.date = date;
+        this.num = num;
+        this.createdFrom = createdFrom;
+        this.description = description;
+        this.quantity = quantity;
+        this.salesPrice = salesPrice;
+        this.revenue = revenue;
+        this.priceLevel = priceLevel;
+        this.creditedToTerritorialManager = creditedToTerritorialManager;
+        this.salesRep = salesRep;
+        this.acquisitionCsrCreditedTo = acquisitionCsrCreditedTo;
+        this.retentionCsrCreditedTo = retentionCsrCreditedTo;
+        this.orderTakenBy = orderTakenBy;
+        this.awareness = awareness;
+        this.customerSince = customerSince;
+        this.zone = zone;
+        this.customerJobZone = customerJobZone;
+        this.pickup = pickup;
+        this.billingAddressLine1 = billingAddressLine1;
+        this.billingAddressLine2 = billingAddressLine2;
+        this.customerJobHospital1 = customerJobHospital1;
+        this.x = x;
+        this.a = a;
+        this.formula = formula;
+        this.brand = brand;
+        this.stage = stage;
+        this.transfersCat = transfersCat;
+        this.transfersCatRecode = transfersCatRecode;
+        this.inPcs = inPcs;
+        this.convUnits = convUnits;
+        this.desc = desc;
+        this.kamRefName1 = kamRefName1;
+        this.region = region;
+        this.revenueConverted = revenueConverted;
+        this.naLeft = naLeft;
+        this.trim = trim;
+        this.kamRefName2 = kamRefName2;
+        this.mgmt = mgmt;
+        this.csrTagging = csrTagging;
+        this.asm = asm;
+        this.productCategory = productCategory;
     }
 
     public Netsuite(CustomerSalesByItem customerSalesByItem) {

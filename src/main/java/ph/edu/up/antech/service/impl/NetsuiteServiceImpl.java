@@ -57,4 +57,9 @@ public class NetsuiteServiceImpl implements NetsuiteService {
         return netsuiteDAO.findNetsuiteBetweenTwoDates(startDate, endDate);
     }
 
+    @Override
+    public List<Netsuite> findNetsuiteSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return netsuiteDAO.findNetsuiteSalesAmountAndUnitBetweenTwoDates(startDate, endDate);
+    }
+
 }

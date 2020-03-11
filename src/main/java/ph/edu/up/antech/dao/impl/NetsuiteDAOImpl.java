@@ -77,4 +77,13 @@ public class NetsuiteDAOImpl implements NetsuiteDAO {
         return query.getResultList();
     }
 
+    @Override
+    public List<Netsuite> findNetsuiteSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        Query query = em.createNamedQuery("findNetsuiteSalesAmountAndUnitBetweenTwoDates");
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        List<Netsuite> netsuiteList = query.getResultList();
+        return netsuiteList;
+    }
+
 }

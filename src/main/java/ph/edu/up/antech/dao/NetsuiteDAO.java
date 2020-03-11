@@ -23,4 +23,6 @@ public interface NetsuiteDAO {
 
     public List<Netsuite> findNetsuiteBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
+    public List<Netsuite> findNetsuiteSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }
