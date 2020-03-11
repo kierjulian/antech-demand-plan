@@ -79,4 +79,9 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
         return zolPerDoorsDAO.updateZolPerDoors(zolPerDoors);
     }
 
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return zolPerDoorsDAO.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(startDate, endDate);
+    }
+
 }

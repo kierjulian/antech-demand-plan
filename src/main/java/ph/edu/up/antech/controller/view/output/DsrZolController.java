@@ -46,7 +46,7 @@ public class DsrZolController {
                 .map(Product::getCode)
                 .collect(Collectors.toList());
 
-        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsBetweenTwoDates(start, end);
+        List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(start, end);
         List<DsrZol> dsrZolList = generateDsrZolFromZolPerDoorsList(zolPerDoorsList, productCodeList);
         List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
         List<String> accountList = findDistinctAccountInZolPerDoorsList(zolPerDoorsList);

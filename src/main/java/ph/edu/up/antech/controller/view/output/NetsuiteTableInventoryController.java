@@ -37,7 +37,7 @@ public class NetsuiteTableInventoryController {
                 ? LocalDate.parse(startDate) : LocalDate.now();
         LocalDate end = !StringUtils.isNullOrEmpty(endDate)
                 ? LocalDate.parse(endDate) : LocalDate.now();
-        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteBetweenTwoDates(start, end);
+        List<Netsuite> netsuiteList = netsuiteService.findNetsuiteSalesAmountAndUnitBetweenTwoDates(start, end);
 
         List<Product> productList = productService.findAllProducts();
         List<String> productCodeList = productList.stream()

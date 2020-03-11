@@ -112,4 +112,13 @@ public class ZolPerDoorsDAOImpl implements ZolPerDoorsDAO {
         return em.merge(zolPerDoors);
     }
 
+    @Override
+    public List<ZolPerDoors> findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        Query query = em.createNamedQuery("findZolPerDoorsSalesAmountAndUnitBetweenTwoDates");
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        List<ZolPerDoors> zolPerDoorsList = query.getResultList();
+        return zolPerDoorsList;
+    }
+
 }

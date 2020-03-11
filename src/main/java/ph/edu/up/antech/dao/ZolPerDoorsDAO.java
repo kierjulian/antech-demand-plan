@@ -32,4 +32,6 @@ public interface ZolPerDoorsDAO {
 
     public ZolPerDoors updateZolPerDoors(ZolPerDoors zolPerDoors);
 
+    public List<ZolPerDoors> findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

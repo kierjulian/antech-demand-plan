@@ -18,7 +18,6 @@ import ph.edu.up.antech.util.*;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +48,7 @@ public class HippMarketSalesController {
     public String loadHippInMarketSalesAmountPage(Model model,
                                                   @RequestParam(required = false) String startDate,
                                                   @RequestParam(required = false) String endDate) {
+        Long startTime = System.nanoTime();
         YearMonth yearMonthStart = !StringUtils.isNullOrEmpty(startDate)
                 ? YearMonth.parse(startDate) : YearMonth.of(Year.now().getValue(), 1);
         YearMonth yearMonthEnd = !StringUtils.isNullOrEmpty(endDate)
@@ -71,7 +71,7 @@ public class HippMarketSalesController {
         List<ZolMtPerBranch> zolMtPerBranchList =
                 zolMtPerBranchService.findZolMtPerBranchBetweenTwoDates(start, end);
         List<ZolPerDoors> zolPerDoorsList =
-                zolPerDoorsService.findZolPerDoorsBetweenTwoDates(start, end);
+                zolPerDoorsService.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(start, end);
         List<Netsuite> netsuiteList =
                 netsuiteService.findNetsuiteSalesAmountAndUnitBetweenTwoDates(start, end);
 
@@ -99,6 +99,9 @@ public class HippMarketSalesController {
         model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
         model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
         model.addAttribute("netsuiteBbjCalculator", netsuiteBbjCalculator);
+
+        long endTime = System.nanoTime();
+        System.out.println(endTime - startTime);
 
         return "demand/hipp-market-sales-summary";
     }

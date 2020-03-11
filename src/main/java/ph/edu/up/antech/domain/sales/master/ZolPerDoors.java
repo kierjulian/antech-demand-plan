@@ -33,6 +33,28 @@ import java.time.LocalDate;
         @NamedQuery(name = "findZolPerDoorsById",
                 query = "select o from ZolPerDoors o where o.id = :id")
 })
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "findZolPerDoorsSalesAmountAndUnitBetweenTwoDates",
+                query = "select o.id, o.date, o.kam_ref_name, o.antech_prod_desc, o.account, " +
+                        "o.amount, o.sales_unit " +
+                        "from zol_door o where o.date >= :startDate and o.date <= :endDate",
+                resultSetMapping = "zolPerDoorsSalesAmountAndUnitResult")
+})
+
+@SqlResultSetMapping(name = "zolPerDoorsSalesAmountAndUnitResult", classes = {
+        @ConstructorResult(targetClass = ZolPerDoors.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "date", type = LocalDate.class),
+                        @ColumnResult(name = "kam_ref_name", type = String.class),
+                        @ColumnResult(name = "antech_prod_desc", type = String.class),
+                        @ColumnResult(name = "account", type = String.class),
+                        @ColumnResult(name = "amount", type = Integer.class),
+                        @ColumnResult(name = "sales_unit", type = Integer.class)
+                })
+})
 public class ZolPerDoors implements Serializable {
 
     @Id
@@ -116,6 +138,20 @@ public class ZolPerDoors implements Serializable {
     @Column(name = "a")
     private Integer a;
 
+    public ZolPerDoors() {
+    }
+
+    public ZolPerDoors(Integer id, LocalDate date, String kamReferenceName, String antechProductDescription,
+                       String account, Integer amount, Integer salesUnit) {
+        this.id = id;
+        this.date = date;
+        this.kamReferenceName = kamReferenceName;
+        this.antechProductDescription = antechProductDescription;
+        this.account = account;
+        this.amount = amount;
+        this.salesUnit = salesUnit;
+    }
+
     public ZolPerDoors(CustomerItemSalesPerPeriod customerItemSalesPerPeriod) {
         this.date = customerItemSalesPerPeriod.getDate();
         this.customerCode = customerItemSalesPerPeriod.getCustomerCode();
@@ -135,9 +171,6 @@ public class ZolPerDoors implements Serializable {
         generateAmountConverted();
         generateType();
         generateCm();
-    }
-
-    public ZolPerDoors() {
     }
 
     public Integer getId() {
