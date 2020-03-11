@@ -57,4 +57,9 @@ public class ZolMdcPerBranchServiceImpl implements ZolMdcPerBranchService {
         return zolMdcPerBranchDAO.updateZolMdcPerBranch(zolMdcPerBranch);
     }
 
+    @Override
+    public List<ZolMdcPerBranch> findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return zolMdcPerBranchDAO.findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(startDate, endDate);
+    }
+
 }

@@ -22,7 +22,7 @@ public class ZolMdcPerBranchCalculator {
         return zolMdcPerBranchList.stream()
                 .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
                 .filter(zolMdcPerBranch -> zolMdcPerBranch.getAntechProductDescription().equals(productCode))
-                .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getA() != null)
                 .mapToInt(ZolMdcPerBranch::getA)
                 .sum();
     }
@@ -30,7 +30,7 @@ public class ZolMdcPerBranchCalculator {
     public Integer getTotalFinalAmountPerYearMonth(YearMonth yearMonth) {
         return zolMdcPerBranchList.stream()
                 .filter(zolMdcPerBranch -> YearMonth.from(zolMdcPerBranch.getDate()).equals(yearMonth))
-                .filter(zolMdcPerBranch -> zolMdcPerBranch.getFinalAmount() != null)
+                .filter(zolMdcPerBranch -> zolMdcPerBranch.getA() != null)
                 .mapToInt(ZolMdcPerBranch::getA)
                 .sum();
     }

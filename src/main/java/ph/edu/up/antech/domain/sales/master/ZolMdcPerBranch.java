@@ -23,6 +23,25 @@ import java.time.LocalDate;
         @NamedQuery(name = "findZolMdcPerBranchById",
                 query = "select o from ZolMdcPerBranch o where o.id = :id")
 })
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates",
+                query = "select o.id, o.date, o.antech_prod_desc, o.a, o.sales_unit " +
+                        "from zol_mdc_per_branch o where o.date >= :startDate and o.date <= :endDate",
+                resultSetMapping = "zolMdcPerBranchSalesAmountAndUnitResult")
+})
+
+@SqlResultSetMapping(name = "zolMdcPerBranchSalesAmountAndUnitResult", classes = {
+        @ConstructorResult(targetClass = ZolMdcPerBranch.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "date", type = LocalDate.class),
+                        @ColumnResult(name = "antech_prod_desc", type = String.class),
+                        @ColumnResult(name = "a", type = Integer.class),
+                        @ColumnResult(name = "sales_unit", type = Integer.class)
+                })
+})
 public class ZolMdcPerBranch {
 
     @Id
@@ -114,6 +133,14 @@ public class ZolMdcPerBranch {
     private LocalDate cmInd;
 
     public ZolMdcPerBranch() {
+    }
+
+    public ZolMdcPerBranch(Integer id, LocalDate date, String antechProductDescription, Integer a, Integer salesUnit) {
+        this.id = id;
+        this.date = date;
+        this.antechProductDescription = antechProductDescription;
+        this.a = a;
+        this.salesUnit = salesUnit;
     }
 
     public ZolMdcPerBranch(ZolMdcSheet zolMdcSheet) {

@@ -77,4 +77,13 @@ public class ZolMdcPerBranchDAOImpl implements ZolMdcPerBranchDAO {
         return em.merge(zolMdcPerBranch);
     }
 
+    @Override
+    public List<ZolMdcPerBranch> findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        Query query = em.createNamedQuery("findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates");
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        List<ZolMdcPerBranch> zolMdcPerBranchList = query.getResultList();
+        return zolMdcPerBranchList;
+    }
+
 }

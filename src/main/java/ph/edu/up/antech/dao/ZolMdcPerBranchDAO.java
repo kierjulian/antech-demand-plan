@@ -23,4 +23,6 @@ public interface ZolMdcPerBranchDAO {
 
     public ZolMdcPerBranch updateZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch);
 
+    public List<ZolMdcPerBranch> findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

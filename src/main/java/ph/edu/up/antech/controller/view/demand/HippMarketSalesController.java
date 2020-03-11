@@ -67,7 +67,7 @@ public class HippMarketSalesController {
         List<DispensingDistributor> dispensingDistributorList =
                 dispensingDistributorService.findDispensingDistributorBetweenTwoDates(start, end);
         List<ZolMdcPerBranch> zolMdcPerBranchList =
-                zolMdcPerBranchService.findZolMdcPerBranchBetweenTwoDates(start, end);
+                zolMdcPerBranchService.findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(start, end);
         List<ZolMtPerBranch> zolMtPerBranchList =
                 zolMtPerBranchService.findZolMtPerBranchBetweenTwoDates(start, end);
         List<ZolPerDoors> zolPerDoorsList =

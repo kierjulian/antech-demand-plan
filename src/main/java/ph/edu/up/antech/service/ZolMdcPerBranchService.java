@@ -23,4 +23,6 @@ public interface ZolMdcPerBranchService {
 
     public ZolMdcPerBranch updateZolMdcPerBranch(ZolMdcPerBranch zolMdcPerBranch);
 
+    public List<ZolMdcPerBranch> findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }
