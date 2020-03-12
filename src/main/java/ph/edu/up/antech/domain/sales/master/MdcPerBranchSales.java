@@ -211,6 +211,83 @@ public class MdcPerBranchSales {
     @Column(name = "region")
     private String region;
 
+    public MdcPerBranchSales() {
+    }
+
+    public MdcPerBranchSales(Integer id, LocalDate date, String cono, String rec, String bran, String satbrn,
+                             String customerNo, String shpcn, String customerName, String cadd1, String cadd2,
+                             String clazz, String zipcd, String sman, String prin, String subpr, Integer refcd,
+                             Integer refcd1, Integer netQuantity, BigDecimal netValue, BigDecimal netValue2,
+                             String sku, String category, BigDecimal grossValue, Month month, Year year,
+                             LocalDate referenceDate, String referenceNo, String xreferenceNo, String reasn,
+                             String prodcd, Integer quantityOr, Integer quantitySh, String um, BigDecimal vlamt,
+                             BigDecimal sellpr, BigDecimal pds, LocalDate expirationDate, String lotNo,
+                             String barcode, String pdcode, String dman, BigDecimal findsc, String framt,
+                             Integer slsyr, Integer slsmo, Integer slswk, String appNum, String poNum, String guartran,
+                             BigDecimal netSales, String debtorCode, String strCode, String coverage, String reason,
+                             String branchName, String naName, String dsmName, String coordinator, String region) {
+        this.id = id;
+        this.date = date;
+        this.cono = cono;
+        this.rec = rec;
+        this.bran = bran;
+        this.satbrn = satbrn;
+        this.customerNo = customerNo;
+        this.shpcn = shpcn;
+        this.customerName = customerName;
+        this.cadd1 = cadd1;
+        this.cadd2 = cadd2;
+        this.clazz = clazz;
+        this.zipcd = zipcd;
+        this.sman = sman;
+        this.prin = prin;
+        this.subpr = subpr;
+        this.refcd = refcd;
+        this.refcd1 = refcd1;
+        this.netQuantity = netQuantity;
+        this.netValue = netValue;
+        this.netValue2 = netValue2;
+        this.sku = sku;
+        this.category = category;
+        this.grossValue = grossValue;
+        this.month = month;
+        this.year = year;
+        this.referenceDate = referenceDate;
+        this.referenceNo = referenceNo;
+        this.xreferenceNo = xreferenceNo;
+        this.reasn = reasn;
+        this.prodcd = prodcd;
+        this.quantityOr = quantityOr;
+        this.quantitySh = quantitySh;
+        this.um = um;
+        this.vlamt = vlamt;
+        this.sellpr = sellpr;
+        this.pds = pds;
+        this.expirationDate = expirationDate;
+        this.lotNo = lotNo;
+        this.barcode = barcode;
+        this.pdcode = pdcode;
+        this.dman = dman;
+        this.findsc = findsc;
+        this.framt = framt;
+        this.slsyr = slsyr;
+        this.slsmo = slsmo;
+        this.slswk = slswk;
+        this.appNum = appNum;
+        this.poNum = poNum;
+        this.guartran = guartran;
+        this.netSales = netSales;
+        this.debtorCode = debtorCode;
+        this.strCode = strCode;
+        this.coverage = coverage;
+        this.reason = reason;
+        this.branchName = branchName;
+        this.naName = naName;
+        this.dsmName = dsmName;
+        this.coordinator = coordinator;
+        this.region = region;
+    }
+
     public MdcPerBranchSales(ZolMtRaw zolMtRaw) {
         this.cono = zolMtRaw.getCono();
         this.rec = zolMtRaw.getRec();
@@ -301,9 +378,6 @@ public class MdcPerBranchSales {
         this.guartran = zolMdcRaw.getGuartran();
         this.netSales = zolMdcRaw.getNetsales();
         this.debtorCode = zolMdcRaw.getDebtorCode();
-    }
-
-    public MdcPerBranchSales() {
     }
 
     public Integer getId() {

@@ -152,7 +152,12 @@ public class ZolPerDoors implements Serializable {
         this.salesUnit = salesUnit;
     }
 
-    public ZolPerDoors(Integer id, LocalDate date, String customerCode, String customerName, String itemCode, String itemName, Integer salesUnit, BigDecimal salesValue, String antechProductDescription, BigDecimal antechPrice, Integer amount, String account, String kam, String kamReferenceName, String stage, Integer amountConverted, String type, String location, String cm, BigDecimal less00375Percent, BigDecimal v1, BigDecimal less0853Percent, BigDecimal v2, BigDecimal finalAmount, BigDecimal amountTimesOneThousand, Integer a) {
+    public ZolPerDoors(Integer id, LocalDate date, String customerCode, String customerName, String itemCode,
+                       String itemName, Integer salesUnit, BigDecimal salesValue, String antechProductDescription,
+                       BigDecimal antechPrice, Integer amount, String account, String kam, String kamReferenceName,
+                       String stage, Integer amountConverted, String type, String location, String cm,
+                       BigDecimal less00375Percent, BigDecimal v1, BigDecimal less0853Percent, BigDecimal v2,
+                       BigDecimal finalAmount, BigDecimal amountTimesOneThousand, Integer a) {
         this.id = id;
         this.date = date;
         this.customerCode = customerCode;

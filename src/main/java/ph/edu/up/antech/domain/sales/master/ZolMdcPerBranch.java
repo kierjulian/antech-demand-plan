@@ -143,6 +143,42 @@ public class ZolMdcPerBranch {
         this.salesUnit = salesUnit;
     }
 
+    public ZolMdcPerBranch(Integer id, LocalDate date, String customerCode, String customerName, String itemCode,
+                           String itemName, Integer salesUnit, BigDecimal salesValue, String antechProductDescription,
+                           BigDecimal antechPrice, BigDecimal amount, String account, String kam, String kamRefName,
+                           String stage, String amountConverted, String type, String loc, String cm,
+                           BigDecimal lessThan00375, BigDecimal v1, BigDecimal lessThan0853, BigDecimal v2,
+                           BigDecimal finalAmount, BigDecimal amountTimes1000, Integer a, String dsm, LocalDate cmInd) {
+        this.id = id;
+        this.date = date;
+        this.customerCode = customerCode;
+        this.customerName = customerName;
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.salesUnit = salesUnit;
+        this.salesValue = salesValue;
+        this.antechProductDescription = antechProductDescription;
+        this.antechPrice = antechPrice;
+        this.amount = amount;
+        this.account = account;
+        this.kam = kam;
+        this.kamRefName = kamRefName;
+        this.stage = stage;
+        this.amountConverted = amountConverted;
+        this.type = type;
+        this.loc = loc;
+        this.cm = cm;
+        this.lessThan00375 = lessThan00375;
+        this.v1 = v1;
+        this.lessThan0853 = lessThan0853;
+        this.v2 = v2;
+        this.finalAmount = finalAmount;
+        this.amountTimes1000 = amountTimes1000;
+        this.a = a;
+        this.dsm = dsm;
+        this.cmInd = cmInd;
+    }
+
     public ZolMdcPerBranch(ZolMdcSheet zolMdcSheet) {
         this.customerName = zolMdcSheet.getAccountName();
         this.itemCode = zolMdcSheet.getZapCode();
