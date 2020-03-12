@@ -26,7 +26,7 @@ import java.time.LocalDate;
         @NamedNativeQuery(
                 name = "findNetsuiteSalesAmountAndUnitBetweenTwoDates",
                 query = "select o.id, o.item_date, o.kam_ref_name1, o.brand, o.transfers_cat_recode, " +
-                        "o.revenue_converted, o.quantity " +
+                        "o.mgmt, o.revenue_converted, o.quantity " +
                         "from netsuite o where o.item_date >= :startDate and o.item_date <= :endDate",
                 resultSetMapping = "netsuiteSalesAmountAndUnitResult")
 })
@@ -39,6 +39,7 @@ import java.time.LocalDate;
                         @ColumnResult(name = "kam_ref_name1", type = String.class),
                         @ColumnResult(name = "brand", type = String.class),
                         @ColumnResult(name = "transfers_cat_recode", type = String.class),
+                        @ColumnResult(name = "mgmt", type = String.class),
                         @ColumnResult(name = "revenue_converted", type = BigDecimal.class),
                         @ColumnResult(name = "quantity", type = Integer.class)
                 })
@@ -191,12 +192,13 @@ public class Netsuite implements Serializable {
     }
 
     public Netsuite(Integer id, LocalDate itemDate, String kamRefName1, String brand, String transfersCatRecode,
-                    BigDecimal revenueConverted, Integer quantity) {
+                    String mgmt, BigDecimal revenueConverted, Integer quantity) {
         this.id = id;
         this.itemDate = itemDate;
         this.kamRefName1 = kamRefName1;
         this.brand = brand;
         this.transfersCatRecode = transfersCatRecode;
+        this.mgmt = mgmt;
         this.revenueConverted = revenueConverted;
         this.quantity = quantity;
     }

@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
-import ph.edu.up.antech.domain.sales.master.ZolMdcPerBranch;
-import ph.edu.up.antech.domain.sales.master.ZolMtPerBranch;
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
-import ph.edu.up.antech.service.*;
+import ph.edu.up.antech.service.DispensingDistributorService;
+import ph.edu.up.antech.service.NetsuiteService;
+import ph.edu.up.antech.service.ProductService;
+import ph.edu.up.antech.service.ZolPerDoorsService;
 import ph.edu.up.antech.util.*;
 
 import java.time.LocalDate;
@@ -31,12 +32,6 @@ public class HippMarketSalesController {
 
     @Autowired
     private DispensingDistributorService dispensingDistributorService;
-
-    @Autowired
-    private ZolMdcPerBranchService zolMdcPerBranchService;
-
-    @Autowired
-    private ZolMtPerBranchService zolMtPerBranchService;
 
     @Autowired
     private ZolPerDoorsService zolPerDoorsService;
@@ -70,58 +65,49 @@ public class HippMarketSalesController {
         List<DispensingDistributor> dispensingDistributorList =
                 dispensingDistributorService.findDispensingDistributorSalesAmountAndUnitBetweenTwoDates(start, end);
 
+        ZolPerDoorsCalculator zolPerDoorsMercuryDrugCorpCalculator =
+                new ZolPerDoorsCalculator(zolPerDoorsList, productCodeList, ZolPerDoorsChannel.MDC);
+        ZolPerDoorsCalculator zolPerDoorsGmaCalculator =
+                new ZolPerDoorsCalculator(zolPerDoorsList, productCodeList, ZolPerDoorsChannel.ZPC_GMA);
+        ZolPerDoorsCalculator zolPerDoorsVisayasCalculator =
+                new ZolPerDoorsCalculator(zolPerDoorsList, productCodeList, ZolPerDoorsChannel.ZPC_VIS);
+        ZolPerDoorsCalculator zolPerDoorsMindanaoCalculator =
+                new ZolPerDoorsCalculator(zolPerDoorsList, productCodeList, ZolPerDoorsChannel.ZPC_MIN);
+        NetsuiteCalculator netsuiteDispensingDistributorCalculator = new NetsuiteCalculator(netsuiteList,
+                productCodeList, NetsuiteChannel.DISPENSING_DISTRIBUTOR);
+        NetsuiteCalculator netsuiteBbjCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.BBJ);
+        NetsuiteCalculator netsuiteDirectAcctCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.DIRECT_ACCTS);
+        NetsuiteCalculator netsuiteLazadaCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.LAZADA);
         DispensingDistributorCalculator dispensingDistributorCalculator =
                 generateDispensingDistributorCalculator(dispensingDistributorList, productCodeList);
-        ZolPerDoorsCalculator zolPerDoorsCalculator =
-                generateZolPerDoorsCalculator(zolPerDoorsList, productCodeList);
-        NetsuiteCalculator netsuiteLazadaCalculator =
-                generateNetsuiteLazadaCalculator(netsuiteList, productCodeList, "Lazada");
-        NetsuiteCalculator netsuiteBbjCalculator =
-                generateNetsuiteLazadaCalculator(netsuiteList, productCodeList, "BBJ");
+
+        TotalProductCalculator totalProductCalculator =
+                new TotalProductCalculator(zolPerDoorsMercuryDrugCorpCalculator, zolPerDoorsGmaCalculator, zolPerDoorsVisayasCalculator,
+                        zolPerDoorsMindanaoCalculator, netsuiteDispensingDistributorCalculator, netsuiteBbjCalculator,
+                        netsuiteDirectAcctCalculator, netsuiteLazadaCalculator);
 
         model.addAttribute("yearMonthStart", yearMonthStart);
         model.addAttribute("yearMonthEnd", yearMonthEnd);
         model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("products", productList);
         model.addAttribute("channels", ChannelUtils.getChannels());
-        model.addAttribute("dispensingDistributorCalculator", dispensingDistributorCalculator);
-        model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
-        model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
+        model.addAttribute("zolPerDoorsMercuryDrugCorpCalculator", zolPerDoorsMercuryDrugCorpCalculator);
+        model.addAttribute("zolPerDoorsGmaCalculator", zolPerDoorsGmaCalculator);
+        model.addAttribute("zolPerDoorsVisayasCalculator", zolPerDoorsVisayasCalculator);
+        model.addAttribute("zolPerDoorsMindanaoCalculator", zolPerDoorsMindanaoCalculator);
+        model.addAttribute("netsuiteDispensingDistributorCalculator", netsuiteDispensingDistributorCalculator);
         model.addAttribute("netsuiteBbjCalculator", netsuiteBbjCalculator);
+        model.addAttribute("netsuiteDirectAcctCalculator", netsuiteDirectAcctCalculator);
+        model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
+        model.addAttribute("dispensingDistributorCalculator", dispensingDistributorCalculator);
+        model.addAttribute("totalProductCalculator", totalProductCalculator);
 
         return "demand/hipp-market-sales-summary";
     }
 
     private DispensingDistributorCalculator generateDispensingDistributorCalculator(
             List<DispensingDistributor> dispensingDistributorList, List<String> productList) {
-        DispensingDistributorCalculator dispensingDistributorCalculator =
-                new DispensingDistributorCalculator(dispensingDistributorList, productList);
-        return dispensingDistributorCalculator;
-    }
-
-    private ZolMdcPerBranchCalculator generateZolMdcPerBranchCalculator(List<ZolMdcPerBranch> zolMdcPerBranchList,
-                                                                        List<String> productList) {
-        ZolMdcPerBranchCalculator zolMdcPerBranchCalculator = new ZolMdcPerBranchCalculator(zolMdcPerBranchList, productList);
-        return zolMdcPerBranchCalculator;
-    }
-
-    private ZolMtPerBranchCalculator generateZolMtPerBranchCalculator(List<ZolMtPerBranch> zolMtPerBranchList,
-                                                                      List<String> productList) {
-        ZolMtPerBranchCalculator zolMtPerBranchCalculator = new ZolMtPerBranchCalculator(
-                zolMtPerBranchList, productList);
-        return zolMtPerBranchCalculator;
-    }
-
-    private ZolPerDoorsCalculator generateZolPerDoorsCalculator(List<ZolPerDoors> zolPerDoorsList,
-                                                                List<String> productList) {
-        ZolPerDoorsCalculator zolPerDoorsCalculator = new ZolPerDoorsCalculator(
-                zolPerDoorsList, productList);
-        return zolPerDoorsCalculator;
-    }
-
-    private NetsuiteCalculator generateNetsuiteLazadaCalculator(List<Netsuite> netsuiteList,
-                                                                List<String> productList, String kamReferenceNameFilter) {
-        return new NetsuiteCalculator(netsuiteList, productList, kamReferenceNameFilter);
+        return new DispensingDistributorCalculator(dispensingDistributorList, productList);
     }
 
 }

@@ -11,14 +11,29 @@ public class NetsuiteCalculator {
     public List<Netsuite> netsuiteList;
 
     public NetsuiteCalculator(List<Netsuite> netsuiteList, List<String> productList,
-                              String kamReferenceNameFilter) {
+                              NetsuiteChannel netsuiteChannel) {
         this.netsuiteList = netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1() != null)
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
                 .filter(netsuite -> netsuite.getRevenueConverted() != null)
-                .filter(netsuite -> netsuite.getKamRefName1().equalsIgnoreCase(kamReferenceNameFilter))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
+                .filter(netsuite -> {
+                    switch (netsuiteChannel) {
+                        case DISPENSING_DISTRIBUTOR:
+                            return netsuite.getMgmt().contains("Dispensing MD");
+                        case BBJ:
+                            return netsuite.getMgmt().contains("Home Delivery");
+                        case DIRECT_ACCTS:
+                            return netsuite.getKamRefName1().contains("Marjonken")
+                                    || netsuite.getKamRefName1().contains("St Francis")
+                                    || netsuite.getKamRefName1().contains("Tiongsan");
+                        case LAZADA:
+                            return netsuite.getKamRefName1().contains("Lazada");
+                        default:
+                            return true;
+                    }
+                })
                 .collect(Collectors.toList());
     }
 
