@@ -201,7 +201,7 @@ public class Netsuite implements Serializable {
         this.quantity = quantity;
     }
 
-    public Netsuite(LocalDate itemDate, String type, String customer, String category, LocalDate date, String num,
+    public Netsuite(Integer id, LocalDate itemDate, String type, String customer, String category, LocalDate date, String num,
                     String createdFrom, String description, Integer quantity, BigDecimal salesPrice,
                     BigDecimal revenue, String priceLevel, String creditedToTerritorialManager, String salesRep,
                     String acquisitionCsrCreditedTo, String retentionCsrCreditedTo, String orderTakenBy,
@@ -211,6 +211,7 @@ public class Netsuite implements Serializable {
                     String transfersCatRecode, Integer inPcs, Integer convUnits, String desc, String kamRefName1,
                     String region, BigDecimal revenueConverted, String naLeft, String trim, String kamRefName2,
                     String mgmt, String csrTagging, String asm, String productCategory) {
+        this.id = id;
         this.itemDate = itemDate;
         this.type = type;
         this.customer = customer;

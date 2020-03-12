@@ -48,7 +48,6 @@ public class HippMarketSalesController {
     public String loadHippInMarketSalesAmountPage(Model model,
                                                   @RequestParam(required = false) String startDate,
                                                   @RequestParam(required = false) String endDate) {
-        Long startTime = System.nanoTime();
         YearMonth yearMonthStart = !StringUtils.isNullOrEmpty(startDate)
                 ? YearMonth.parse(startDate) : YearMonth.of(Year.now().getValue(), 1);
         YearMonth yearMonthEnd = !StringUtils.isNullOrEmpty(endDate)
@@ -64,23 +63,15 @@ public class HippMarketSalesController {
         LocalDate start = DateUtils.generateStartLocalDateFromYearMonth(yearMonthStart);
         LocalDate end = DateUtils.generateEndLocalDateFromYearMonth(yearMonthEnd);
 
-        List<DispensingDistributor> dispensingDistributorList =
-                dispensingDistributorService.findDispensingDistributorBetweenTwoDates(start, end);
-        List<ZolMdcPerBranch> zolMdcPerBranchList =
-                zolMdcPerBranchService.findZolMdcPerBranchSalesAmountAndUnitBetweenTwoDates(start, end);
-        List<ZolMtPerBranch> zolMtPerBranchList =
-                zolMtPerBranchService.findZolMtPerBranchBetweenTwoDates(start, end);
         List<ZolPerDoors> zolPerDoorsList =
                 zolPerDoorsService.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(start, end);
         List<Netsuite> netsuiteList =
                 netsuiteService.findNetsuiteSalesAmountAndUnitBetweenTwoDates(start, end);
+        List<DispensingDistributor> dispensingDistributorList =
+                dispensingDistributorService.findDispensingDistributorSalesAmountAndUnitBetweenTwoDates(start, end);
 
         DispensingDistributorCalculator dispensingDistributorCalculator =
                 generateDispensingDistributorCalculator(dispensingDistributorList, productCodeList);
-        ZolMdcPerBranchCalculator zolMdcPerBranchCalculator =
-                generateZolMdcPerBranchCalculator(zolMdcPerBranchList, productCodeList);
-        ZolMtPerBranchCalculator zolMtPerBranchCalculator =
-                generateZolMtPerBranchCalculator(zolMtPerBranchList, productCodeList);
         ZolPerDoorsCalculator zolPerDoorsCalculator =
                 generateZolPerDoorsCalculator(zolPerDoorsList, productCodeList);
         NetsuiteCalculator netsuiteLazadaCalculator =
@@ -94,14 +85,9 @@ public class HippMarketSalesController {
         model.addAttribute("products", productList);
         model.addAttribute("channels", ChannelUtils.getChannels());
         model.addAttribute("dispensingDistributorCalculator", dispensingDistributorCalculator);
-        model.addAttribute("zolMdcPerBranchCalculator", zolMdcPerBranchCalculator);
-        model.addAttribute("zolMtPerBranchCalculator", zolMtPerBranchCalculator);
         model.addAttribute("zolPerDoorsCalculator", zolPerDoorsCalculator);
         model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
         model.addAttribute("netsuiteBbjCalculator", netsuiteBbjCalculator);
-
-        long endTime = System.nanoTime();
-        System.out.println(endTime - startTime);
 
         return "demand/hipp-market-sales-summary";
     }

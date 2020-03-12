@@ -152,6 +152,35 @@ public class ZolPerDoors implements Serializable {
         this.salesUnit = salesUnit;
     }
 
+    public ZolPerDoors(Integer id, LocalDate date, String customerCode, String customerName, String itemCode, String itemName, Integer salesUnit, BigDecimal salesValue, String antechProductDescription, BigDecimal antechPrice, Integer amount, String account, String kam, String kamReferenceName, String stage, Integer amountConverted, String type, String location, String cm, BigDecimal less00375Percent, BigDecimal v1, BigDecimal less0853Percent, BigDecimal v2, BigDecimal finalAmount, BigDecimal amountTimesOneThousand, Integer a) {
+        this.id = id;
+        this.date = date;
+        this.customerCode = customerCode;
+        this.customerName = customerName;
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.salesUnit = salesUnit;
+        this.salesValue = salesValue;
+        this.antechProductDescription = antechProductDescription;
+        this.antechPrice = antechPrice;
+        this.amount = amount;
+        this.account = account;
+        this.kam = kam;
+        this.kamReferenceName = kamReferenceName;
+        this.stage = stage;
+        this.amountConverted = amountConverted;
+        this.type = type;
+        this.location = location;
+        this.cm = cm;
+        this.less00375Percent = less00375Percent;
+        this.v1 = v1;
+        this.less0853Percent = less0853Percent;
+        this.v2 = v2;
+        this.finalAmount = finalAmount;
+        this.amountTimesOneThousand = amountTimesOneThousand;
+        this.a = a;
+    }
+
     public ZolPerDoors(CustomerItemSalesPerPeriod customerItemSalesPerPeriod) {
         this.date = customerItemSalesPerPeriod.getDate();
         this.customerCode = customerItemSalesPerPeriod.getCustomerCode();

@@ -23,4 +23,6 @@ public interface DispensingDistributorDAO {
 
     public List<DispensingDistributor> findDispensingDistributorBetweenTwoDates(LocalDate startDate, LocalDate endDate);
 
+    public List<DispensingDistributor> findDispensingDistributorSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

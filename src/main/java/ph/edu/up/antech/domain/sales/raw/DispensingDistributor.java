@@ -21,6 +21,27 @@ import java.time.LocalDate;
         @NamedQuery(name = "findDispensingDistributorBetweenTwoDates",
                 query = "select o from DispensingDistributor o where o.date between :startDate and :endDate")
 })
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "findDispensingDistributorSalesAmountAndUnitBetweenTwoDates",
+                query = "select o.id, o.date, o.accounts, o.item_key, o.final_amount, " +
+                        "o.units " +
+                        "from dispensing_distributor o where o.date >= :startDate and o.date <= :endDate",
+                resultSetMapping = "dispensingDistributorSalesAmountAndUnitResult")
+})
+
+@SqlResultSetMapping(name = "dispensingDistributorSalesAmountAndUnitResult", classes = {
+        @ConstructorResult(targetClass = DispensingDistributor.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "date", type = LocalDate.class),
+                        @ColumnResult(name = "accounts", type = String.class),
+                        @ColumnResult(name = "item_key", type = String.class),
+                        @ColumnResult(name = "final_amount", type = BigDecimal.class),
+                        @ColumnResult(name = "units", type = Integer.class)
+                })
+})
 public class DispensingDistributor implements Serializable {
 
     @Id
@@ -92,6 +113,43 @@ public class DispensingDistributor implements Serializable {
 
     @Column(name = "final_amount")
     private BigDecimal finalAmount;
+
+    public DispensingDistributor() {
+    }
+
+    public DispensingDistributor(Integer id, LocalDate date, String accounts, String itemKey, BigDecimal finalAmount, Integer units) {
+        this.id = id;
+        this.date = date;
+        this.accounts = accounts;
+        this.itemKey = itemKey;
+        this.units = units;
+        this.finalAmount = finalAmount;
+    }
+
+    public DispensingDistributor(Integer id, LocalDate date, String month, String accounts, String dsmName,
+                                 String doctorName, String naName, String itemKey, String itemDescription,
+                                 String category, String referenceNo, String priceInString, BigDecimal price,
+                                 Integer units, String totalAmountInString, BigDecimal totalAmount,
+                                 String finalAmountInString, BigDecimal finalAmount) {
+        this.id = id;
+        this.date = date;
+        this.month = month;
+        this.accounts = accounts;
+        this.dsmName = dsmName;
+        this.doctorName = doctorName;
+        this.naName = naName;
+        this.itemKey = itemKey;
+        this.itemDescription = itemDescription;
+        this.category = category;
+        this.referenceNo = referenceNo;
+        this.priceInString = priceInString;
+        this.price = price;
+        this.units = units;
+        this.totalAmountInString = totalAmountInString;
+        this.totalAmount = totalAmount;
+        this.finalAmountInString = finalAmountInString;
+        this.finalAmount = finalAmount;
+    }
 
     public Integer getId() {
         return id;

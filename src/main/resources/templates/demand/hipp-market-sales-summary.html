@@ -110,13 +110,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMdcPerBranchCalculator.getTotalFinalAmountPerYearMonthPerProduct(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMdcPerBranchCalculator.getTotalFinalAmountPerYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -160,13 +160,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMtPerBranchCalculator.getTotalFinalAmountByYearMonthAndProduct(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMtPerBranchCalculator.getTotalFinalAmountByYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -185,13 +185,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolPerDoorsCalculator.getTotalFinalAmountByYearMonthAndProduct(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolPerDoorsCalculator.getTotalFinalAmountByYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -210,13 +210,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${dispensingDistributorCalculator.getTotalFinalAmountPerYearMonthPerProduct(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${dispensingDistributorCalculator.getTotalFinalAmountPerYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -355,13 +355,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMdcPerBranchCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMdcPerBranchCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -405,13 +405,13 @@
                                             <tr th:each="product : ${products}">
                                                 <td th:text="${product.code}"></td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMtPerBranchCalculator.getTotalUnitsByYearMonthAndProductCode(yearMonth, product.code)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             <tr>
                                                 <td>Total</td>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolMtPerBranchCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    <td></td>
                                                 </th:block>
                                             </tr>
                                             </tbody>
@@ -419,516 +419,516 @@
                                         <br>
                                         <table id="hippInMarketSalesUnitsZpcMinSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">ZPC MIN</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">ZPC MIN</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolPerDoorsCalculator.getTotalUnitsByYearMonthAndProductCode(yearMonth, product.code)}"></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${zolPerDoorsCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DISP</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DISP</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${dispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${dispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippInMarketSalesUnitsBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">BBJ</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">BBJ</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteBbjCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippInMarketSalesUnitsDirectAcctsSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DIRECT ACCTS</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DIRECT ACCTS</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippInMarketSalesUnitsLazadaSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">LAZADA</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">LAZADA</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="hippToMarketSalesAmount" role="tabpanel" aria-labelledby="hippToMarketSalesAmountTab">
                                         <table id="hippToMarketSalesAmountTableSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">Channel</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Channel</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="channel : ${channels}">
-                                                <td th:text="${channel}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="channel : ${channels}">
+                                                    <td th:text="${channel}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountSkuSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">SKU</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">SKU</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountMdcSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">ZPC Direct</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">ZPC Direct</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountDispSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DISP</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DISP</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">BBJ</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">BBJ</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountDirectAcctsSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DIRECT ACCTS</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DIRECT ACCTS</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountLazadaSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">LAZADA</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">LAZADA</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesAmountOthersSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">LAZADA</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">LAZADA</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Others</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Others</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="hippToMarketSalesUnit" role="tabpanel" aria-labelledby="hippToMarketSalesUnitTab">
                                         <table id="hippToMarketSalesUnitTableSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">Channel</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Channel</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="channel : ${channels}">
-                                                <td th:text="${channel}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="channel : ${channels}">
+                                                    <td th:text="${channel}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitSkuSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">SKU</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">SKU</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitMdcSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">ZPC Direct</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">ZPC Direct</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitDispSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DISP</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DISP</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">BBJ</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">BBJ</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitDirectAcctsSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">DIRECT ACCTS</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">DIRECT ACCTS</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitLazadaSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">LAZADA</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">LAZADA</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                         <table id="hippToMarketSalesUnitOthersSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">Others</th>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                </th:block>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="col">Others</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="product : ${products}">
-                                                <td th:text="${product.code}"></td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
-                                            <tr>
-                                                <td>Total</td>
-                                                <th:block th:each="yearMonth : ${yearMonthList}">
-                                                    <td></td>
-                                                </th:block>
-                                            </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td></td>
+                                                    </th:block>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

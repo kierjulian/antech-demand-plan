@@ -57,4 +57,9 @@ public class DispensingDistributorServiceImpl implements DispensingDistributorSe
         return dispensingDistributorDAO.findDispensingDistributorBetweenTwoDates(startDate, endDate);
     }
 
+    @Override
+    public List<DispensingDistributor> findDispensingDistributorSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
+        return dispensingDistributorDAO.findDispensingDistributorSalesAmountAndUnitBetweenTwoDates(startDate, endDate);
+    }
+
 }
