@@ -114,7 +114,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesAmountPerYearMonth(yearMonth)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesAmountPerYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -133,13 +133,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesAmountPerYearMonthPerProduct(yearMonth, product.code)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesAmountPerYearMonthPerProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesAmountPerYearMonth(yearMonth)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesAmountPerYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -245,30 +245,57 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <table id="hippInMarketSalesAmountDispSummary" class="table table-striped table-bordered table-hover table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">DISP</th>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                    </th:block>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="product : ${products}">
-                                                    <td th:text="${product.code}"></td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
-                                                    </th:block>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="row">
+                                            <div class="table-responsive col-md-10">
+                                                <table id="hippInMarketSalesAmountDispSummary" class="table table-striped table-bordered table-hover table-sm">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">DISP</th>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                            </th:block>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="product : ${products}">
+                                                            <td th:text="${product.code}"></td>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <td th:text="${netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                                            </th:block>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total</td>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <td th:text="${netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                            </th:block>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="table-responsive col-md-2">
+                                                <table class="table table-striped table-bordered table-hover table-sm">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">NS</th>
+                                                            <th scope="col">OFFTAKE</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="product : ${products}">
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                            <td>0</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                         <br>
                                         <table id="hippInMarketSalesAmountBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
@@ -407,7 +434,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesUnitPerYearMonth(yearMonth)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesUnitPerYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -426,13 +453,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesUnitPerYearMonthPerProduct(yearMonth, product.code)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesUnitPerYearMonthPerProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${totalProductCalculator.getTotalSalesUnitPerYearMonth(yearMonth)}"></td>
+                                                        <td th:text="${inMarketProductCalculator.getTotalSalesUnitPerYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -538,30 +565,57 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">DISP</th>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                    </th:block>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="product : ${products}">
-                                                    <td th:text="${product.code}"></td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
-                                                    </th:block>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="row">
+                                            <div class="table-responsive col-md-10">
+                                                <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">DISP</th>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                            </th:block>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="product : ${products}">
+                                                            <td th:text="${product.code}"></td>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <td th:text="${netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
+                                                            </th:block>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total</td>
+                                                            <th:block th:each="yearMonth : ${yearMonthList}">
+                                                                <td th:text="${netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                            </th:block>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="table-responsive col-md-2">
+                                                <table class="table table-striped table-bordered table-hover table-sm">
+                                                    <thead class="thead-light">
+                                                            <tr>
+                                                                <th scope="col">NS</th>
+                                                                <th scope="col">OFFTAKE</th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="product : ${products}">
+                                                                <td>0</td>
+                                                                <td>0</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>0</td>
+                                                                <td>0</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                         <br>
                                         <table id="hippInMarketSalesUnitsBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">

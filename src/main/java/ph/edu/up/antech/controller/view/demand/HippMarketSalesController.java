@@ -74,19 +74,19 @@ public class HippMarketSalesController {
         ZolPerDoorsCalculator zolPerDoorsMindanaoCalculator =
                 new ZolPerDoorsCalculator(zolPerDoorsList, productCodeList, ZolPerDoorsChannel.ZPC_MIN);
         NetsuiteCalculator netsuiteDispensingDistributorCalculator = new NetsuiteCalculator(netsuiteList,
-                productCodeList, NetsuiteChannel.DISPENSING_DISTRIBUTOR);
-        NetsuiteCalculator netsuiteBbjCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.BBJ);
-        NetsuiteCalculator netsuiteDirectAcctCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.DIRECT_ACCTS);
-        NetsuiteCalculator netsuiteLazadaCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.LAZADA);
+                productCodeList, NetsuiteChannel.IN_MARKET_DISPENSING_DISTRIBUTOR);
+        NetsuiteCalculator netsuiteBbjCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.IN_MARKET_BBJ);
+        NetsuiteCalculator netsuiteDirectAcctCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.IN_MARKET_DIRECT_ACCTS);
+        NetsuiteCalculator netsuiteLazadaCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.IN_MARKET_LAZADA);
         DispensingDistributorCalculator dispensingDistributorCalculator =
                 generateDispensingDistributorCalculator(dispensingDistributorList, productCodeList);
 
         NetsuiteCalculator netsuiteZpcDpCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_ZPC);
         NetsuiteCalculator netsuiteToMarketBbjCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_BBJ);
-        NetsuiteCalculator netsuiteToMarketDispensingDistributorCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_BBJ);
+        NetsuiteCalculator netsuiteToMarketDispensingDistributorCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_DISPENSING_DISTRIBUTOR);
 
-        TotalProductCalculator totalProductCalculator =
-                new TotalProductCalculator(zolPerDoorsMercuryDrugCorpCalculator, zolPerDoorsGmaCalculator, zolPerDoorsVisayasCalculator,
+        InMarketProductCalculator inMarketProductCalculator =
+                new InMarketProductCalculator(zolPerDoorsMercuryDrugCorpCalculator, zolPerDoorsGmaCalculator, zolPerDoorsVisayasCalculator,
                         zolPerDoorsMindanaoCalculator, netsuiteDispensingDistributorCalculator, netsuiteBbjCalculator,
                         netsuiteDirectAcctCalculator, netsuiteLazadaCalculator);
         ToMarketProductCalculator toMarketProductCalculator = new ToMarketProductCalculator(
@@ -109,7 +109,7 @@ public class HippMarketSalesController {
         model.addAttribute("netsuiteDirectAcctCalculator", netsuiteDirectAcctCalculator);
         model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
         model.addAttribute("dispensingDistributorCalculator", dispensingDistributorCalculator);
-        model.addAttribute("totalProductCalculator", totalProductCalculator);
+        model.addAttribute("inMarketProductCalculator", inMarketProductCalculator);
 
         model.addAttribute("netsuiteToMarketDispensingDistributorCalculator", netsuiteToMarketDispensingDistributorCalculator);
         model.addAttribute("netsuiteZpcDpCalculator", netsuiteZpcDpCalculator);

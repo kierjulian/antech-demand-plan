@@ -2,7 +2,7 @@ package ph.edu.up.antech.util;
 
 import java.time.YearMonth;
 
-public class TotalProductCalculator {
+public class InMarketProductCalculator {
 
     private ZolPerDoorsCalculator zolPerDoorsMercuryDrugCalculator;
     private ZolPerDoorsCalculator zolPerDoorsGmaCalculator;
@@ -14,14 +14,14 @@ public class TotalProductCalculator {
     private NetsuiteCalculator netsuiteDirectAcctCalculator;
     private NetsuiteCalculator netsuiteLazadaCalculator;
 
-    public TotalProductCalculator(ZolPerDoorsCalculator zolPerDoorsMercuryDrugCalculator,
-                                  ZolPerDoorsCalculator zolPerDoorsGmaCalculator,
-                                  ZolPerDoorsCalculator zolPerDoorsVisayasCalculator,
-                                  ZolPerDoorsCalculator zolPerDoorsMindanaoCalculator,
-                                  NetsuiteCalculator netsuiteDispensingDistributor,
-                                  NetsuiteCalculator netsuiteBbjCalculator,
-                                  NetsuiteCalculator netsuiteDirectAcctCalculator,
-                                  NetsuiteCalculator netsuiteLazadaCalculator) {
+    public InMarketProductCalculator(ZolPerDoorsCalculator zolPerDoorsMercuryDrugCalculator,
+                                     ZolPerDoorsCalculator zolPerDoorsGmaCalculator,
+                                     ZolPerDoorsCalculator zolPerDoorsVisayasCalculator,
+                                     ZolPerDoorsCalculator zolPerDoorsMindanaoCalculator,
+                                     NetsuiteCalculator netsuiteDispensingDistributor,
+                                     NetsuiteCalculator netsuiteBbjCalculator,
+                                     NetsuiteCalculator netsuiteDirectAcctCalculator,
+                                     NetsuiteCalculator netsuiteLazadaCalculator) {
         this.zolPerDoorsMercuryDrugCalculator = zolPerDoorsMercuryDrugCalculator;
         this.zolPerDoorsGmaCalculator = zolPerDoorsGmaCalculator;
         this.zolPerDoorsVisayasCalculator = zolPerDoorsVisayasCalculator;
