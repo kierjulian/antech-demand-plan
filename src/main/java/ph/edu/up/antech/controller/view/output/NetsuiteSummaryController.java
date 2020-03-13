@@ -12,7 +12,6 @@ import ph.edu.up.antech.domain.sales.master.Netsuite;
 import ph.edu.up.antech.domain.sales.output.NetsuiteCombination;
 import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.service.ProductService;
-import ph.edu.up.antech.util.NetsuiteSummaryCalculator;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;

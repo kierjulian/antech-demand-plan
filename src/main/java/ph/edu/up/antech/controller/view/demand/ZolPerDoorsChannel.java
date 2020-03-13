@@ -1,4 +1,4 @@
-package ph.edu.up.antech.util;
+package ph.edu.up.antech.controller.view.demand;
 
 public enum ZolPerDoorsChannel {
 

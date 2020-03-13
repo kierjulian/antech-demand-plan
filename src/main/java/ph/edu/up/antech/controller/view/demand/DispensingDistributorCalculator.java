@@ -1,4 +1,4 @@
-package ph.edu.up.antech.util;
+package ph.edu.up.antech.controller.view.demand;
 
 import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
 

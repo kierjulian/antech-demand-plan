@@ -1,4 +1,4 @@
-package ph.edu.up.antech.util;
+package ph.edu.up.antech.controller.view.output;
 
 import ph.edu.up.antech.domain.sales.output.DsrZol;
 
