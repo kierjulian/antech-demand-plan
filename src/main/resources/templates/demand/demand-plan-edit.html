@@ -46,14 +46,18 @@
                                     <input type="hidden" th:field="*{product.id}">
                                     <table class="table table-striped table-bordered table-hover table-sm table-responsive">
                                         <thead>
-                                        <tr>
-                                            <th>Month</th>
-                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                            </th:block>
-                                        </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <th>Month</th>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                </th:block>
+                                            </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <td rowspan="5" class="text-center align-middle">&nbsp;</td>
+                                            </tr>
                                             <tr>
                                                 <th>Plan</th>
                                                 <th:block th:each="yearMonth : ${yearMonthList}">
@@ -104,6 +108,10 @@
                                                         </th:block>
                                                     </th:block>
                                                 </th:block>
+                                            </tr>
+                                            <tr style="height: 30px"></tr>
+                                            <tr>
+                                                <td rowspan="6" class="text-center align-middle font-weight-bold">Inv at SOURCE - BIB</td>
                                             </tr>
                                             <tr>
                                                 <th>Production</th>
@@ -164,6 +172,10 @@
                                                         </th:block>
                                                     </th:block>
                                                 </th:block>
+                                            </tr>
+                                            <tr style="height: 30px"></tr>
+                                            <tr>
+                                                <td rowspan="7" class="text-center align-middle font-weight-bold">Inv at Antech ZPC</td>
                                             </tr>
                                             <tr>
                                                 <th>Antech Beginning Inventory</th>
@@ -236,6 +248,10 @@
                                                         </th:block>
                                                     </th:block>
                                                 </th:block>
+                                            </tr>
+                                            <tr style="height: 30px"></tr>
+                                            <tr>
+                                                <td rowspan="4" class="text-center align-middle font-weight-bold">Inv at TRADE</td>
                                             </tr>
                                             <tr>
                                                 <th>Beginning Inventory (Trade)</th>
