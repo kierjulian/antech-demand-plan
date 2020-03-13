@@ -47,7 +47,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="hippToMarketSalesUnitTab" data-toggle="tab"
-                                           href="#hippToMarketSalesAmount" role="tab" aria-controls="hippToMarketSalesUnit"
+                                           href="#hippToMarketSalesUnit" role="tab" aria-controls="hippToMarketSalesUnit"
                                            aria-selected="false">To Market Sales Unit</a>
                                     </li>
                                 </ul>
@@ -649,8 +649,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="channel : ${channels}">
-                                                    <td th:text="${channel}"></td>
+                                                <tr>
+                                                    <td>ZPC DP</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>DISP</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>BBJ</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>DIRECT ACCT</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>LAZADA</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>OTHERS</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td></td>
                                                     </th:block>
@@ -658,7 +688,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${toMarketProductCalculator.getSalesAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -677,9 +707,15 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${toMarketProductCalculator.getSalesAmountByYearMonthAndProductCode(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <td th:text="${toMarketProductCalculator.getSalesAmountByYearMonth(yearMonth)}"></td>
+                                                </th:block>
+                                            </tr>
                                             </tbody>
                                         </table>
                                         <br>
@@ -696,13 +732,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -721,13 +757,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -746,13 +782,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -771,13 +807,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -796,13 +832,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalAmountByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -811,7 +847,7 @@
                                         <table id="hippToMarketSalesAmountOthersSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col">LAZADA</th>
+                                                    <th scope="col">OTHERS</th>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
                                                     </th:block>
@@ -825,7 +861,7 @@
                                                     </th:block>
                                                 </tr>
                                                 <tr>
-                                                    <td>Others</td>
+                                                    <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td></td>
                                                     </th:block>
@@ -844,8 +880,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="channel : ${channels}">
-                                                    <td th:text="${channel}"></td>
+                                                <tr>
+                                                    <td>ZPC DP</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>DISP</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>BBJ</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>DIRECT ACCT</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>LAZADA</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>OTHERS</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td></td>
                                                     </th:block>
@@ -853,7 +919,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${toMarketProductCalculator.getSalesUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -872,7 +938,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${toMarketProductCalculator.getSalesUnitsByYearMonthAndProductCode(yearMonth, product.code)}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td th:text="${toMarketProductCalculator.getSalesUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -891,13 +963,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteZpcDpCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -916,13 +988,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketDispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -941,13 +1013,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteToMarketBbjCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -966,13 +1038,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteDirectAcctCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
@@ -991,13 +1063,13 @@
                                                 <tr th:each="product : ${products}">
                                                     <td th:text="${product.code}"></td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, product.code)}"></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
+                                                        <td th:text="${netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth)}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>

@@ -81,16 +81,25 @@ public class HippMarketSalesController {
         DispensingDistributorCalculator dispensingDistributorCalculator =
                 generateDispensingDistributorCalculator(dispensingDistributorList, productCodeList);
 
+        NetsuiteCalculator netsuiteZpcDpCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_ZPC);
+        NetsuiteCalculator netsuiteToMarketBbjCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_BBJ);
+        NetsuiteCalculator netsuiteToMarketDispensingDistributorCalculator = new NetsuiteCalculator(netsuiteList, productCodeList, NetsuiteChannel.TO_MARKET_BBJ);
+
         TotalProductCalculator totalProductCalculator =
                 new TotalProductCalculator(zolPerDoorsMercuryDrugCorpCalculator, zolPerDoorsGmaCalculator, zolPerDoorsVisayasCalculator,
                         zolPerDoorsMindanaoCalculator, netsuiteDispensingDistributorCalculator, netsuiteBbjCalculator,
                         netsuiteDirectAcctCalculator, netsuiteLazadaCalculator);
+        ToMarketProductCalculator toMarketProductCalculator = new ToMarketProductCalculator(
+                netsuiteZpcDpCalculator, netsuiteToMarketDispensingDistributorCalculator, netsuiteToMarketBbjCalculator,
+                netsuiteDirectAcctCalculator, netsuiteLazadaCalculator);
+
 
         model.addAttribute("yearMonthStart", yearMonthStart);
         model.addAttribute("yearMonthEnd", yearMonthEnd);
         model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("products", productList);
         model.addAttribute("channels", ChannelUtils.getChannels());
+
         model.addAttribute("zolPerDoorsMercuryDrugCorpCalculator", zolPerDoorsMercuryDrugCorpCalculator);
         model.addAttribute("zolPerDoorsGmaCalculator", zolPerDoorsGmaCalculator);
         model.addAttribute("zolPerDoorsVisayasCalculator", zolPerDoorsVisayasCalculator);
@@ -101,6 +110,11 @@ public class HippMarketSalesController {
         model.addAttribute("netsuiteLazadaCalculator", netsuiteLazadaCalculator);
         model.addAttribute("dispensingDistributorCalculator", dispensingDistributorCalculator);
         model.addAttribute("totalProductCalculator", totalProductCalculator);
+
+        model.addAttribute("netsuiteToMarketDispensingDistributorCalculator", netsuiteToMarketDispensingDistributorCalculator);
+        model.addAttribute("netsuiteZpcDpCalculator", netsuiteZpcDpCalculator);
+        model.addAttribute("netsuiteToMarketBbjCalculator", netsuiteToMarketBbjCalculator);
+        model.addAttribute("toMarketProductCalculator", toMarketProductCalculator);
 
         return "demand/hipp-market-sales-summary";
     }

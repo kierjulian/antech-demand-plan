@@ -31,6 +31,12 @@ public class NetsuiteCalculator {
                                     || netsuite.getKamRefName1().contains("Tiongsan");
                         case LAZADA:
                             return netsuite.getKamRefName1().contains("Lazada");
+                        case TO_MARKET_ZPC:
+                            return netsuite.getKamRefName1().contains("ZPC");
+                        case TO_MARKET_BBJ:
+                            return netsuite.getKamRefName1().contains("BBJ");
+                        case TO_MARKET_DISPENSING_DISTRIBUTOR:
+                            return netsuite.getMgmt().contains("Dispensing MD");
                         default:
                             return true;
                     }
