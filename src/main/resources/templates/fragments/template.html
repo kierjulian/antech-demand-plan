@@ -128,8 +128,6 @@
                    th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/plan') ? 'active':''}">Demand Plan</a>
                 <a th:href="@{/demand/hipp/sales}" class="list-group-item list-group-item-action"
                    th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/hipp/sales') ? 'active':''}">HiPP Market Sales</a>
-                <a th:href="@{/demand/master}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/demand/master') ? 'active':''}">Master Files for Demand</a>
             </div>
         </div>
 
