@@ -54,4 +54,26 @@ public class TotalProductCalculator {
                 + netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth);
     }
 
+    public Integer getTotalSalesUnitPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
+        return zolPerDoorsMercuryDrugCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsGmaCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsVisayasCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsMindanaoCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDispensingDistributor.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
+                + netsuiteBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
+                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
+                + netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode);
+    }
+
+    public Integer getTotalSalesUnitPerYearMonth(YearMonth yearMonth) {
+        return zolPerDoorsMercuryDrugCalculator.getSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsGmaCalculator.getSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsVisayasCalculator.getSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsMindanaoCalculator.getSalesUnitByYearMonth(yearMonth)
+                + netsuiteDispensingDistributor.getTotalUnitsByYearMonth(yearMonth)
+                + netsuiteBbjCalculator.getTotalUnitsByYearMonth(yearMonth)
+                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonth(yearMonth)
+                + netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth);
+    }
+
 }

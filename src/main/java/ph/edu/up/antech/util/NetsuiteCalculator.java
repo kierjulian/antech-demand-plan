@@ -17,6 +17,7 @@ public class NetsuiteCalculator {
                 .filter(netsuite -> netsuite.getBrand() != null)
                 .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
                 .filter(netsuite -> netsuite.getRevenueConverted() != null)
+                .filter(netsuite -> netsuite.getQuantity() != null)
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> {
                     switch (netsuiteChannel) {
