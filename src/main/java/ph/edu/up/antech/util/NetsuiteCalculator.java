@@ -54,24 +54,22 @@ public class NetsuiteCalculator {
                 .collect(Collectors.toList());
     }
 
-    public Integer getTotalAmountByYearMonthByProduct(YearMonth yearMonth, String productCode) {
+    public Integer calculateSalesAmountByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
-                .filter(zolMdcPerBranch -> zolMdcPerBranch.getRevenueConverted() != null)
                 .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer getTotalAmountByYearMonth(YearMonth yearMonth) {
+    public Integer calculateSalesAmountByYearMonth(YearMonth yearMonth) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
-                .filter(zolMdcPerBranch -> zolMdcPerBranch.getRevenueConverted() != null)
                 .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer getTotalUnitsByYearMonthByProduct(YearMonth yearMonth, String productCode) {
+    public Integer calculateSalesUnitByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
@@ -79,7 +77,7 @@ public class NetsuiteCalculator {
                 .sum();
     }
 
-    public Integer getTotalUnitsByYearMonth(YearMonth yearMonth) {
+    public Integer calculateSalesUnitByYearMonth(YearMonth yearMonth) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
                 .mapToInt(netsuiteList -> netsuiteList.getQuantity())

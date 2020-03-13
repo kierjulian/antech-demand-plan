@@ -33,7 +33,7 @@ public class ZolPerDoorsCalculator {
                 .collect(Collectors.toList());
     }
 
-    public Integer getSalesAmountByYearMonthAndProduct(YearMonth yearMonth, String product) {
+    public Integer calculateSalesAmountByYearMonthAndProductCode(YearMonth yearMonth, String product) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
                 .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(product))
@@ -41,14 +41,14 @@ public class ZolPerDoorsCalculator {
                 .sum();
     }
 
-    public Integer getSalesAmountByYearMonth(YearMonth yearMonth) {
+    public Integer calculateSalesAmountByYearMonth(YearMonth yearMonth) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
                 .mapToInt(ZolPerDoors::getAmount)
                 .sum();
     }
 
-    public Integer getSalesUnitByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+    public Integer calculateSalesUnitByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
                 .filter(zolPerDoors -> zolPerDoors.getAntechProductDescription().equals(productCode))
@@ -56,7 +56,7 @@ public class ZolPerDoorsCalculator {
                 .sum();
     }
 
-    public Integer getSalesUnitByYearMonth(YearMonth yearMonth) {
+    public Integer calculateSalesUnitByYearMonth(YearMonth yearMonth) {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> YearMonth.from(zolPerDoors.getDate()).equals(yearMonth))
                 .mapToInt(ZolPerDoors::getSalesUnit)

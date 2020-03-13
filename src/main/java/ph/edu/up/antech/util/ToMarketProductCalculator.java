@@ -22,36 +22,36 @@ public class ToMarketProductCalculator {
         this.netsuiteLazadaCalculator = netsuiteLazadaCalculator;
     }
 
-    public Integer getSalesAmountByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
-        return netsuiteZpcDirectCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteToMarketBbjCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDirectAcctCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteLazadaCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode);
+    public Integer calculateSalesAmountByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+        return netsuiteZpcDirectCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteToMarketBbjCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDirectAcctCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteLazadaCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode);
     }
 
-    public Integer getSalesAmountByYearMonth(YearMonth yearMonth) {
-        return netsuiteZpcDirectCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteDispensingDistributorCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteToMarketBbjCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteDirectAcctCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth);
+    public Integer calculateSalesAmountByYearMonth(YearMonth yearMonth) {
+        return netsuiteZpcDirectCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteToMarketBbjCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteDirectAcctCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteLazadaCalculator.calculateSalesAmountByYearMonth(yearMonth);
     }
 
-    public Integer getSalesUnitsByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
-        return netsuiteZpcDirectCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteToMarketBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode);
+    public Integer calculateSalesUnitByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+        return netsuiteZpcDirectCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteToMarketBbjCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDirectAcctCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteLazadaCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode);
     }
 
-    public Integer getSalesUnitsByYearMonth(YearMonth yearMonth) {
-        return netsuiteZpcDirectCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteDispensingDistributorCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteToMarketBbjCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth);
+    public Integer calculateSalesUnitByYearMonth(YearMonth yearMonth) {
+        return netsuiteZpcDirectCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteToMarketBbjCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteDirectAcctCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteLazadaCalculator.calculateSalesUnitByYearMonth(yearMonth);
     }
 
 }

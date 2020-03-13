@@ -32,48 +32,48 @@ public class InMarketProductCalculator {
         this.netsuiteLazadaCalculator = netsuiteLazadaCalculator;
     }
 
-    public Integer getTotalSalesAmountPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
-        return zolPerDoorsMercuryDrugCalculator.getSalesAmountByYearMonthAndProduct(yearMonth, productCode)
-                + zolPerDoorsGmaCalculator.getSalesAmountByYearMonthAndProduct(yearMonth, productCode)
-                + zolPerDoorsVisayasCalculator.getSalesAmountByYearMonthAndProduct(yearMonth, productCode)
-                + zolPerDoorsMindanaoCalculator.getSalesAmountByYearMonthAndProduct(yearMonth, productCode)
-                + netsuiteDispensingDistributor.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteBbjCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDirectAcctCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteLazadaCalculator.getTotalAmountByYearMonthByProduct(yearMonth, productCode);
+    public Integer calculateSalesAmountByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+        return zolPerDoorsMercuryDrugCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsGmaCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsVisayasCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsMindanaoCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDispensingDistributor.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteBbjCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDirectAcctCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteLazadaCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, productCode);
     }
 
-    public Integer getTotalSalesAmountPerYearMonth(YearMonth yearMonth) {
-        return zolPerDoorsMercuryDrugCalculator.getSalesAmountByYearMonth(yearMonth)
-                + zolPerDoorsGmaCalculator.getSalesAmountByYearMonth(yearMonth)
-                + zolPerDoorsVisayasCalculator.getSalesAmountByYearMonth(yearMonth)
-                + zolPerDoorsMindanaoCalculator.getSalesAmountByYearMonth(yearMonth)
-                + netsuiteDispensingDistributor.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteBbjCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteDirectAcctCalculator.getTotalAmountByYearMonth(yearMonth)
-                + netsuiteLazadaCalculator.getTotalAmountByYearMonth(yearMonth);
+    public Integer calculateSalesAmountByYearMonth(YearMonth yearMonth) {
+        return zolPerDoorsMercuryDrugCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + zolPerDoorsGmaCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + zolPerDoorsVisayasCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + zolPerDoorsMindanaoCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteDispensingDistributor.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteBbjCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteDirectAcctCalculator.calculateSalesAmountByYearMonth(yearMonth)
+                + netsuiteLazadaCalculator.calculateSalesAmountByYearMonth(yearMonth);
     }
 
-    public Integer getTotalSalesUnitPerYearMonthPerProduct(YearMonth yearMonth, String productCode) {
-        return zolPerDoorsMercuryDrugCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
-                + zolPerDoorsGmaCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
-                + zolPerDoorsVisayasCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
-                + zolPerDoorsMindanaoCalculator.getSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
-                + netsuiteDispensingDistributor.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteBbjCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode)
-                + netsuiteLazadaCalculator.getTotalUnitsByYearMonthByProduct(yearMonth, productCode);
+    public Integer calculateSalesUnitByYearMonthAndProductCode(YearMonth yearMonth, String productCode) {
+        return zolPerDoorsMercuryDrugCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsGmaCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsVisayasCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + zolPerDoorsMindanaoCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDispensingDistributor.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteBbjCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteDirectAcctCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode)
+                + netsuiteLazadaCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, productCode);
     }
 
-    public Integer getTotalSalesUnitPerYearMonth(YearMonth yearMonth) {
-        return zolPerDoorsMercuryDrugCalculator.getSalesUnitByYearMonth(yearMonth)
-                + zolPerDoorsGmaCalculator.getSalesUnitByYearMonth(yearMonth)
-                + zolPerDoorsVisayasCalculator.getSalesUnitByYearMonth(yearMonth)
-                + zolPerDoorsMindanaoCalculator.getSalesUnitByYearMonth(yearMonth)
-                + netsuiteDispensingDistributor.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteBbjCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteDirectAcctCalculator.getTotalUnitsByYearMonth(yearMonth)
-                + netsuiteLazadaCalculator.getTotalUnitsByYearMonth(yearMonth);
+    public Integer calculateSalesUnitByYearMonth(YearMonth yearMonth) {
+        return zolPerDoorsMercuryDrugCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsGmaCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsVisayasCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + zolPerDoorsMindanaoCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteDispensingDistributor.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteBbjCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteDirectAcctCalculator.calculateSalesUnitByYearMonth(yearMonth)
+                + netsuiteLazadaCalculator.calculateSalesUnitByYearMonth(yearMonth);
     }
 
 }

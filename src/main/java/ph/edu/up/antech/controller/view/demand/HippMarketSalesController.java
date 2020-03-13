@@ -98,7 +98,6 @@ public class HippMarketSalesController {
         model.addAttribute("yearMonthEnd", yearMonthEnd);
         model.addAttribute("yearMonthList", yearMonthList);
         model.addAttribute("products", productList);
-        model.addAttribute("channels", ChannelUtils.getChannels());
 
         model.addAttribute("zolPerDoorsMercuryDrugCorpCalculator", zolPerDoorsMercuryDrugCorpCalculator);
         model.addAttribute("zolPerDoorsGmaCalculator", zolPerDoorsGmaCalculator);
