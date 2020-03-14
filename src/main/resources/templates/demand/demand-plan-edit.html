@@ -67,7 +67,7 @@
                                                                 <input type="hidden" th:field="*{demandPlanDetailList[__${stat.index}__].id}">
                                                                 <input type="hidden" th:field="*{demandPlanDetailList[__${stat.index}__].demandPlan.id}">
                                                                 <input type="hidden" th:field="*{demandPlanDetailList[__${stat.index}__].yearMonth}">
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].plan}">
+                                                                <input type="number" th:id="'plan' + ${stat.index}" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].plan}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -79,7 +79,8 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].inMarket}">
+                                                                <input type="number" th:id="'inMarket' + ${stat.index}"
+                                                                       style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].inMarket}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -91,7 +92,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].averageInMarketSales}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'averageInMarketSales' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].averageInMarketSales}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -103,7 +106,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].totalOffTake}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'totalOffTake' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].totalOffTake}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -119,7 +124,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].sourceProduction}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'sourceProduction' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceProduction}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -131,7 +138,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].sourceTotalGoodsAvailable}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'sourceTotalGoodsAvailable' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceTotalGoodsAvailable}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -143,7 +152,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].sourceLoading}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'sourceLoading' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceLoading}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -155,7 +166,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippEndingInventory}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'sourceHippEndingInventory' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippEndingInventory}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -167,7 +180,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippDaysOnHand}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'sourceHippDaysOnHand' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippDaysOnHand}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -183,7 +198,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechBeginningInventory}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechBeginningInventory' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechBeginningInventory}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -195,7 +212,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechShipmentsReceived}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechShipmentsReceived' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechShipmentsReceived}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -207,7 +226,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechTotalAvailableForSalePhils}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechTotalAvailableForSalePhils' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechTotalAvailableForSalePhils}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -219,7 +240,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechActualSales}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechActualSales' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechActualSales}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -231,7 +254,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechEndingInventory}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechEndingInventory' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechEndingInventory}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -243,7 +268,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].antechDaysOnHand}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'antechDaysOnHand' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechDaysOnHand}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -259,7 +286,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].tradeBeginningInventory}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'tradeBeginningInventory' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeBeginningInventory}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -271,7 +300,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].tradeTotalEndingInventory}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'tradeTotalEndingInventory' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeTotalEndingInventory}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -283,7 +314,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
-                                                                <input type="number" style="width:100px" th:field="*{demandPlanDetailList[__${stat.index}__].tradeDaysOnHand}">
+                                                                <input type="number" style="width:100px"
+                                                                       th:id="'tradeDaysOnHand' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeDaysOnHand}">
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -299,6 +332,7 @@
             </div>
         </div>
 
+        <script type="text/javascript" th:inline="javascript" th:src="@{/js/demand-edit.js}"></script>
         <div th:replace="fragments/template :: footer"></div>
     </body>
 </html>
