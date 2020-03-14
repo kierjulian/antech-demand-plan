@@ -74,7 +74,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.plan}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.plan, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -84,7 +84,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.inMarket}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.inMarket, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -94,7 +94,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.averageInMarketSales}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.averageInMarketSales, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -104,7 +104,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.totalOffTake}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.totalOffTake, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -118,7 +118,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceProduction}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceProduction, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -128,7 +128,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceTotalGoodsAvailable}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceTotalGoodsAvailable, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -138,7 +138,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceLoading}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceLoading, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -148,7 +148,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceHippEndingInventory}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceHippEndingInventory, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -158,7 +158,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceHippDaysOnHand}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceHippDaysOnHand, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -172,7 +172,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.antechBeginningInventory}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechBeginningInventory, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -182,7 +182,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.antechShipmentsReceived}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechShipmentsReceived, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -192,7 +192,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.antechTotalAvailableForSalePhils}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechTotalAvailableForSalePhils, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -202,7 +202,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.antechActualSales}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechActualSales, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -212,7 +212,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.sourceHippEndingInventory}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechEndingInventory, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -222,7 +222,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.antechDaysOnHand}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.antechDaysOnHand, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -236,7 +236,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.tradeBeginningInventory}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.tradeBeginningInventory, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -246,7 +246,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.tradeTotalEndingInventory}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.tradeTotalEndingInventory, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
@@ -256,7 +256,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${demandPlanDetail.tradeDaysOnHand}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.tradeDaysOnHand, 0, 0)}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>

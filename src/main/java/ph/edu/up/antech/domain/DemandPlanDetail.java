@@ -63,6 +63,9 @@ public class DemandPlanDetail implements Serializable {
     @Column(name = "antech_actual_sales")
     private BigDecimal antechActualSales = BigDecimal.ZERO;
 
+    @Column(name = "antech_ending_inventory")
+    private BigDecimal antechEndingInventory = BigDecimal.ZERO;
+
     @Column(name = "antech_days_on_hand")
     private BigDecimal antechDaysOnHand = BigDecimal.ZERO;
 
@@ -100,7 +103,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getPlan() {
-        return plan;
+        return plan.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setPlan(BigDecimal plan) {
@@ -108,7 +111,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getInMarket() {
-        return inMarket;
+        return inMarket.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setInMarket(BigDecimal inMarket) {
@@ -116,7 +119,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getAverageInMarketSales() {
-        return averageInMarketSales;
+        return averageInMarketSales.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAverageInMarketSales(BigDecimal averageInMarketSales) {
@@ -124,7 +127,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getTotalOffTake() {
-        return totalOffTake;
+        return totalOffTake.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setTotalOffTake(BigDecimal totalOffTake) {
@@ -132,7 +135,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getSourceProduction() {
-        return sourceProduction;
+        return sourceProduction.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setSourceProduction(BigDecimal sourceProduction) {
@@ -140,7 +143,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getSourceTotalGoodsAvailable() {
-        return sourceTotalGoodsAvailable;
+        return sourceTotalGoodsAvailable.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setSourceTotalGoodsAvailable(BigDecimal sourceTotalGoodsAvailable) {
@@ -148,7 +151,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getSourceLoading() {
-        return sourceLoading;
+        return sourceLoading.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setSourceLoading(BigDecimal sourceLoading) {
@@ -156,7 +159,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getSourceHippEndingInventory() {
-        return sourceHippEndingInventory;
+        return sourceHippEndingInventory.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setSourceHippEndingInventory(BigDecimal sourceHippEndingInventory) {
@@ -164,7 +167,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getSourceHippDaysOnHand() {
-        return sourceHippDaysOnHand;
+        return sourceHippDaysOnHand.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setSourceHippDaysOnHand(BigDecimal sourceHippDaysOnHand) {
@@ -172,7 +175,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getAntechBeginningInventory() {
-        return antechBeginningInventory;
+        return antechBeginningInventory.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAntechBeginningInventory(BigDecimal antechBeginningInventory) {
@@ -180,7 +183,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getAntechShipmentsReceived() {
-        return antechShipmentsReceived;
+        return antechShipmentsReceived.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAntechShipmentsReceived(BigDecimal antechShipmentsReceived) {
@@ -188,7 +191,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getAntechTotalAvailableForSalePhils() {
-        return antechTotalAvailableForSalePhils;
+        return antechTotalAvailableForSalePhils.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAntechTotalAvailableForSalePhils(BigDecimal antechTotalAvailableForSalePhils) {
@@ -196,15 +199,23 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getAntechActualSales() {
-        return antechActualSales;
+        return antechActualSales.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAntechActualSales(BigDecimal antechActualSales) {
         this.antechActualSales = antechActualSales;
     }
 
+    public BigDecimal getAntechEndingInventory() {
+        return antechEndingInventory.setScale(0, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public void setAntechEndingInventory(BigDecimal antechEndingInventory) {
+        this.antechEndingInventory = antechEndingInventory;
+    }
+
     public BigDecimal getAntechDaysOnHand() {
-        return antechDaysOnHand;
+        return antechDaysOnHand.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setAntechDaysOnHand(BigDecimal antechDaysOnHand) {
@@ -212,7 +223,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getTradeBeginningInventory() {
-        return tradeBeginningInventory;
+        return tradeBeginningInventory.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setTradeBeginningInventory(BigDecimal tradeBeginningInventory) {
@@ -220,7 +231,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getTradeTotalEndingInventory() {
-        return tradeTotalEndingInventory;
+        return tradeTotalEndingInventory.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setTradeTotalEndingInventory(BigDecimal tradeTotalEndingInventory) {
@@ -228,7 +239,7 @@ public class DemandPlanDetail implements Serializable {
     }
 
     public BigDecimal getTradeDaysOnHand() {
-        return tradeDaysOnHand;
+        return tradeDaysOnHand.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     public void setTradeDaysOnHand(BigDecimal tradeDaysOnHand) {
