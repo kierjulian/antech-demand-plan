@@ -131,7 +131,9 @@
                     <h3>Oops! Page not found</h3>
                     <h1><span>4</span><span>0</span><span>4</span></h1>
                 </div>
-                <h2>An error occurred! Please contact a system administrator</h2>
+                <h2>An error occurred! Please contact a system administrator with these details: </h2>
+                Timestamp: <p th:text="'[' + ${timestamp} + ']'"></p>
+                URL: <p th:text="'[' + ${path} + ']'"></p>
                 <br>
                 <div class="btn-group">
                     <a class="btn btn-primary" th:href="@{/}" role="button">
