@@ -117,6 +117,13 @@ public class DemandPlanController {
             Product product = productService.findProductById(demandPlan.getProduct().getId());
             demandPlan.setProduct(product);
             demandPlan.generateDemandPlanDetails();
+
+            DemandPlan previousDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(
+                    demandPlan.getProduct().getId(), demandPlan.getYear().minusYears(1));
+            if (previousDemandPlan != null) {
+                demandPlan.populateDemandPlanDetailsFromPreviousDemandPlan(previousDemandPlan);
+            }
+
             demandPlanService.saveDemandPlan(demandPlan);
 
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
