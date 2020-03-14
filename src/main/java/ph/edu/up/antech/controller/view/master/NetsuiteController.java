@@ -57,7 +57,7 @@ public class NetsuiteController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/view/" + netsuite.getId();
@@ -78,7 +78,7 @@ public class NetsuiteController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/view/" + netsuite.getId();
@@ -91,7 +91,7 @@ public class NetsuiteController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite";

@@ -58,7 +58,7 @@ public class NetsuiteTransfersCatController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
@@ -80,7 +80,7 @@ public class NetsuiteTransfersCatController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
@@ -94,7 +94,7 @@ public class NetsuiteTransfersCatController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/transfers-cat";

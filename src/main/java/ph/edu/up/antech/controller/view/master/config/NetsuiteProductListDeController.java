@@ -58,7 +58,7 @@ public class NetsuiteProductListDeController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/product-list/de/view/" + netsuiteProductListDe.getId();
@@ -80,7 +80,7 @@ public class NetsuiteProductListDeController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/product-list/de/view/" + netsuiteProductListDe.getId();
@@ -94,7 +94,7 @@ public class NetsuiteProductListDeController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/product-list/de";

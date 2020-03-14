@@ -60,7 +60,7 @@ public class DispensingDistributorController {
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/dispensing-distributor/view/" + dispensingDistributor.getId();
@@ -81,7 +81,7 @@ public class DispensingDistributorController {
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/dispensing-distributor/view/" + dispensingDistributor.getId();
@@ -94,7 +94,7 @@ public class DispensingDistributorController {
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/dispensing-distributor";

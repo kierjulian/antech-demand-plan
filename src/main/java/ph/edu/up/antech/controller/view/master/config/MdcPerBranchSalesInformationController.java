@@ -58,7 +58,7 @@ public class MdcPerBranchSalesInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales Information was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/mdc-branch/config/info/view/" + mdcPerBranchSalesInformation.getId();
@@ -80,7 +80,7 @@ public class MdcPerBranchSalesInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales Information was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/mdc-branch/config/info/view/" + mdcPerBranchSalesInformation.getId();
@@ -94,7 +94,7 @@ public class MdcPerBranchSalesInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales Information was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/mdc-branch/config/info";

@@ -58,7 +58,7 @@ public class ZolPerDoorsPerAcctController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/accounts/view/" + zolPerDoorsPerAcct.getAccountId();
@@ -80,7 +80,7 @@ public class ZolPerDoorsPerAcctController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/accounts/view/" + zolPerDoorsPerAcct.getAccountId();
@@ -94,7 +94,7 @@ public class ZolPerDoorsPerAcctController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/accounts";

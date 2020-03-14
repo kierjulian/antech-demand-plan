@@ -58,7 +58,7 @@ public class NetsuiteGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();
@@ -80,7 +80,7 @@ public class NetsuiteGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();
@@ -94,7 +94,7 @@ public class NetsuiteGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite General Information was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/general-info";

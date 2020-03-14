@@ -54,7 +54,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/customers/view/" + customer.getId();
@@ -75,7 +75,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/customers/view/" + customer.getId();
@@ -88,7 +88,7 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("successMessage", "Customer was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/customers";

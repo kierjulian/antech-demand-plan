@@ -55,7 +55,7 @@ public class ZolMtAccountController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Account was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt/config/accounts/view/" + zolMtAccount.getId();
@@ -76,7 +76,7 @@ public class ZolMtAccountController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Account was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt/config/accounts/view/" + zolMtAccount.getId();
@@ -89,7 +89,7 @@ public class ZolMtAccountController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Account was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt/config/accounts";

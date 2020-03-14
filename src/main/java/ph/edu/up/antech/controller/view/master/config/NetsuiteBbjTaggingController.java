@@ -58,7 +58,7 @@ public class NetsuiteBbjTaggingController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();
@@ -80,7 +80,7 @@ public class NetsuiteBbjTaggingController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();
@@ -94,7 +94,7 @@ public class NetsuiteBbjTaggingController {
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/netsuite/config/bbj";

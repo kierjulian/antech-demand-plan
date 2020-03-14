@@ -134,7 +134,7 @@ public class StatusReportController {
 
             initializeSuccessMessage(redirectAttributes);
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }

@@ -59,7 +59,7 @@ public class ZolPerDoorsGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();
@@ -81,7 +81,7 @@ public class ZolPerDoorsGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();
@@ -95,7 +95,7 @@ public class ZolPerDoorsGeneralInformationController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-doors/config/gen-info";

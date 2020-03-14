@@ -57,7 +57,7 @@ public class ZolMtPerBranchController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt/view/" + zolMtPerBranch.getId();
@@ -78,7 +78,7 @@ public class ZolMtPerBranchController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt/view/" + zolMtPerBranch.getId();
@@ -91,7 +91,7 @@ public class ZolMtPerBranchController {
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/master/zol-mt";

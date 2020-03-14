@@ -81,7 +81,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/products/view/" + product.getId();
@@ -107,7 +107,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/products/view/" + product.getId();
@@ -120,7 +120,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred: " + e.getMessage());
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
         }
 
         return "redirect:/general/products";
