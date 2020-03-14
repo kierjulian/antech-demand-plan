@@ -45,7 +45,7 @@ public class DemandPlanController {
                 start);
         if (demandPlan == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "The selected Demand Plan is not yet created.");
-            return "redirect:/demand/plan";
+            return "redirect:/demand/plan/view/1";
         }
 
         model.addAttribute("productList", getAllProducts());
@@ -54,12 +54,22 @@ public class DemandPlanController {
         model.addAttribute("selectedProduct", selectedProduct);
         model.addAttribute("demandPlan", demandPlan);
 
-        return "demand/demand-plan";
+        return "redirect:/demand/plan/view/" + demandPlan.getId();
     }
 
     @GetMapping("/view/{id}")
     public String viewDemandPlan(Model model, @PathVariable Integer id) {
-        return "demand-plan-view";
+        DemandPlan demandPlan = demandPlanService.findDemandPlanById(id);
+        List<YearMonth> yearMonthList = DateUtils.generateListOfYearMonthBetweenTwoYears(
+                demandPlan.getYear(), demandPlan.getYear());
+
+        model.addAttribute("productList", getAllProducts());
+        model.addAttribute("start", demandPlan.getYear());
+        model.addAttribute("yearMonthList", yearMonthList);
+        model.addAttribute("selectedProduct", demandPlan.getProduct());
+        model.addAttribute("demandPlan", demandPlan);
+
+        return "demand/demand-plan";
     }
 
     @GetMapping("/edit/{id}")
@@ -83,7 +93,7 @@ public class DemandPlanController {
             LOGGER.error(e.getMessage(), e);
         }
 
-        return "redirect:/demand/plan";
+        return "redirect:/demand/plan/view/" + demandPlan.getId();
     }
 
     @GetMapping("/add")
@@ -113,9 +123,10 @@ public class DemandPlanController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/demand/plan/view/1";
         }
 
-        return "redirect:/demand/plan";
+        return "redirect:/demand/plan/view/" + demandPlan.getId();
     }
 
     private List<Product> getAllProducts() {
