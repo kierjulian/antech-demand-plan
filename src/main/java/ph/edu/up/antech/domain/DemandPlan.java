@@ -36,6 +36,9 @@ public class DemandPlan implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "demandPlan", cascade = CascadeType.ALL)
     private List<DemandPlanDetail> demandPlanDetailList;
 
+    @Column(name = "comments")
+    private String comments;
+
     public Integer getId() {
         return id;
     }
@@ -82,6 +85,14 @@ public class DemandPlan implements Serializable {
                 getDemandPlanDetailList().add(demandPlanDetail);
             });
         }
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
 }
