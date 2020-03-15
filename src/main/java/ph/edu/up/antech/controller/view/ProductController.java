@@ -2,6 +2,9 @@ package ph.edu.up.antech.controller.view;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,6 @@ import ph.edu.up.antech.util.StringUtils;
 
 import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
 
 @Controller
 @RequestMapping("/general/products")
@@ -25,13 +27,13 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("")
-    public String loadProductPage(Model model, @RequestParam(required = false) String code) {
-        List<Product> productList = !StringUtils.isNullOrEmpty(code) ?
-                productService.findProductsByCode(code) :
-                productService.findAllProducts();
-
-        model.addAttribute("searchedCode", code);
-        model.addAttribute("productList", productList);
+    public String loadProductPage(Model model, @PageableDefault Pageable pageable,
+                                  @RequestParam(required = false) String filter) {
+        Page<Product> page = StringUtils.isNullOrEmpty(filter)
+                ? productService.findAll(pageable)
+                : productService.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "product";
     }
 
