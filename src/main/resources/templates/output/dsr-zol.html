@@ -77,38 +77,38 @@
                                             <tr class="bg-dark text-white">
                                                 <td class="font-weight-bold" th:text="${kamRefName}"></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, milkProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesAmountByAccountAndProductCode(kamRefName, milkProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalMilkAmountPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateMilkSalesAmountByAccount(kamRefName)}"></td>
                                                 <th:block th:each="jarProduct : ${jarProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, jarProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesAmountByAccountAndProductCode(kamRefName, jarProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalJarAmountPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateJarSalesAmountByAccount(kamRefName)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalAmountPerAccountPerProduct(kamRefName, waterProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesAmountByAccountAndProductCode(kamRefName, waterProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalWaterAmountPerAccount(kamRefName)}"></td>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalAmountPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateWaterSalesAmountByAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateSalesAmountByAccount(kamRefName)}"></td>
                                                 <td class="bg-dark"></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, milkProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesUnitByAccountAndProductCode(kamRefName, milkProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalMilkUnitsPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateMilkSalesUnitByAccount(kamRefName)}"></td>
                                                 <th:block th:each="jarProduct : ${jarProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, jarProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesUnitByAccountAndProductCode(kamRefName, jarProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalJarUnitsPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateJarSalesUnitsByAccount(kamRefName)}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
-                                                    <td th:text="${dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct(kamRefName, waterProduct)}">
+                                                    <td th:text="${dsrZolCalculator.calculateSalesUnitByAccountAndProductCode(kamRefName, waterProduct)}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalWaterUnitsPerAccount(kamRefName)}"></td>
-                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalUnitsPerAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateWaterSalesUnitByAccount(kamRefName)}"></td>
+                                                <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateSalesUnitByAccount(kamRefName)}"></td>
                                             </tr>
                                             <th:block th:each="dsrZolCombination, row : ${dsrZolCombinationList}">
                                                 <tr th:if="${kamRefName == dsrZolCombination.kamReferenceName}">
@@ -200,38 +200,38 @@
                                         <tr class="bg-dark text-white">
                                             <td class="font-weight-bold">Grand Total</td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(milkProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesAmountByProductCode(milkProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateTotalMilkAmount()}"></td>
+                                            <td class="bg-dark text-white" th:text="${dsrZolCalculator.calculateMilkSalesAmount()}"></td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(jarProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesAmountByProductCode(jarProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalJarAmount()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateJarSalesAmount()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalAmountPerProduct(waterProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesAmountByProductCode(waterProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalWaterAmount()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateWaterSalesAmount()}"></td>
                                             <td th:text="${dsrZolCalculator.calculateTotalAmount()}"></td>
                                             <td class="bg-dark"></td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(milkProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesUnitByProductCode(milkProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalMilkUnits()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateMilkSalesUnit()}"></td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(jarProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesUnitByProductCode(jarProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalJarUnits()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateJarSalesUnit()}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${dsrZolCalculator.calculateTotalUnitsPerProduct(waterProduct)}">
+                                                <td th:text="${dsrZolCalculator.calculateSalesUnitByProductCode(waterProduct)}">
                                                 </td>
                                             </th:block>
-                                            <td th:text="${dsrZolCalculator.calculateTotalWaterUnits()}"></td>
-                                            <td th:text="${dsrZolCalculator.calculateTotalUnits()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateWaterSalesUnit()}"></td>
+                                            <td th:text="${dsrZolCalculator.calculateTotalUnit()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

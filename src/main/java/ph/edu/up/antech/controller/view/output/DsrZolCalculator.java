@@ -15,7 +15,7 @@ public class DsrZolCalculator {
                 .collect(Collectors.toList());
     }
 
-    public Integer calculateTotalAmountPerAccountPerProduct(
+    public Integer calculateSalesAmountByAccountAndProductCode(
             String kamReferenceName, String antechProductDescription) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
@@ -24,7 +24,7 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerAccountPerProduct(
+    public Integer calculateSalesUnitByAccountAndProductCode(
             String kamReferenceName, String antechProductDescription) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
@@ -33,21 +33,21 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalAmountPerProduct(String antechProductDescription) {
+    public Integer calculateSalesAmountByProductCode(String antechProductDescription) {
         return dsrZolList.stream()
                 .filter(dsrZol -> antechProductDescription.equals(dsrZol.getAntechProductDescription()))
                 .mapToInt(dsrZol -> dsrZol.getAmount())
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerProduct(String antechProductDescription) {
+    public Integer calculateSalesUnitByProductCode(String antechProductDescription) {
         return dsrZolList.stream()
                 .filter(dsrZol -> antechProductDescription.equals(dsrZol.getAntechProductDescription()))
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();
     }
 
-    public Integer calculateTotalMilkAmountPerAccount(String kamReferenceName) {
+    public Integer calculateMilkSalesAmountByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("C") || dsrZol.getAntechProductDescription().startsWith("S"))
@@ -55,7 +55,7 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalJarAmountPerAccount(String kamReferenceName) {
+    public Integer calculateJarSalesAmountByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Jar"))
@@ -63,7 +63,7 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalWaterAmountPerAccount(String kamReferenceName) {
+    public Integer calculateWaterSalesAmountByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Water"))
@@ -71,14 +71,14 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalAmountPerAccount(String kamReferenceName) {
+    public Integer calculateSalesAmountByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .mapToInt(dsrZol -> dsrZol.getAmount())
                 .sum();
     }
 
-    public Integer calculateTotalMilkUnitsPerAccount(String kamReferenceName) {
+    public Integer calculateMilkSalesUnitByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("C") || dsrZol.getAntechProductDescription().startsWith("S"))
@@ -86,7 +86,7 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalJarUnitsPerAccount(String kamReferenceName) {
+    public Integer calculateJarSalesUnitsByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Jar"))
@@ -94,7 +94,7 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalWaterUnitsPerAccount(String kamReferenceName) {
+    public Integer calculateWaterSalesUnitByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Water"))
@@ -102,28 +102,28 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerAccount(String kamReferenceName) {
+    public Integer calculateSalesUnitByAccount(String kamReferenceName) {
         return dsrZolList.stream()
                 .filter(dsrZol -> kamReferenceName.equals(dsrZol.getKamReferenceName()))
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();
     }
 
-    public Integer calculateTotalMilkAmount() {
+    public Integer calculateMilkSalesAmount() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("C") || dsrZol.getAntechProductDescription().startsWith("S"))
                 .mapToInt(dsrZol -> dsrZol.getAmount())
                 .sum();
     }
 
-    public Integer calculateTotalJarAmount() {
+    public Integer calculateJarSalesAmount() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Jar"))
                 .mapToInt(dsrZol -> dsrZol.getAmount())
                 .sum();
     }
 
-    public Integer calculateTotalWaterAmount() {
+    public Integer calculateWaterSalesAmount() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Water"))
                 .mapToInt(dsrZol -> dsrZol.getAmount())
@@ -136,28 +136,28 @@ public class DsrZolCalculator {
                 .sum();
     }
 
-    public Integer calculateTotalMilkUnits() {
+    public Integer calculateMilkSalesUnit() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("C") || dsrZol.getAntechProductDescription().startsWith("S"))
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();
     }
 
-    public Integer calculateTotalJarUnits() {
+    public Integer calculateJarSalesUnit() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Jar"))
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();
     }
 
-    public Integer calculateTotalWaterUnits() {
+    public Integer calculateWaterSalesUnit() {
         return dsrZolList.stream()
                 .filter(dsrZol -> dsrZol.getAntechProductDescription().startsWith("Water"))
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();
     }
 
-    public Integer calculateTotalUnits() {
+    public Integer calculateTotalUnit() {
         return dsrZolList.stream()
                 .mapToInt(dsrZol -> dsrZol.getSalesUnit())
                 .sum();

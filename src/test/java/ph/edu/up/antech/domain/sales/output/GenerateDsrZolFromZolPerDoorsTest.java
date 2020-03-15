@@ -90,8 +90,8 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         DsrZolCalculator dsrZolCalculator = new DsrZolCalculator(dsrZolList, productService.findAllProducts().stream()
                 .map(Product::getCode)
                 .collect(Collectors.toList()));
-        Assert.assertEquals(Integer.valueOf(185), dsrZolCalculator.calculateTotalAmountPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
-        Assert.assertEquals(Integer.valueOf(205), dsrZolCalculator.calculateTotalUnitsPerAccountPerProduct("A. Errol Ramirez", "S3 800 BIB"));
+        Assert.assertEquals(Integer.valueOf(185), dsrZolCalculator.calculateSalesAmountByAccountAndProductCode("A. Errol Ramirez", "S3 800 BIB"));
+        Assert.assertEquals(Integer.valueOf(205), dsrZolCalculator.calculateSalesUnitByAccountAndProductCode("A. Errol Ramirez", "S3 800 BIB"));
     }
 
     @Test

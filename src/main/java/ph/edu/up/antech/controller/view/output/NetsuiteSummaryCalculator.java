@@ -13,173 +13,157 @@ public class NetsuiteSummaryCalculator {
     public NetsuiteSummaryCalculator(List<Netsuite> netsuiteList, List<String> productList) {
         this.netsuiteList = netsuiteList.stream()
                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .collect(Collectors.toList());
     }
 
-    public Integer calculateTotalAmountPerProduct(String product) {
+    public Integer calculateSalesAmountByProductCode(String product) {
         return netsuiteList.stream()
                 .filter(netsuite -> product.equals(netsuite.getBrand()))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalMilkAmount() {
+    public Integer calculateMilkSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalJarAmount() {
+    public Integer calculateJarSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalWaterAmount() {
+    public Integer calculateWaterSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalAmount() {
+    public Integer calculateSalesAmount() {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalUnitPerProduct(String product) {
+    public Integer calculateSalesUnitByProductCode(String product) {
         return netsuiteList.stream()
                 .filter(netsuite -> product.equals(netsuite.getBrand()))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalMilkUnit() {
+    public Integer calculateMilkSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("CS"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalJarUnit() {
+    public Integer calculateJarSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalWaterUnit() {
+    public Integer calculateWaterSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
     public Integer calculateTotalUnit() {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalAmountPerTransferCatRecodePerProduct(
+    public Integer calculateSalesAmountByTransferCatRecodeAndProductCode(
             String transfersCatRecode, String antechProductDescription) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerTransfersCatRecodePerProduct(
+    public Integer calculateSalesUnitByTransfersCatRecodeAndProductCode(
             String transfersCatRecode, String antechProductDescription) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalMilkAmountPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateMilkSalesAmountByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalJarAmountPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateJarSalesAmountByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalWaterAmountPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateWaterSalesAmountByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalAmountPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateSalesAmountByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
                 .sum();
     }
 
-    public Integer calculateTotalMilkUnitsPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateMilkSalesUnitByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalJarUnitsPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateJarSalesUnitByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalWaterUnitsPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateWaterSalesUnitByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateTotalUnitsPerTransfersCatRecode(String transfersCatRecode) {
+    public Integer calculateSalesUnitByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
-                .filter(netsuite -> netsuite.getQuantity() != null)
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
