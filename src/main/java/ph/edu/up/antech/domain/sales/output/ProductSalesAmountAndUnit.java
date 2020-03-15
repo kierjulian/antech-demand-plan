@@ -5,12 +5,12 @@ import java.util.Objects;
 public class ProductSalesAmountAndUnit {
 
     private String product;
-    private Integer amount;
+    private Integer salesAmount;
     private Integer salesUnit;
 
-    public ProductSalesAmountAndUnit(String product, Integer amount, Integer salesUnit) {
+    public ProductSalesAmountAndUnit(String product, Integer salesAmount, Integer salesUnit) {
         this.product = product;
-        this.amount = amount != null ? amount : 0;
+        this.salesAmount = salesAmount != null ? salesAmount : 0;
         this.salesUnit = salesUnit != null ? salesUnit : 0;
     }
 
@@ -22,12 +22,12 @@ public class ProductSalesAmountAndUnit {
         this.product = product;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getSalesAmount() {
+        return salesAmount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setSalesAmount(Integer salesAmount) {
+        this.salesAmount = salesAmount;
     }
 
     public Integer getSalesUnit() {
@@ -39,8 +39,8 @@ public class ProductSalesAmountAndUnit {
     }
 
     public void addAmount(Integer amount) {
-        if (this.amount != null) {
-            this.amount += amount;
+        if (this.salesAmount != null) {
+            this.salesAmount += amount;
         }
     }
 

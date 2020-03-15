@@ -2,6 +2,8 @@ package ph.edu.up.antech.domain.sales.output;
 
 import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
 
+import java.util.Objects;
+
 public class DsrZol {
 
     private String kamReferenceName;
@@ -14,7 +16,7 @@ public class DsrZol {
     }
 
     public DsrZol(ZolPerDoors zolPerDoors) {
-        if (zolPerDoors != null) {
+        if (Objects.nonNull(zolPerDoors)) {
             this.kamReferenceName = zolPerDoors.getKamReferenceName();
             this.antechProductDescription = zolPerDoors.getAntechProductDescription();
             this.amount = zolPerDoors.getAmount();

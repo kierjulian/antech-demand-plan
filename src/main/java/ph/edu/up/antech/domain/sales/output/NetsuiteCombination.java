@@ -4,6 +4,7 @@ import ph.edu.up.antech.domain.sales.master.Netsuite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class NetsuiteCombination {
@@ -29,7 +30,7 @@ public class NetsuiteCombination {
                 Integer indexOfExistingProductSalesAmountAndUnit =
                         productSalesAmountAndUnitList.indexOf(productSalesAmountAndUnit);
                 ProductSalesAmountAndUnit retrievedProductSalesAndAmountUnit = productSalesAmountAndUnitList.get(indexOfExistingProductSalesAmountAndUnit);
-                retrievedProductSalesAndAmountUnit.addAmount(productSalesAmountAndUnit.getAmount());
+                retrievedProductSalesAndAmountUnit.addAmount(productSalesAmountAndUnit.getSalesAmount());
                 retrievedProductSalesAndAmountUnit.addSalesUnit(productSalesAmountAndUnit.getSalesUnit());
             } else {
                 this.productSalesAmountAndUnitList.add(productSalesAmountAndUnit);
@@ -69,66 +70,66 @@ public class NetsuiteCombination {
                 .anyMatch(productName -> productName.equals(product));
     }
 
-    public Integer getTotalMilkAmount() {
+    public Integer calculateMilkSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("CS") ||
                         productSalesAmountAndUnit.getProduct().startsWith("S"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesAmount()))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalJarAmount() {
+    public Integer calculateJarSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesAmount()))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalWaterAmount() {
+    public Integer calculateWaterSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesAmount()))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalAmount() {
+    public Integer calculateTotalSalesAmount() {
         return productSalesAmountAndUnitList.stream()
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount() != null)
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesAmount()))
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalMilkSalesUnit() {
+    public Integer calculateMilkSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("CS") ||
                         productSalesAmountAndUnit.getProduct().startsWith("S"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesUnit()))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
-    public Integer getTotalJarSalesUnit() {
+    public Integer calculateJarSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesUnit()))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
-    public Integer getTotalWaterSalesUnit() {
+    public Integer calculateWaterSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesUnit()))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
-    public Integer getTotalSalesUnit() {
+    public Integer calculateTotalSalesUnit() {
         return productSalesAmountAndUnitList.stream()
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit() != null)
+                .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesUnit()))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }

@@ -57,7 +57,7 @@ public class MdcPerBranchSalesController {
             mdcPerBranchSalesService.updateMdcPerBranchSales(mdcPerBranchSales);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating MDC Per Branch Sales");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -78,7 +78,7 @@ public class MdcPerBranchSalesController {
             mdcPerBranchSales = mdcPerBranchSalesService.saveMdcPerBranchSales(mdcPerBranchSales);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -91,7 +91,7 @@ public class MdcPerBranchSalesController {
             mdcPerBranchSalesService.removeMdcPerBranchSales(id);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred deleting MDC Per Branch Sales.");
             LOGGER.error(e.getMessage(), e);
         }
 

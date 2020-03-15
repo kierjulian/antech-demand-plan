@@ -59,7 +59,7 @@ public class DispensingDistributorController {
             dispensingDistributorService.updateDispensingDistributor(dispensingDistributor);
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Dispensing Distributor.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -80,7 +80,7 @@ public class DispensingDistributorController {
             dispensingDistributor = dispensingDistributorService.saveDispensingDistributor(dispensingDistributor);
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred saving Dispensing Distributor");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class DispensingDistributorController {
             dispensingDistributorService.removeDispensingDistributor(id);
             redirectAttributes.addFlashAttribute("successMessage", "Dispensing Distributor was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting Dispensing Distributor.");
             LOGGER.error(e.getMessage(), e);
         }
 

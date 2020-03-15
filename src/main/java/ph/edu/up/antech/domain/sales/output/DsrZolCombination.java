@@ -27,7 +27,7 @@ public class DsrZolCombination {
                 Integer indexOfExistingProductSalesAmountAndUnit =
                         productSalesAmountAndUnitList.indexOf(productSalesAmountAndUnit);
                 ProductSalesAmountAndUnit retrievedProductSalesAndAmountUnit = productSalesAmountAndUnitList.get(indexOfExistingProductSalesAmountAndUnit);
-                retrievedProductSalesAndAmountUnit.addAmount(productSalesAmountAndUnit.getAmount());
+                retrievedProductSalesAndAmountUnit.addAmount(productSalesAmountAndUnit.getSalesAmount());
                 retrievedProductSalesAndAmountUnit.addSalesUnit(productSalesAmountAndUnit.getSalesUnit());
             } else {
                 this.productSalesAmountAndUnitList.add(productSalesAmountAndUnit);
@@ -67,35 +67,35 @@ public class DsrZolCombination {
                 .anyMatch(productName -> productName.equals(product));
     }
 
-    public Integer getTotalMilkAmount() {
+    public Integer calculateMilkSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("C")
                         || productSalesAmountAndUnit.getProduct().startsWith("S"))
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalJarAmount() {
+    public Integer calculateJarSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalWaterAmount() {
+    public Integer calculateWaterSalesAmoun() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalAmount() {
+    public Integer calculateTotalAmount() {
         return productSalesAmountAndUnitList.stream()
-                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getAmount())
+                .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
                 .sum();
     }
 
-    public Integer getTotalMilkSalesUnit() {
+    public Integer calculateMilkSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("C")
                         || productSalesAmountAndUnit.getProduct().startsWith("S"))
@@ -103,21 +103,21 @@ public class DsrZolCombination {
                 .sum();
     }
 
-    public Integer getTotalJarSalesUnit() {
+    public Integer calculateJarSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Jar"))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
-    public Integer getTotalWaterSalesUnit() {
+    public Integer calculateWaterSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();
     }
 
-    public Integer getTotalSalesUnit() {
+    public Integer calculateTotalSalesUnit() {
         return productSalesAmountAndUnitList.stream()
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();

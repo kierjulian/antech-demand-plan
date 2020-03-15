@@ -107,11 +107,11 @@ public class NetsuiteSummaryController {
             transfersCatRecodeList.forEach(transfersCatRecode -> {
                 List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
                         .filter(netsuite -> productListCode.contains(netsuite.getBrand()))
-                        .filter(netsuite -> netsuite.getKamRefName1() != null)
-                        .filter(netsuite -> netsuite.getBrand() != null)
-                        .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
-                        .filter(netsuite -> netsuite.getRevenueConverted() != null)
-                        .filter(netsuite -> netsuite.getQuantity() != null)
+                        .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
+                        .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
+                        .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
+                        .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
+                        .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
                         .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                         .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transfersCatRecode))
                         .collect(Collectors.toList());

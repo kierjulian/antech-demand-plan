@@ -89,7 +89,7 @@ public class DemandPlanController {
             demandPlanService.updateDemandPlan(demandPlan);
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Demand Plan.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -128,7 +128,7 @@ public class DemandPlanController {
 
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Demand Plan.");
             LOGGER.error(e.getMessage(), e);
             return "redirect:/demand/plan/view/1";
         }

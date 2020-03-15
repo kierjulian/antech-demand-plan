@@ -117,7 +117,7 @@
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -125,12 +125,12 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalMilkAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateMilkSalesAmount()}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -138,12 +138,12 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalJarAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateJarSalesAmount()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -151,8 +151,8 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalWaterAmount()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateWaterSalesAmoun()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateTotalAmount()}"></td>
                                                     <td class="bg-dark"></td>
                                                     <th:block th:each="milkProduct : ${milkProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
@@ -166,7 +166,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalMilkSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateMilkSalesUnit()}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
@@ -179,7 +179,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalJarSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateJarSalesUnit()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
@@ -192,8 +192,8 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalWaterSalesUnit()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.getTotalSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateWaterSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${dsrZolCombination.calculateTotalSalesUnit()}"></td>
                                                 </tr>
                                             </th:block>
                                         </th:block>

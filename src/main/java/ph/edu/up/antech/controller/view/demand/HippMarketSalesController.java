@@ -93,7 +93,6 @@ public class HippMarketSalesController {
                 netsuiteZpcDpCalculator, netsuiteToMarketDispensingDistributorCalculator, netsuiteToMarketBbjCalculator,
                 netsuiteDirectAcctCalculator, netsuiteLazadaCalculator);
 
-
         model.addAttribute("yearMonthStart", yearMonthStart);
         model.addAttribute("yearMonthEnd", yearMonthEnd);
         model.addAttribute("yearMonthList", yearMonthList);

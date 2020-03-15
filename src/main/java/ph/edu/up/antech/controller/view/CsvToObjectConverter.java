@@ -29,8 +29,7 @@ public class CsvToObjectConverter {
                     .build();
             return csvToBean.parse();
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while uploading file for Customer Item Sales Per Period: "
-                    + e.getMessage());
+            throw new RuntimeException("An error occurred while uploading file for Customer Item Sales Per Period", e);
         }
     }
 
@@ -44,8 +43,7 @@ public class CsvToObjectConverter {
                     .build();
             return csvToBean.parse();
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while uploading file for Dispensing Distributor: "
-                    + e.getMessage());
+            throw new RuntimeException("An error occurred while uploading file for Dispensing Distributor", e);
         }
     }
 
@@ -59,8 +57,7 @@ public class CsvToObjectConverter {
                     .build();
             return csvToBean.parse();
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while uploading file for Customer Sales By Item: "
-                    + e.getMessage());
+            throw new RuntimeException("An error occurred while uploading file for Customer Sales By Item", e);
         }
     }
 
@@ -74,8 +71,7 @@ public class CsvToObjectConverter {
                     .build();
             return csvToBean.parse();
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while uploading file for ZOL Daily Sales Per Branch: "
-                    + e.getMessage());
+            throw new RuntimeException("An error occurred while uploading file for ZOL Daily Sales Per Branch", e);
         }
     }
 

@@ -57,6 +57,21 @@ public class Customer implements Serializable {
     @CsvBindByName(column = "Material Desc")
     private String materialDescription;
 
+    public Customer() {
+    }
+
+    public Customer(Integer id, String customerCode, String customerName, String zolCustomerCode,
+                    String zolCustomerName, String materialCode, String zolMaterialCode, String materialDescription) {
+        this.id = id;
+        this.customerCode = customerCode;
+        this.customerName = customerName;
+        this.zolCustomerCode = zolCustomerCode;
+        this.zolCustomerName = zolCustomerName;
+        this.materialCode = materialCode;
+        this.zolMaterialCode = zolMaterialCode;
+        this.materialDescription = materialDescription;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -122,7 +122,7 @@ public class GenerateDsrZolFromZolPerDoorsTest {
         DsrZolCombination dsrZolCombination = new DsrZolCombination(dsrZolListFiltered);
         dsrZolCombination.getProductSalesAmountAndUnitList().forEach(productSalesAmountAndUnit -> {
             System.out.println(productSalesAmountAndUnit.getProduct());
-            System.out.println(productSalesAmountAndUnit.getAmount());
+            System.out.println(productSalesAmountAndUnit.getSalesAmount());
             System.out.println(productSalesAmountAndUnit.getSalesUnit());
             System.out.println();
         });

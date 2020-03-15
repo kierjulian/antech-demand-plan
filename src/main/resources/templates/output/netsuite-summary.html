@@ -117,7 +117,7 @@
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -125,12 +125,12 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalMilkAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateMilkSalesAmount()}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -138,12 +138,12 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalJarAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateJarSalesAmount()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.amount}">
+                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -151,8 +151,8 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalWaterAmount()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateWaterSalesAmount()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateTotalSalesAmount()}"></td>
                                                     <td class="bg-dark"></td>
                                                     <th:block th:each="milkProduct : ${milkProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
@@ -166,7 +166,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalMilkSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateMilkSalesUnit()}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
@@ -179,7 +179,7 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalJarSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateJarSalesUnit()}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
@@ -192,8 +192,8 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalWaterSalesUnit()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.getTotalSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateWaterSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateTotalSalesUnit()}"></td>
                                                 </tr>
                                             </th:block>
                                         </th:block>

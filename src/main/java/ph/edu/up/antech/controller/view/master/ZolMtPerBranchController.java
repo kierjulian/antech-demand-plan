@@ -56,7 +56,7 @@ public class ZolMtPerBranchController {
             zolMtPerBranchService.updateZolMtPerBranch(zolMtPerBranch);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating ZOL MT Per Branch.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -77,7 +77,7 @@ public class ZolMtPerBranchController {
             zolMtPerBranch = zolMtPerBranchService.saveZolMtPerBranch(zolMtPerBranch);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL MT Per Branch.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -90,7 +90,7 @@ public class ZolMtPerBranchController {
             zolMtPerBranchService.removeZolMtPerBranchById(id);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MT Per Branch was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting ZOL MT Per Branch.");
             LOGGER.error(e.getMessage(), e);
         }
 

@@ -67,8 +67,8 @@ public class ProductController {
                     product.setCertificateFile(imageBytes);
                 }
             } catch (IOException e) {
-                redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
-                LOGGER.error(e.getMessage());
+                redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating product.");
+                LOGGER.error(e.getMessage(), e);
             }
         } else {
             Product oldProduct = productService.findProductById(product.getId());
@@ -82,7 +82,7 @@ public class ProductController {
             productService.updateProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating product.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -108,7 +108,7 @@ public class ProductController {
             product = productService.saveProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving product.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -121,7 +121,7 @@ public class ProductController {
             productService.removeProduct(id);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorDeleteMessage", "An error occurred while deleting product.");
             LOGGER.error(e.getMessage(), e);
         }
 
