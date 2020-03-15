@@ -4,6 +4,7 @@ import ph.edu.up.antech.domain.sales.master.Netsuite;
 
 import java.time.YearMonth;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class NetsuiteCalculator {
@@ -13,11 +14,11 @@ public class NetsuiteCalculator {
     public NetsuiteCalculator(List<Netsuite> netsuiteList, List<String> productList,
                               NetsuiteChannel netsuiteChannel) {
         this.netsuiteList = netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1() != null)
-                .filter(netsuite -> netsuite.getBrand() != null)
-                .filter(netsuite -> netsuite.getTransfersCatRecode() != null)
-                .filter(netsuite -> netsuite.getRevenueConverted() != null)
-                .filter(netsuite -> netsuite.getQuantity() != null)
+                .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> {
                     switch (netsuiteChannel) {
