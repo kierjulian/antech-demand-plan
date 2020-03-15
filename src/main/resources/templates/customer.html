@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Customer List')"></div>
-        <script th:src="@{/js/customer.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -32,64 +31,126 @@
                         <br>
                         <div class="card">
                             <div class="card-body bg-light pre-scrollable" style="max-height: 90vh">
-                                <div class="btn-group">
-                                    <a class="btn btn-primary" th:href="@{/general/customers/add}" role="button">
-                                        <i class="fas fa-plus">&nbsp; Add Customer</i></a>
-                                </div>
-                                <br><br>
+                                <form class="form-inline" method="get" th:action="@{/general/customers}">
+                                    <input type="text" class="form-control" name="filter" th:value="${filter}" th:placeholder="Filter">&nbsp;
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search">&nbsp; Search</i></button>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" th:href="@{/general/customers/add}" role="button">
+                                            <i class="fas fa-plus">&nbsp; Add Customer</i></a>
+                                    </div>
+                                </form>
+                                <br>
                                 <table id="customerTable" class="table table-striped table-bordered table-hover table-sm">
                                     <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Row</th>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Zol Customer Code</th>
-                                        <th scope="col">Zol Customer Name</th>
-                                        <th scope="col">Material Code</th>
-                                        <th scope="col">Zol Material Code</th>
-                                        <th scope="col">Material Description</th>
-                                        <th scope="col">&nbsp;</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">Code</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Zol Customer Code</th>
+                                            <th scope="col">Zol Customer Name</th>
+                                            <th scope="col">Material Code</th>
+                                            <th scope="col">Zol Material Code</th>
+                                            <th scope="col">Material Description</th>
+                                            <th scope="col">&nbsp;</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="customer, row : ${customerList}">
-                                        <td class="align-middle" th:text="${row.count}"></td>
-                                        <td class="align-middle">
-                                            <a th:text="${customer.customerCode}"
-                                               th:href="@{/general/customers/view/{id}(id=${customer.id})}"></a>
-                                        </td>
-                                        <td class="align-middle" th:text="${customer.customerName}"></td>
-                                        <td class="align-middle" th:text="${customer.zolCustomerCode}"></td>
-                                        <td class="align-middle" th:text="${customer.zolCustomerName}"></td>
-                                        <td class="align-middle" th:text="${customer.materialCode}"></td>
-                                        <td class="align-middle" th:text="${customer.zolMaterialCode}"></td>
-                                        <td class="align-middle" th:text="${customer.materialDescription}"></td>
-                                        <td class="align-middle">
-                                            <a class="btn btn-outline-danger" data-toggle="modal"
-                                               th:attr="data-target='#deleteProductModal' + ${customer.id}"
-                                               role="button"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                        <div th:id="'deleteProductModal' + ${customer.id}" class="modal fade" role="dialog"
-                                             aria-labelledby="deleteProductModalLabel" aria-hidden="true" tabindex="-1">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Delete Customer</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure you want to delete this customer?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a class="btn btn-danger" th:href="@{/general/customers/delete/{id}(id=${customer.id})}"
-                                                           role="button">Delete</a>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <tr th:each="customer, row : ${page.content}">
+                                            <td class="align-middle">
+                                                <a th:text="${customer.customerCode}"
+                                                   th:href="@{/general/customers/view/{id}(id=${customer.id})}"></a>
+                                            </td>
+                                            <td class="align-middle" th:text="${customer.customerName}"></td>
+                                            <td class="align-middle" th:text="${customer.zolCustomerCode}"></td>
+                                            <td class="align-middle" th:text="${customer.zolCustomerName}"></td>
+                                            <td class="align-middle" th:text="${customer.materialCode}"></td>
+                                            <td class="align-middle" th:text="${customer.zolMaterialCode}"></td>
+                                            <td class="align-middle" th:text="${customer.materialDescription}"></td>
+                                            <td class="align-middle">
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   th:attr="data-target='#deleteCustomerModal' + ${customer.id}"
+                                                   role="button"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <div th:id="'deleteCustomerModal' + ${customer.id}" class="modal fade" role="dialog"
+                                                 aria-labelledby="deleteCustomerModalLabel" aria-hidden="true" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Delete Customer</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this customer?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn btn-danger" th:href="@{/general/customers/delete/{id}(id=${customer.id})}"
+                                                               role="button">Delete</a>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </tr>
+                                        </tr>
                                     </tbody>
                                 </table>
+
+                                <div>
+                                    <nav aria-label="Pagination" th:if="${page.totalPages gt 0}">
+                                        <ul class="pagination justify-content-center font-weight-medium">
+                                            <li class="page-item" th:classappend="${page.number eq 0} ? 'disabled'">
+                                                <a class="page-link svg-icon"
+                                                   th:href="@{/general/customers?page={id}&filter={filter}(id=${page.number lt 1 ? 1 : page.number - 1}, filter=${filter})}"
+                                                   aria-label="Previous" title="Previous Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20">
+                                                        <i class="fas fa-chevron-left"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:if="${page.number - 2 > 0}">
+                                                <a class="page-link svg-icon" th:href="@{/general/customers?page=0&filter={filter}(filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20">1</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number - 3 > 0}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"
+                                                th:each="i : ${#numbers.sequence(0 < 2 - page.number ? 1 : page.number - 1, page.number, 1)}">
+                                                <a class="page-link" th:href="@{/general/customers?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${i eq page.number + 1} ? 'active'"
+                                                th:each="i : ${#numbers.sequence(page.number + 1, page.totalPages > 3 + page.number ? page.number + 3 : page.totalPages, 1)}">
+                                                <a class="page-link" th:href="@{/general/customers?page={id}&filter={filter}(id=${i - 1}, filter=${filter})}" th:text="${i}"
+                                                   th:title="${'Page '+ i}"
+                                                   rel="tooltip"></a>
+                                            </li>
+                                            <li class="page-item disabled" th:if="${page.number + 4 < page.totalPages}">
+                                                <a class="page-link svg-icon" href="#">
+                                                    <span data-feather="more-horizontal" width="20" height="20">...</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:if="${page.number + 3 < page.totalPages}">
+                                                <a class="page-link svg-icon" th:href="@{/general/customers?page={id}&filter={filter}(id=${page.totalPages - 1}, filter=${filter})}">
+                                                    <span data-feather="more-horizontal" width="20" height="20" th:text="${page.totalPages}"></span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item" th:classappend="${page.number + 1 eq page.totalPages} ? 'disabled'">
+                                                <a class="page-link svg-icon" th:href="@{/general/customers?page={id}&filter={filter}(id=${page.number + 1}, filter=${filter})}"
+                                                   aria-label="Next"
+                                                   title="Next Page" rel="tooltip">
+                                                    <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20">
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>

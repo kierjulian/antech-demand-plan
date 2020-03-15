@@ -24,5 +24,4 @@ public interface ProductService {
 
     public Page<Product> findAllByAnyColumnContaining(String filter, Pageable pageable);
 
-
 }

@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.CustomerDAO;
+import ph.edu.up.antech.dao.pagination.CustomerPaginationDAO;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.service.CustomerService;
 
@@ -15,6 +18,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerDAO customerDAO;
+
+    @Autowired
+    private CustomerPaginationDAO customerPaginationDAO;
 
     @Override
     public Customer saveCustomer(Customer customer) {
@@ -59,6 +65,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void removeCustomer(Integer id) {
         customerDAO.removeCustomer(id);
+    }
+
+    @Override
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerPaginationDAO.findAll(pageable);
+    }
+
+    @Override
+    public Page<Customer> findAllByAnyColumnContaining(String filter, Pageable pageable) {
+        return customerPaginationDAO.findAllByAnyColumnContaining(filter, pageable);
     }
 
 }

@@ -2,6 +2,9 @@ package ph.edu.up.antech.controller.view;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ph.edu.up.antech.domain.Customer;
 import ph.edu.up.antech.service.CustomerService;
 import ph.edu.up.antech.util.StringUtils;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/general/customers")
@@ -22,13 +23,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("")
-    public String loadCustomerPage(Model model, @RequestParam(required = false) String code) {
-        List<Customer> customerList = !StringUtils.isNullOrEmpty(code) ?
-                customerService.findAllCustomersByCustomerCode(code) :
-                customerService.findAllCustomers();
-
-        model.addAttribute("searchedCode", code);
-        model.addAttribute("customerList", customerList);
+    public String loadCustomerPage(Model model, @PageableDefault Pageable pageable,
+                                   @RequestParam(required = false) String filter) {
+        Page<Customer> page = StringUtils.isNullOrEmpty(filter)
+                ? customerService.findAll(pageable)
+                : customerService.findAllByAnyColumnContaining(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("filter", filter);
         return "customer";
     }
 
