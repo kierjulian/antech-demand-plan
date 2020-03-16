@@ -14,11 +14,10 @@
                 <main>
                     <div class="container-fluid"><br>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-header">
                                 Add Product
                             </div>
                         </div>
-                        <br>
                         <div class="card">
                             <div class="card-body bg-light">
                                 <form th:action="@{/general/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
