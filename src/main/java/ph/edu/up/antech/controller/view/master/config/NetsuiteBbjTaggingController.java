@@ -46,7 +46,7 @@ public class NetsuiteBbjTaggingController {
         NetsuiteBbjTagging netsuiteBbjTagging = netsuiteBbjTaggingService
                 .findNetsuiteBbjTaggingById(id);
         model.addAttribute("netsuiteBbjTagging", netsuiteBbjTagging);
-        return "netsuite-bbj-tagging-edit";
+        return "master/config/netsuite-bbj-tagging-edit";
     }
 
     @PostMapping("/update")
@@ -57,7 +57,7 @@ public class NetsuiteBbjTaggingController {
             netsuiteBbjTaggingService.updateNetsuiteBbjTagging(netsuiteBbjTagging);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Netsuite BBJ Tagging.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class NetsuiteBbjTaggingController {
             netsuiteBbjTagging = netsuiteBbjTaggingService.saveNetsuiteBbjTagging(netsuiteBbjTagging);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite BBJ Tagging.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class NetsuiteBbjTaggingController {
             netsuiteBbjTaggingService.removeNetsuiteBbjTagging(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite BBJ Tagging was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting Netsuite BBJ Tagging.");
             LOGGER.error(e.getMessage(), e);
         }
 

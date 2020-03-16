@@ -43,6 +43,20 @@ public class NetsuiteGeneralInformation {
     @CsvBindByName(column = "Location")
     private String location;
 
+    public NetsuiteGeneralInformation() {
+    }
+
+    public NetsuiteGeneralInformation(Integer id, String customerJob, String account, String name,
+                                      String naNumber, String kamReferenceName, String location) {
+        this.id = id;
+        this.customerJob = customerJob;
+        this.account = account;
+        this.name = name;
+        this.naNumber = naNumber;
+        this.kamReferenceName = kamReferenceName;
+        this.location = location;
+    }
+
     public Integer getId() {
         return id;
     }

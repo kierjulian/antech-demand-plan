@@ -31,6 +31,16 @@ public class NetsuiteTransferCat {
     @CsvBindByName(column = "Recode")
     private String recode;
 
+    public NetsuiteTransferCat() {
+    }
+
+    public NetsuiteTransferCat(Integer id, String name, String code, String recode) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.recode = recode;
+    }
+
     public Integer getId() {
         return id;
     }

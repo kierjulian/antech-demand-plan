@@ -43,6 +43,19 @@ public class MdcPerBranchSalesBrn {
     @CsvBindByName(column = "NA")
     private String na;
 
+    public MdcPerBranchSalesBrn() {
+    }
+
+    public MdcPerBranchSalesBrn(Integer id, String shpcn, String customerName, String branchName, String cadd1,
+                                String cadd2, String na) {
+        this.shpcn = shpcn;
+        this.customerName = customerName;
+        this.branchName = branchName;
+        this.cadd1 = cadd1;
+        this.cadd2 = cadd2;
+        this.na = na;
+    }
+
     public Integer getId() {
         return id;
     }

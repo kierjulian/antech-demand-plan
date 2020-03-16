@@ -31,6 +31,16 @@ public class MdcPerBranchSalesNaConfiguration {
     @CsvBindByName(column = "REGION")
     private String region;
 
+    public MdcPerBranchSalesNaConfiguration() {
+    }
+
+    public MdcPerBranchSalesNaConfiguration(Integer id, String naName, String dsm, String region) {
+        this.id = id;
+        this.naName = naName;
+        this.dsm = dsm;
+        this.region = region;
+    }
+
     public Integer getId() {
         return id;
     }

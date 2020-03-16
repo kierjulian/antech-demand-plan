@@ -73,6 +73,24 @@ public class ZolPerDoorsPerAcct implements Serializable {
     public ZolPerDoorsPerAcct() {
     }
 
+    public ZolPerDoorsPerAcct(Integer accountId, String location, String id, String sap, String zol, String branch,
+                              String account, String kam, String tm, String share, String kamReferenceName,
+                              String location2, String naName) {
+        this.accountId = accountId;
+        this.location = location;
+        this.id = id;
+        this.sap = sap;
+        this.zol = zol;
+        this.branch = branch;
+        this.account = account;
+        this.kam = kam;
+        this.tm = tm;
+        this.share = share;
+        this.kamReferenceName = kamReferenceName;
+        this.location2 = location2;
+        this.naName = naName;
+    }
+
     public Integer getAccountId() {
         return accountId;
     }

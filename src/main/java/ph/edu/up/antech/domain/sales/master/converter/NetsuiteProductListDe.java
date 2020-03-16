@@ -35,6 +35,18 @@ public class NetsuiteProductListDe {
     @CsvBindByName(column = "Type")
     private String productType;
 
+    public NetsuiteProductListDe() {
+    }
+
+    public NetsuiteProductListDe(Integer id, String description, String stage,
+                                 String productCode, String productType) {
+        this.id = id;
+        this.description = description;
+        this.stage = stage;
+        this.productCode = productCode;
+        this.productType = productType;
+    }
+
     public Integer getId() {
         return id;
     }

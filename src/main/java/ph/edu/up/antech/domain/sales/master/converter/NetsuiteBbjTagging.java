@@ -40,6 +40,19 @@ public class NetsuiteBbjTagging implements Serializable {
     @Column(name = "new_tag_csr")
     private String newTaggingOfCsr;
 
+    public NetsuiteBbjTagging() {
+    }
+
+    public NetsuiteBbjTagging(Integer id, String customerName, String zone, String address,
+                              String newCsr, String newTaggingOfCsr) {
+        this.id = id;
+        this.customerName = customerName;
+        this.zone = zone;
+        this.address = address;
+        this.newCsr = newCsr;
+        this.newTaggingOfCsr = newTaggingOfCsr;
+    }
+
     public Integer getId() {
         return id;
     }

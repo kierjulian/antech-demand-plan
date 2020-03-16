@@ -24,12 +24,17 @@
                             <a class="close" data-dismiss="alert">&times;</a>
                         </div>
                         <div class="card">
+                            <div class="card-header">
+                                View ZOL Per Doors General Information
+                            </div>
+                        </div>
+                        <div class="card">
                             <div class="card-body bg-light">
                                 <form>
                                     <div class="btn-group">
                                         <a class="btn btn-primary" th:href="@{/master/zol-doors/config/gen-info}" role="button">
                                             <i class="fas fa-list">&nbsp; ZOL General Information List</i></a>
-                                    </div>&nbsp;
+                                    </div>
                                     <div class="btn-group">
                                         <a class="btn btn-success" th:href="@{/master/zol-doors/config/gen-info/edit/{id}(id=${zolPerDoorsGeneralInformation.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit</i></a>

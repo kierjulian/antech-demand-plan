@@ -31,6 +31,16 @@ public class NetsuiteOtherInformation {
     @CsvBindByName(column = "Other Description")
     private String otherDescription;
 
+    public NetsuiteOtherInformation() {
+    }
+
+    public NetsuiteOtherInformation(Integer id, String type, String description, String otherDescription) {
+        this.id = id;
+        this.type = type;
+        this.description = description;
+        this.otherDescription = otherDescription;
+    }
+
     public Integer getId() {
         return id;
     }

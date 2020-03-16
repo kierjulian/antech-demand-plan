@@ -87,6 +87,24 @@ public class ZolPerDoorsGeneralInformation implements Serializable {
     public ZolPerDoorsGeneralInformation() {
     }
 
+    public ZolPerDoorsGeneralInformation(Integer id, String zpcItemCode, String itemCode, String itemName,
+                                         String antechProductDescription, Integer pcsCs, Integer pcAmount,
+                                         BigDecimal perCase, String brand, String stage, BigDecimal oldPrice,
+                                         BigDecimal newPrice) {
+        this.id = id;
+        this.zpcItemCode = zpcItemCode;
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.antechProductDescription = antechProductDescription;
+        this.pcsCs = pcsCs;
+        this.pcAmount = pcAmount;
+        this.perCase = perCase;
+        this.brand = brand;
+        this.stage = stage;
+        this.oldPrice = oldPrice;
+        this.newPrice = newPrice;
+    }
+
     public Integer getId() {
         return id;
     }

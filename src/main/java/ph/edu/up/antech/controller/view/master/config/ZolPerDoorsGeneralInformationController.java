@@ -58,7 +58,7 @@ public class ZolPerDoorsGeneralInformationController {
             zolPerDoorsGeneralInformationService.updateZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating ZOL General Information.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -80,7 +80,7 @@ public class ZolPerDoorsGeneralInformationController {
             zolPerDoorsGeneralInformation = zolPerDoorsGeneralInformationService.saveZolPerDoorsGeneralInformation(zolPerDoorsGeneralInformation);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL General Information.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -94,7 +94,7 @@ public class ZolPerDoorsGeneralInformationController {
             zolPerDoorsGeneralInformationService.removeZolPerDoorsGeneralInformation(id);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL General Information was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting ZOL General Information.");
             LOGGER.error(e.getMessage(), e);
         }
 

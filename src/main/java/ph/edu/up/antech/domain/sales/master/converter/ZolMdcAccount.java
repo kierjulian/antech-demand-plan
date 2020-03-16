@@ -47,6 +47,20 @@ public class ZolMdcAccount {
     @CsvBindByName(column = "NA")
     private String na;
 
+    public ZolMdcAccount() {
+    }
+
+    public ZolMdcAccount(Integer id, String shpcn, String customerName, String branchName, String cadd1,
+                         String cadd2, String na) {
+        this.id = id;
+        this.shpcn = shpcn;
+        this.customerName = customerName;
+        this.branchName = branchName;
+        this.cadd1 = cadd1;
+        this.cadd2 = cadd2;
+        this.na = na;
+    }
+
     public Integer getId() {
         return id;
     }

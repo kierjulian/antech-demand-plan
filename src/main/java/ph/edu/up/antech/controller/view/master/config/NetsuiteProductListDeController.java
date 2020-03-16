@@ -57,7 +57,7 @@ public class NetsuiteProductListDeController {
             netsuiteProductListDeService.updateNetsuiteProductListDe(netsuiteProductListDe);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Netsuite Product List DE.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class NetsuiteProductListDeController {
             netsuiteProductListDe = netsuiteProductListDeService.saveNetsuiteProductListDe(netsuiteProductListDe);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Product List DE.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class NetsuiteProductListDeController {
             netsuiteProductListDeService.removeNetsuiteProductListDe(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List DE was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting Netsuite Product List DE.");
             LOGGER.error(e.getMessage(), e);
         }
 

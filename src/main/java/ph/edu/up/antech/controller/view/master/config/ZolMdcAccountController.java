@@ -54,7 +54,7 @@ public class ZolMdcAccountController {
             zolMdcAccountService.updateZolMdcAccount(zolMdcAccount);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Account was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating ZOL MDC Account.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -75,7 +75,7 @@ public class ZolMdcAccountController {
             zolMdcAccount = zolMdcAccountService.saveZolMdcAccount(zolMdcAccount);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Account was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL MDC Account.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -88,7 +88,7 @@ public class ZolMdcAccountController {
             zolMdcAccountService.removeZolMdcAccount(id);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL MDC Account was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting ZOL MDC Account.");
             LOGGER.error(e.getMessage(), e);
         }
 

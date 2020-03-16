@@ -57,7 +57,7 @@ public class ZolPerDoorsPerAcctController {
             zolPerDoorsPerAcctService.updateZolPerDoorsPerAcct(zolPerDoorsPerAcct);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating ZOL Per Doors Per Acct.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class ZolPerDoorsPerAcctController {
             zolPerDoorsPerAcct = zolPerDoorsPerAcctService.saveZolPerDoorsPerAcct(zolPerDoorsPerAcct);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL Per Doors Per Acct.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class ZolPerDoorsPerAcctController {
             zolPerDoorsPerAcctService.removeZolPerDoorsPerAcct(id);
             redirectAttributes.addFlashAttribute("successMessage", "ZOL Per Doors Per Acct was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting ZOL Per Doors Per Acct.");
             LOGGER.error(e.getMessage(), e);
         }
 

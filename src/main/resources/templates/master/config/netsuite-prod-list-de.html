@@ -131,7 +131,7 @@
                                                 </a>
                                             </li>
                                             <li class="page-item" th:if="${page.number + 3 < page.totalPages}">
-                                                <a class="page-link svg-icon" href="#">
+                                                <a class="page-link svg-icon" th:href="@{/master/netsuite/config/product-list/de?page={id}&filter={filter}(id=${page.totalPages - 1}, filter=${filter})}">
                                                     <span data-feather="more-horizontal" width="20" height="20" th:text="${page.totalPages}"></span>
                                                 </a>
                                             </li>

@@ -50,10 +50,10 @@
                                 Master Files Configuration
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/master/zol-doors/config/accounts}">Zol Per Doors</a>
-                                <a class="dropdown-item" th:href="@{/master/zol-mdc/config/accounts}">Zol Mdc Per Branch</a>
-                                <a class="dropdown-item" th:href="@{/master/zol-mt/config/accounts}">Zol Mt Per Branch</a>
-                                <a class="dropdown-item" th:href="@{/master/mdc-branch/config/accounts}">Mdc Per Branch Sales</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-doors/config/accounts}">ZOL Per Doors</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-mdc/config/accounts}">ZOL MDC Per Branch</a>
+                                <a class="dropdown-item" th:href="@{/master/zol-mt/config/accounts}">ZOL MT Per Branch</a>
+                                <a class="dropdown-item" th:href="@{/master/mdc-branch/config/accounts}">MDC Per Branch Sales</a>
                                 <a class="dropdown-item" th:href="@{/master/netsuite/config/bbj}">Netsuite</a>
                             </div>
                         </li>
@@ -95,13 +95,13 @@
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-doors}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors') ? 'active':''}">Zol Per Doors</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors') ? 'active':''}">ZOL Per Doors</a>
                 <a th:href="@{/master/zol-mdc}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc') ? 'active':''}">Zol Mdc Per Branch</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc') ? 'active':''}">ZOL MDC Per Branch</a>
                 <a th:href="@{/master/zol-mt}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt') ? 'active':''}">Zol Mt Per Branch</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt') ? 'active':''}">ZOL MT Per Branch</a>
                 <a th:href="@{/master/mdc-branch}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch') ? 'active':''}">Mdc Per Branch Sales</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch') ? 'active':''}">MDC Per Branch Sales</a>
                 <a th:href="@{/master/netsuite}" class="list-group-item list-group-item-action"
                    th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/netsuite') ? 'active':''}">Netsuite</a>
                 <a th:href="@{/master/dispensing-distributor}" class="list-group-item list-group-item-action"
@@ -135,9 +135,9 @@
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-doors/config/accounts}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/accounts') ? 'active':''}">Zol Per Doors Per Acct</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/accounts') ? 'active':''}">ZOL Per Doors Per Acct</a>
                 <a th:href="@{/master/zol-doors/config/gen-info}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/gen-info') ? 'active':''}">Zol Per Doors General Info</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-doors/config/gen-info') ? 'active':''}">ZOL Per Doors General Info</a>
             </div>
         </div>
 
@@ -145,7 +145,7 @@
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-mdc/config/accounts}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc/config/accounts') ? 'active':''}">Zol Mdc Account</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mdc/config/accounts') ? 'active':''}">ZOL MDC Account</a>
             </div>
         </div>
 
@@ -153,7 +153,7 @@
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/zol-mt/config/accounts}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt/config/accounts') ? 'active':''}">Zol Mt Account</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/zol-mt/config/accounts') ? 'active':''}">ZOL MT Account</a>
             </div>
         </div>
 
@@ -161,17 +161,17 @@
             <div th:replace="fragments/template :: icon-header"></div>
             <div class="list-group list-group-flush">
                 <a th:href="@{/master/mdc-branch/config/accounts}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/accounts') ? 'active':''}">Mdc Per Branch Sales Account</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/accounts') ? 'active':''}">MDC Per Branch Sales Account</a>
                 <a th:href="@{/master/mdc-branch/config/info}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/info') ? 'active':''}">Mdc Per Branch Sales Information</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/info') ? 'active':''}">MDC Per Branch Sales Information</a>
                 <a th:href="@{/master/mdc-branch/config/brn}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/brn') ? 'active':''}">Mdc Per Branch Sales BRN</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/brn') ? 'active':''}">MDC Per Branch Sales BRN</a>
                 <a th:href="@{/master/mdc-branch/config/code}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/code') ? 'active':''}">Mdc Per Branch Sales Code</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/code') ? 'active':''}">MDC Per Branch Sales Code</a>
                 <a th:href="@{/master/mdc-branch/config/coverage}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/coverage') ? 'active':''}">Mdc Per Branch Sales Coverage</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/coverage') ? 'active':''}">MDC Per Branch Sales Coverage</a>
                 <a th:href="@{/master/mdc-branch/config/na}" class="list-group-item list-group-item-action"
-                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/na') ? 'active':''}">Mdc Per Branch Sales NA</a>
+                   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master/mdc-branch/config/na') ? 'active':''}">MDC Per Branch Sales NA</a>
             </div>
         </div>
 

@@ -63,6 +63,24 @@ public class MdcPerBranchSalesInformation {
     @CsvBindByName(column = "Item Type")
     private String itemType;
 
+    public MdcPerBranchSalesInformation() {
+    }
+
+    public MdcPerBranchSalesInformation(Integer id, String itemNumber, String itemDescription,
+                                        String itemShortDescription, Integer quantity, BigDecimal price,
+                                        BigDecimal total, String itemCode, String stage, String itemType) {
+        this.id = id;
+        this.itemNumber = itemNumber;
+        this.itemDescription = itemDescription;
+        this.itemShortDescription = itemShortDescription;
+        this.quantity = quantity;
+        this.price = price;
+        this.total = total;
+        this.itemCode = itemCode;
+        this.stage = stage;
+        this.itemType = itemType;
+    }
+
     public Integer getId() {
         return id;
     }

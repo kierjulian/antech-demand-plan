@@ -57,7 +57,7 @@ public class NetsuiteOtherInformationController {
             netsuiteOtherInformationService.updateNetsuiteOtherInformation(netsuiteOtherInformation);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Other Information was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Netsuite Other Information.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class NetsuiteOtherInformationController {
             netsuiteOtherInformation = netsuiteOtherInformationService.saveNetsuiteOtherInformation(netsuiteOtherInformation);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Other Information was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Other Information.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class NetsuiteOtherInformationController {
             netsuiteOtherInformationService.removeNetsuiteOtherInformation(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Other Information was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred deleting Netsuite Other Information.");
             LOGGER.error(e.getMessage(), e);
         }
 

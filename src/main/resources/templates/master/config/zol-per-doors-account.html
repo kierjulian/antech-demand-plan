@@ -45,10 +45,10 @@
                                 <table id="zolPerDoorsPerAcctTable" class="table table-striped table-bordered table-hover table-sm">
                                     <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">ZOL</th>
                                         <th scope="col">Location</th>
                                         <th scope="col">ID</th>
                                         <th scope="col">SAP</th>
-                                        <th scope="col">ZOL</th>
                                         <th scope="col">Branch</th>
                                         <th scope="col">Account</th>
                                         <th scope="col">KAM</th>
@@ -63,12 +63,12 @@
                                     <tbody>
                                     <tr th:each="zolPerDoorsPerAcct, row : ${page.content}">
                                         <td class="align-middle">
-                                            <a th:text="${zolPerDoorsPerAcct.location}"
+                                            <a th:text="${zolPerDoorsPerAcct.zol}"
                                                th:href="@{/master/zol-doors/config/accounts/view/{id}(id=${zolPerDoorsPerAcct.accountId})}"></a>
                                         </td>
+                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.location}"></td>
                                         <td class="align-middle" th:text="${zolPerDoorsPerAcct.id}"></td>
                                         <td class="align-middle" th:text="${zolPerDoorsPerAcct.sap}"></td>
-                                        <td class="align-middle" th:text="${zolPerDoorsPerAcct.zol}"></td>
                                         <td class="align-middle" th:text="${zolPerDoorsPerAcct.branch}"></td>
                                         <td class="align-middle" th:text="${zolPerDoorsPerAcct.account}"></td>
                                         <td class="align-middle" th:text="${zolPerDoorsPerAcct.kam}"></td>

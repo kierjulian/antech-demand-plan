@@ -57,7 +57,7 @@ public class MdcPerBranchSalesNaConfigurationController {
             mdcPerBranchSalesNaConfigurationService.updateMdcPerBranchSalesNaConfiguration(mdcPerBranchSalesNaConfiguration);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales NA Configuration was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating MDC Per Branch Sales NA Configuration.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class MdcPerBranchSalesNaConfigurationController {
             mdcPerBranchSalesNaConfiguration = mdcPerBranchSalesNaConfigurationService.saveMdcPerBranchSalesNaConfiguration(mdcPerBranchSalesNaConfiguration);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales NA Configuration was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales NA Configuration.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class MdcPerBranchSalesNaConfigurationController {
             mdcPerBranchSalesNaConfigurationService.removeMdcPerBranchSalesNaConfiguration(id);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales NA Configuration was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting MDC Per Branch Sales NA Configuration.");
             LOGGER.error(e.getMessage(), e);
         }
 

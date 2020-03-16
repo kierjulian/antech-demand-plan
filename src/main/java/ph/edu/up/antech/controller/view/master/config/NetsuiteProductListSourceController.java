@@ -57,7 +57,7 @@ public class NetsuiteProductListSourceController {
             netsuiteProductListSourceService.updateNetsuiteProductListSource(netsuiteProductListSource);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List Source was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Netsuite Product List Source.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -79,7 +79,7 @@ public class NetsuiteProductListSourceController {
             netsuiteProductListSource = netsuiteProductListSourceService.saveNetsuiteProductListSource(netsuiteProductListSource);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List Source was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Product List Source.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class NetsuiteProductListSourceController {
             netsuiteProductListSourceService.removeNetsuiteProductListSource(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Product List Source was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting Netsuite Product List Source.");
             LOGGER.error(e.getMessage(), e);
         }
 

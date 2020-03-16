@@ -24,12 +24,17 @@
                             <a class="close" data-dismiss="alert">&times;</a>
                         </div>
                         <div class="card">
+                            <div class="card-header">
+                                Edit Netsuite Product List DE
+                            </div>
+                        </div>
+                        <div class="card">
                             <div class="card-body bg-light">
                                 <form th:action="@{/master/netsuite/config/product-list/de/update}" th:object="${netsuiteProductListDe}" method="post">
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-save">&nbsp; Save</i></button>
-                                    </div>&nbsp;
+                                    </div>
                                     <div class="btn-group">
                                         <a class="btn btn-warning" th:href="@{/master/netsuite/config/product-list/de/view/{id}(id=${netsuiteProductListDe.id})}">
                                             <i class="fas fa-ban">&nbsp; Cancel</i></a>
@@ -39,7 +44,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Description</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" th:field="*{description}">
+                                            <input type="text" class="form-control" th:field="*{description}" required>
                                         </div>
                                         <label class="col-sm-2 col-form-label">Stage</label>
                                         <div class="col-sm-4">

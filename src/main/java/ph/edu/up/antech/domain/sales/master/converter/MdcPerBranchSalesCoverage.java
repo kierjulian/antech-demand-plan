@@ -43,6 +43,20 @@ public class MdcPerBranchSalesCoverage {
     @CsvBindByName(column = "REGION")
     private String region;
 
+    public MdcPerBranchSalesCoverage() {
+    }
+
+    public MdcPerBranchSalesCoverage(Integer id, String branchCode, String branchName, String newCoverage,
+                                     String oldCoverage, String coordinator, String region) {
+        this.id = id;
+        this.branchCode = branchCode;
+        this.branchName = branchName;
+        this.newCoverage = newCoverage;
+        this.oldCoverage = oldCoverage;
+        this.coordinator = coordinator;
+        this.region = region;
+    }
+
     public Integer getId() {
         return id;
     }

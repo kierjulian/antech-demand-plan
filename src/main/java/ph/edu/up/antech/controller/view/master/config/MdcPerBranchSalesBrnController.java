@@ -57,11 +57,11 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrnService.updateMdcPerBranchSalesBrn(mdcPerBranchSalesBrn);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully updated.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating MDC Per Branch Sales BRN.");
             LOGGER.error(e.getMessage(), e);
         }
 
-        return "redirect:/master/mdc-branch/config/brn/view/" + "An error occurred: " + mdcPerBranchSalesBrn.getId();
+        return "redirect:/master/mdc-branch/config/brn/view/" + mdcPerBranchSalesBrn.getId();
     }
 
     @GetMapping("/add")
@@ -79,7 +79,7 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrn = mdcPerBranchSalesBrnService.saveMdcPerBranchSalesBrn(mdcPerBranchSalesBrn);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales BRN.");
             LOGGER.error(e.getMessage(), e);
         }
 
@@ -93,7 +93,7 @@ public class MdcPerBranchSalesBrnController {
             mdcPerBranchSalesBrnService.removeMdcPerBranchSalesBrn(id);
             redirectAttributes.addFlashAttribute("successMessage", "MDC Per Branch Sales BRN was successfully deleted.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting MDC Per Branch Sales BRN.");
             LOGGER.error(e.getMessage(), e);
         }
 

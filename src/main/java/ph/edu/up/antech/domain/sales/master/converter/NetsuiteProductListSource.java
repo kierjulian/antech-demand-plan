@@ -43,6 +43,20 @@ public class NetsuiteProductListSource {
     @CsvBindByName(column = "Prod")
     private String product;
 
+    public NetsuiteProductListSource() {
+    }
+
+    public NetsuiteProductListSource(Integer id, String source, String origin, String destination,
+                                     String description, Integer inPcs, String product) {
+        this.id = id;
+        this.source = source;
+        this.origin = origin;
+        this.destination = destination;
+        this.description = description;
+        this.inPcs = inPcs;
+        this.product = product;
+    }
+
     public Integer getId() {
         return id;
     }

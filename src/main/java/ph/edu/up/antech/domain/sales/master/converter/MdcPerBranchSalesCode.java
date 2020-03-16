@@ -27,6 +27,15 @@ public class MdcPerBranchSalesCode {
     @CsvBindByName(column = "Description")
     private String description;
 
+    public MdcPerBranchSalesCode() {
+    }
+
+    public MdcPerBranchSalesCode(Integer id, String code, String description) {
+        this.id = id;
+        this.code = code;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }
