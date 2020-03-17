@@ -7,7 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -47,19 +48,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         List<UserDetails> userDetailsList = new ArrayList<>();
         userDetailsList.add(
-                User.withDefaultPasswordEncoder()
-                        .username("employee")
-                        .password(("antech-employee"))
+                User.withUsername("employee")
+                        .password(passwordEncoder().encode("antech-employee"))
                         .roles("EMPLOYEE", "USER")
                         .build());
         userDetailsList.add(
-                User.withDefaultPasswordEncoder()
-                        .username("admin")
-                        .password(("antech-admin8585!"))
+                User.withUsername("admin")
+                        .password(passwordEncoder().encode("antech-admin8585!"))
                         .roles("ADMIN", "USER")
                         .build());
 
         return new InMemoryUserDetailsManager(userDetailsList);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 
