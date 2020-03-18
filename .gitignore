@@ -31,3 +31,6 @@ target/
 
 # Mac Files
 .DS_Store
+
+# Loggger File
+log.out
