@@ -2,6 +2,7 @@ package ph.edu.up.antech.controller.view.demand;
 
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
+import java.math.RoundingMode;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
@@ -59,14 +60,14 @@ public class NetsuiteCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
-                .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().intValue())
+                .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateSalesAmountByYearMonth(YearMonth yearMonth) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
-                .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().intValue())
+                .mapToInt(netsuiteList -> netsuiteList.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 

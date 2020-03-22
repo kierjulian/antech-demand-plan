@@ -455,26 +455,27 @@ public class ZolMdcPerBranch {
             finalAmount = salesValue
                     .subtract(lessThan00375)
                     .subtract(lessThan0853)
-                    .multiply(new BigDecimal("0.001"));
+                    .multiply(new BigDecimal("0.001"))
+                    .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void generalAmountTimes1000() {
         if (finalAmount != null) {
-            amountTimes1000 = finalAmount.multiply(new BigDecimal("1000"));
+            amountTimes1000 = finalAmount.multiply(new BigDecimal("1000")).setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void generateA() {
         if (finalAmount != null) {
-            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_UP);
+            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_EVEN);
             a = roundOffNumber.intValue();
         }
     }
 
     private void generateAmountConverted() {
         if (amount != null) {
-            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(amount);
+            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(amount).setScale(0, RoundingMode.HALF_EVEN);
             this.amountConverted = String.valueOf(amountConvertedInBigDecimal.intValue());
         }
     }

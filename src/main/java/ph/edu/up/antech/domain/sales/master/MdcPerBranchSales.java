@@ -883,22 +883,22 @@ public class MdcPerBranchSales {
     private void computeNetValue() {
         if (vlamt != null) {
             netValue = BigDecimal.valueOf(refcd1)
-                    .multiply(vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_UP));
+                    .multiply(vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_EVEN));
         }
     }
 
     private void computeNetValue2() {
         if (netValue != null) {
             netValue2 = netValue.multiply(BigDecimal.valueOf(0.91127))
-                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP);
+                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void computeGrossValue() {
         if (vlamt != null) {
-            grossValue = vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_UP)
+            grossValue = vlamt.divide(BigDecimal.valueOf(1.12), 2, RoundingMode.HALF_EVEN)
                     .multiply(BigDecimal.valueOf(0.91127))
-                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP);
+                    .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_EVEN);
         }
     }
 

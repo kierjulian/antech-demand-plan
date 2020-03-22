@@ -2,6 +2,7 @@ package ph.edu.up.antech.domain.sales.output;
 
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +26,8 @@ public class NetsuiteCombination {
             }
 
             ProductSalesAmountAndUnit productSalesAmountAndUnit = new ProductSalesAmountAndUnit(
-                    netsuite.getBrand(), netsuite.getRevenueConverted().intValue(), netsuite.getQuantity());
+                    netsuite.getBrand(), netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue(),
+                    netsuite.getQuantity());
             if (productSalesAmountAndUnitList.contains(productSalesAmountAndUnit)) {
                 Integer indexOfExistingProductSalesAmountAndUnit =
                         productSalesAmountAndUnitList.indexOf(productSalesAmountAndUnit);

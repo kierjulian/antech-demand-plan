@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -566,8 +567,8 @@ public class CustomerSalesByItem {
     private void convertQuantitySoldInStringToInteger() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(quantitySoldInString)) {
             quantitySoldInString = quantitySoldInString.replaceAll(",", "").trim();
-            Double quantitySoldInDouble = Double.parseDouble(quantitySoldInString);
-            quantitySold = quantitySoldInDouble.intValue();
+            BigDecimal quantitySoldInBigDecimal = new BigDecimal(quantitySoldInString).setScale(0, RoundingMode.HALF_EVEN);
+            quantitySold = quantitySoldInBigDecimal.intValue();
         }
     }
 
@@ -575,6 +576,7 @@ public class CustomerSalesByItem {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesPriceInString)) {
             salesPrice = new BigDecimal(
                     salesPriceInString.replaceAll("PHP", "").replaceAll(",", ""));
+            salesPrice = salesPrice.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -582,6 +584,7 @@ public class CustomerSalesByItem {
         if (!StringUtils.isTrimmedValueNullOrEmpty(netAmountInString)) {
             netAmount = new BigDecimal(
                     netAmountInString.replaceAll("PHP", "").replaceAll(",", ""));
+            netAmount = netAmount.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 

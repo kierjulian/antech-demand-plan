@@ -7,6 +7,7 @@ import ph.edu.up.antech.util.StringUtils;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @Entity
@@ -388,6 +389,7 @@ public class DispensingDistributor implements Serializable {
             this.price = new BigDecimal(priceInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
+            this.price = this.price.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -397,6 +399,7 @@ public class DispensingDistributor implements Serializable {
             this.totalAmount = new BigDecimal(totalAmountInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
+            this.totalAmount = totalAmount.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -406,6 +409,7 @@ public class DispensingDistributor implements Serializable {
             this.finalAmount = new BigDecimal(finalAmountInString.replaceAll(",", "")
                     .replaceAll("\\(", "")
                     .replaceAll("\\)", ""));
+            this.finalAmount = this.finalAmount.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 

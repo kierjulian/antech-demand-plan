@@ -2,6 +2,7 @@ package ph.edu.up.antech.controller.view.output;
 
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,34 +24,34 @@ public class NetsuiteSummaryCalculator {
     public Integer calculateSalesAmountByProductCode(String product) {
         return netsuiteList.stream()
                 .filter(netsuite -> product.equals(netsuite.getBrand()))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateMilkSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateJarSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateWaterSalesAmount() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateSalesAmount() {
         return netsuiteList.stream()
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -93,7 +94,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -110,7 +111,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -118,7 +119,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -126,14 +127,14 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
     public Integer calculateSalesAmountByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 

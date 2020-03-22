@@ -2,6 +2,7 @@ package ph.edu.up.antech.controller.view.output;
 
 import ph.edu.up.antech.domain.sales.master.Netsuite;
 
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().equals(brand))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -32,7 +33,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("S") || netsuite.getBrand().startsWith("CS"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -40,7 +41,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
@@ -48,7 +49,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getRevenueConverted().intValue())
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 

@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class ZolDailySalesPerBranch {
 
@@ -816,6 +817,7 @@ public class ZolDailySalesPerBranch {
             String netValueInString2 = org.apache.commons.lang3.StringUtils.stripEnd(netValueInString1, "-");
             netValue = new BigDecimal(
                     netValueInString2.replaceAll(",", "").trim());
+            netValue = netValue.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -824,6 +826,7 @@ public class ZolDailySalesPerBranch {
                 && !finalNetVatInString.contains("#")) {
             finalNetVatInString = org.apache.commons.lang3.StringUtils.stripEnd(finalNetVatInString, "-");
             finalNetVat = new BigDecimal(finalNetVatInString.replaceAll(",", ""));
+            finalNetVat = finalNetVat.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -831,6 +834,7 @@ public class ZolDailySalesPerBranch {
         if (!StringUtils.isTrimmedValueNullOrEmpty(findscInString)) {
             findscInString = org.apache.commons.lang3.StringUtils.stripEnd(findscInString, "-");
             findsc = new BigDecimal(findscInString.replaceAll(",", ""));
+            findsc = findsc.setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 

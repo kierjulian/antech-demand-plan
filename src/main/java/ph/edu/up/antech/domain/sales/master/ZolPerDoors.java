@@ -467,26 +467,30 @@ public class ZolPerDoors implements Serializable {
             finalAmount = salesValue
                     .subtract(less00375Percent)
                     .subtract(less0853Percent)
-                    .multiply(new BigDecimal("0.001"));
+                    .multiply(new BigDecimal("0.001"))
+                    .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void generalAmountTimes1000() {
         if (finalAmount != null) {
-            amountTimesOneThousand = finalAmount.multiply(new BigDecimal("1000"));
+            amountTimesOneThousand = finalAmount.multiply(new BigDecimal("1000"))
+                    .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void generateA() {
         if (finalAmount != null) {
-            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_UP);
+            BigDecimal roundOffNumber = finalAmount.setScale(0, RoundingMode.HALF_EVEN);
             a = roundOffNumber.intValue();
         }
     }
 
     private void generateAmountConverted() {
         if (amount != null) {
-            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001").multiply(BigDecimal.valueOf(amount));
+            BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001")
+                    .multiply(BigDecimal.valueOf(amount))
+                    .setScale(0, RoundingMode.HALF_EVEN);
             this.amountConverted = amountConvertedInBigDecimal.intValue();
         }
     }
