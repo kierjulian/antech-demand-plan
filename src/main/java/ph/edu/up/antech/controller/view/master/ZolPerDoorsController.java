@@ -32,6 +32,7 @@ public class ZolPerDoorsController {
         model.addAttribute("zolPerDoorsList", zolPerDoorsList);
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
+        model.addAttribute("zolPerDoorsCalculator", new ZolPerDoorsCalculator(zolPerDoorsList));
         return "master/zol-per-doors";
     }
 
