@@ -32,6 +32,7 @@ public class NetsuiteController {
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
         model.addAttribute("netsuiteList", netsuiteList);
+        model.addAttribute("netsuiteCalculator", new NetsuiteCalculator(netsuiteList));
         return "master/netsuite";
     }
 
