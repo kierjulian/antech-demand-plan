@@ -146,7 +146,7 @@
                                                 </div>
                                             </div>
                                         </tr>
-                                        <tr>
+                                        <tr th:if="${!zolPerDoorsList.isEmpty()}">
                                             <td class="align-middle">Total</td>
                                             <td class="align-middle"></td>
                                             <td class="align-middle"></td>
@@ -172,11 +172,11 @@
                                             <td class="align-middle"></td>
                                             <td class="align-middle"></td>
                                             <td class="align-middle"
-                                                th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateLessThanFirstDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                                th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateFirstDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td class="align-middle"
                                                 th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateV1(), 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td class="align-middle"
-                                                th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateLessThanSecondDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                                th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateSecondDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td class="align-middle"
                                                 th:text="${#numbers.formatDecimal(zolPerDoorsCalculator.calculateV2(), 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td class="align-middle"

@@ -49,7 +49,7 @@ public class ZolPerDoorsCalculator {
                 .sum();
     }
 
-    public BigDecimal calculateLessThanFirstDiscount() {
+    public BigDecimal calculateFirstDiscount() {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getLess00375Percent()))
                 .map(ZolPerDoors::getLess00375Percent)
@@ -63,7 +63,7 @@ public class ZolPerDoorsCalculator {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public BigDecimal calculateLessThanSecondDiscount() {
+    public BigDecimal calculateSecondDiscount() {
         return zolPerDoorsList.stream()
                 .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getLess0853Percent()))
                 .map(ZolPerDoors::getLess0853Percent)

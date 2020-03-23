@@ -89,26 +89,38 @@
                                             <td class="align-middle" th:text="${zolMdcPerBranch.customerName}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.itemCode}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.itemName}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.salesUnit}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.salesValue}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.salesUnit, 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.salesValue, 0, 'COMMA', 2, 'POINT')}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.antechProductDescription}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.antechPrice}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.amount}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.antechPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.amount, 0, 'COMMA', 0, 'POINT')}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.account}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.kam}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.kamRefName}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.stage}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.amountConverted}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.amountConverted, 0, 'COMMA', 0, 'POINT')}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.type}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.loc}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.cm}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.lessThan00375}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.v1}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.lessThan0853}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.v2}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.finalAmount}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.amountTimes1000}"></td>
-                                            <td class="align-middle" th:text="${zolMdcPerBranch.a}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.less00375Percent, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.v1, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.less0853Percent, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.v2, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.finalAmount, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.amountTimesOneThousand, 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranch.a, 0, 'COMMA', 0, 'POINT')}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.dsm}"></td>
                                             <td class="align-middle" th:text="${zolMdcPerBranch.date}"></td>
                                             <td class="align-middle">
@@ -135,6 +147,49 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </tr>
+                                        <tr th:if="${!zolMdcPerBranchList.isEmpty()}">
+                                            <td class="align-middle">Total</td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateSalesValue(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateAntechPrice(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateAmountConverted(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateFirstDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateV1(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateSecondDiscount(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateV2(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateFinalAmount(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateAmountTimesOneThousand(), 0, 'COMMA', 2, 'POINT')}"></td>
+                                            <td class="align-middle"
+                                                th:text="${#numbers.formatDecimal(zolMdcPerBranchCalculator.calculateA(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
+                                            <td class="align-middle"></td>
                                         </tr>
                                     </tbody>
                                 </table>

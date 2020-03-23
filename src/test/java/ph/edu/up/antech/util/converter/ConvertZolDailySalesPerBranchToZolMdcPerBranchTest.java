@@ -188,12 +188,12 @@ public class ConvertZolDailySalesPerBranchToZolMdcPerBranchTest {
                 System.out.println(zolMdcPerBranch.getStage());
                 System.out.println(zolMdcPerBranch.getAmountConverted());
                 System.out.println(zolMdcPerBranch.getType());
-                System.out.println(zolMdcPerBranch.getLessThan00375());
+                System.out.println(zolMdcPerBranch.getLess00375Percent());
                 System.out.println(zolMdcPerBranch.getV1());
-                System.out.println(zolMdcPerBranch.getLessThan0853());
+                System.out.println(zolMdcPerBranch.getLess0853Percent());
                 System.out.println(zolMdcPerBranch.getV2());
                 System.out.println(zolMdcPerBranch.getFinalAmount());
-                System.out.println(zolMdcPerBranch.getAmountTimes1000());
+                System.out.println(zolMdcPerBranch.getAmountTimesOneThousand());
                 System.out.println(zolMdcPerBranch.getA());
                 System.out.println(zolMdcPerBranch.getDsm());
                 System.out.println();

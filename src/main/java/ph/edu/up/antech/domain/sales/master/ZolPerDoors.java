@@ -436,7 +436,8 @@ public class ZolPerDoors implements Serializable {
 
     private void generateLessThan00375() {
         if (salesValue != null) {
-            less00375Percent = salesValue.multiply(new BigDecimal("0.00375"));
+            less00375Percent = salesValue.multiply(new BigDecimal("0.00375"))
+                    .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
@@ -449,9 +450,11 @@ public class ZolPerDoors implements Serializable {
     private void generateLessThan0853() {
         if (v1 != null) {
             if (true) {
-                less0853Percent = v1.multiply(new BigDecimal("0.0853"));
+                less0853Percent = v1.multiply(new BigDecimal("0.0853"))
+                        .setScale(2, RoundingMode.HALF_EVEN);
             } else {
-                less0853Percent = v1.multiply(new BigDecimal("0.05"));
+                less0853Percent = v1.multiply(new BigDecimal("0.05"))
+                        .setScale(2, RoundingMode.HALF_EVEN);
             }
         }
     }
