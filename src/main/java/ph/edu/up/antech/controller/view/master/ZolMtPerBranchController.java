@@ -32,6 +32,7 @@ public class ZolMtPerBranchController {
         model.addAttribute("zolMtPerBranchList", zolMtPerBranchList);
         model.addAttribute("searchedStartDate", start);
         model.addAttribute("searchedEndDate", end);
+        model.addAttribute("zolMtPerBranchCalculator", new ZolMtPerBranchCalculator(zolMtPerBranchList));
         return "master/zol-mt";
     }
 

@@ -59,7 +59,7 @@ public class ZolMtPerBranch {
     private BigDecimal antechPrice;
 
     @Column(name = "amount")
-    private BigDecimal amount;
+    private Integer amount;
 
     @Column(name = "account")
     private String account;
@@ -74,7 +74,7 @@ public class ZolMtPerBranch {
     private String stage;
 
     @Column(name = "amount_converted")
-    private String amountConverted;
+    private Integer amountConverted;
 
     @Column(name = "type")
     private String type;
@@ -86,13 +86,13 @@ public class ZolMtPerBranch {
     private String cm;
 
     @Column(name = "less_than_00375")
-    private BigDecimal lessThan00375;
+    private BigDecimal less00375Percent;
 
     @Column(name = "v1")
     private BigDecimal v1;
 
     @Column(name = "less_than_0853")
-    private BigDecimal lessThan0853;
+    private BigDecimal less0853Percent;
 
     @Column(name = "v2")
     private BigDecimal v2;
@@ -101,7 +101,7 @@ public class ZolMtPerBranch {
     private BigDecimal finalAmount;
 
     @Column(name = "amount_times_1000")
-    private BigDecimal amountTimes1000;
+    private BigDecimal amountTimesOneThousand;
 
     @Column(name = "a")
     private Integer a;
@@ -118,10 +118,10 @@ public class ZolMtPerBranch {
 
     public ZolMtPerBranch(Integer id, LocalDate date, String customerCode, String customerName, String itemCode,
                           String itemName, Integer salesUnit, BigDecimal salesValue, String antechProductDescription,
-                          BigDecimal antechPrice, BigDecimal amount, String account, String kam, String kamRefName,
-                          String stage, String amountConverted, String type, String loc, String cm,
-                          BigDecimal lessThan00375, BigDecimal v1, BigDecimal lessThan0853, BigDecimal v2,
-                          BigDecimal finalAmount, BigDecimal amountTimes1000, Integer a, LocalDate cmInd, String dsm) {
+                          BigDecimal antechPrice, Integer amount, String account, String kam, String kamRefName,
+                          String stage, Integer amountConverted, String type, String loc, String cm,
+                          BigDecimal less00375Percent, BigDecimal v1, BigDecimal less0853Percent, BigDecimal v2,
+                          BigDecimal finalAmount, BigDecimal amountTimesOneThousand, Integer a, LocalDate cmInd, String dsm) {
         this.id = id;
         this.date = date;
         this.customerCode = customerCode;
@@ -141,12 +141,12 @@ public class ZolMtPerBranch {
         this.type = type;
         this.loc = loc;
         this.cm = cm;
-        this.lessThan00375 = lessThan00375;
+        this.less00375Percent = less00375Percent;
         this.v1 = v1;
-        this.lessThan0853 = lessThan0853;
+        this.less0853Percent = less0853Percent;
         this.v2 = v2;
         this.finalAmount = finalAmount;
-        this.amountTimes1000 = amountTimes1000;
+        this.amountTimesOneThousand = amountTimesOneThousand;
         this.a = a;
         this.cmInd = cmInd;
         this.dsm = dsm;
@@ -171,7 +171,7 @@ public class ZolMtPerBranch {
         generateA();
 
         if (a != null) {
-            this.amount = BigDecimal.valueOf(a);
+            this.amount = a;
         }
 
         generateAmountConverted();
@@ -259,11 +259,11 @@ public class ZolMtPerBranch {
         this.antechPrice = antechPrice;
     }
 
-    public BigDecimal getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -299,11 +299,11 @@ public class ZolMtPerBranch {
         this.stage = stage;
     }
 
-    public String getAmountConverted() {
+    public Integer getAmountConverted() {
         return amountConverted;
     }
 
-    public void setAmountConverted(String amountConverted) {
+    public void setAmountConverted(Integer amountConverted) {
         this.amountConverted = amountConverted;
     }
 
@@ -331,12 +331,12 @@ public class ZolMtPerBranch {
         this.cm = cm;
     }
 
-    public BigDecimal getLessThan00375() {
-        return lessThan00375;
+    public BigDecimal getLess00375Percent() {
+        return less00375Percent;
     }
 
-    public void setLessThan00375(BigDecimal lessThan00375) {
-        this.lessThan00375 = lessThan00375;
+    public void setLess00375Percent(BigDecimal less00375Percent) {
+        this.less00375Percent = less00375Percent;
     }
 
     public BigDecimal getV1() {
@@ -347,12 +347,12 @@ public class ZolMtPerBranch {
         this.v1 = v1;
     }
 
-    public BigDecimal getLessThan0853() {
-        return lessThan0853;
+    public BigDecimal getLess0853Percent() {
+        return less0853Percent;
     }
 
-    public void setLessThan0853(BigDecimal lessThan0853) {
-        this.lessThan0853 = lessThan0853;
+    public void setLess0853Percent(BigDecimal less0853Percent) {
+        this.less0853Percent = less0853Percent;
     }
 
     public BigDecimal getV2() {
@@ -371,12 +371,12 @@ public class ZolMtPerBranch {
         this.finalAmount = finalAmount;
     }
 
-    public BigDecimal getAmountTimes1000() {
-        return amountTimes1000;
+    public BigDecimal getAmountTimesOneThousand() {
+        return amountTimesOneThousand;
     }
 
-    public void setAmountTimes1000(BigDecimal amountTimes1000) {
-        this.amountTimes1000 = amountTimes1000;
+    public void setAmountTimesOneThousand(BigDecimal amountTimesOneThousand) {
+        this.amountTimesOneThousand = amountTimesOneThousand;
     }
 
     public Integer getA() {
@@ -405,37 +405,40 @@ public class ZolMtPerBranch {
 
     private void generateLessThan00375() {
         if (salesValue != null) {
-            lessThan00375 = salesValue.multiply(new BigDecimal("0.00375"));
+            less00375Percent = salesValue.multiply(new BigDecimal("0.00375"))
+                    .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
 
     private void generateV1() {
-        if (salesValue != null && lessThan00375 != null) {
-            v1 = salesValue.subtract(lessThan00375);
+        if (salesValue != null && less00375Percent != null) {
+            v1 = salesValue.subtract(less00375Percent);
         }
     }
 
     private void generateLessThan0853() {
         if (v1 != null) {
             if (true) {
-                lessThan0853 = v1.multiply(new BigDecimal("0.0853"));
+                less0853Percent = v1.multiply(new BigDecimal("0.0853"))
+                        .setScale(2, RoundingMode.HALF_EVEN);
             } else {
-                lessThan0853 = v1.multiply(new BigDecimal("0.05"));
+                less0853Percent = v1.multiply(new BigDecimal("0.05"))
+                        .setScale(2, RoundingMode.HALF_EVEN);
             }
         }
     }
 
     private void generateV2() {
-        if (v1 != null && lessThan0853 != null) {
-            v2 = v1.subtract(lessThan0853);
+        if (v1 != null && less0853Percent != null) {
+            v2 = v1.subtract(less0853Percent);
         }
     }
 
     private void generateFinalAmount() {
-        if (salesValue != null && lessThan00375 != null && lessThan0853 != null) {
+        if (salesValue != null && less00375Percent != null && less0853Percent != null) {
             finalAmount = salesValue
-                    .subtract(lessThan00375)
-                    .subtract(lessThan0853)
+                    .subtract(less00375Percent)
+                    .subtract(less0853Percent)
                     .multiply(new BigDecimal("0.001"))
                     .setScale(2, RoundingMode.HALF_EVEN);
         }
@@ -443,7 +446,7 @@ public class ZolMtPerBranch {
 
     private void generalAmountTimes1000() {
         if (finalAmount != null) {
-            amountTimes1000 = finalAmount.multiply(new BigDecimal("1000"))
+            amountTimesOneThousand = finalAmount.multiply(new BigDecimal("1000"))
                     .setScale(2, RoundingMode.HALF_EVEN);
         }
     }
@@ -458,14 +461,14 @@ public class ZolMtPerBranch {
     private void generateAmountConverted() {
         if (amount != null) {
             BigDecimal amountConvertedInBigDecimal = new BigDecimal("0.001")
-                    .multiply(amount)
+                    .multiply(BigDecimal.valueOf(amount))
                     .setScale(0, RoundingMode.HALF_EVEN);
-            this.amountConverted = String.valueOf(amountConvertedInBigDecimal.intValue());
+            this.amountConverted = amountConvertedInBigDecimal.intValue();
         }
     }
 
     private void generateType() {
-        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0) {
+        if (amount != null && amount < 0) {
             type = "CM";
         } else {
             type = "FALSE";
