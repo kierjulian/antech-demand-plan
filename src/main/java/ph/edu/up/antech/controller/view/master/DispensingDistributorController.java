@@ -35,6 +35,7 @@ public class DispensingDistributorController {
         model.addAttribute("searchedStartDate", localStartDate);
         model.addAttribute("searchedEndDate", localEndDate);
         model.addAttribute("dispensingDistributorList", dispensingDistributorList);
+        model.addAttribute("dispensingDistributorCalculator", new DispensingDistributorCalculator(dispensingDistributorList));
         return "master/dispensing-distributor";
     }
 
