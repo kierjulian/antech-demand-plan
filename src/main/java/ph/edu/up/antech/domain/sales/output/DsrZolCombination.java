@@ -82,7 +82,7 @@ public class DsrZolCombination {
                 .sum();
     }
 
-    public Integer calculateWaterSalesAmoun() {
+    public Integer calculateWaterSalesAmount() {
         return productSalesAmountAndUnitList.stream()
                 .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesAmount())
