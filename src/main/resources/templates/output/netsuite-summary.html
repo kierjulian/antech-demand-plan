@@ -37,78 +37,86 @@
                                             <th></th>
                                             <th class="align-middle font-weight-bold" style="text-align: center;"
                                                 th:attr="colspan=${#lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 4}">Amount</th>
-                                            <th class="bg-dark"></th>
+                                            <th class="bg-white"></th>
                                             <th class="align-middle font-weight-bold" style="text-align: center;"
                                                 th:attr="colspan=${#lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 4}">Units</th>
                                         </tr>
-                                    <tr>
-                                        <th>Row Labels</th>
-                                        <th:block th:each="milkProduct : ${milkProductList}">
-                                            <th scope="col" th:text="${milkProduct}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Milk</th>
-                                        <th:block th:each="jarProductList : ${jarProductList}">
-                                            <th scope="col" th:text="${jarProductList}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Jar</th>
-                                        <th:block th:each="waterProduct : ${waterProductList}">
-                                            <th scope="col" th:text="${waterProduct}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Water</th>
-                                        <th scope="col" class="bg-dark text-white">Total HiPP Amount</th>
-                                        <th class="bg-dark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                        <th:block th:each="milkProduct : ${milkProductList}">
-                                            <th scope="col" th:text="${milkProduct}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Milk</th>
-                                        <th:block th:each="jarProduct : ${jarProductList}">
-                                            <th scope="col" th:text="${jarProduct}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Jar</th>
-                                        <th:block th:each="waterProduct : ${waterProductList}">
-                                            <th scope="col" th:text="${waterProduct}"></th>
-                                        </th:block>
-                                        <th scope="col" class="bg-dark text-white">Total Water</th>
-                                        <th scope="col" class="bg-dark text-white">Total HiPP Units</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Row Labels</th>
+                                            <th:block th:each="milkProduct : ${milkProductList}">
+                                                <th scope="col" th:text="${milkProduct}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Milk</th>
+                                            <th:block th:each="jarProductList : ${jarProductList}">
+                                                <th scope="col" th:text="${jarProductList}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Jar</th>
+                                            <th:block th:each="waterProduct : ${waterProductList}">
+                                                <th scope="col" th:text="${waterProduct}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Water</th>
+                                            <th scope="col" class="bg-dark text-white">Total HiPP Amount</th>
+                                            <th class="bg-white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th:block th:each="milkProduct : ${milkProductList}">
+                                                <th scope="col" th:text="${milkProduct}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Milk</th>
+                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                <th scope="col" th:text="${jarProduct}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Jar</th>
+                                            <th:block th:each="waterProduct : ${waterProductList}">
+                                                <th scope="col" th:text="${waterProduct}"></th>
+                                            </th:block>
+                                            <th scope="col" class="bg-dark text-white">Total Water</th>
+                                            <th scope="col" class="bg-dark text-white">Total HiPP Units</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <th:block th:each="transfersCatRecode : ${transfersCatRecodeList}">
                                             <tr class="bg-dark text-white">
                                                 <td class="font-weight-bold" th:text="${transfersCatRecode}"></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, milkProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, milkProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateMilkSalesAmountByTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateMilkSalesAmountByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="jarProduct : ${jarProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, jarProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, jarProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateJarSalesAmountByTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateJarSalesAmountByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, waterProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByTransferCatRecodeAndProductCode(transfersCatRecode, waterProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateWaterSalesAmountByTransfersCatRecode(transfersCatRecode)}"></td>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateSalesAmountByTransfersCatRecode(transfersCatRecode)}"></td>
-                                                <td class="bg-dark"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateWaterSalesAmountByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                <td class="bg-white"></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, milkProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, milkProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateMilkSalesUnitByTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateMilkSalesUnitByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="jarProduct : ${jarProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, jarProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, jarProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateJarSalesUnitByTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateJarSalesUnitByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="waterProduct : ${waterProductList}">
-                                                    <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, waterProduct)}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecodeAndProductCode(transfersCatRecode, waterProduct), 0, 'COMMA', 0, 'POINT')}">
                                                     </td>
                                                 </th:block>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateWaterSalesUnitByTransfersCatRecode(transfersCatRecode)}"></td>
-                                                <td class="bg-dark text-white" th:text="${netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecode(transfersCatRecode)}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateWaterSalesUnitByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                <td class="bg-dark text-white"
+                                                    th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByTransfersCatRecode(transfersCatRecode), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </tr>
                                             <th:block th:each="netsuiteCombination, row : ${netsuiteCombinationList}">
                                                 <tr th:if="${transfersCatRecode == netsuiteCombination.transfersCatRecode}">
@@ -117,7 +125,7 @@
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -125,12 +133,13 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateMilkSalesAmount()}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -138,12 +147,13 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateJarSalesAmount()}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesAmount}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -151,14 +161,16 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateWaterSalesAmount()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateTotalSalesAmount()}"></td>
-                                                    <td class="bg-dark"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateTotalSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                    <td class="bg-white"></td>
                                                     <th:block th:each="milkProduct : ${milkProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -166,12 +178,13 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateMilkSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     <th:block th:each="jarProduct : ${jarProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -179,12 +192,13 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateJarSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     <th:block th:each="waterProduct : ${waterProductList}">
                                                         <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
                                                                 <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
-                                                                    th:text="${productSalesAmountAndUnitList.salesUnit}">
+                                                                    th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
                                                                 </td>
                                                             </th:block>
                                                         </th:block>
@@ -192,40 +206,42 @@
                                                             <td>-</td>
                                                         </th:block>
                                                     </th:block>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateWaterSalesUnit()}"></td>
-                                                    <td class="bg-dark text-white" th:text="${netsuiteCombination.calculateTotalSalesUnit()}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                    <td class="bg-dark text-white"
+                                                        th:text="${#numbers.formatDecimal(netsuiteCombination.calculateTotalSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </tr>
                                             </th:block>
                                         </th:block>
                                         <tr class="bg-dark text-white">
                                             <td class="font-weight-bold">Grand Total</td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByProductCode(milkProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByProductCode(milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateMilkSalesAmount()}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateMilkSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByProductCode(jarProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByProductCode(jarProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateJarSalesAmount()}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateJarSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesAmountByProductCode(waterProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmountByProductCode(waterProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateWaterSalesAmount()}"></td>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateSalesAmount()}"></td>
-                                            <td class="bg-dark"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateWaterSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td class="bg-white"></td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByProductCode(milkProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByProductCode(milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateMilkSalesUnit()}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateMilkSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByProductCode(jarProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByProductCode(jarProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateJarSalesUnit()}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateJarSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${netsuiteSummaryCalculator.calculateSalesUnitByProductCode(waterProduct)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateSalesUnitByProductCode(waterProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </th:block>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateWaterSalesUnit()}"></td>
-                                            <td th:text="${netsuiteSummaryCalculator.calculateTotalUnit()}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateWaterSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                            <td th:text="${#numbers.formatDecimal(netsuiteSummaryCalculator.calculateTotalUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
