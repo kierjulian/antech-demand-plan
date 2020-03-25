@@ -56,21 +56,23 @@
                                         <tr th:each="kamReferenceName : ${kamReferenceNameList}">
                                             <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, milkProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, milkProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesAmountByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, jarProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, jarProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateJarSalesAmountByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, waterProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, waterProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesAmountByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <br>
                                 <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
                                          table-hover table">
@@ -98,17 +100,20 @@
                                         <tr th:each="kamReferenceName : ${kamReferenceNameList}">
                                             <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
                                             <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, milkProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, milkProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesUnitByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, jarProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, jarProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateJarSalesUnitByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, waterProduct)}">-</td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, waterProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
                                             </th:block>
-                                            <td class="bg-dark text-white" th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesUnitByKamReferenceName(kamReferenceName)}">-</td>
+                                            <td class="bg-dark text-white"
+                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
                                         </tr>
                                     </tbody>
                                 </table>
