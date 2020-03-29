@@ -64,13 +64,13 @@
                                             <th scope="col">PRIN</th>
                                             <th scope="col">SUBPR</th>
                                             <th scope="col">REFCD</th>
-                                            <th scope="col">REFCD1</th>
-                                            <th scope="col">Net Qty</th>
-                                            <th scope="col">Net Value</th>
-                                            <th scope="col">Net Value 2</th>
-                                            <th scope="col">SKU</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Gross Value</th>
+                                            <th scope="col" title="Generated from: If refcd = 1, refcd1 = 1, else refcd1 = 0">REFCD1</th>
+                                            <th scope="col" title="Generated from: Refcd1 * qtysh">Net Qty</th>
+                                            <th scope="col" title="Generated from: Refcd1 * (vlamt / 1.12)">Net Value</th>
+                                            <th scope="col" title="Generated from: Net value * 0.91127 / 1000">Net Value 2</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Information's item code where MDC Per Branch Sales prodcd equals MDC Per Branch Sales Information's item number">SKU</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Information's item type where MDC Per Branch Sales prodcd equals MDC Per Branch Sales Information's item number">Category</th>
+                                            <th scope="col" title="Generated from: Vlamt / 1.12 * 0.91127 / 100">Gross Value</th>
                                             <th scope="col">Month</th>
                                             <th scope="col">Year</th>
                                             <th scope="col">REFDT</th>
@@ -99,14 +99,14 @@
                                             <th scope="col">GUARTRAN</th>
                                             <th scope="col">NETSALES</th>
                                             <th scope="col">DEBTORCODE</th>
-                                            <th scope="col">STR CODE</th>
-                                            <th scope="col">COVERAGE</th>
-                                            <th scope="col">REASON</th>
-                                            <th scope="col">BRANCH NAME</th>
-                                            <th scope="col">NA NAME</th>
-                                            <th scope="col">DSM NAME</th>
-                                            <th scope="col">Coordinator</th>
-                                            <th scope="col">Region</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Account's str code where MDC Per Branch Sales' shpcn equals MDC Per Branch Sales Accounts's shpcn">STR CODE</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Coverage's new coverage where MDC Per Branch Sales' str code equals MDC Per Branch Sales Coverage's branch code">COVERAGE</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Code's description where MDC Per Branch Sales' reasn equals MDC Per Branch Sales Code's code">REASON</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales BRN's branch name where MDC Per Branch Sales' shpcn equals MDC Per Branch Sales BRN's shpcn">BRANCH NAME</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales BRN's na where MDC Per Branch Sales' shpcn equals MDC Per Branch Sales BRN's shpcn">NA NAME</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales NA Configuration's dsm where MDC Per Branch Sales' na name equals MDC Per Branch Sales NA Configuration's na name">DSM NAME</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Coverage's coordinator where MDC Per Branch Sales' str code equals MDC Per Branch Sales Coverage's branch code">Coordinator</th>
+                                            <th scope="col" title="Generated from: MDC Per Branch Sales Coverage's region where MDC Per Branch Sales' str code equals MDC Per Branch Sales Coverage's branch code">Region</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
