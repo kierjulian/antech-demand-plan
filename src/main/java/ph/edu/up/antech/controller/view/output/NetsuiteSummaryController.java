@@ -67,9 +67,10 @@ public class NetsuiteSummaryController {
                 .filter(netsuiteCombination -> mgmtSet.add(netsuiteCombination.getMgmt()))
                 .collect(Collectors.toList());
 
-        Set<String> regionSet = new HashSet<>();
+        Set<UniqueTuple> regionSet = new HashSet<>();
         List<NetsuiteCombination> netsuiteCombinationRegionList = netsuiteCombinationList.stream()
-                .filter(netsuiteCombination -> regionSet.add(netsuiteCombination.getRegion()))
+                .filter(netsuiteCombination -> regionSet.add(
+                        new UniqueTuple(netsuiteCombination.getMgmt(), netsuiteCombination.getRegion())))
                 .collect(Collectors.toList());
 
         NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList, productCodeList);
@@ -155,6 +156,32 @@ public class NetsuiteSummaryController {
         });
 
         return netsuiteCombinationList;
+    }
+
+    private class UniqueTuple {
+
+        String mgmt;
+        String region;
+
+        public UniqueTuple(String mgmt, String region) {
+            this.mgmt = mgmt;
+            this.region = region;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            UniqueTuple that = (UniqueTuple) o;
+            return mgmt.equals(that.mgmt) &&
+                    region.equals(that.region);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(mgmt, region);
+        }
+
     }
 
 }
