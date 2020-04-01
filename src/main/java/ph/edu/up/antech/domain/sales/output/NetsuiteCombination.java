@@ -10,18 +10,24 @@ import java.util.stream.Collectors;
 
 public class NetsuiteCombination {
 
-    private String kamReferenceName;
     private String transfersCatRecode;
+    private String mgmt;
+    private String region;
+    private String kamReferenceName;
     private List<ProductSalesAmountAndUnit> productSalesAmountAndUnitList;
 
     public NetsuiteCombination(List<Netsuite> netsuiteList) {
-        kamReferenceName = netsuiteList.get(0).getKamRefName1();
         transfersCatRecode = netsuiteList.get(0).getTransfersCatRecode();
+        mgmt = netsuiteList.get(0).getMgmt();
+        region = netsuiteList.get(0).getRegion();
+        kamReferenceName = netsuiteList.get(0).getKamRefName1();
         productSalesAmountAndUnitList = new ArrayList<>();
 
         netsuiteList.forEach(netsuite -> {
-            if (!netsuite.getKamRefName1().equals(kamReferenceName)
-                    && !netsuite.getTransfersCatRecode().equals(transfersCatRecode)) {
+            if (!netsuite.getTransfersCatRecode().equals(transfersCatRecode)
+                    && !netsuite.getMgmt().equals(mgmt)
+                    && !netsuite.getRegion().equals(region)
+                    && !netsuite.getKamRefName1().equals(kamReferenceName)) {
                 throw new RuntimeException("Kam reference name and transfers cat record should be the same for one Netsuite Combination");
             }
 
@@ -40,20 +46,36 @@ public class NetsuiteCombination {
         });
     }
 
-    public String getKamReferenceName() {
-        return kamReferenceName;
-    }
-
-    public void setKamReferenceName(String kamReferenceName) {
-        this.kamReferenceName = kamReferenceName;
-    }
-
     public String getTransfersCatRecode() {
         return transfersCatRecode;
     }
 
     public void setTransfersCatRecode(String transfersCatRecode) {
         this.transfersCatRecode = transfersCatRecode;
+    }
+
+    public String getMgmt() {
+        return mgmt;
+    }
+
+    public void setMgmt(String mgmt) {
+        this.mgmt = mgmt;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getKamReferenceName() {
+        return kamReferenceName;
+    }
+
+    public void setKamReferenceName(String kamReferenceName) {
+        this.kamReferenceName = kamReferenceName;
     }
 
     public List<ProductSalesAmountAndUnit> getProductSalesAmountAndUnitList() {

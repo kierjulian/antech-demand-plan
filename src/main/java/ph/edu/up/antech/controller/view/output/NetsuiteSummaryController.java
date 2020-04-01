@@ -15,9 +15,7 @@ import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -56,10 +54,24 @@ public class NetsuiteSummaryController {
                 .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
-        List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
         List<String> transfersCatRecodeList = generateListOfUniqueTransfersCatRecordFromNetsuiteList(netsuiteList);
-        List<NetsuiteCombination> netsuiteCombinationList =
-                generateNetsuiteCombination(netsuiteList, kamReferenceNameList, transfersCatRecodeList, productCodeList);
+        List<String> mgmtList = generateListOfUniqueMgmtFromNetsuiteList(netsuiteList);
+        List<String> regionList = generateListOfUniqueRegionFromNetsuiteList(netsuiteList);
+        List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
+
+        List<NetsuiteCombination> netsuiteCombinationList = generateNetsuiteCombination(netsuiteList,
+                transfersCatRecodeList, mgmtList, regionList, kamReferenceNameList, productCodeList);
+
+        Set<String> mgmtSet = new HashSet<>();
+        List<NetsuiteCombination> netsuiteCombinationMgmtList = netsuiteCombinationList.stream()
+                .filter(netsuiteCombination -> mgmtSet.add(netsuiteCombination.getMgmt()))
+                .collect(Collectors.toList());
+
+        Set<String> regionSet = new HashSet<>();
+        List<NetsuiteCombination> netsuiteCombinationRegionList = netsuiteCombinationList.stream()
+                .filter(netsuiteCombination -> regionSet.add(netsuiteCombination.getRegion()))
+                .collect(Collectors.toList());
+
         NetsuiteSummaryCalculator netsuiteSummaryCalculator = new NetsuiteSummaryCalculator(netsuiteList, productCodeList);
 
         model.addAttribute("searchedStartDate", start);
@@ -69,14 +81,36 @@ public class NetsuiteSummaryController {
         model.addAttribute("jarProductList", jarProductList);
         model.addAttribute("waterProductList", waterProductList);
         model.addAttribute("transfersCatRecodeList", transfersCatRecodeList);
+        model.addAttribute("mgmtList", mgmtList);
+        model.addAttribute("regionList", regionList);
+        model.addAttribute("kamReferenceNameList", kamReferenceNameList);
         model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
+        model.addAttribute("netsuiteCombinationMgmtList", netsuiteCombinationMgmtList);
+        model.addAttribute("netsuiteCombinationRegionList", netsuiteCombinationRegionList);
         model.addAttribute("netsuiteSummaryCalculator", netsuiteSummaryCalculator);
+
         return "output/netsuite-summary";
     }
 
-    private List<String> generateListOfUniqueProductBrandFromNetsuiteList(List<Netsuite> netsuiteList) {
+    private List<String> generateListOfUniqueTransfersCatRecordFromNetsuiteList(List<Netsuite> netsuiteList) {
         return netsuiteList.stream()
-                .map(Netsuite::getBrand)
+                .map(Netsuite::getTransfersCatRecode)
+                .distinct()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> generateListOfUniqueMgmtFromNetsuiteList(List<Netsuite> netsuiteList) {
+        return netsuiteList.stream()
+                .map(Netsuite::getMgmt)
+                .distinct()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> generateListOfUniqueRegionFromNetsuiteList(List<Netsuite> netsuiteList) {
+        return netsuiteList.stream()
+                .map(Netsuite::getRegion)
                 .distinct()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
@@ -90,34 +124,33 @@ public class NetsuiteSummaryController {
                 .collect(Collectors.toList());
     }
 
-    private List<String> generateListOfUniqueTransfersCatRecordFromNetsuiteList(List<Netsuite> netsuiteList) {
-        return netsuiteList.stream()
-                .map(Netsuite::getTransfersCatRecode)
-                .distinct()
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
     private List<NetsuiteCombination> generateNetsuiteCombination(
-            List<Netsuite> netsuiteList, List<String> kamReferenceNameList, List<String> transfersCatRecodeList,
-            List<String> productListCode) {
+            List<Netsuite> netsuiteList, List<String> transfersCatRecodeList, List<String> mgmtList,
+            List<String> regionList, List<String> kamReferenceNameList, List<String> productListCode) {
         List<NetsuiteCombination> netsuiteCombinationList = new ArrayList<>();
 
-        kamReferenceNameList.forEach(kamReferenceName -> {
-            transfersCatRecodeList.forEach(transfersCatRecode -> {
-                List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
-                        .filter(netsuite -> productListCode.contains(netsuite.getBrand()))
-                        .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
-                        .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
-                        .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
-                        .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                        .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
-                        .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
-                        .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transfersCatRecode))
-                        .collect(Collectors.toList());
-                if (!netsuiteFilteredList.isEmpty()) {
-                    netsuiteCombinationList.add(new NetsuiteCombination(netsuiteFilteredList));
-                }
+        transfersCatRecodeList.forEach(transferCatRecode -> {
+            mgmtList.forEach(mgmt -> {
+                regionList.forEach(region -> {
+                    kamReferenceNameList.forEach(kamReferenceName -> {
+                        List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
+                                .filter(netsuite -> productListCode.contains(netsuite.getBrand()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getMgmt()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                                .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transferCatRecode))
+                                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                                .filter(netsuite -> netsuite.getRegion().equals(region))
+                                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                                .collect(Collectors.toList());
+                        if (!netsuiteFilteredList.isEmpty()) {
+                            netsuiteCombinationList.add(new NetsuiteCombination(netsuiteFilteredList));
+                        }
+                    });
+                });
             });
         });
 

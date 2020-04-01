@@ -13,6 +13,9 @@ public class NetsuiteSummaryCalculator {
 
     public NetsuiteSummaryCalculator(List<Netsuite> netsuiteList, List<String> productList) {
         this.netsuiteList = netsuiteList.stream()
+                .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getMgmt()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
@@ -166,6 +169,203 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateSalesAmountByTransfersCatRecodeAndMgmtAndProductCode(String transfersCatRecode, String mgmt,
+                                                                                 String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> productCode.equals(netsuite.getBrand()))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateMilkSalesAmountByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateJarSalesAmountByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateWaterSalesAmountByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateSalesAmountByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByTransfersCatRecodeAndMgmtAndProductCode(String transfersCatRecode, String mgmt,
+                                                                               String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> productCode.equals(netsuite.getBrand()))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateMilkSalesUnitByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateJarSalesUnitByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateWaterSalesUnitByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByTransfersCatRecodeAndMgmt(String transfersCatRecode, String mgmt) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateSalesAmountByTransfersCatRecodeAndMgmtAndRegionAndProductCode(String transfersCatRecode, String mgmt,
+                                                                                          String region, String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> productCode.equals(netsuite.getBrand()))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateMilkSalesAmountByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                                String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateJarSalesAmountByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                               String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateWaterSalesAmountByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                                 String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateSalesAmountByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByTransfersCatRecodeAndMgmtAndRegionAndProductCode(String transfersCatRecode, String mgmt,
+                                                                               String region, String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> productCode.equals(netsuite.getBrand()))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateMilkSalesUnitByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                              String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateJarSalesUnitByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                             String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateWaterSalesUnitByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                               String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(Netsuite::getQuantity)
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByTransfersCatRecodeAndMgmtAndRegion(String transfersCatRecode, String mgmt,
+                                                                          String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
+                .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
+                .filter(netsuite -> region.equals(netsuite.getRegion()))
+                .mapToInt(Netsuite::getQuantity)
                 .sum();
     }
 
