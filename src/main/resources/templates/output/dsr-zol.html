@@ -120,7 +120,7 @@
                                             </tr>
                                             <th:block th:each="dsrZolCombination, row : ${dsrZolCombinationList}">
                                                 <tr th:if="${kamRefName == dsrZolCombination.kamReferenceName}">
-                                                    <td th:text="${dsrZolCombination.account}"></td>
+                                                    <td th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ${dsrZolCombination.account}" nowrap></td>
                                                     <th:block th:each="milkProduct : ${milkProductList}">
                                                         <th:block th:if="${dsrZolCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
                                                             <th:block th:each="productSalesAmountAndUnitList : ${dsrZolCombination.productSalesAmountAndUnitList}">
