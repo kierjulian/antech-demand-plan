@@ -13,6 +13,8 @@ public class NetsuiteTableInventoryCalculator {
 
     public NetsuiteTableInventoryCalculator(List<Netsuite> netsuiteList, List<String> productList) {
         this.netsuiteList = netsuiteList.stream()
+                .filter(netsuite -> Objects.nonNull(netsuite.getMgmt()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
@@ -21,65 +23,137 @@ public class NetsuiteTableInventoryCalculator {
                 .collect(Collectors.toList());
     }
 
-    public Integer calculateSalesAmountByKamReferenceNameAndProductCode(String kamReferenceName, String brand) {
+    public Integer calculateSalesAmountByMgmtAndProductCode(String mgmt, String productCode) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
-                .filter(netsuite -> netsuite.getBrand().equals(brand))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getBrand().equals(productCode))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
-    public Integer calculateMilkSalesAmountByKamReferenceName(String kamReferenceName) {
+    public Integer calculateMilkSalesAmountByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
-                .filter(netsuite -> netsuite.getBrand().startsWith("S") || netsuite.getBrand().startsWith("CS"))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
-    public Integer calculateJarSalesAmountByKamReferenceName(String kamReferenceName) {
+    public Integer calculateJarSalesAmountByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
-    public Integer calculateWaterSalesAmountByKamReferenceName(String kamReferenceName) {
+    public Integer calculateWaterSalesAmountByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
                 .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
                 .sum();
     }
 
-    public Integer calculateSalesUnitByKamReferenceNameAndProductCode(String kamReferenceName, String brand) {
+    public Integer calculateSalesAmountByMgmtAndRegionAndProductCode(String mgmt, String region, String productCode) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
-                .filter(netsuite -> netsuite.getBrand().equals(brand))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().equals(productCode))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateMilkSalesAmountByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateJarSalesAmountByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateWaterSalesAmountByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(netsuite -> netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue())
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByMgmtAndProductCode(String mgmt, String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getBrand().equals(productCode))
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateMilkSalesUnitByKamReferenceName(String kamReferenceName) {
+    public Integer calculateMilkSalesUnitByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateJarSalesUnitByKamReferenceName(String kamReferenceName) {
+    public Integer calculateJarSalesUnitByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();
     }
 
-    public Integer calculateWaterSalesUnitByKamReferenceName(String kamReferenceName) {
+    public Integer calculateWaterSalesUnitByMgmt(String mgmt) {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
+                .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateSalesUnitByMgmtAndRegionAndProductCode(String mgmt, String region, String productCode) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().equals(productCode))
+                .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateMilkSalesUnitByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
+                .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateJarSalesUnitByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
+                .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
+                .mapToInt(netsuite -> netsuite.getQuantity())
+                .sum();
+    }
+
+    public Integer calculateWaterSalesUnitByMgmtAndRegion(String mgmt, String region) {
+        return netsuiteList.stream()
+                .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                .filter(netsuite -> netsuite.getRegion().equals(region))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
                 .mapToInt(netsuite -> netsuite.getQuantity())
                 .sum();

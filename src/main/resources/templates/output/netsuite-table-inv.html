@@ -30,6 +30,8 @@
                                     </div>&nbsp;
                                 </form>
                                 <br>
+
+                                <!-- Amount -->
                                 <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
                                          table-hover table">
                                     <thead class="thead-light">
@@ -37,7 +39,7 @@
                                             <td class="text-center font-weight-bold" colspan="42">AMOUNT</td>
                                         </tr>
                                         <tr>
-                                            <th class="bg-dark text-white">AFPCES</th>
+                                            <th class="bg-dark text-white">Label</th>
                                             <th:block th:each="milkProduct : ${milkProductList}">
                                                 <th th:text="${milkProduct}"></th>
                                             </th:block>
@@ -53,27 +55,102 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="kamReferenceName : ${kamReferenceNameList}">
-                                            <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
-                                            <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, milkProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
+                                        <th:block th:each="mgmt : ${mgmtList}">
+                                            <tr class="bg-dark text-white">
+                                                <!-- Mgmt -->
+                                                <td th:text="${mgmt}" nowrap></td>
+                                                <th:block th:each="milkProduct : ${milkProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmt(mgmt)}"></td>
+                                                <th:block th:each="jarProduct : ${jarProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, jarProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmt(mgmt)}"></td>
+                                                <th:block th:each="milkProduct : ${waterProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmt(mgmt)}"></td>
+                                            </tr>
+
+                                            <th:block th:each="region : ${regionList}">
+                                                <th:block th:each="netsuiteCombination : ${netsuiteCombinationRegionList}">
+                                                    <tr th:if="${netsuiteCombination.mgmt == mgmt &&
+                                                            netsuiteCombination.region == region}">
+                                                        <!-- Region -->
+                                                        <td th:text="${region}" nowrap></td>
+                                                        <th:block th:each="milkProduct : ${milkProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <th:block th:each="milkProduct : ${jarProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <th:block th:each="milkProduct : ${waterProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                    </tr>
+                                                </th:block>
+
+                                                <th:block th:each="kamReferenceName : ${kamReferenceNameList}">
+                                                    <th:block th:each="netsuiteCombination : ${netsuiteCombinationList}">
+                                                        <tr th:if="${netsuiteCombination.mgmt == mgmt
+                                                                    && netsuiteCombination.region == region
+                                                                    && netsuiteCombination.kamReferenceName == kamReferenceName}">
+                                                            <!-- Kam Reference Name -->
+                                                            <td th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+                                                                    + ${kamReferenceName}" nowrap></td>
+                                                            <th:block th:each="milkProduct : ${milkProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                            <th:block th:each="waterProduct : ${waterProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesAmount, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                        </tr>
+                                                    </th:block>
+                                                </th:block>
                                             </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, jarProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByKamReferenceNameAndProductCode(kamReferenceName, waterProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesAmountByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                        </tr>
+                                        </th:block>
                                     </tbody>
                                 </table>
                                 <br>
+
+                                <!-- Units -->
                                 <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
                                          table-hover table">
                                     <thead class="thead-light">
@@ -81,7 +158,7 @@
                                             <td class="text-center font-weight-bold" colspan="42">UNITS</td>
                                         </tr>
                                         <tr>
-                                            <th class="bg-dark text-white">AFPCES</th>
+                                            <th class="bg-dark text-white">Label</th>
                                             <th:block th:each="milkProduct : ${milkProductList}">
                                                 <th th:text="${milkProduct}"></th>
                                             </th:block>
@@ -97,24 +174,97 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="kamReferenceName : ${kamReferenceNameList}">
-                                            <td class="bg-dark text-white" th:text="${kamReferenceName}"></td>
-                                            <th:block th:each="milkProduct : ${milkProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, milkProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
+                                        <th:block th:each="mgmt : ${mgmtList}">
+                                            <tr class="bg-dark text-white">
+                                                <!-- Mgmt -->
+                                                <td th:text="${mgmt}" nowrap></td>
+                                                <th:block th:each="milkProduct : ${milkProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmt(mgmt)}"></td>
+                                                <th:block th:each="milkProduct : ${jarProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmt(mgmt)}"></td>
+                                                <th:block th:each="milkProduct : ${waterProductList}">
+                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                </th:block>
+                                                <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmt(mgmt)}"></td>
+                                            </tr>
+
+                                            <th:block th:each="region : ${regionList}">
+                                                <th:block th:each="netsuiteCombination : ${netsuiteCombinationRegionList}">
+                                                    <tr th:if="${netsuiteCombination.mgmt == mgmt &&
+                                                                netsuiteCombination.region == region}">
+                                                        <!-- Region -->
+                                                        <td th:text="${region}" nowrap></td>
+                                                        <th:block th:each="milkProduct : ${milkProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <th:block th:each="milkProduct : ${jarProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <th:block th:each="milkProduct : ${waterProductList}">
+                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                        </th:block>
+                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                    </tr>
+                                                </th:block>
+
+                                                <th:block th:each="kamReferenceName : ${kamReferenceNameList}">
+                                                    <th:block th:each="netsuiteCombination : ${netsuiteCombinationList}">
+                                                        <tr th:if="${netsuiteCombination.mgmt == mgmt
+                                                                        && netsuiteCombination.region == region
+                                                                        && netsuiteCombination.kamReferenceName == kamReferenceName}">
+                                                            <!-- Kam Reference Name -->
+                                                            <td th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+                                                                        + ${kamReferenceName}" nowrap></td>
+                                                            <th:block th:each="milkProduct : ${milkProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${milkProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${jarProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                            <th:block th:each="waterProduct : ${waterProductList}">
+                                                                <th:block th:if="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
+                                                                    <th:block th:each="productSalesAmountAndUnitList : ${netsuiteCombination.productSalesAmountAndUnitList}">
+                                                                        <td th:if="${waterProduct == productSalesAmountAndUnitList.product}"
+                                                                            th:text="${#numbers.formatDecimal(productSalesAmountAndUnitList.salesUnit, 0, 'COMMA', 0, 'POINT')}">
+                                                                        </td>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
+                                                                    <td>-</td>
+                                                                </th:block>
+                                                            </th:block>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                        </tr>
+                                                    </th:block>
+                                                </th:block>
                                             </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            <th:block th:each="jarProduct : ${jarProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, jarProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            <th:block th:each="waterProduct : ${waterProductList}">
-                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByKamReferenceNameAndProductCode(kamReferenceName, waterProduct), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                            </th:block>
-                                            <td class="bg-dark text-white"
-                                                th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesUnitByKamReferenceName(kamReferenceName), 0, 'COMMA', 0, 'POINT')}">-</td>
-                                        </tr>
+                                        </th:block>
                                     </tbody>
                                 </table>
                             </div>

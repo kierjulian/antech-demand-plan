@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ph.edu.up.antech.domain.Product;
 import ph.edu.up.antech.domain.ProductType;
 import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.sales.output.NetsuiteCombination;
 import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -54,7 +54,18 @@ public class NetsuiteTableInventoryController {
                 .filter(product -> product.getProductType().equals(ProductType.WATER))
                 .map(Product::getCode)
                 .collect(Collectors.toList());
+        List<String> mgmtList = generateUniqueMgmtFromNetsuiteList(netsuiteList);
+        List<String> regionList = generateUniqueRegionFromNetsuiteList(netsuiteList);
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
+        List<NetsuiteCombination> netsuiteCombinationList = generateNetsuiteCombination(netsuiteList, mgmtList,
+                regionList, kamReferenceNameList, productCodeList);
+
+        Set<UniqueTuple> regionSet = new HashSet<>();
+        List<NetsuiteCombination> netsuiteCombinationRegionList = netsuiteCombinationList.stream()
+                .filter(netsuiteCombination -> regionSet.add(
+                        new UniqueTuple(netsuiteCombination.getMgmt(), netsuiteCombination.getRegion())))
+                .collect(Collectors.toList());
+
         NetsuiteTableInventoryCalculator netsuiteTableInventoryCalculator =
                 new NetsuiteTableInventoryCalculator(netsuiteList, productCodeList);
 
@@ -63,9 +74,29 @@ public class NetsuiteTableInventoryController {
         model.addAttribute("milkProductList", milkProductList);
         model.addAttribute("jarProductList", jarProductList);
         model.addAttribute("waterProductList", waterProductList);
+        model.addAttribute("mgmtList", mgmtList);
+        model.addAttribute("regionList", regionList);
         model.addAttribute("kamReferenceNameList", kamReferenceNameList);
+        model.addAttribute("netsuiteCombinationList", netsuiteCombinationList);
+        model.addAttribute("netsuiteCombinationRegionList", netsuiteCombinationRegionList);
         model.addAttribute("netsuiteTableInventoryCalculator", netsuiteTableInventoryCalculator);
         return "output/netsuite-table-inv";
+    }
+
+    private List<String> generateUniqueMgmtFromNetsuiteList(List<Netsuite> netsuiteList) {
+        return netsuiteList.stream()
+                .map(Netsuite::getMgmt)
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private List<String> generateUniqueRegionFromNetsuiteList(List<Netsuite> netsuiteList) {
+        return netsuiteList.stream()
+                .map(Netsuite::getRegion)
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     private List<String> generateUniqueKamReferenceNameFromNetsuiteList(List<Netsuite> netsuiteList) {
@@ -74,6 +105,36 @@ public class NetsuiteTableInventoryController {
                 .filter(Objects::nonNull)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private List<NetsuiteCombination> generateNetsuiteCombination(
+            List<Netsuite> netsuiteList, List<String> mgmtList,
+            List<String> regionList, List<String> kamReferenceNameList, List<String> productListCode) {
+        List<NetsuiteCombination> netsuiteCombinationList = new ArrayList<>();
+
+        mgmtList.forEach(mgmt -> {
+            regionList.forEach(region -> {
+                kamReferenceNameList.forEach(kamReferenceName -> {
+                    List<Netsuite> netsuiteFilteredList = netsuiteList.stream()
+                            .filter(netsuite -> productListCode.contains(netsuite.getBrand()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getMgmt()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
+                            .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                            .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
+                            .filter(netsuite -> netsuite.getRegion().equals(region))
+                            .filter(netsuite -> netsuite.getKamRefName1().equals(kamReferenceName))
+                            .collect(Collectors.toList());
+                    if (!netsuiteFilteredList.isEmpty()) {
+                        netsuiteCombinationList.add(new NetsuiteCombination(netsuiteFilteredList));
+                    }
+                });
+            });
+        });
+
+        return netsuiteCombinationList;
     }
 
 }
