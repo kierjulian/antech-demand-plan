@@ -60,17 +60,17 @@
                                                 <!-- Mgmt -->
                                                 <td th:text="${mgmt}" nowrap></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="jarProduct : ${jarProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, jarProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, jarProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="milkProduct : ${waterProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndProductCode(mgmt, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </tr>
 
                                             <th:block th:each="region : ${regionList}">
@@ -80,17 +80,17 @@
                                                         <!-- Region -->
                                                         <td th:text="${region}" nowrap></td>
                                                         <th:block th:each="milkProduct : ${milkProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesAmountByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         <th:block th:each="milkProduct : ${jarProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesAmountByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         <th:block th:each="milkProduct : ${waterProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesAmountByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesAmountByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     </tr>
                                                 </th:block>
 
@@ -179,17 +179,17 @@
                                                 <!-- Mgmt -->
                                                 <td th:text="${mgmt}" nowrap></td>
                                                 <th:block th:each="milkProduct : ${milkProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="milkProduct : ${jarProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 <th:block th:each="milkProduct : ${waterProductList}">
-                                                    <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct)}"></td>
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndProductCode(mgmt, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                 </th:block>
-                                                <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmt(mgmt)}"></td>
+                                                <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmt(mgmt), 0, 'COMMA', 0, 'POINT')}"></td>
                                             </tr>
 
                                             <th:block th:each="region : ${regionList}">
@@ -199,17 +199,17 @@
                                                         <!-- Region -->
                                                         <td th:text="${region}" nowrap></td>
                                                         <th:block th:each="milkProduct : ${milkProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateMilkSalesUnitByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         <th:block th:each="milkProduct : ${jarProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateJarSalesUnitByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         <th:block th:each="milkProduct : ${waterProductList}">
-                                                            <td th:text="${netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct)}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateSalesUnitByMgmtAndRegionAndProductCode(mgmt, region, milkProduct), 0, 'COMMA', 0, 'POINT')}"></td>
                                                         </th:block>
-                                                        <td th:text="${netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmtAndRegion(mgmt, region)}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteTableInventoryCalculator.calculateWaterSalesUnitByMgmtAndRegion(mgmt, region), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     </tr>
                                                 </th:block>
 
