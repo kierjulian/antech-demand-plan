@@ -78,6 +78,9 @@ public class DemandPlanDetail implements Serializable {
     @Column(name = "trade_days_on_hand")
     private BigDecimal tradeDaysOnHand = BigDecimal.ZERO;
 
+    @Column(name = "actual")
+    private Boolean actual = false;
+
     public Integer getId() {
         return id;
     }
@@ -244,6 +247,17 @@ public class DemandPlanDetail implements Serializable {
 
     public void setTradeDaysOnHand(BigDecimal tradeDaysOnHand) {
         this.tradeDaysOnHand = tradeDaysOnHand;
+    }
+
+    public Boolean getActual() {
+        if (actual == null) {
+            actual = false;
+        }
+        return actual;
+    }
+
+    public void setActual(Boolean actual) {
+        this.actual = actual;
     }
 
 }

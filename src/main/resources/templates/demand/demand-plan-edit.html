@@ -124,6 +124,9 @@
                                                     <th:block th:each="demandPlanDetail, stat : *{demandPlanDetailList}">
                                                         <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
                                                             <td>
+                                                                <input type="hidden"
+                                                                       th:id="'actual' + ${stat.index}"
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].actual}">
                                                                 <input type="number" style="width:100px"
                                                                        th:id="'sourceProduction' + ${stat.index}"
                                                                        th:field="*{demandPlanDetailList[__${stat.index}__].sourceProduction}">

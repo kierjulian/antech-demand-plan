@@ -99,4 +99,65 @@ $(document).ready(function () {
             }
         }
     })
+
+    // For the color of the actual or predicted.
+    $('#sourceProduction' + 0).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 0).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 1).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 1).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 2).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 2).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 3).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 3).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 4).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 4).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 5).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 5).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 6).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 6).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 7).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 7).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 8).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 8).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 9).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 9).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 10).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 10).attr('value', bool);
+    })
+
+    $('#sourceProduction' + 11).change(function () {
+        var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
+        $('#actual' + 11).attr('value', bool);
+    })
 });

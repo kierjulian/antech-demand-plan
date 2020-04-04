@@ -50,7 +50,7 @@
                                             <i class="fas fa-plus">&nbsp; Create Demand Plan</i></a>
                                     </div>&nbsp;
                                     <div class="btn-group">
-                                        <a class="btn btn-secondary" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
+                                        <a class="btn btn-dark" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit Demand Plan</i></a>
                                     </div>
                                 </form>
@@ -118,7 +118,8 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceProduction, 0, 'COMMA', 0, 'POINT')}"></td>
+                                                        <td th:style="${demandPlanDetail.actual ? 'background: red' : 'background: yellow'}"
+                                                                th:text="${#numbers.formatDecimal(demandPlanDetail.sourceProduction, 0, 'COMMA', 0, 'POINT')}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
