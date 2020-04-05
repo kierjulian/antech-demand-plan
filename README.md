@@ -19,6 +19,9 @@ This project was created to optimize the creation of ANTECH's Demand Plan.
 The AWS test-server keys can be found in the `keys` directory. 
 The directory also contains the SSL certificates for the test server. The SSL certificates were generated using `gethttpsforfree.com`.
 
+#Site
+The test website could be accessed at `https://antech-test.ap-southeast-1.elasticbeanstalk.com/login`.
+
 #Project Documentation
 The project documents are generated via maven.
  
