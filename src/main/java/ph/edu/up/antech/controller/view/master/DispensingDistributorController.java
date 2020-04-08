@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 import ph.edu.up.antech.service.DispensingDistributorService;
 import ph.edu.up.antech.util.StringUtils;
 

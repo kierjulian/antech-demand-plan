@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteTransferCat;
-import ph.edu.up.antech.service.NetsuiteTransferCatService;
+import ph.edu.up.antech.domain.master.config.NetsuiteTransfersCat;
+import ph.edu.up.antech.service.NetsuiteTransfersCatService;
 import ph.edu.up.antech.util.StringUtils;
 
 @Controller
@@ -20,77 +20,77 @@ public class NetsuiteTransfersCatController {
     private static final Logger LOGGER = Logger.getLogger(NetsuiteTransfersCatController.class);
 
     @Autowired
-    private NetsuiteTransferCatService netsuiteTransferCatService;
+    private NetsuiteTransfersCatService netsuiteTransfersCatService;
 
     @GetMapping("")
-    public String loadNetsuiteTransferCat(Model model, @PageableDefault Pageable pageable,
+    public String loadNetsuiteTransfersCat(Model model, @PageableDefault Pageable pageable,
                                           @RequestParam(required = false) String filter) {
-        Page<NetsuiteTransferCat> page = StringUtils.isNullOrEmpty(filter)
-                ? netsuiteTransferCatService.findAll(pageable)
-                : netsuiteTransferCatService.findAllByAnyColumnContaining(filter, pageable);
+        Page<NetsuiteTransfersCat> page = StringUtils.isNullOrEmpty(filter)
+                ? netsuiteTransfersCatService.findAll(pageable)
+                : netsuiteTransfersCatService.findAllByAnyColumnContaining(filter, pageable);
         model.addAttribute("page", page);
         model.addAttribute("filter", filter);
         return "master/config/netsuite-transfers-cat";
     }
 
     @GetMapping("/view/{id}")
-    public String viewNetsuiteTransferCat(Model model, @PathVariable Integer id) {
-        NetsuiteTransferCat netsuiteTransferCat = netsuiteTransferCatService
-                .findNetsuiteTransferCatById(id);
-        model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
+    public String viewNetsuiteTransfersCat(Model model, @PathVariable Integer id) {
+        NetsuiteTransfersCat netsuiteTransfersCat = netsuiteTransfersCatService
+                .findNetsuiteTransfersCatById(id);
+        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-view";
     }
 
     @GetMapping("/edit/{id}")
-    public String editNetsuiteTransferCat(Model model, @PathVariable Integer id) {
-        NetsuiteTransferCat netsuiteTransferCat = netsuiteTransferCatService
-                .findNetsuiteTransferCatById(id);
-        model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
+    public String editNetsuiteTransfersCat(Model model, @PathVariable Integer id) {
+        NetsuiteTransfersCat netsuiteTransfersCat = netsuiteTransfersCatService
+                .findNetsuiteTransfersCatById(id);
+        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-edit";
     }
 
     @PostMapping("/update")
-    public String updateNetsuiteTransferCat(RedirectAttributes redirectAttributes,
+    public String updateNetsuiteTransfersCat(RedirectAttributes redirectAttributes,
                                             @ModelAttribute(value = "netsuiteTransferCat")
-                                                    NetsuiteTransferCat netsuiteTransferCat) {
+                                                    NetsuiteTransfersCat netsuiteTransfersCat) {
         try {
-            netsuiteTransferCatService.updateNetsuiteTransferCat(netsuiteTransferCat);
+            netsuiteTransfersCatService.updateNetsuiteTransfersCat(netsuiteTransfersCat);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully updated.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating Netsuite Transfers Cat.");
             LOGGER.error(e.getMessage(), e);
         }
 
-        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
+        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransfersCat.getId();
     }
 
     @GetMapping("/add")
-    public String addNetsuiteTransferCat(Model model) {
-        NetsuiteTransferCat netsuiteTransferCat = new NetsuiteTransferCat();
-        model.addAttribute("netsuiteTransferCat", netsuiteTransferCat);
+    public String addNetsuiteTransfersCat(Model model) {
+        NetsuiteTransfersCat netsuiteTransfersCat = new NetsuiteTransfersCat();
+        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-add";
     }
 
     @PostMapping("/create")
-    public String createNetsuiteTransferCat(RedirectAttributes redirectAttributes,
+    public String createNetsuiteTransfersCat(RedirectAttributes redirectAttributes,
                                             @ModelAttribute(value = "netsuiteTransferCat")
-                                                    NetsuiteTransferCat netsuiteTransferCat) {
+                                                    NetsuiteTransfersCat netsuiteTransfersCat) {
         try {
-            netsuiteTransferCat = netsuiteTransferCatService.saveNetsuiteTransferCat(netsuiteTransferCat);
+            netsuiteTransfersCat = netsuiteTransfersCatService.saveNetsuiteTransfersCat(netsuiteTransfersCat);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Transfers Cat.");
             LOGGER.error(e.getMessage(), e);
         }
 
-        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransferCat.getId();
+        return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransfersCat.getId();
     }
 
     @GetMapping("/delete/{id}")
-    public String removeNetsuiteTransferCat(
+    public String removeNetsuiteTransfersCat(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
-            netsuiteTransferCatService.removeNetsuiteTransferCat(id);
+            netsuiteTransfersCatService.removeNetsuiteTransfersCat(id);
             redirectAttributes.addFlashAttribute("successMessage", "Netsuite Transfers Cat was successfully deleted.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred deleting Netsuite Transfers Cat.");

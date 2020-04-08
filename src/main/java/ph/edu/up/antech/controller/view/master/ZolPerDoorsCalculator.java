@@ -1,6 +1,6 @@
 package ph.edu.up.antech.controller.view.master;
 
-import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
+import ph.edu.up.antech.domain.master.ZolPerDoors;
 
 import java.math.BigDecimal;
 import java.util.List;

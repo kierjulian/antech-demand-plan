@@ -2,7 +2,7 @@ package ph.edu.up.antech.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ph.edu.up.antech.dao.MdcPerBranchSalesDAO;
-import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
+import ph.edu.up.antech.domain.master.MdcPerBranchSales;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

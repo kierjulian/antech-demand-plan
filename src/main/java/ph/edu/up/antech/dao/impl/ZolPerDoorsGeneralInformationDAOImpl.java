@@ -2,7 +2,7 @@ package ph.edu.up.antech.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.master.config.ZolPerDoorsGeneralInformation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsPerAcct;
+import ph.edu.up.antech.domain.master.config.ZolPerDoorsPerAcct;
 
 public interface ZolPerDoorsPerAcctPaginationDAO extends PagingAndSortingRepository<ZolPerDoorsPerAcct, Integer> {
 

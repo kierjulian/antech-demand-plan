@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesCode;
+import ph.edu.up.antech.domain.master.config.MdcPerBranchSalesCode;
 import ph.edu.up.antech.service.MdcPerBranchSalesCodeService;
 import ph.edu.up.antech.util.StringUtils;
 

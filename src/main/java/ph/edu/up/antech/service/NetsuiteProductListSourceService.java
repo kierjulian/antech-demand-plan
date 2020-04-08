@@ -2,7 +2,7 @@ package ph.edu.up.antech.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
+import ph.edu.up.antech.domain.master.config.NetsuiteProductListSource;
 
 import java.util.List;
 

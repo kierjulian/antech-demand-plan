@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.MdcPerBranchSalesInformationDAO;
 import ph.edu.up.antech.dao.pagination.MdcPerBranchSalesInformationPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesInformation;
+import ph.edu.up.antech.domain.master.config.MdcPerBranchSalesInformation;
 import ph.edu.up.antech.service.MdcPerBranchSalesInformationService;
 
 import javax.transaction.Transactional;

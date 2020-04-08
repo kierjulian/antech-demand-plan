@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.Netsuite;
-import ph.edu.up.antech.domain.sales.master.converter.*;
-import ph.edu.up.antech.domain.sales.raw.CustomerSalesByItem;
+import ph.edu.up.antech.domain.master.Netsuite;
+import ph.edu.up.antech.domain.master.config.*;
+import ph.edu.up.antech.domain.raw.CustomerSalesByItem;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.*;
 import ph.edu.up.antech.service.impl.*;
@@ -30,7 +30,7 @@ import java.util.List;
         NetsuiteProductListSourceServiceImpl.class, NetsuiteProductListDeServiceImpl.class,
         NetsuiteGeneralInformationServiceImpl.class, NetsuiteOtherInformationServiceImpl.class,
         MdcPerBranchSalesNaConfigurationServiceImpl.class, NetsuiteBbjTaggingServiceImpl.class,
-        NetsuiteTransferCatServiceImpl.class
+        NetsuiteTransfersCatServiceImpl.class
 })
 public class ConvertCustomerSalesByItemToNetsuiteTest {
 
@@ -53,7 +53,7 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
     private NetsuiteBbjTaggingService netsuiteBbjTaggingService;
 
     @Autowired
-    private NetsuiteTransferCatService netsuiteTransferCatService;
+    private NetsuiteTransfersCatService netsuiteTransfersCatService;
 
     @Test
     public void convertCustomerSalesByItemToNetsuite_andPrintContentsOfNetsuite_shouldBeSuccessful() {
@@ -77,8 +77,8 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                     mdcPerBranchSalesNaConfigurationService.findAllMdcPerBranchSalesNaConfiguration();
             List<NetsuiteBbjTagging> netsuiteBbjTaggingList =
                     netsuiteBbjTaggingService.findAllNetsuiteBbjTagging();
-            List<NetsuiteTransferCat> netsuiteTransferCatList =
-                    netsuiteTransferCatService.findAllNetsuiteTransferCat();
+            List<NetsuiteTransfersCat> netsuiteTransfersCatList =
+                    netsuiteTransfersCatService.findAllNetsuiteTransfersCat();
 
             for (CustomerSalesByItem customerSalesByItem : customerSalesByItemList) {
                 customerSalesByItem.convertAllStringFieldsToProperType();
@@ -165,12 +165,12 @@ public class ConvertCustomerSalesByItemToNetsuiteTest {
                 System.out.println("CSR TAGGING: " + netsuite.getCsrTagging());
                 System.out.println();
 
-                NetsuiteTransferCat netsuiteTransferCat =
-                        netsuiteTransferCatList.stream()
+                NetsuiteTransfersCat netsuiteTransfersCat =
+                        netsuiteTransfersCatList.stream()
                                 .filter(transferCat -> transferCat.getName().equals(netsuite.getCategory()))
                                 .findFirst()
                                 .orElse(null);
-                netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransferCat);
+                netsuite.generateValuesFromNetsuiteTransfersCat(netsuiteTransfersCat);
                 System.out.println("Transfers Cat Record: " + netsuite.getTransfersCatRecode());
 
                 netsuite.generateValuesWhenOtherValuesArePopulated();

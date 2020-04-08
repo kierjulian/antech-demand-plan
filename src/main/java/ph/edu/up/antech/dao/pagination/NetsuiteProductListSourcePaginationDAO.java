@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListSource;
+import ph.edu.up.antech.domain.master.config.NetsuiteProductListSource;
 
 public interface NetsuiteProductListSourcePaginationDAO extends PagingAndSortingRepository<NetsuiteProductListSource, Integer> {
 

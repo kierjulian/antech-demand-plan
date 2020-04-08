@@ -3,7 +3,7 @@ package ph.edu.up.antech.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.DispensingDistributorDAO;
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 import ph.edu.up.antech.service.DispensingDistributorService;
 
 import javax.transaction.Transactional;

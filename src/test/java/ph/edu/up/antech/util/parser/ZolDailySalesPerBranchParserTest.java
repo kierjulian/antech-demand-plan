@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Test;
-import ph.edu.up.antech.domain.sales.raw.ZolDailySalesPerBranch;
+import ph.edu.up.antech.domain.raw.ZolDailySalesPerBranch;
 
 import java.io.IOException;
 import java.io.Reader;

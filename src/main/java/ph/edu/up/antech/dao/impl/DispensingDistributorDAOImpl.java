@@ -2,7 +2,7 @@ package ph.edu.up.antech.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ph.edu.up.antech.dao.DispensingDistributorDAO;
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

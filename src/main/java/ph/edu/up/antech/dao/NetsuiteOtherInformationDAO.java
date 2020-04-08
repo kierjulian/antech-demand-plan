@@ -1,6 +1,6 @@
 package ph.edu.up.antech.dao;
 
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteOtherInformation;
+import ph.edu.up.antech.domain.master.config.NetsuiteOtherInformation;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import ph.edu.up.antech.dao.impl.ZolPerDoorsGeneralInformationDAOImpl;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.master.config.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 import ph.edu.up.antech.service.impl.ZolPerDoorsGeneralInformationServiceImpl;

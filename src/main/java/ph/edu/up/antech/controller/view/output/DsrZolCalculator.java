@@ -1,6 +1,6 @@
 package ph.edu.up.antech.controller.view.output;
 
-import ph.edu.up.antech.domain.sales.output.DsrZol;
+import ph.edu.up.antech.domain.output.DsrZol;
 
 import java.util.List;
 import java.util.stream.Collectors;

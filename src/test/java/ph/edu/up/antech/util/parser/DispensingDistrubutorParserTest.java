@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Test;
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 
 import java.io.IOException;
 import java.io.Reader;

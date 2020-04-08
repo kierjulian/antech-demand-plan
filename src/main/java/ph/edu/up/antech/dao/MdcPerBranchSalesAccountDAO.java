@@ -1,6 +1,6 @@
 package ph.edu.up.antech.dao;
 
-import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesAccount;
+import ph.edu.up.antech.domain.master.config.MdcPerBranchSalesAccount;
 
 import java.util.List;
 

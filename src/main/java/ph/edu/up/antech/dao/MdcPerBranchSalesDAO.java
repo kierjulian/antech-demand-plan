@@ -1,6 +1,6 @@
 package ph.edu.up.antech.dao;
 
-import ph.edu.up.antech.domain.sales.master.MdcPerBranchSales;
+import ph.edu.up.antech.domain.master.MdcPerBranchSales;
 
 import java.time.LocalDate;
 import java.util.List;

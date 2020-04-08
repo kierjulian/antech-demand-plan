@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteOtherInformation;
+import ph.edu.up.antech.domain.master.config.NetsuiteOtherInformation;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.NetsuiteOtherInformationService;
 import ph.edu.up.antech.service.impl.NetsuiteOtherInformationServiceImpl;

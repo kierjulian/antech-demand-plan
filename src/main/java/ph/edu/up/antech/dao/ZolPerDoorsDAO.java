@@ -1,6 +1,6 @@
 package ph.edu.up.antech.dao;
 
-import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
+import ph.edu.up.antech.domain.master.ZolPerDoors;
 
 import java.time.LocalDate;
 import java.util.List;

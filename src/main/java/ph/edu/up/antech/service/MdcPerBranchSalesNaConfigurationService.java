@@ -2,7 +2,7 @@ package ph.edu.up.antech.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesNaConfiguration;
+import ph.edu.up.antech.domain.master.config.MdcPerBranchSalesNaConfiguration;
 
 import java.util.List;
 

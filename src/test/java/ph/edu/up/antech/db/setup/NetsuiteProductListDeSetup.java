@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListDe;
+import ph.edu.up.antech.domain.master.config.NetsuiteProductListDe;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.NetsuiteProductListDeService;
 import ph.edu.up.antech.service.impl.NetsuiteProductListDeServiceImpl;

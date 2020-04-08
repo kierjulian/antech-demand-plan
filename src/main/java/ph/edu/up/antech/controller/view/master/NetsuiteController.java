@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.master.Netsuite;
 import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.util.StringUtils;
 

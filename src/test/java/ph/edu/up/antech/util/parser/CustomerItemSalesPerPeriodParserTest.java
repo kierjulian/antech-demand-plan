@@ -1,11 +1,10 @@
 package ph.edu.up.antech.util.parser;
 
-import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.junit.Assert;
 import org.junit.Test;
-import ph.edu.up.antech.domain.sales.raw.CustomerItemSalesPerPeriod;
+import ph.edu.up.antech.domain.raw.CustomerItemSalesPerPeriod;
 
 import java.io.IOException;
 import java.io.Reader;

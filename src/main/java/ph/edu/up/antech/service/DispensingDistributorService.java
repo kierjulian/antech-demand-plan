@@ -1,6 +1,6 @@
 package ph.edu.up.antech.service;
 
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 
 import java.time.LocalDate;
 import java.util.List;

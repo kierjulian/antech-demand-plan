@@ -2,7 +2,7 @@ package ph.edu.up.antech.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ph.edu.up.antech.dao.NetsuiteDAO;
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.master.Netsuite;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

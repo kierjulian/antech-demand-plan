@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolMdcAccountDAO;
 import ph.edu.up.antech.dao.pagination.ZolMdcAccountPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
+import ph.edu.up.antech.domain.master.config.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 
 import javax.transaction.Transactional;

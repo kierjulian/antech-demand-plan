@@ -1,6 +1,6 @@
 package ph.edu.up.antech.controller.view.output;
 
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.master.Netsuite;
 
 import java.math.RoundingMode;
 import java.util.List;

@@ -2,12 +2,11 @@ package ph.edu.up.antech.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ph.edu.up.antech.dao.MdcPerBranchSalesBrnDAO;
-import ph.edu.up.antech.domain.sales.master.converter.MdcPerBranchSalesBrn;
+import ph.edu.up.antech.domain.master.config.MdcPerBranchSalesBrn;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository

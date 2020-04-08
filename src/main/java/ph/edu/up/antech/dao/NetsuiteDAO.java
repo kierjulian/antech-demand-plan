@@ -1,6 +1,6 @@
 package ph.edu.up.antech.dao;
 
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.master.Netsuite;
 
 import java.time.LocalDate;
 import java.util.List;

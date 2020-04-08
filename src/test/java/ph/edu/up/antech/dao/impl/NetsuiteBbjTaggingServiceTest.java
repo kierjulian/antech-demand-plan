@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
+import ph.edu.up.antech.domain.master.config.NetsuiteBbjTagging;
 import ph.edu.up.antech.runner.Application;
 import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 import ph.edu.up.antech.service.impl.NetsuiteBbjTaggingServiceImpl;

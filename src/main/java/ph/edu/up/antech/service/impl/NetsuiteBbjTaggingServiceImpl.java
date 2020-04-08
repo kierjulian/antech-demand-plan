@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteBbjTaggingDAO;
 import ph.edu.up.antech.dao.pagination.NetsuiteBbjTaggingPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteBbjTagging;
+import ph.edu.up.antech.domain.master.config.NetsuiteBbjTagging;
 import ph.edu.up.antech.service.NetsuiteBbjTaggingService;
 
 import javax.transaction.Transactional;

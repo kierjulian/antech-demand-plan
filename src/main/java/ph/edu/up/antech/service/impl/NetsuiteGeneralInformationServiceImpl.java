@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteGeneralInformationDAO;
 import ph.edu.up.antech.dao.pagination.NetsuiteGeneralInformationPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteGeneralInformation;
+import ph.edu.up.antech.domain.master.config.NetsuiteGeneralInformation;
 import ph.edu.up.antech.service.NetsuiteGeneralInformationService;
 
 import javax.transaction.Transactional;

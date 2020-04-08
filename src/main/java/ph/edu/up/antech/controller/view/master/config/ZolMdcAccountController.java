@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.master.converter.ZolMdcAccount;
+import ph.edu.up.antech.domain.master.config.ZolMdcAccount;
 import ph.edu.up.antech.service.ZolMdcAccountService;
 import ph.edu.up.antech.util.StringUtils;
 

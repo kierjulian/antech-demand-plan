@@ -1,6 +1,6 @@
 package ph.edu.up.antech.controller.view.demand;
 
-import ph.edu.up.antech.domain.sales.master.ZolPerDoors;
+import ph.edu.up.antech.domain.master.ZolPerDoors;
 
 import java.time.YearMonth;
 import java.util.List;

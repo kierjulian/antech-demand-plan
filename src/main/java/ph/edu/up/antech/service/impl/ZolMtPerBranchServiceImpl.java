@@ -3,7 +3,7 @@ package ph.edu.up.antech.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolMtPerBranchDAO;
-import ph.edu.up.antech.domain.sales.master.ZolMtPerBranch;
+import ph.edu.up.antech.domain.master.ZolMtPerBranch;
 import ph.edu.up.antech.service.ZolMtPerBranchService;
 
 import javax.transaction.Transactional;

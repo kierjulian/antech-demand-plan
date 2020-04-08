@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteProductListDeDAO;
 import ph.edu.up.antech.dao.pagination.NetsuiteProductListDePaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListDe;
+import ph.edu.up.antech.domain.master.config.NetsuiteProductListDe;
 import ph.edu.up.antech.service.NetsuiteProductListDeService;
 
 import javax.transaction.Transactional;

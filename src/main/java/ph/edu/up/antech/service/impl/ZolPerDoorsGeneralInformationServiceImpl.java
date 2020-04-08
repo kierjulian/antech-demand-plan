@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolPerDoorsGeneralInformationDAO;
 import ph.edu.up.antech.dao.pagination.ZolPerDoorsGeneralInformationPaginationDAO;
-import ph.edu.up.antech.domain.sales.master.converter.ZolPerDoorsGeneralInformation;
+import ph.edu.up.antech.domain.master.config.ZolPerDoorsGeneralInformation;
 import ph.edu.up.antech.service.ZolPerDoorsGeneralInformationService;
 
 import javax.transaction.Transactional;

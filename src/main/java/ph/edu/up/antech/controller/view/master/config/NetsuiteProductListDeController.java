@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ph.edu.up.antech.domain.sales.master.converter.NetsuiteProductListDe;
+import ph.edu.up.antech.domain.master.config.NetsuiteProductListDe;
 import ph.edu.up.antech.service.NetsuiteProductListDeService;
 import ph.edu.up.antech.util.StringUtils;
 

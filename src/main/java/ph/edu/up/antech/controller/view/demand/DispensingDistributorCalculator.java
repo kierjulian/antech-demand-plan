@@ -1,6 +1,6 @@
 package ph.edu.up.antech.controller.view.demand;
 
-import ph.edu.up.antech.domain.sales.raw.DispensingDistributor;
+import ph.edu.up.antech.domain.raw.DispensingDistributor;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;

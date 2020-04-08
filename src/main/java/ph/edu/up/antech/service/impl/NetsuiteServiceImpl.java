@@ -3,7 +3,7 @@ package ph.edu.up.antech.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.NetsuiteDAO;
-import ph.edu.up.antech.domain.sales.master.Netsuite;
+import ph.edu.up.antech.domain.master.Netsuite;
 import ph.edu.up.antech.service.NetsuiteService;
 
 import javax.transaction.Transactional;

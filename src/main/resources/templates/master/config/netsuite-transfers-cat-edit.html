@@ -20,13 +20,13 @@
                         </div>
                         <div class="card">
                             <div class="card-body bg-light">
-                                <form th:action="@{/master/netsuite/config/transfers-cat/update}" th:object="${netsuiteTransferCat}" method="post">
+                                <form th:action="@{/master/netsuite/config/transfers-cat/update}" th:object="${netsuiteTransfersCat}" method="post">
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-save">&nbsp; Save</i></button>
                                     </div>
                                     <div class="btn-group">
-                                        <a class="btn btn-warning" th:href="@{/master/netsuite/config/transfers-cat/view/{id}(id=${netsuiteTransferCat.id})}">
+                                        <a class="btn btn-warning" th:href="@{/master/netsuite/config/transfers-cat/view/{id}(id=${netsuiteTransfersCat.id})}">
                                             <i class="fas fa-ban">&nbsp; Cancel</i></a>
                                     </div>
                                     <hr>
