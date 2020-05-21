@@ -16,7 +16,7 @@
                     <div class="container-fluid"><br>
                         <div class="card">
                             <div class="card-header">
-                                Netsuite Table Inventory
+                                Netsuite Table INV
                             </div>
                         </div>
                         <div class="card">
@@ -31,13 +31,12 @@
                                 </form>
                                 <br>
 
-                                <table id="netsuiteTableInventoryTables">
-                                    <!-- Amount -->
-                                    <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
+                                <table id="netsuiteTableInventoryTables" class="table-sm table-striped table-bordered
                                          table-hover table">
-                                        <thead class="thead-light">
+                                    <!-- Amount -->
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td class="text-center font-weight-bold" colspan="42">AMOUNT</td>
+                                            <th class="text-center font-weight-bold" colspan="42">AMOUNT</th>
                                         </tr>
                                         <tr>
                                             <th class="bg-dark text-white">Label</th>
@@ -54,8 +53,8 @@
                                             </th:block>
                                             <th class="bg-dark text-white">Total Water</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
+                                    </thead>
+                                    <tbody>
                                         <th:block th:each="mgmt : ${mgmtList}">
                                             <tr class="bg-dark text-white">
                                                 <!-- Mgmt -->
@@ -147,34 +146,30 @@
                                                 </th:block>
                                             </th:block>
                                         </th:block>
-                                        </tbody>
-                                    </table>
-                                    <br>
+                                    </tbody>
+
+                                    <tr style="height: 50px;"/>
 
                                     <!-- Units -->
-                                    <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
-                                         table-hover table">
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <td class="text-center font-weight-bold" colspan="42">UNITS</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="bg-dark text-white">Label</th>
-                                            <th:block th:each="milkProduct : ${milkProductList}">
-                                                <th th:text="${milkProduct}"></th>
-                                            </th:block>
-                                            <th class="bg-dark text-white">Total Milk</th>
-                                            <th:block th:each="jarProduct : ${jarProductList}">
-                                                <th th:text="${jarProduct}"></th>
-                                            </th:block>
-                                            <th class="bg-dark text-white">Total Jar</th>
-                                            <th:block th:each="waterProduct : ${waterProductList}">
-                                                <th th:text="${waterProduct}"></th>
-                                            </th:block>
-                                            <th class="bg-dark text-white">Total Water</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                    <tr>
+                                        <th class="text-center font-weight-bold" colspan="42">UNITS</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-dark text-white">Label</th>
+                                        <th:block th:each="milkProduct : ${milkProductList}">
+                                            <th th:text="${milkProduct}"></th>
+                                        </th:block>
+                                        <th class="bg-dark text-white">Total Milk</th>
+                                        <th:block th:each="jarProduct : ${jarProductList}">
+                                            <th th:text="${jarProduct}"></th>
+                                        </th:block>
+                                        <th class="bg-dark text-white">Total Jar</th>
+                                        <th:block th:each="waterProduct : ${waterProductList}">
+                                            <th th:text="${waterProduct}"></th>
+                                        </th:block>
+                                        <th class="bg-dark text-white">Total Water</th>
+                                    </tr>
+                                    <tbody>
                                         <th:block th:each="mgmt : ${mgmtList}">
                                             <tr class="bg-dark text-white">
                                                 <!-- Mgmt -->
@@ -266,8 +261,7 @@
                                                 </th:block>
                                             </th:block>
                                         </th:block>
-                                        </tbody>
-                                    </table>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
