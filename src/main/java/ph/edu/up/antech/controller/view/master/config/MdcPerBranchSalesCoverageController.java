@@ -86,7 +86,7 @@ public class MdcPerBranchSalesCoverageController {
         return "redirect:/master/mdc-branch/config/coverage/view/" + mdcPerBranchSalesCoverage.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeMdcPerBranchSalesCoverage(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

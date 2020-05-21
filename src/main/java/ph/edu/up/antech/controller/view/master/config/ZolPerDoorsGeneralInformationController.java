@@ -87,7 +87,7 @@ public class ZolPerDoorsGeneralInformationController {
         return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteZolPerDoorsGeneralInformation(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

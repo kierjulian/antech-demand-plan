@@ -86,7 +86,7 @@ public class MdcPerBranchSalesNaConfigurationController {
         return "redirect:/master/mdc-branch/config/na/view/" + mdcPerBranchSalesNaConfiguration.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeMdcPerBranchSalesNaConfiguration(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

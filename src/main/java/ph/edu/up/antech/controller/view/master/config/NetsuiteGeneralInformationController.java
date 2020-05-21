@@ -86,7 +86,7 @@ public class NetsuiteGeneralInformationController {
         return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeNetsuiteGeneralInformation(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

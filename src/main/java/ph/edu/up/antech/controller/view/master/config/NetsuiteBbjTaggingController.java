@@ -86,7 +86,7 @@ public class NetsuiteBbjTaggingController {
         return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeNetsuiteBbjTagging(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

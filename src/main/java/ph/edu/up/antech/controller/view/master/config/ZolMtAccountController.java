@@ -82,7 +82,7 @@ public class ZolMtAccountController {
         return "redirect:/master/zol-mt/config/accounts/view/" + zolMtAccount.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteZolMdcAccount(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
             zolMtAccountService.removeZolMtAccount(id);

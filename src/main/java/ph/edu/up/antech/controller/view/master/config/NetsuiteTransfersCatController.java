@@ -37,7 +37,7 @@ public class NetsuiteTransfersCatController {
     public String viewNetsuiteTransfersCat(Model model, @PathVariable Integer id) {
         NetsuiteTransfersCat netsuiteTransfersCat = netsuiteTransfersCatService
                 .findNetsuiteTransfersCatById(id);
-        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
+        model.addAttribute("netsuiteTransfersCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-view";
     }
 
@@ -45,13 +45,13 @@ public class NetsuiteTransfersCatController {
     public String editNetsuiteTransfersCat(Model model, @PathVariable Integer id) {
         NetsuiteTransfersCat netsuiteTransfersCat = netsuiteTransfersCatService
                 .findNetsuiteTransfersCatById(id);
-        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
+        model.addAttribute("netsuiteTransfersCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-edit";
     }
 
     @PostMapping("/update")
     public String updateNetsuiteTransfersCat(RedirectAttributes redirectAttributes,
-                                            @ModelAttribute(value = "netsuiteTransferCat")
+                                            @ModelAttribute(value = "netsuiteTransfersCat")
                                                     NetsuiteTransfersCat netsuiteTransfersCat) {
         try {
             netsuiteTransfersCatService.updateNetsuiteTransfersCat(netsuiteTransfersCat);
@@ -67,7 +67,7 @@ public class NetsuiteTransfersCatController {
     @GetMapping("/add")
     public String addNetsuiteTransfersCat(Model model) {
         NetsuiteTransfersCat netsuiteTransfersCat = new NetsuiteTransfersCat();
-        model.addAttribute("netsuiteTransferCat", netsuiteTransfersCat);
+        model.addAttribute("netsuiteTransfersCat", netsuiteTransfersCat);
         return "master/config/netsuite-transfers-cat-add";
     }
 
@@ -86,7 +86,7 @@ public class NetsuiteTransfersCatController {
         return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransfersCat.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeNetsuiteTransfersCat(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

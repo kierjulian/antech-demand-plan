@@ -86,7 +86,7 @@ public class ZolPerDoorsPerAcctController {
         return "redirect:/master/zol-doors/config/accounts/view/" + zolPerDoorsPerAcct.getAccountId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeZolPerDoorsPerAcct(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

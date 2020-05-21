@@ -86,7 +86,7 @@ public class MdcPerBranchSalesCodeController {
         return "redirect:/master/mdc-branch/config/code/view/" + mdcPerBranchSalesCode.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeMdcPerBranchSalesCode(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {

@@ -86,7 +86,7 @@ public class NetsuiteProductListSourceController {
         return "redirect:/master/netsuite/config/product-list/source/view/" + netsuiteProductListSource.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String removeNetsuiteProductListSource(
             RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
