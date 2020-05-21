@@ -245,57 +245,30 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <div class="row">
-                                            <div class="table-responsive col-md-10">
-                                                <table id="hippInMarketSalesAmountDispSummary" class="table table-striped table-bordered table-hover table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">DISP</th>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                            </th:block>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr th:each="product : ${products}">
-                                                            <td th:text="${product.code}"></td>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, product.code), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                            </th:block>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Total</td>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                            </th:block>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="table-responsive col-md-2">
-                                                <table class="table table-striped table-bordered table-hover table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">NS</th>
-                                                            <th scope="col">OFFTAKE</th>
-                                                            <th scope="col"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr th:each="product : ${products}">
-                                                            <td>0</td>
-                                                            <td>0</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>0</td>
-                                                            <td>0</td>
-                                                            <td>0</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        <table id="hippInMarketSalesAmountDispSummary" class="table table-striped table-bordered table-hover table-sm">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">DISP</th>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                </th:block>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="product : ${products}">
+                                                <td th:text="${product.code}"></td>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonthAndProductCode(yearMonth, product.code), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                </th:block>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesAmountByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                </th:block>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                         <br>
                                         <table id="hippInMarketSalesAmountBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
@@ -565,57 +538,30 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <div class="row">
-                                            <div class="table-responsive col-md-10">
-                                                <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
-                                                    <thead class="thead-light">
-                                                        <tr>
-                                                            <th scope="col">DISP</th>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                            </th:block>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr th:each="product : ${products}">
-                                                            <td th:text="${product.code}"></td>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, product.code), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                            </th:block>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Total</td>
-                                                            <th:block th:each="yearMonth : ${yearMonthList}">
-                                                                <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                            </th:block>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="table-responsive col-md-2">
-                                                <table class="table table-striped table-bordered table-hover table-sm">
-                                                    <thead class="thead-light">
-                                                            <tr>
-                                                                <th scope="col">NS</th>
-                                                                <th scope="col">OFFTAKE</th>
-                                                                <th scope="col"></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr th:each="product : ${products}">
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                                <td>0</td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        <table id="hippInMarketSalesUnitsDispSummary" class="table table-striped table-bordered table-hover table-sm">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">DISP</th>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                </th:block>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="product : ${products}">
+                                                <td th:text="${product.code}"></td>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonthAndProductCode(yearMonth, product.code), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                </th:block>
+                                            </tr>
+                                            <tr>
+                                                <td>Total</td>
+                                                <th:block th:each="yearMonth : ${yearMonthList}">
+                                                    <td th:text="${#numbers.formatDecimal(netsuiteDispensingDistributorCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                </th:block>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                         <br>
                                         <table id="hippInMarketSalesUnitsBbjSummary" class="table table-striped table-bordered table-hover table-sm">
                                             <thead class="thead-light">
@@ -731,12 +677,6 @@
                                                     <td>LAZADA</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td th:text="${#numbers.formatDecimal(netsuiteLazadaCalculator.calculateSalesAmountByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>OTHERS</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
@@ -898,30 +838,6 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <table id="hippToMarketSalesAmountOthersSummary" class="table table-striped table-bordered table-hover table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">OTHERS</th>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                    </th:block>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="product : ${products}">
-                                                    <td th:text="${product.code}"></td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
-                                                    </th:block>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                     <div class="tab-pane fade" id="hippToMarketSalesUnit" role="tabpanel" aria-labelledby="hippToMarketSalesUnitTab">
                                         <table id="hippToMarketSalesUnitTableSummary" class="table table-striped table-bordered table-hover table-sm">
@@ -962,12 +878,6 @@
                                                     <td>LAZADA</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td th:text="${#numbers.formatDecimal(netsuiteLazadaCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>OTHERS</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
@@ -1129,30 +1039,6 @@
                                             </tbody>
                                         </table>
                                         <br>
-                                        <table id="hippToMarketSalesUnitOthersSummary" class="table table-striped table-bordered table-hover table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">Others</th>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
-                                                    </th:block>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="product : ${products}">
-                                                    <td th:text="${product.code}"></td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
-                                                    </th:block>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td></td>
-                                                    </th:block>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
                             </div>

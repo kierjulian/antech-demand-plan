@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'Netsuite Table Inventory')"></div>
-        <script th:src="@{/static/js/netsuite-table-inv.js}"></script>
+        <script th:src="@{/js/netsuite-table-inv.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -31,10 +31,11 @@
                                 </form>
                                 <br>
 
-                                <!-- Amount -->
-                                <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
+                                <table id="netsuiteTableInventoryTables">
+                                    <!-- Amount -->
+                                    <table id="netsuiteTableInventoryAmount" class="table-sm table-striped table-bordered
                                          table-hover table">
-                                    <thead class="thead-light">
+                                        <thead class="thead-light">
                                         <tr>
                                             <td class="text-center font-weight-bold" colspan="42">AMOUNT</td>
                                         </tr>
@@ -53,8 +54,8 @@
                                             </th:block>
                                             <th class="bg-dark text-white">Total Water</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                        </thead>
+                                        <tbody>
                                         <th:block th:each="mgmt : ${mgmtList}">
                                             <tr class="bg-dark text-white">
                                                 <!-- Mgmt -->
@@ -146,14 +147,14 @@
                                                 </th:block>
                                             </th:block>
                                         </th:block>
-                                    </tbody>
-                                </table>
-                                <br>
+                                        </tbody>
+                                    </table>
+                                    <br>
 
-                                <!-- Units -->
-                                <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
+                                    <!-- Units -->
+                                    <table id="netsuiteTableInventoryUnits" class="table-sm table-striped table-bordered
                                          table-hover table">
-                                    <thead class="thead-light">
+                                        <thead class="thead-light">
                                         <tr>
                                             <td class="text-center font-weight-bold" colspan="42">UNITS</td>
                                         </tr>
@@ -172,8 +173,8 @@
                                             </th:block>
                                             <th class="bg-dark text-white">Total Water</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                        </thead>
+                                        <tbody>
                                         <th:block th:each="mgmt : ${mgmtList}">
                                             <tr class="bg-dark text-white">
                                                 <!-- Mgmt -->
@@ -265,7 +266,8 @@
                                                 </th:block>
                                             </th:block>
                                         </th:block>
-                                    </tbody>
+                                        </tbody>
+                                    </table>
                                 </table>
                             </div>
                         </div>
