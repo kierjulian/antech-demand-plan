@@ -85,7 +85,7 @@ public class NetsuiteController {
         return "redirect:/master/netsuite/view/" + netsuite.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteNetsuite(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
             netsuiteService.removeNetsuite(id);

@@ -85,7 +85,7 @@ public class ZolPerDoorsController {
         return "redirect:/master/zol-doors/view/" + zolPerDoors.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteZolPerDoors(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
             zolPerDoorsService.removeZolPerDoors(id);

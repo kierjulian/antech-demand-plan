@@ -85,7 +85,7 @@ public class ZolMdcPerBranchController {
         return "redirect:/master/zol-mdc/view/" + zolMdcPerBranch.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteZolMdcPerBranch(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
             zolMdcPerBranchService.removeZolMdcPerBranchById(id);

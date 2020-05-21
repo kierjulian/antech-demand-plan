@@ -88,7 +88,7 @@ public class DispensingDistributorController {
         return "redirect:/master/dispensing-distributor/view/" + dispensingDistributor.getId();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteDispensingDistributor(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
         try {
             dispensingDistributorService.removeDispensingDistributor(id);
