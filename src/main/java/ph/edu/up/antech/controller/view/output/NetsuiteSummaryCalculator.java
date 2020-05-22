@@ -19,7 +19,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getConvUnits()))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .collect(Collectors.toList());
     }
@@ -61,34 +61,34 @@ public class NetsuiteSummaryCalculator {
     public Integer calculateSalesUnitByProductCode(String product) {
         return netsuiteList.stream()
                 .filter(netsuite -> product.equals(netsuite.getBrand()))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
     public Integer calculateMilkSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("CS"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
     public Integer calculateJarSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
     public Integer calculateWaterSalesUnit() {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
     public Integer calculateTotalUnit() {
         return netsuiteList.stream()
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -106,7 +106,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> antechProductDescription.equals(netsuite.getBrand()))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -145,7 +145,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -153,7 +153,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -161,14 +161,14 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
     public Integer calculateSalesUnitByTransfersCatRecode(String transfersCatRecode) {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -223,7 +223,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> productCode.equals(netsuite.getBrand()))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -232,7 +232,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -241,7 +241,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -250,7 +250,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -258,7 +258,7 @@ public class NetsuiteSummaryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -322,7 +322,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> region.equals(netsuite.getRegion()))
                 .filter(netsuite -> productCode.equals(netsuite.getBrand()))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -333,7 +333,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> region.equals(netsuite.getRegion()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -344,7 +344,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> region.equals(netsuite.getRegion()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -355,7 +355,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> region.equals(netsuite.getRegion()))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 
@@ -365,7 +365,7 @@ public class NetsuiteSummaryCalculator {
                 .filter(netsuite -> transfersCatRecode.equals(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> mgmt.equals(netsuite.getMgmt()))
                 .filter(netsuite -> region.equals(netsuite.getRegion()))
-                .mapToInt(Netsuite::getQuantity)
+                .mapToInt(Netsuite::getConvUnits)
                 .sum();
     }
 

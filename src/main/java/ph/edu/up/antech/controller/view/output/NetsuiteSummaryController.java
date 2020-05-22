@@ -141,7 +141,7 @@ public class NetsuiteSummaryController {
                                 .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
                                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
                                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                                .filter(netsuite -> Objects.nonNull(netsuite.getConvUnits()))
                                 .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transferCatRecode))
                                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                                 .filter(netsuite -> netsuite.getRegion().equals(region))

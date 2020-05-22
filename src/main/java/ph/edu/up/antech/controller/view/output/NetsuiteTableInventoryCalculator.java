@@ -18,7 +18,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getConvUnits()))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .collect(Collectors.toList());
     }
@@ -95,7 +95,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -103,7 +103,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -111,7 +111,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -119,7 +119,7 @@ public class NetsuiteTableInventoryCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -128,7 +128,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getRegion().equals(region))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -137,7 +137,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getRegion().equals(region))
                 .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -146,7 +146,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getRegion().equals(region))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Jar"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 
@@ -155,7 +155,7 @@ public class NetsuiteTableInventoryCalculator {
                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                 .filter(netsuite -> netsuite.getRegion().equals(region))
                 .filter(netsuite -> netsuite.getBrand().startsWith("Water"))
-                .mapToInt(netsuite -> netsuite.getQuantity())
+                .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }
 

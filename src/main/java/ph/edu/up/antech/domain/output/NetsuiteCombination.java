@@ -33,7 +33,7 @@ public class NetsuiteCombination {
 
             ProductSalesAmountAndUnit productSalesAmountAndUnit = new ProductSalesAmountAndUnit(
                     netsuite.getBrand(), netsuite.getRevenueConverted().setScale(0, RoundingMode.HALF_EVEN).intValue(),
-                    netsuite.getQuantity());
+                    netsuite.getConvUnits());
             if (productSalesAmountAndUnitList.contains(productSalesAmountAndUnit)) {
                 Integer indexOfExistingProductSalesAmountAndUnit =
                         productSalesAmountAndUnitList.indexOf(productSalesAmountAndUnit);
