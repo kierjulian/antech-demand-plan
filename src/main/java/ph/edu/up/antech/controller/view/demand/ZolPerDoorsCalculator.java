@@ -4,6 +4,7 @@ import ph.edu.up.antech.domain.master.ZolPerDoors;
 
 import java.time.YearMonth;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ZolPerDoorsCalculator {
@@ -13,6 +14,10 @@ public class ZolPerDoorsCalculator {
     public ZolPerDoorsCalculator(List<ZolPerDoors> zolPerDoorsList, List<String> productList,
                                  ZolPerDoorsChannel zolPerDoorsChannel) {
         this.zolPerDoorsList = zolPerDoorsList.stream()
+                .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getAccount()))
+                .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getKamReferenceName()))
+                .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getAmount()))
+                .filter(zolPerDoors -> Objects.nonNull(zolPerDoors.getSalesUnit()))
                 .filter(zolPerDoors -> productList.contains(zolPerDoors.getAntechProductDescription()))
                 .filter(zolPerDoors -> {
                     switch (zolPerDoorsChannel) {

@@ -49,4 +49,14 @@ public class DemandPlanDAOImpl implements DemandPlanDAO {
         return query.getSingleResult();
     }
 
+    @Override
+    public Integer findOldestDemandPlanId() {
+        try {
+            return ((Number) em.createNativeQuery("select min(id) from demand_plan")
+                    .getSingleResult()).intValue();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

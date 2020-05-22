@@ -14,4 +14,6 @@ public interface DemandPlanService {
 
     public DemandPlan findDemandPlanById(Integer id);
 
+    public Integer findOldestDemandPlanId();
+
 }

@@ -19,7 +19,7 @@ public class NetsuiteCalculator {
                 .filter(netsuite -> Objects.nonNull(netsuite.getBrand()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getTransfersCatRecode()))
                 .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                .filter(netsuite -> Objects.nonNull(netsuite.getQuantity()))
+                .filter(netsuite -> Objects.nonNull(netsuite.getConvUnits()))
                 .filter(netsuite -> productList.contains(netsuite.getBrand()))
                 .filter(netsuite -> {
                     switch (netsuiteChannel) {
@@ -75,14 +75,14 @@ public class NetsuiteCalculator {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
                 .filter(netsuite -> netsuite.getBrand().equals(productCode))
-                .mapToInt(netsuiteList -> netsuiteList.getQuantity())
+                .mapToInt(netsuiteList -> netsuiteList.getConvUnits())
                 .sum();
     }
 
     public Integer calculateSalesUnitByYearMonth(YearMonth yearMonth) {
         return netsuiteList.stream()
                 .filter(netsuite -> YearMonth.from(netsuite.getItemDate()).equals(yearMonth))
-                .mapToInt(netsuiteList -> netsuiteList.getQuantity())
+                .mapToInt(netsuiteList -> netsuiteList.getConvUnits())
                 .sum();
     }
 

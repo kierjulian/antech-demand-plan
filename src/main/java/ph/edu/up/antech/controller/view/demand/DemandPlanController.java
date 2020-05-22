@@ -45,7 +45,13 @@ public class DemandPlanController {
                 start);
         if (demandPlan == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "The selected Demand Plan is not yet created.");
-            return "redirect:/demand/plan/view/1";
+
+            Integer id = demandPlanService.findOldestDemandPlanId();
+            if (id != null) {
+                return "redirect:/demand/plan/view/" + id;
+            }
+
+            return "redirect:/demand/plan/add";
         }
 
         model.addAttribute("productList", getAllProducts());

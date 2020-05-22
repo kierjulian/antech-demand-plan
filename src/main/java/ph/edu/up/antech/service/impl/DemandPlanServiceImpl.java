@@ -36,4 +36,9 @@ public class DemandPlanServiceImpl implements DemandPlanService {
         return demandPlanDAO.findDemandPlanById(id);
     }
 
+    @Override
+    public Integer findOldestDemandPlanId() {
+        return demandPlanDAO.findOldestDemandPlanId();
+    }
+
 }
