@@ -81,6 +81,7 @@ public class MdcPerBranchSalesBrnController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales BRN.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/mdc-branch/config/brn";
         }
 
         return "redirect:/master/mdc-branch/config/brn/view/" + mdcPerBranchSalesBrn.getId();

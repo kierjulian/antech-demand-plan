@@ -82,6 +82,7 @@ public class ZolPerDoorsGeneralInformationController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL General Information.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/zol-doors/config/gen-info";
         }
 
         return "redirect:/master/zol-doors/config/gen-info/view/" + zolPerDoorsGeneralInformation.getId();

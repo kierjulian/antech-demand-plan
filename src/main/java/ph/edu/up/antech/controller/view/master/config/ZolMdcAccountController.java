@@ -77,6 +77,7 @@ public class ZolMdcAccountController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL MDC Account.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/zol-mdc/config/accounts";
         }
 
         return "redirect:/master/zol-mdc/config/accounts/view/" + zolMdcAccount.getId();

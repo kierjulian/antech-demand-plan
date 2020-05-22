@@ -81,6 +81,7 @@ public class ZolPerDoorsPerAcctController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL Per Doors Per Acct.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/zol-doors/config/accounts";
         }
 
         return "redirect:/master/zol-doors/config/accounts/view/" + zolPerDoorsPerAcct.getAccountId();

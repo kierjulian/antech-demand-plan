@@ -81,6 +81,7 @@ public class NetsuiteBbjTaggingController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite BBJ Tagging.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/bbj";
         }
 
         return "redirect:/master/netsuite/config/bbj/view/" + netsuiteBbjTagging.getId();

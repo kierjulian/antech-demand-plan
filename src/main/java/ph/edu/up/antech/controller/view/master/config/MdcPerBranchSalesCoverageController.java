@@ -81,6 +81,7 @@ public class MdcPerBranchSalesCoverageController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales Coverage.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/mdc-branch/config/coverage";
         }
 
         return "redirect:/master/mdc-branch/config/coverage/view/" + mdcPerBranchSalesCoverage.getId();

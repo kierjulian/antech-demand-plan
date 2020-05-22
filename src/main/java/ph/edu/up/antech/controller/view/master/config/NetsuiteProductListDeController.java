@@ -81,6 +81,7 @@ public class NetsuiteProductListDeController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Product List DE.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/product-list/de";
         }
 
         return "redirect:/master/netsuite/config/product-list/de/view/" + netsuiteProductListDe.getId();

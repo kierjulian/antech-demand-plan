@@ -77,6 +77,7 @@ public class CustomerController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving customer.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/general/customers";
         }
 
         return "redirect:/general/customers/view/" + customer.getId();

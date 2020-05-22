@@ -59,6 +59,7 @@ public class MdcPerBranchSalesController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while updating MDC Per Branch Sales");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/mdc-branch";
         }
 
         return "redirect:/master/mdc-branch/view/" + mdcPerBranchSales.getId();

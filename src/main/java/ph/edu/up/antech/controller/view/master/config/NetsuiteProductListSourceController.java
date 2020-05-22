@@ -81,6 +81,7 @@ public class NetsuiteProductListSourceController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Product List Source.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/product-list/source";
         }
 
         return "redirect:/master/netsuite/config/product-list/source/view/" + netsuiteProductListSource.getId();

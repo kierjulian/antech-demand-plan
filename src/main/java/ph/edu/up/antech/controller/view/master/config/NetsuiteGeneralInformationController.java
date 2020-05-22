@@ -81,6 +81,7 @@ public class NetsuiteGeneralInformationController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite General Information.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/general-info";
         }
 
         return "redirect:/master/netsuite/config/general-info/view/" + netsuiteGeneralInformation.getId();

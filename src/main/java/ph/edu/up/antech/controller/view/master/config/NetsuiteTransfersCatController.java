@@ -81,6 +81,7 @@ public class NetsuiteTransfersCatController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Transfers Cat.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/transfers-cat";
         }
 
         return "redirect:/master/netsuite/config/transfers-cat/view/" + netsuiteTransfersCat.getId();

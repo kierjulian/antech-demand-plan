@@ -108,8 +108,9 @@ public class ProductController {
             product = productService.saveProduct(product);
             redirectAttributes.addFlashAttribute("successMessage", "Product was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving product.");
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving the product.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/general/products";
         }
 
         return "redirect:/general/products/view/" + product.getId();

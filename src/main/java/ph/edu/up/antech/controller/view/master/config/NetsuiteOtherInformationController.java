@@ -81,6 +81,7 @@ public class NetsuiteOtherInformationController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite Other Information.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite/config/other-info";
         }
 
         return "redirect:/master/netsuite/config/other-info/view/" + netsuiteOtherInformation.getId();

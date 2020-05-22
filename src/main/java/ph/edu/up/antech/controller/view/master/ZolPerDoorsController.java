@@ -80,6 +80,7 @@ public class ZolPerDoorsController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL Per Doors.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/zol-doors";
         }
 
         return "redirect:/master/zol-doors/view/" + zolPerDoors.getId();

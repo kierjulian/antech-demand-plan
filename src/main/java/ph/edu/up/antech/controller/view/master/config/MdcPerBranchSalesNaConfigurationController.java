@@ -81,6 +81,7 @@ public class MdcPerBranchSalesNaConfigurationController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving MDC Per Branch Sales NA Configuration.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/mdc-branch/config/na";
         }
 
         return "redirect:/master/mdc-branch/config/na/view/" + mdcPerBranchSalesNaConfiguration.getId();

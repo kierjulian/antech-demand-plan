@@ -80,6 +80,7 @@ public class ZolMtPerBranchController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving ZOL MT Per Branch.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/zol-mt";
         }
 
         return "redirect:/master/zol-mt/view/" + zolMtPerBranch.getId();

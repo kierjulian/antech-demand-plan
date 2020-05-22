@@ -83,6 +83,7 @@ public class DispensingDistributorController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred saving Dispensing Distributor");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/dispensing-distributor";
         }
 
         return "redirect:/master/dispensing-distributor/view/" + dispensingDistributor.getId();

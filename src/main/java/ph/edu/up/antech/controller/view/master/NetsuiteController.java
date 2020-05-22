@@ -80,6 +80,7 @@ public class NetsuiteController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Netsuite.");
             LOGGER.error(e.getMessage(), e);
+            return "redirect:/master/netsuite";
         }
 
         return "redirect:/master/netsuite/view/" + netsuite.getId();
