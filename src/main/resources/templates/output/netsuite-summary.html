@@ -213,7 +213,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -226,7 +226,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -239,7 +239,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesAmount(), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -256,7 +256,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(milkProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateMilkSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -269,7 +269,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(jarProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateJarSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -282,7 +282,7 @@
                                                                         </th:block>
                                                                     </th:block>
                                                                     <th:block th:unless="${netsuiteCombination.doesProductExistInProductSalesAmountAndUnitList(waterProduct)}">
-                                                                        <td>-</td>
+                                                                        <td>0</td>
                                                                     </th:block>
                                                                 </th:block>
                                                                 <td th:text="${#numbers.formatDecimal(netsuiteCombination.calculateWaterSalesUnit(), 0, 'COMMA', 0, 'POINT')}"></td>
