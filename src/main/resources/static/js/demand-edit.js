@@ -101,7 +101,7 @@ $(document).ready(function () {
     })
 
     // For the color of the actual or predicted.
-    $('#sourceProduction' + 0).change(function () {
+    /*$('#sourceProduction' + 0).change(function () {
         var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
         $('#actual' + 0).attr('value', bool);
     })
@@ -159,5 +159,5 @@ $(document).ready(function () {
     $('#sourceProduction' + 11).change(function () {
         var bool = confirm("Is this actual or predicted? Click OK for actual, and cancel for predicted");
         $('#actual' + 11).attr('value', bool);
-    })
+    })*/
 });

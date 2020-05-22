@@ -118,8 +118,7 @@
                                             <th:block th:each="yearMonth : ${yearMonthList}">
                                                 <th:block th:each="demandPlanDetail : ${demandPlan.getDemandPlanDetailList()}">
                                                     <th:block th:if="${demandPlanDetail.yearMonth.equals(yearMonth)}">
-                                                        <td th:style="${demandPlanDetail.actual ? 'background: red' : 'background: yellow'}"
-                                                                th:text="${#numbers.formatDecimal(demandPlanDetail.sourceProduction, 0, 'COMMA', 0, 'POINT')}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(demandPlanDetail.sourceProduction, 0, 'COMMA', 0, 'POINT')}"></td>
                                                     </th:block>
                                                 </th:block>
                                             </th:block>
