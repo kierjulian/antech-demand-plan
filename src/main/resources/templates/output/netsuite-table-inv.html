@@ -4,6 +4,7 @@
     <head>
         <div th:replace="fragments/template :: header(title = 'Netsuite Table Inventory')"></div>
         <script th:src="@{/js/netsuite-table-inv.js}"></script>
+        <link th:href="@{/css/netsuite-table-inv.css}" rel="stylesheet" />
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -146,30 +147,29 @@
                                                 </th:block>
                                             </th:block>
                                         </th:block>
-                                    </tbody>
 
-                                    <tr style="height: 50px;"/>
 
-                                    <!-- Units -->
-                                    <tr>
-                                        <th class="text-center font-weight-bold" colspan="42">UNITS</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="bg-dark text-white">Label</th>
-                                        <th:block th:each="milkProduct : ${milkProductList}">
-                                            <th th:text="${milkProduct}"></th>
-                                        </th:block>
-                                        <th class="bg-dark text-white">Total Milk</th>
-                                        <th:block th:each="jarProduct : ${jarProductList}">
-                                            <th th:text="${jarProduct}"></th>
-                                        </th:block>
-                                        <th class="bg-dark text-white">Total Jar</th>
-                                        <th:block th:each="waterProduct : ${waterProductList}">
-                                            <th th:text="${waterProduct}"></th>
-                                        </th:block>
-                                        <th class="bg-dark text-white">Total Water</th>
-                                    </tr>
-                                    <tbody>
+                                        <!-- Units -->
+                                        <tr>
+                                            <th:block th:each="i : ${#numbers.sequence(0, #lists.size(milkProductList) + #lists.size(jarProductList) + #lists.size(waterProductList) + 3)}">
+                                                <td style="border: none">&nbsp</td>
+                                            </th:block>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg-dark text-white">Label</td>
+                                            <th:block th:each="milkProduct : ${milkProductList}">
+                                                <td th:text="${milkProduct}"></td>
+                                            </th:block>
+                                            <td class="bg-dark text-white">Total Milk</td>
+                                            <th:block th:each="jarProduct : ${jarProductList}">
+                                                <td th:text="${jarProduct}"></td>
+                                            </th:block>
+                                            <td class="bg-dark text-white">Total Jar</td>
+                                            <th:block th:each="waterProduct : ${waterProductList}">
+                                                <td th:text="${waterProduct}"></td>
+                                            </th:block>
+                                            <td class="bg-dark text-white">Total Water</td>
+                                        </tr>
                                         <th:block th:each="mgmt : ${mgmtList}">
                                             <tr class="bg-dark text-white">
                                                 <!-- Mgmt -->

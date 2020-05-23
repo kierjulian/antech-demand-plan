@@ -1,10 +1,24 @@
 $(document).ready(function() {
     $('#dailySalesReportZOLTable').DataTable({
-        "scrollX": true,
-        dom: 'Bfrtip',
-        buttons: [
-            'csv'
-        ],
+        dom: 'frtipB',
+        buttons: {
+            dom: {
+                button: {
+                    className: 'btn'
+                }
+            },
+            buttons: [
+                {
+                    extend: 'csvHtml5',
+                    text: 'Export as CSV',
+                    charset: 'utf-8',
+                    extension: '.csv',
+                    filename: 'dsr-zol',
+                    className: 'btn-info',
+                    bom: true,
+                }
+            ]
+        },
         "ordering": false,
         "lengthChange": false,
         "paging": false,
