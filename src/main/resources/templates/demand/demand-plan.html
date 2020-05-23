@@ -52,8 +52,33 @@
                                     <div class="btn-group">
                                         <a class="btn btn-dark" role="button" th:href="@{/demand/plan/edit/{id}(id=${demandPlan.id})}">
                                             <i class="fas fa-edit">&nbsp; Edit Demand Plan</i></a>
+                                    </div>&nbsp;
+                                    <div class="btn-group">
+                                        <a class="btn btn-danger text-white" data-toggle="modal"
+                                           th:attr="data-target='#deleteDemandPlan'"
+                                           role="button"><i class="fas fa-trash-alt">&nbsp; Delete Demand Plan</i></a>
                                     </div>
                                 </form>
+                                    <div th:id="'deleteDemandPlan'" class="modal fade" role="dialog"
+                                         aria-labelledby="deleteDemandPlanModalLabel" aria-hidden="true" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Demand Plan</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this Demand Plan?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form th:action="@{/demand/plan/delete/{id}(id=${demandPlan.id})}"
+                                                          th:method="delete">
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <br>
                                 <table class="table table-striped table-bordered table-hover table-sm table-responsive">
                                     <thead>

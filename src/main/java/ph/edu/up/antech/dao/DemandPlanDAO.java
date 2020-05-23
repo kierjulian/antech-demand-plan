@@ -16,4 +16,6 @@ public interface DemandPlanDAO {
 
     public Integer findOldestDemandPlanId();
 
+    public void removeDemandPlan(Integer id);
+
 }

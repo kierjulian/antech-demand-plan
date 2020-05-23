@@ -34,6 +34,10 @@ public class DemandPlanController {
     public String loadDemandPlanPage(Model model, RedirectAttributes redirectAttributes,
                                      @RequestParam(required = false) String startYear,
                                      @RequestParam(required = false) String product) {
+        if (startYear == null && product == null) {
+            return loadOldestDemandPlanOrAddPage();
+        }
+
         Year start = !StringUtils.isNullOrEmpty(startYear)
                 ? Year.parse(startYear) : Year.now();
 
@@ -45,13 +49,7 @@ public class DemandPlanController {
                 start);
         if (demandPlan == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "The selected Demand Plan is not yet created.");
-
-            Integer id = demandPlanService.findOldestDemandPlanId();
-            if (id != null) {
-                return "redirect:/demand/plan/view/" + id;
-            }
-
-            return "redirect:/demand/plan/add";
+            return loadOldestDemandPlanOrAddPage();
         }
 
         model.addAttribute("productList", getAllProducts());
@@ -134,9 +132,9 @@ public class DemandPlanController {
 
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while saving Demand Plan.");
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             LOGGER.error(e.getMessage(), e);
-            return "redirect:/demand/plan/view/1";
+            return loadOldestDemandPlanOrAddPage();
         }
 
         return "redirect:/demand/plan/view/" + demandPlan.getId();
@@ -146,6 +144,28 @@ public class DemandPlanController {
         List<Product> productList = productService.findAllProducts();
         Collections.sort(productList);
         return productList;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteDemandPlan(RedirectAttributes redirectAttributes, @PathVariable Integer id) {
+        try {
+            demandPlanService.removeDemandPlan(id);
+            redirectAttributes.addFlashAttribute("successMessage", "The selected Demand Plan was successfully deleted.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the Demand Plan.");
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return loadOldestDemandPlanOrAddPage();
+    }
+
+    private String loadOldestDemandPlanOrAddPage() {
+        Integer id = demandPlanService.findOldestDemandPlanId();
+        if (id != null) {
+            return "redirect:/demand/plan/view/" + id;
+        }
+
+        return "redirect:/demand/plan/add";
     }
 
 }

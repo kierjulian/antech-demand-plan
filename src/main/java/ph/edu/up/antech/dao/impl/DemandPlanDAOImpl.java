@@ -59,4 +59,10 @@ public class DemandPlanDAOImpl implements DemandPlanDAO {
         }
     }
 
+    @Override
+    public void removeDemandPlan(Integer id) {
+        DemandPlan demandPlan = em.find(DemandPlan.class, id);
+        em.remove(demandPlan);
+    }
+
 }
