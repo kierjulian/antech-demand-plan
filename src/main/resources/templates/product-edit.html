@@ -84,7 +84,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Shelf Life</label>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" th:field="*{shelfLifeInDays}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{shelfLifeInDays}">
                                         </div>
                                         <small class="col-sm-2 form-text text-muted">(in days)</small>
                                         <label class="col-sm-1 col-form-label">Item Barcode</label>
@@ -95,7 +95,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Minimum Saleable Shelf Life</label>
                                         <div class="col-sm-2">
-                                            <input type="number" step="1" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{minimumSaleableShelfLifeInDays}">
                                         </div>
                                         <small class="col-sm-2 form-text text-muted">(in days)</small>
                                         <label class="col-sm-1 col-form-label">Case Barcode</label>
@@ -317,7 +317,7 @@
                                         <label class="col-sm-1 col-form-label">1 Carton</label>
                                         <label class="col-sm-1 col-form-label">=</label>
                                         <div class="col-sm-1">
-                                            <input type="number" class="form-control" th:field="*{piecesPerCarton}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{piecesPerCarton}">
                                         </div>
                                         <label class="col-sm-1 col-form-label">Each</label>
                                     </div>
@@ -326,7 +326,7 @@
                                         <label class="col-sm-1 col-form-label">1 Pallet</label>
                                         <label class="col-sm-1 col-form-label">=</label>
                                         <div class="col-sm-1">
-                                            <input type="number" class="form-control" th:field="*{piecesPerPallet}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{piecesPerPallet}">
                                         </div>
                                         <label class="col-sm-1 col-form-label">Each</label>
                                     </div>
@@ -377,20 +377,20 @@
                                         <label class="col-sm-1 col-form-label">Issuance:</label>
                                         <label class="col-sm-1 col-form-label">Box Of</label>
                                         <div class="col-sm-1">
-                                            <input type="number" class="form-control" th:field="*{box}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{box}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-1 col-form-label">Palletization</label>
                                         <div class="col-sm-1">
-                                            <input type="number" class="form-control" th:field="*{shippingCartonsPerLayer}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{shippingCartonsPerLayer}">
                                         </div>
                                         <small class="col-sm-2 form-text text-muted">no. of standard cartons / shipping cartons per layer</small>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-1 col-form-label">&nbsp;&nbsp;</label>
                                         <div class="col-sm-1">
-                                            <input type="number" class="form-control" th:field="*{layersPerPallet}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{layersPerPallet}">
                                         </div>
                                         <small class="col-sm-2 form-text text-muted">no. of layers per pallet</small>
                                     </div>
