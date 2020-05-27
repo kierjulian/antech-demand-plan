@@ -74,7 +74,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Quantity</label>
                                         <div class="col-sm-4">
-                                            <input type="number" class="form-control" th:field="*{quantity}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{quantity}">
                                         </div>
                                         <label class="col-sm-2 col-form-label">Sales Price</label>
                                         <div class="col-sm-4">
@@ -194,11 +194,11 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">In PCS</label>
                                         <div class="col-sm-4">
-                                            <input type="number" class="form-control" th:field="*{inPcs}">
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{inPcs}">
                                         </div>
                                         <label class="col-sm-2 col-form-label">Conv Units</label>
                                         <div class="col-sm-4">
-                                            <input type="number" class="form-control" th:field="*{convUnits}" required>
+                                            <input type="number" max="1000000000" class="form-control" th:field="*{convUnits}" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
