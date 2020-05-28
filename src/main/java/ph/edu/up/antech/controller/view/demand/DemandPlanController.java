@@ -83,6 +83,19 @@ public class DemandPlanController {
 
         model.addAttribute("demandPlan", demandPlan);
         model.addAttribute("yearMonthList", yearMonthList);
+
+        DemandPlan previousDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(
+                demandPlan.getProduct().getId(), demandPlan.getYear().minusYears(1));
+        if (previousDemandPlan == null) {
+            previousDemandPlan = new DemandPlan();
+            previousDemandPlan.setYear(demandPlan.getYear());
+            previousDemandPlan.generateDemandPlanDetails();
+            model.addAttribute("doesPreviousDemandPlanExist", false);
+        } else {
+            model.addAttribute("doesPreviousDemandPlanExist", true);
+        }
+        model.addAttribute("previousDemandPlan", previousDemandPlan);
+
         return "demand/demand-plan-edit";
     }
 
@@ -125,7 +138,7 @@ public class DemandPlanController {
             DemandPlan previousDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(
                     demandPlan.getProduct().getId(), demandPlan.getYear().minusYears(1));
             if (previousDemandPlan != null) {
-                demandPlan.populateDemandPlanDetailsFromPreviousDemandPlan(previousDemandPlan);
+                //demandPlan.populateDemandPlanDetailsFromPreviousDemandPlan(previousDemandPlan);
             }
 
             demandPlanService.saveDemandPlan(demandPlan);
