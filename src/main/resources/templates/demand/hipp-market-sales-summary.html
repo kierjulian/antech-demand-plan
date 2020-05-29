@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <div th:replace="fragments/template :: header(title = 'HiPP Market Sales')"></div>
+        <script th:src="@{/js/hipp-market-sales-summary.js}"></script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -27,6 +28,11 @@
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-search">&nbsp; Search</i></button>
                                     </div>&nbsp;
+                                    <button type="button" class="btn btn-info"
+                                            onclick="tablesToExcel(['hippInMarketSalesAmountTableSummary', 'hippInMarketSalesAmountSkuSummary'],
+                                                ['HiPP In Market Sales Amount', 'HiPP In Market Sales Unit'], 'hipp-market-sales-summary.xls', 'Excel')">
+                                        Export to Excel
+                                    </button>
                                 </form>
                                 <br>
                                 <ul class="nav nav-tabs" id="hippMarketSalesTab" role="tablist">
