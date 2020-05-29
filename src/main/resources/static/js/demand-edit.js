@@ -26,17 +26,15 @@ $(document).ready(function () {
                 + +document.getElementById('inMarket' + (i - 1)).value) / 3);
 
         // For Total Offtake
-        /* document.getElementById('totalOffTake' + i).value =
+        document.getElementById('totalOffTake' + i).value =
             Math.round((+document.getElementById('totalOffTake' + (i - 3)).value
                 + +document.getElementById('totalOffTake' + (i - 2)).value
-                + +document.getElementById('totalOffTake' + (i - 1)).value) / 3); */
+                + +document.getElementById('totalOffTake' + (i - 1)).value) / 3);
 
-        if (i >= 1) {
-            // Total Goods Available
-            document.getElementById('sourceTotalGoodsAvailable' + i).value =
-                +document.getElementById('sourceProduction' + i).value
-                + +document.getElementById('sourceHippEndingInventory' + (i - 1)).value;
-        }
+        // Total Goods Available
+        document.getElementById('sourceTotalGoodsAvailable' + i).value =
+            +document.getElementById('sourceProduction' + i).value
+            + +document.getElementById('sourceHippEndingInventory' + (i - 1)).value;
 
         // For hipp ending inventory
         document.getElementById('sourceHippEndingInventory' + i).value =
@@ -52,11 +50,9 @@ $(document).ready(function () {
                 Math.round(+document.getElementById('sourceHippEndingInventory' + i).value / inMarketAve * 30);
         }
 
-        if (i >= 1) {
-            // Antech Beginning Inventory
-            document.getElementById('antechBeginningInventory' + i).value =
-                +document.getElementById('antechEndingInventory' + (i - 1)).value;
-        }
+        // Antech Beginning Inventory
+        document.getElementById('antechBeginningInventory' + i).value =
+            +document.getElementById('antechEndingInventory' + (i - 1)).value;
 
         if (i >= 4) {
             // Shipments received at antech
