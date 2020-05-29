@@ -112,7 +112,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'averageInMarketSales' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].averageInMarketSales}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].averageInMarketSales}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -126,7 +128,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'totalOffTake' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].totalOffTake}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].totalOffTake}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -161,7 +165,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'sourceTotalGoodsAvailable' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceTotalGoodsAvailable}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceTotalGoodsAvailable}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -189,7 +195,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'sourceHippEndingInventory' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippEndingInventory}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippEndingInventory}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -203,7 +211,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'sourceHippDaysOnHand' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippDaysOnHand}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].sourceHippDaysOnHand}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -221,7 +231,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechBeginningInventory' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechBeginningInventory}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechBeginningInventory}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -235,7 +247,10 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechShipmentsReceived' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechShipmentsReceived}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechShipmentsReceived}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) ||
+                                                                            (doesPreviousDemandPlanExist && stat.index > 3)}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -249,7 +264,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechTotalAvailableForSalePhils' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechTotalAvailableForSalePhils}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechTotalAvailableForSalePhils}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -263,7 +280,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechActualSales' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechActualSales}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechActualSales}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -277,7 +296,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechEndingInventory' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechEndingInventory}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechEndingInventory}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -291,7 +312,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'antechDaysOnHand' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechDaysOnHand}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].antechDaysOnHand}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -309,7 +332,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'tradeBeginningInventory' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeBeginningInventory}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeBeginningInventory}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -323,7 +348,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'tradeTotalEndingInventory' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeTotalEndingInventory}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeTotalEndingInventory}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
@@ -337,7 +364,9 @@
                                                             <td>
                                                                 <input type="number" style="width:100px" class="form-control"
                                                                        th:id="'tradeDaysOnHand' + ${stat.index}"
-                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeDaysOnHand}" required>
+                                                                       th:field="*{demandPlanDetailList[__${stat.index}__].tradeDaysOnHand}"
+                                                                       th:readonly="${(!doesPreviousDemandPlanExist && stat.index > 5) || doesPreviousDemandPlanExist}"
+                                                                       required>
                                                             </td>
                                                         </th:block>
                                                     </th:block>
