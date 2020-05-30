@@ -128,7 +128,7 @@ public class DemandPlanController {
             DemandPlan savedDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(demandPlan.getProduct().getId(),
                     demandPlan.getYear());
             if (savedDemandPlan != null) {
-                throw new RuntimeException("Demand plan for chosen product and year already exists.");
+                throw new RuntimeException("Demand Plan for chosen product and year already exists.");
             }
 
             Product product = productService.findProductById(demandPlan.getProduct().getId());
@@ -137,12 +137,11 @@ public class DemandPlanController {
 
             DemandPlan previousDemandPlan = demandPlanService.findDemandPlanByProductIdAndYear(
                     demandPlan.getProduct().getId(), demandPlan.getYear().minusYears(1));
-            if (previousDemandPlan != null) {
-                //demandPlan.populateDemandPlanDetailsFromPreviousDemandPlan(previousDemandPlan);
+            if (previousDemandPlan == null && !demandPlan.getYear().equals(Year.now())) {
+                throw new RuntimeException("Create a Demand Plan for the previous year first.");
             }
 
             demandPlanService.saveDemandPlan(demandPlan);
-
             redirectAttributes.addFlashAttribute("successMessage", "Demand Plan was successfully created.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
