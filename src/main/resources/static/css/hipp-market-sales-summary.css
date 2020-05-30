@@ -1,0 +1,8 @@
+.blank_row {
+    height: 30px !important; /* overwrites any other rules */
+    background-color: #ffffff;
+}
+tr.blank_row > td {
+    border-right: hidden;
+    border-left: hidden;
+}
