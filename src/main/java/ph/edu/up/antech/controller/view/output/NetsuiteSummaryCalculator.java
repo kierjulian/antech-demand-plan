@@ -67,7 +67,7 @@ public class NetsuiteSummaryCalculator {
 
     public Integer calculateMilkSalesUnit() {
         return netsuiteList.stream()
-                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("CS"))
+                .filter(netsuite -> netsuite.getBrand().startsWith("CS") || netsuite.getBrand().startsWith("S"))
                 .mapToInt(netsuite -> netsuite.getConvUnits())
                 .sum();
     }

@@ -961,7 +961,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
-                                                        <td th:text="${#numbers.formatDecimal(netsuiteZpcDpCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                        <td th:text="${#numbers.formatDecimal(netsuiteToMarketBbjCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
