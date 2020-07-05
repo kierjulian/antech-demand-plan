@@ -24,11 +24,10 @@
                             <a class="close" data-dismiss="alert">&times;</a>
                         </div>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-header">
                                 Add Demand Plan
                             </div>
                         </div>
-                        <br>
                         <div class="card">
                             <div class="card-body bg-light">
                                 <form th:action="@{/demand/plan/create}" th:object="${demandPlan}" method="post">

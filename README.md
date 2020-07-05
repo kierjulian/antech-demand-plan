@@ -31,3 +31,5 @@ For generating a site documentation, run `mvn clean site`, the documents generat
 #Contact
 For contacting the original developer of this project, please free to send me an email at `kmgenoguin@up.edu.ph`. Cheers!
 
+#AWS SSL
+To create a new SSL certificate, use this website https://gethttpsforfree.com/. To upload the generated certificate to AWS, follow this document: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl-upload.html, you do not need to include the --certificate-chain option.
