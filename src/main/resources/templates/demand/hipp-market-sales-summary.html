@@ -669,6 +669,12 @@
                                                     </th:block>
                                                 </tr>
                                                 <tr>
+                                                    <td>OTHERS</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td th:text="${#numbers.formatDecimal(toMarketProductCalculator.calculateSalesAmountByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
@@ -819,6 +825,30 @@
                                                     </th:block>
                                                 </tr>
                                             </tbody>
+
+                                            <tbody>
+                                                <tr class="bg-light blank_row">
+                                                    <td colspan="42"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">OTHERS</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
+                                                    </th:block>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="hippToMarketSalesUnit" role="tabpanel" aria-labelledby="hippToMarketSalesUnitTab">
@@ -860,6 +890,12 @@
                                                     <td>LAZADA</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td th:text="${#numbers.formatDecimal(netsuiteLazadaCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>OTHERS</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
                                                     </th:block>
                                                 </tr>
                                                 <tr>
@@ -1010,6 +1046,30 @@
                                                     <td>Total</td>
                                                     <th:block th:each="yearMonth : ${yearMonthList}">
                                                         <td th:text="${#numbers.formatDecimal(netsuiteLazadaCalculator.calculateSalesUnitByYearMonth(yearMonth), 0, 'COMMA', 0, 'POINT')}"></td>
+                                                    </th:block>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr class="bg-light blank_row">
+                                                    <td colspan="42"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">OTHERS</th>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <th th:text="${#temporals.format(yearMonth, 'MMM-yyyy')}"></th>
+                                                    </th:block>
+                                                </tr>
+                                                <tr th:each="product : ${products}">
+                                                    <td th:text="${product.code}"></td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
+                                                    </th:block>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th:block th:each="yearMonth : ${yearMonthList}">
+                                                        <td>0</td>
                                                     </th:block>
                                                 </tr>
                                             </tbody>
