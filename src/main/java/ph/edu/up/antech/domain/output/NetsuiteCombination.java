@@ -145,7 +145,7 @@ public class NetsuiteCombination {
 
     public Integer calculateWaterSalesUnit() {
         return productSalesAmountAndUnitList.stream()
-                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().startsWith("Water"))
+                .filter(productSalesAmountAndUnit -> productSalesAmountAndUnit.getProduct().contains("Water"))
                 .filter(productSalesAmountAndUnit -> Objects.nonNull(productSalesAmountAndUnit.getSalesUnit()))
                 .mapToInt(productSalesAmountAndUnit -> productSalesAmountAndUnit.getSalesUnit())
                 .sum();

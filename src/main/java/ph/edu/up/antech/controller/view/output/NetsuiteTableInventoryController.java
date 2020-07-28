@@ -55,8 +55,14 @@ public class NetsuiteTableInventoryController {
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> mgmtList = generateUniqueMgmtFromNetsuiteList(netsuiteList);
+        Collections.sort(mgmtList);
+
         List<String> regionList = generateUniqueRegionFromNetsuiteList(netsuiteList);
+        Collections.sort(regionList);
+
         List<String> kamReferenceNameList = generateUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
+        Collections.sort(kamReferenceNameList);
+
         List<NetsuiteCombination> netsuiteCombinationList = generateNetsuiteCombination(netsuiteList, mgmtList,
                 regionList, kamReferenceNameList, productCodeList);
 

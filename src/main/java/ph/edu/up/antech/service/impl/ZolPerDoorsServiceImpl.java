@@ -1,8 +1,11 @@
 package ph.edu.up.antech.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ph.edu.up.antech.dao.ZolPerDoorsDAO;
+import ph.edu.up.antech.dao.pagination.ZolPerDoorsPaginationDAO;
 import ph.edu.up.antech.domain.master.ZolPerDoors;
 import ph.edu.up.antech.service.ZolPerDoorsService;
 
@@ -16,6 +19,9 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
 
     @Autowired
     private ZolPerDoorsDAO zolPerDoorsDAO;
+
+    @Autowired
+    private ZolPerDoorsPaginationDAO zolPerDoorsPaginationDAO;
 
     @Override
     public ZolPerDoors saveZolPerDoors(ZolPerDoors zolPerDoors) {
@@ -82,6 +88,11 @@ public class ZolPerDoorsServiceImpl implements ZolPerDoorsService {
     @Override
     public List<ZolPerDoors> findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
         return zolPerDoorsDAO.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(startDate, endDate);
+    }
+
+    @Override
+    public Page<ZolPerDoors> findAll(Pageable pageable) {
+        return zolPerDoorsPaginationDAO.findAll(pageable);
     }
 
 }

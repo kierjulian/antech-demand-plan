@@ -211,8 +211,7 @@ public class CustomerItemSalesPerPeriod {
 
     private void convertSalesAmountFromStringToBigDecimal() {
         if (!StringUtils.isTrimmedValueNullOrEmpty(salesAmountInString)) {
-            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""))
-                    .divide(new BigDecimal("1.12"), 2, RoundingMode.HALF_EVEN);
+            this.salesAmount = new BigDecimal(this.salesAmountInString.replaceAll(",", ""));
         }
     }
 

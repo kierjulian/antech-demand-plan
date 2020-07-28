@@ -14,6 +14,7 @@ import ph.edu.up.antech.service.NetsuiteService;
 import ph.edu.up.antech.service.ProductService;
 import ph.edu.up.antech.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,6 +38,14 @@ public class NetsuiteSummaryController {
         LocalDate end = !StringUtils.isNullOrEmpty(endDate)
                 ? LocalDate.parse(endDate) : LocalDate.now();
         List<Netsuite> netsuiteList = netsuiteService.findNetsuiteSalesAmountAndUnitBetweenTwoDates(start, end);
+        netsuiteList.forEach(netsuite -> {
+            if (netsuite.getRevenueConverted() == null) {
+                netsuite.setRevenueConverted(BigDecimal.ZERO);
+            }
+            if (netsuite.getConvUnits() == null) {
+                netsuite.setConvUnits(0);
+            }
+        });
 
         List<Product> productList = productService.findAllProducts();
         List<String> productCodeList = productList.stream()
@@ -55,9 +64,16 @@ public class NetsuiteSummaryController {
                 .map(Product::getCode)
                 .collect(Collectors.toList());
         List<String> transfersCatRecodeList = generateListOfUniqueTransfersCatRecordFromNetsuiteList(netsuiteList);
+        Collections.sort(transfersCatRecodeList);
+
         List<String> mgmtList = generateListOfUniqueMgmtFromNetsuiteList(netsuiteList);
+        Collections.sort(mgmtList);
+
         List<String> regionList = generateListOfUniqueRegionFromNetsuiteList(netsuiteList);
+        Collections.sort(regionList);
+
         List<String> kamReferenceNameList = generateListOfUniqueKamReferenceNameFromNetsuiteList(netsuiteList);
+        Collections.sort(kamReferenceNameList);
 
         List<NetsuiteCombination> netsuiteCombinationList = generateNetsuiteCombination(netsuiteList,
                 transfersCatRecodeList, mgmtList, regionList, kamReferenceNameList, productCodeList);
@@ -140,8 +156,6 @@ public class NetsuiteSummaryController {
                                 .filter(netsuite -> Objects.nonNull(netsuite.getMgmt()))
                                 .filter(netsuite -> Objects.nonNull(netsuite.getRegion()))
                                 .filter(netsuite -> Objects.nonNull(netsuite.getKamRefName1()))
-                                .filter(netsuite -> Objects.nonNull(netsuite.getRevenueConverted()))
-                                .filter(netsuite -> Objects.nonNull(netsuite.getConvUnits()))
                                 .filter(netsuite -> netsuite.getTransfersCatRecode().equals(transferCatRecode))
                                 .filter(netsuite -> netsuite.getMgmt().equals(mgmt))
                                 .filter(netsuite -> netsuite.getRegion().equals(region))

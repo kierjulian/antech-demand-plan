@@ -17,6 +17,7 @@ import ph.edu.up.antech.util.StringUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -48,7 +49,11 @@ public class DsrZolController {
         List<ZolPerDoors> zolPerDoorsList = zolPerDoorsService.findZolPerDoorsSalesAmountAndUnitBetweenTwoDates(start, end);
         List<DsrZol> dsrZolList = generateDsrZolFromZolPerDoorsList(zolPerDoorsList, productCodeList);
         List<String> kamReferenceNameList = findDistinctKamReferenceNameInZolPerDoorsList(zolPerDoorsList);
+        Collections.sort(kamReferenceNameList);
+
         List<String> accountList = findDistinctAccountInZolPerDoorsList(zolPerDoorsList);
+        Collections.sort(accountList);
+
         List<DsrZolCombination> dsrZolCombinationList =
                 generateDsrZolCombinationByLocalDateAndKamReferenceNameAndAccount(dsrZolList, kamReferenceNameList,
                         accountList);
